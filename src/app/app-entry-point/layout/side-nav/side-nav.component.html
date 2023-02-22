@@ -1,1 +1,9 @@
-<p>side-nav works!</p>
+<mat-sidenav-container class="example-container" hasBackdrop="false">
+  <mat-sidenav #sidenav class="example-sidenav">
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,21 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
-import { SideBarComponent } from './layout/side-bar/side-bar.component';
-import { TopNavComponent } from './layout/top-nav/top-nav.component';
+import { LayoutComponent } from './layout/layout.component';
+import {AppEntryPointRoutingModule} from "./app-entry-point-routing.module";
 import { SideNavComponent } from './layout/side-nav/side-nav.component';
-
-
-
+import { TopNavComponent } from './layout/top-nav/top-nav.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [
-    NavBarComponent,
-    SideBarComponent,
+    LayoutComponent,
+    SideNavComponent,
     TopNavComponent,
-    SideNavComponent
+
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AppEntryPointRoutingModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatCardModule,
+    MatListModule
+
   ]
 })
 export class AppEntryPointModule { }
