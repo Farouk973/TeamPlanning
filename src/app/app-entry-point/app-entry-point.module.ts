@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
 import { SideBarComponent } from './layout/side-bar/side-bar.component';
 import { TopNavComponent } from './layout/top-nav/top-nav.component';
+import { SideNavComponent } from './layout/side-nav/side-nav.component';
 
 
 
@@ -10,7 +11,8 @@ import { TopNavComponent } from './layout/top-nav/top-nav.component';
   declarations: [
     NavBarComponent,
     SideBarComponent,
-    TopNavComponent
+    TopNavComponent,
+    SideNavComponent
   ],
   imports: [
     CommonModule
