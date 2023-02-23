@@ -1,1 +1,20 @@
-<p>authentificate works!</p>
+<div class="nav-container mb-3">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container">
+        <div class="navbar-brand logo"></div>
+        <div class="navbar-nav ml-auto">
+    <button *ngIf="(auth.isAuthenticated$ | async) === false" class="btn btn-primary btn-block"
+        (click)="loginWithRedirect()">
+        se connecter
+    </button> 
+     <button *ngIf="(auth.isAuthenticated$ | async)" 
+     (click)="logout()">
+     Log out
+    </button>
+
+    <app-profile *ngIf="(auth.isAuthenticated$ | async)"></app-profile>
+     
+</div>
+</div>
+</nav>
+</div>
