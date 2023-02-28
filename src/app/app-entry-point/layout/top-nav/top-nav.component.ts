@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class TopNavComponent implements OnInit {
 
   constructor(
     private router: Router,
+    public oidcSecurityService: OidcSecurityService
     ) {
  
   }
@@ -23,6 +25,11 @@ export class TopNavComponent implements OnInit {
     this.sideNavToggled.emit();
   }
   onLoggedout() {
+    this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
   }
+  onReddirectProfile(){
+    this.router.navigate(['/profile']);
+  }
+
 
 }

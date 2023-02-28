@@ -1,4 +1,4 @@
-<mat-toolbar class="fix-nav top-nav-custom">
+<mat-toolbar class="fix-nav top-nav-custom" *ngIf="oidcSecurityService.userData$ | async as user">
   <!-- <button type="button" mat-icon-button (click)="toggleSidebar()">
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button > -->
@@ -10,13 +10,13 @@
   <span class="nav-spacer"></span>
   <button mat-button [matMenuTriggerFor]="userMenu">
     <div fxLayout="row" fxLayoutAlign="center center">
-      <h5 class="mr-4">sabri krima</h5>
+      <h5 class="mr-4">{{ user?.userData?.name }}</h5>
       <mat-icon>keyboard_arrow_down</mat-icon>
     </div>
   </button>
 
   <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="onReddirectProfile()">
       <mat-icon>person</mat-icon>
       <span>Mon Compte</span>
     </button>
