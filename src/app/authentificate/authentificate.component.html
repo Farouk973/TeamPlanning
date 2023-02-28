@@ -1,1 +1,21 @@
-<p>authentificate works!</p>
+<div class="nav-container mb-3">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container">
+        <div class="navbar-brand logo"></div>
+        <div class="navbar-nav ml-auto">
+            
+     <button *ngIf="!oidcSecurityService.userData$ "  class="btn btn-primary btn-block" 
+        (click)="login()">
+        se connecter
+    </button>  
+     <button *ngIf="oidcSecurityService.userData$  " 
+     (click)="logout()" >
+     Log out
+    </button>
+    
+    <app-profile *ngIf="oidcSecurityService.userData$" ></app-profile>
+     
+</div>
+</div>
+</nav>
+</div>

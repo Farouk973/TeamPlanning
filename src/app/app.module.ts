@@ -53,10 +53,17 @@ import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {CdkMenuModule} from '@angular/cdk/menu';
 import {DialogModule} from '@angular/cdk/dialog';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from 'angular-auth-oidc-client';
+import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthConfigModule } from './auth/auth-config.module';
 @NgModule({
   declarations: [
     AppComponent,
     AuthentificateComponent,
+    ProfileComponent,
 
   ],
   imports: [
@@ -116,7 +123,66 @@ import {DialogModule} from '@angular/cdk/dialog';
     DialogModule,
   ],
 
-  providers: [],
+  exports: [
+    A11yModule,
+    CdkAccordionModule,
+    ClipboardModule,
+    CdkListboxModule,
+    CdkMenuModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
+    DragDropModule,
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule,
+    OverlayModule,
+    PortalModule,
+    ScrollingModule,
+    DialogModule,
+    HighlightModule,
+    AuthConfigModule,
+  ],
+
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
