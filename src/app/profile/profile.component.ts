@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
+
 
 @Component({
   selector: 'app-profile',
@@ -9,12 +10,10 @@ import { AuthService } from '@auth0/auth0-angular';
 export class ProfileComponent implements OnInit {
   profileJson: string | null = null;
 
-  constructor(public auth: AuthService) {}
+  constructor(public oidcSecurityService: OidcSecurityService) {}
 
   ngOnInit() {
-    this.auth.user$.subscribe(
-      (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
-    );
+    
   }
 
 }

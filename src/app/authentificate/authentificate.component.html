@@ -3,16 +3,17 @@
       <div class="container">
         <div class="navbar-brand logo"></div>
         <div class="navbar-nav ml-auto">
-    <button *ngIf="(auth.isAuthenticated$ | async) === false" class="btn btn-primary btn-block"
-        (click)="loginWithRedirect()">
+            
+     <button *ngIf="!oidcSecurityService.userData$ "  class="btn btn-primary btn-block" 
+        (click)="login()">
         se connecter
-    </button> 
-     <button *ngIf="(auth.isAuthenticated$ | async)" 
-     (click)="logout()">
+    </button>  
+     <button *ngIf="oidcSecurityService.userData$  " 
+     (click)="logout()" >
      Log out
     </button>
-
-    <app-profile *ngIf="(auth.isAuthenticated$ | async)"></app-profile>
+    
+    <app-profile *ngIf="oidcSecurityService.userData$" ></app-profile>
      
 </div>
 </div>

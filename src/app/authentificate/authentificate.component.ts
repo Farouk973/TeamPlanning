@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 
-import { AuthService } from '@auth0/auth0-angular';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -9,21 +9,20 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./authentificate.component.css']
 })
 export class AuthentificateComponent implements OnInit {
-  isCollapsed = true;
 
-  constructor(public auth: AuthService,
-    @Inject(DOCUMENT) private doc: Document,
-    ) { }
+
+
+  constructor(public oidcSecurityService: OidcSecurityService)
+   { }
 
   ngOnInit(): void {
+
   }
-  loginWithRedirect(): void {
-    this.auth.loginWithRedirect();
+  login(): void {
+    this.oidcSecurityService.authorize();
   }
   logout(): void {
-    this.auth.logout({ logoutParams: {
-      returnTo: this.doc.location.origin
-    } });
+    this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
   }
 
 }
