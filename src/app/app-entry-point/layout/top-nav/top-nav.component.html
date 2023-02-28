@@ -1,0 +1,29 @@
+<mat-toolbar class="fix-nav top-nav-custom">
+  <!-- <button type="button" mat-icon-button (click)="toggleSidebar()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button > -->
+  <img style="display: inline; margin-left: 20px;" src="../assets/logo2.png" alt="logo" width="35px" height="35px"  (click)="toggleSidebar()" />
+
+  <div class="nav-brand" style="font-size: 30px; margin-left: 10px;">
+      Naxxum
+  </div>
+  <span class="nav-spacer"></span>
+  <button mat-button [matMenuTriggerFor]="userMenu">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <h5 class="mr-4">sabri krima</h5>
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </div>
+  </button>
+
+  <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>Mon Compte</span>
+    </button>
+    <button mat-menu-item (click)="onLoggedout()">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Déconnexion</span>
+    </button>
+  </mat-menu>
+
+</mat-toolbar>

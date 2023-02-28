@@ -1,9 +1,37 @@
-<mat-sidenav-container class="example-container" hasBackdrop="false">
-  <mat-sidenav #sidenav class="example-sidenav">
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<mat-nav-list class="global-nav">
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="sidenav-icon" style="margin-right: 10px;">home</mat-icon> Service Users
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <a mat-list-item >
+        <mat-icon class="sidenav-icon"></mat-icon>
+        Service catalogue
+      </a>
+      <a mat-list-item >
+        <mat-icon class="sidenav-icon"></mat-icon>
+        Service Users
+      </a>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon class="sidenav-icon" style="margin-right: 10px;">dashboard</mat-icon>         
+          Service Permessions
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['request-task']">
+        <mat-icon class="sidenav-icon"></mat-icon>
+        Service Roles
+      </a>
+      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['request-task/work-flow']">
+        <mat-icon class="sidenav-icon"></mat-icon>
+        Service Permessions
+      </a>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</mat-nav-list>

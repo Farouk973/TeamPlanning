@@ -1,15 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MediaObserver } from '@angular/flex-layout';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.css']
+  styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class LayoutComponent implements OnInit, OnDestroy {
+  sideNavOpened = true;
+  sideNavMode: 'side' | 'over' = 'side';
+  toolBarHeight = 64;
+  private readonly mediaWatcher: Subscription;
+  constructor(media: MediaObserver) {
+    this.mediaWatcher = media.asObservable().subscribe((changes) => {
+      changes.forEach(change => {
+        if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
+          if (this.sideNavOpened) {
+            this.sideNavOpened = false;
+          }
+          this.sideNavMode = 'over';
+        } else {
+          this.sideNavOpened = true;
+          this.sideNavMode = 'side';
+        }
+        if (change.mqAlias === 'xs') {
+          this.toolBarHeight = 56;
+        } else {
+          this.toolBarHeight = 64;
+        }
+      });
+    });
   }
+  ngOnInit() { }
 
+  ngOnDestroy(): void {
+    this.mediaWatcher.unsubscribe();
+  }
 }
