@@ -1,0 +1,75 @@
+@import "src/scss/variables";
+
+.mat-nav-list {
+  width: 100%;
+  padding: 0px !important;
+
+  a {
+    .mat-icon {
+      margin-right: 10px;
+      // color: $primary-color;
+    }
+    height: 50px !important;
+    display: block;
+  }
+}
+
+.nested-menu {
+  .nested {
+    list-style-type: none;
+  }
+
+  .submenu {
+    display: none;
+    height: 0;
+  }
+
+  & .expand {
+    &.submenu {
+      display: block;
+      list-style-type: none;
+      height: auto;
+      margin: 0;
+
+      li {
+        a {
+          padding: 10px;
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.mat-expansion-panel-body {
+  padding: 0px !important;
+}
+
+mat-sidenav-container > mat-sidenav {
+  padding: 0px !important;
+}
+
+mat-expansion-panel {
+  box-shadow: none !important;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.15) !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+mat-expansion-panel-header {
+  padding: 0px 24px !important;
+  height: 60px !important;
+}
+
+mat-sidenav-container > mat-sidenav {
+  border-right: none !important;
+}
+
+.mat-expansion-panel-spacing {
+  margin: 0px !important;
+}
+
+
+mat-expansion-panel:hover {
+  background-color: rgb(110, 235, 235);
+}
