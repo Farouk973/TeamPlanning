@@ -28,7 +28,7 @@ export class TopNavComponent implements OnInit {
     this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
   }
   onReddirectProfile(){
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/dashboard/profile']);
   }
 
 

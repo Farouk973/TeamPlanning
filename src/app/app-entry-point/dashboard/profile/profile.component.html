@@ -1,0 +1,29 @@
+<div *ngIf="oidcSecurityService.userData$ | async as user">
+  <div class="row align-items-center profile-header">
+    <div class="col-md text-center text-md-left">
+      <h1><b>Welcome</b> {{user?.userData?.name }}</h1>
+    </div>
+    
+  </div>
+
+  <mat-card> 
+    <mat-card-header>
+      <div class="col-md-2 mb-3" style="position: center;">
+        <img [src]=user?.userData?.picture alt="User's profile picture"
+          class="rounded-circle img-fluid profile-picture" />
+      </div>    </mat-card-header> <mat-card-content> <mat-list> <mat-list-item> <mat-icon mat-list-icon>account_circle</mat-icon>
+          <h3 mat-line>Name</h3>
+          <p mat-line>{{ user?.userData?.name }}</p>
+        </mat-list-item> <mat-divider></mat-divider> <mat-list-item> <mat-icon mat-list-icon>email</mat-icon>
+          <h3 mat-line>Email</h3>
+          <p mat-line>{{ user?.userData?.email }}</p>
+        </mat-list-item> <mat-divider></mat-divider> <mat-list-item> <mat-icon mat-list-icon>phone</mat-icon>
+          <h3 mat-line>Phone</h3>
+          <p mat-line>99999999</p>
+        </mat-list-item> <mat-divider></mat-divider> <mat-list-item> <mat-icon mat-list-icon>location_on</mat-icon>
+          <h3 mat-line>Adresse</h3>
+          <p mat-line>tunis</p>
+        </mat-list-item> </mat-list> </mat-card-content></mat-card> 
+</div>
+
+
