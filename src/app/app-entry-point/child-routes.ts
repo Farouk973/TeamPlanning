@@ -1,5 +1,14 @@
 export const childRoutes = [
-
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
+  },
+  {
+    path: 'permession',
+    loadChildren: () => import('./access-managment/access-managment.module').then(m => m.AccessManagmentModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
+  },
 
 
   // {

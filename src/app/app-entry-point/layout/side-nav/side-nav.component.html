@@ -1,37 +1,21 @@
 <mat-nav-list class="global-nav">
-  <mat-accordion class="example-headers-align" multi>
+  <mat-accordion class="example-headers-align" multi *ngFor="let m of menu">
+    
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <mat-icon class="sidenav-icon" style="margin-right: 10px;">home</mat-icon> Service Users
+          <mat-icon class="sidenav-icon" style="margin-right: 10px;" >home</mat-icon> 
+          {{m.title}}
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <a mat-list-item >
+     
+      <a mat-list-item *ngFor="let i of m.items">
         <mat-icon class="sidenav-icon"></mat-icon>
-        Service catalogue
+        {{i.name}}
       </a>
-      <a mat-list-item >
-        <mat-icon class="sidenav-icon"></mat-icon>
-        Service Users
-      </a>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon class="sidenav-icon" style="margin-right: 10px;">dashboard</mat-icon>         
-          Service Permessions
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['request-task']">
-        <mat-icon class="sidenav-icon"></mat-icon>
-        Service Roles
-      </a>
-      <a mat-list-item [routerLinkActive]="'active'" [routerLink]="['request-task/work-flow']">
-        <mat-icon class="sidenav-icon"></mat-icon>
-        Service Permessions
-      </a>
+      
     </mat-expansion-panel>
 
   </mat-accordion>
+
 </mat-nav-list>

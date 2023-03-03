@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthentificateComponent } from './authentificate/authentificate.component';
+import { CommonModule } from '@angular/common';
 
+import { AccessManagmentRoutingModule } from './access-managment-routing.module';
+import { PermissionsComponent } from './permissions/permissions.component';
 
 import {A11yModule} from '@angular/cdk/a11y';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
@@ -53,26 +51,18 @@ import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {CdkMenuModule} from '@angular/cdk/menu';
 import {DialogModule} from '@angular/cdk/dialog';
+import { AddPermissionDialogComponent, DialogAnimationsExampleDialog } from './add-permission-dialog/add-permission-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from 'angular-auth-oidc-client';
-import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
-import { AuthConfigModule } from './auth/auth-config.module';
 @NgModule({
   declarations: [
-    AppComponent,
-    AuthentificateComponent,
-
+    PermissionsComponent,
+    AddPermissionDialogComponent,
+    DialogAnimationsExampleDialog
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-
-  ],
-  
-
-  exports: [
+    CommonModule,
+    AccessManagmentRoutingModule,
     A11yModule,
     CdkAccordionModule,
     ClipboardModule,
@@ -121,17 +111,10 @@ import { AuthConfigModule } from './auth/auth-config.module';
     PortalModule,
     ScrollingModule,
     DialogModule,
-    HighlightModule,
-    AuthConfigModule,
-  ],
+    ReactiveFormsModule,
+    
+    
 
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-  ],
-  bootstrap: [AppComponent]
+  ]
 })
-export class AppModule { }
+export class AccessManagmentModule { }
