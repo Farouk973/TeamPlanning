@@ -1,12 +1,13 @@
+<!--
 <div *ngIf="oidcSecurityService.userData$ | async as user">
   <div class="row align-items-center profile-header">
     <div class="col-md text-center text-md-left">
       <h1><b>Welcome</b> {{user?.userData?.name }}</h1>
     </div>
-    
+
   </div>
 
-  <mat-card> 
+  <mat-card>
     <mat-card-header>
       <div class="col-md-2 mb-3" style="position: center;">
         <img [src]=user?.userData?.picture alt="User's profile picture"
@@ -25,5 +26,59 @@
           <p mat-line>tunis</p>
         </mat-list-item> </mat-list> </mat-card-content></mat-card> 
 </div>
+
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar><img src="https://via.placeholder.com/150" alt="User Profile Picture"></div>
+    <mat-card-title>John Doe</mat-card-title>
+    <mat-card-subtitle>johndoe@example.com</mat-card-subtitle>
+    <mat-form-field>
+      <mat-label>Update Profile Picture</mat-label>
+      <input matInput type="file" accept="image/*" >
+      <button mat-icon-button matSuffix><mat-icon>attach_file</mat-icon></button>
+    </mat-form-field>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Location: New York</p>
+    <p>Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
+  </mat-card-content>
+</mat-card>
+
+<mat-card fxLayout="column" fxLayout.xs="column" fxLayout.sm="row" fxLayout.md="column" fxLayout.lg="row">
+  <mat-card-header>
+    <mat-card-title>User Details</mat-card-title>
+  </mat-card-header>
+  <mat-card-content fxLayout="column" fxLayoutAlign="start start">
+    <h2>John Doe</h2>
+    <p>Email: johndoe@example.com</p>
+    <p>Location: New York</p>
+    <p>Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
+  </mat-card-content>
+</mat-card>-->
+<div style="text-align: center" *ngIf="oidcSecurityService.userData$ | async as user">
+  <p-card [style]="{width: '300px' ,high: '300px', border: '2px solid #00B2D9', display: 'inline-block', marginRight: '1rem'}" styleClass="p-card-shadow" >
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+      <img [src]=user?.userData?.picture alt="User's profile picture" style="border-radius: 50%; margin-bottom: 1rem; width: 200px; height: 200px;" />
+      <p-fileUpload [style]="{backgroundColor: '#00B2D9'}" #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*"   [auto]="true" chooseLabel="Change image" styleClass="custom-file-upload"></p-fileUpload>
+    </div>
+  </p-card>
+  <p-card [style]="{width: '700px', border: '2px solid #00B2D9', display: 'inline-block', verticalAlign: 'top'}" >
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+      <div style="background-color: #F8F9FA; padding: 1rem; margin-bottom: 1rem; text-align: center; width: 100%;">
+        <h2 style="margin: 0;">User Details</h2>
+        <hr style="margin: 0.5rem 0; border: none; border-top: 1px solid #ccc;" />
+        <p style="margin: 0.5rem 0;">Full name: {{user?.userData?.name }}</p>
+        <p style="margin: 0.5rem 0;">Email:</p>
+        <p style="margin: 0.5rem 0;">Phone:</p>
+        <p style="margin: 0.5rem 0;">Adress:</p>
+      </div>
+    </div>
+  </p-card>
+
+
+
+
+</div>
+
 
 

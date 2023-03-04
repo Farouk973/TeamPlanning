@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   constructor(public oidcSecurityService: OidcSecurityService) {}
 
   ngOnInit() {
-    
+
   }
 
 }

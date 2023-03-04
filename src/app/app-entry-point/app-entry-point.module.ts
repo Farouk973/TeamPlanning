@@ -13,9 +13,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import {AvatarModule} from 'primeng/avatar';
 
 
 import {A11yModule} from '@angular/cdk/a11y';
@@ -125,6 +124,7 @@ import {DialogModule} from '@angular/cdk/dialog';
     PortalModule,
     ScrollingModule,
     DialogModule,
+    AvatarModule
   ]
 })
 export class AppEntryPointModule { }
