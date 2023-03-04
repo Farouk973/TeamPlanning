@@ -59,7 +59,9 @@
   <p-card [style]="{width: '300px' ,high: '300px', border: '2px solid #00B2D9', display: 'inline-block', marginRight: '1rem'}" styleClass="p-card-shadow" >
     <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
       <img [src]=user?.userData?.picture alt="User's profile picture" style="border-radius: 50%; margin-bottom: 1rem; width: 200px; height: 200px;" />
-      <p-fileUpload [style]="{backgroundColor: '#00B2D9'}" #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*"   [auto]="true" chooseLabel="Change image" styleClass="custom-file-upload"></p-fileUpload>
+      <p-fileUpload [style]="{backgroundColor: '#00B2D9'}" #fubauto mode="basic" name="demo[]"
+                    url="./upload.php" accept="image/*"   [auto]="true" chooseLabel="Change image"
+                    styleClass="custom-file-upload" (change)="uploadImage($event)" ></p-fileUpload>
     </div>
   </p-card>
   <p-card [style]="{width: '700px', border: '2px solid #00B2D9', display: 'inline-block', verticalAlign: 'top'}" >
