@@ -55,32 +55,30 @@
     <p>Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
   </mat-card-content>
 </mat-card>-->
-<div style="text-align: center" *ngIf="oidcSecurityService.userData$ | async as user">
-  <p-card [style]="{width: '300px' ,high: '300px', border: '2px solid #00B2D9', display: 'inline-block', marginRight: '1rem'}" styleClass="p-card-shadow" >
-    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-      <img [src]=user?.userData?.picture alt="User's profile picture" style="border-radius: 50%; margin-bottom: 1rem; width: 200px; height: 200px;" />
-      <p-fileUpload [style]="{backgroundColor: '#00B2D9'}" #fubauto mode="basic" name="demo[]"
-                    url="./upload.php" accept="image/*"   [auto]="true" chooseLabel="Change image"
-                    styleClass="custom-file-upload" (change)="uploadImage($event)" ></p-fileUpload>
-    </div>
-  </p-card>
-  <p-card [style]="{width: '700px', border: '2px solid #00B2D9', display: 'inline-block', verticalAlign: 'top'}" >
-    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-      <div style="background-color: #F8F9FA; padding: 1rem; margin-bottom: 1rem; text-align: center; width: 100%;">
+
+  <p-card *ngIf="oidcSecurityService.userData$ | async as user" [style]="{maxWidth: '350px', border: '2px solid #00B2D9', display: 'flex', justifyContent: 'center'}" styleClass="p-card-shadow">
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <img [src]=currentUser?.avatar?.content alt="User's profile picture" style="border-radius: 50%; margin-bottom: 1rem; width: 200px; height: 200px; max-width: 100%;" />
+      <div class="custom-file-upload" style="width: 100%; text-align: center;">
+        <label for="file-upload"><span class="pi pi-camera"></span> </label>
+        <input id="file-upload" type="file" (change)="onFileSelected($event)">
+        <span type="button" (click)="uploadFile()">Change image</span>
+      </div>
+      <hr style="margin: 0.5rem 0; border: none; border-top: 1px solid #ccc;" />
+
+
+      <div style="background-color: #F8F9FA; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;" >
         <h2 style="margin: 0;">User Details</h2>
         <hr style="margin: 0.5rem 0; border: none; border-top: 1px solid #ccc;" />
-        <p style="margin: 0.5rem 0;">Full name: {{user?.userData?.name }}</p>
-        <p style="margin: 0.5rem 0;">Email:</p>
-        <p style="margin: 0.5rem 0;">Phone:</p>
-        <p style="margin: 0.5rem 0;">Adress:</p>
+        <p style="margin: 0.5rem 0;"><span class="pi pi-user"></span>Full name: {{user?.userData?.name }}</p>
+        <p style="margin: 0.5rem 0;"><span class="pi pi-telegram"></span>Email: </p>
+        <p style="margin: 0.5rem 0;"><span class="pi pi-phone"></span>Phone:</p>
+        <p style="margin: 0.5rem 0;"><span class="pi pi-home"></span>Adress: </p>
       </div>
     </div>
   </p-card>
 
 
-
-
-</div>
 
 
 
