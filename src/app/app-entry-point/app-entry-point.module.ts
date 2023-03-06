@@ -13,9 +13,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatExpansionModule } from '@angular/material/expansion';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
-
 
 
 import {A11yModule} from '@angular/cdk/a11y';
@@ -57,6 +55,8 @@ import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {CdkMenuModule} from '@angular/cdk/menu';
 import {DialogModule} from '@angular/cdk/dialog';
+
+import {AvatarModule} from 'primeng/avatar';
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -125,6 +125,7 @@ import {DialogModule} from '@angular/cdk/dialog';
     PortalModule,
     ScrollingModule,
     DialogModule,
+    AvatarModule
   ]
 })
 export class AppEntryPointModule { }

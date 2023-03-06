@@ -32,4 +32,7 @@ export class HttpRepositoryService {
   delete<T>(url: string): Observable<T> {
     return this.http.delete<T>(`${this.baseUrl}/${url}`, this.httpOptions);
   }
+  patch<T>(url: string, data: T): Observable<T> {
+    return this.http.patch<T>(`${this.baseUrl}/${url}`, data, this.httpOptions);
+  }
 }
