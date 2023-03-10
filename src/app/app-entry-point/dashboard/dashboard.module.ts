@@ -10,11 +10,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 
-
+import { GenericStepperComponent } from './chiffrage/generic-stepper-form/generic-stepper.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { StepperComponent } from './chiffrage/stepper/stepper.component';
+import { FormlyModule } from '@ngx-formly/core';
 @NgModule({
   declarations: [
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    GenericStepperComponent,
+    StepperComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +29,7 @@ import { MatListModule } from '@angular/material/list';
     MatIconModule,
     MatCardModule,
     MatListModule,
-  ]
+    MatStepperModule
+ ]
 })
 export class DashboardModule { }

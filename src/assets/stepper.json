@@ -1,0 +1,25 @@
+{
+    "type": "stepper",
+    "fieldGroup": [
+      {
+        "templateOptions": {
+          "label": "Personal data"
+        },
+        "fieldGroup": [
+          {
+            "key": "firstname",
+            "type": "input",
+            "templateOptions": {
+              "label": "First name",
+              "required": false
+            }
+          }
+        ]
+      }
+    ]
+  }
+
+
+
+
+
