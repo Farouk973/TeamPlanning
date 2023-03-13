@@ -16,8 +16,6 @@ export class StepperProjectComponent implements OnInit {
       .get('/assets/stepper.json')
       .subscribe((formData:any ) => {
         this.stepperData = formData;
-        console.log(this.stepperData)
-
       });
   }
 

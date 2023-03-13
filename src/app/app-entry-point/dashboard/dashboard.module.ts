@@ -14,6 +14,8 @@ import { GenericStepperComponent } from './chiffrage/generic-stepper-form/generi
 import { MatStepperModule } from '@angular/material/stepper';
 import { StepperProjectComponent } from './chiffrage/stepper-project/stepper-project.component';
 import {FormModule} from "../../../shared/generic/form/form.module";
+import {NXMDialogModule} from "../../../shared/generic/nxm-dialog/nxm-dialog.module";
+import {GridViewModule} from "../../../shared/generic/grid-view/grid-view.module";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import {FormModule} from "../../../shared/generic/form/form.module";
     MatCardModule,
     MatListModule,
     MatStepperModule,
-    FormModule
+    FormModule,
+    NXMDialogModule,
+    GridViewModule
  ]
 })
 export class DashboardModule { }

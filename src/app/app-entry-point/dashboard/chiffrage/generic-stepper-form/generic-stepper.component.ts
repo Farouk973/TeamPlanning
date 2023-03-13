@@ -4,7 +4,17 @@ import {Component, Input, OnInit} from '@angular/core';
 interface JsonFormStep {
   label: string;
   order: string;
-
+  components :
+   [
+     {
+      label: string,
+      endpoint: string;
+    }
+    ]
+}
+interface JsonFormComponent {
+  Label: string;
+  endpoint: string;
 }
 export interface JsonFormData {
   steps: JsonFormStep[];
@@ -18,7 +28,7 @@ export interface JsonFormData {
 
 export class GenericStepperComponent implements OnInit {
  @Input() stepperData!:JsonFormData;
-  data: any = 'https://localhost:44312/meta/CreatePermissionCommand';
+ data : any ="https://localhost:44312/meta/CreateRoleCommand"
   constructor() { }
 
   ngOnInit(): void {
