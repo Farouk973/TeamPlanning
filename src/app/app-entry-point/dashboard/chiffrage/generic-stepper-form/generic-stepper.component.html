@@ -1,7 +1,7 @@
 
 
-<mat-horizontal-stepper>
-  <mat-step *ngFor="let step of stepperData.steps; let i = index ;let last = last;" >
+<mat-stepper>
+  <mat-step *ngFor="let step of stepperData.steps; let i = index ;let last = last;">
     <ng-template matStepLabel>{{ step.label }}</ng-template>
     <div *ngFor="let component of step.components">
     </div>
@@ -11,4 +11,4 @@
     </div>
   </mat-step>
 
-</mat-horizontal-stepper>
+</mat-stepper>
