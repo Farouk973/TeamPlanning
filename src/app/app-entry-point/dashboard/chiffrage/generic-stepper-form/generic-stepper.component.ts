@@ -22,5 +22,4 @@ export class GenericStepperComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
 }
