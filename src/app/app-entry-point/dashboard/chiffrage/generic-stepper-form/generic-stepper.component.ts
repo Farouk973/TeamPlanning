@@ -8,6 +8,7 @@ interface JsonFormStep {
 }
 export interface JsonFormData {
   steps: JsonFormStep[];
+
 }
 @Component({
   selector: 'app-generic-stepper',
@@ -17,6 +18,7 @@ export interface JsonFormData {
 
 export class GenericStepperComponent implements OnInit {
  @Input() stepperData!:JsonFormData;
+  data: any = 'https://localhost:44312/meta/CreatePermissionCommand';
   constructor() { }
 
   ngOnInit(): void {

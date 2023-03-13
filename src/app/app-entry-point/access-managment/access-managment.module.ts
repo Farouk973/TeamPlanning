@@ -52,7 +52,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import {CdkMenuModule} from '@angular/cdk/menu';
 import {DialogModule} from '@angular/cdk/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NXMGContainerModule } from 'src/app/generic/nxm-g-container/nxm-g-container.module';
+import {NXMGContainerModule} from "../../../shared/generic/nxm-g-container/nxm-g-container.module";
+
 
 @NgModule({
   declarations: [
@@ -112,7 +113,7 @@ import { NXMGContainerModule } from 'src/app/generic/nxm-g-container/nxm-g-conta
     ReactiveFormsModule,
     NXMGContainerModule,
 
-    
+
 
   ]
 })
