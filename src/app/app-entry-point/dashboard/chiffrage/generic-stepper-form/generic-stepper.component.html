@@ -4,8 +4,8 @@
   <mat-step *ngFor="let step of stepperData?.steps; let i = index ;let last = last;">
     <ng-template matStepLabel>{{ step.label }}</ng-template>
     <div *ngFor="let component of step.components">
-     <strong>{{component.label}}</strong>
-      <app-form  [metaData]="component.endpoint"></app-form>
+     <strong>{{component.label}} </strong>
+      <app-form *ngIf="component.type === 'POST'"  [metaData]="component.endpoint"></app-form>
     </div>
     <div class="button-container">
       <button mat-button matStepperPrevious class="mat-raised-button" *ngIf="i !== 0">Back</button>

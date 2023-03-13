@@ -16,6 +16,7 @@ import { StepperProjectComponent } from './chiffrage/stepper-project/stepper-pro
 import {FormModule} from "../../../shared/generic/form/form.module";
 import {NXMDialogModule} from "../../../shared/generic/nxm-dialog/nxm-dialog.module";
 import {GridViewModule} from "../../../shared/generic/grid-view/grid-view.module";
+import {NXMGContainerModule} from "../../../shared/generic/nxm-g-container/nxm-g-container.module";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {GridViewModule} from "../../../shared/generic/grid-view/grid-view.module
     MatStepperModule,
     FormModule,
     NXMDialogModule,
-    GridViewModule
+    GridViewModule,
+    NXMGContainerModule
  ]
 })
 export class DashboardModule { }

@@ -4,7 +4,7 @@
       "label": "Project",
       "order": "1",
       "components": [
-        {"actionType": "Add",
+        {"type": "POST",
           "endpoint": "https://localhost:44312/meta/CreatePermissionCommand",
           "label": "Enter new project details:",
           "Goto": 4
@@ -15,7 +15,7 @@
       "label": "Features",
       "order": "2",
       "components": [
-        {"actionType": "Add",
+        {"type": "POST",
           "endpoint": "https://localhost:44312/meta/UploadPictureCommand",
           "label": "Enter features details:",
           "Goto": 4
@@ -26,7 +26,7 @@
       "label": "Skills",
       "order": "2",
       "components": [
-        {"actionType": "Add",
+        {"type": "POST",
           "endpoint": "",
           "label": "Enter skills details:",
           "Goto": 4
@@ -37,7 +37,7 @@
       "label": "Roles",
       "order": "2",
       "components": [
-        {"actionType": "Add",
+        {"type": "POST",
           "endpoint": "",
           "label": "Enter roles details:",
           "Goto": 4
@@ -48,8 +48,8 @@
       "label": "Recap",
       "order": "2",
       "components": [
-        {"actionType": "Add",
-          "endpoint": "",
+        {"type": "GET",
+          "endpoint": "https://localhost:44312/meta/GetPermissionListVm",
           "label": "Enter roles details:",
           "Goto": 4
         }

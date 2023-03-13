@@ -9,6 +9,7 @@ interface JsonFormStep {
      {
       label: string,
       endpoint: string;
+       type: string;
     }
     ]
 }
@@ -28,10 +29,20 @@ export interface JsonFormData {
 
 export class GenericStepperComponent implements OnInit {
  @Input() stepperData!:JsonFormData;
- data : any ="https://localhost:44312/meta/CreateRoleCommand"
   constructor() { }
 
   ngOnInit(): void {
 
   }
+
+  config = {
+    endpoint: 'https://localhost:44312/api/Permission',
+    metadata: 'https://localhost:44312/meta/GetPermissionListVm',
+    formdata: 'https://localhost:44312/meta/CreatePermissionCommand',
+    formeditdata: 'https://localhost:44312/meta/UpdatePermissionCommand',
+    pageSize: 2,
+    title: 'Project Management',
+    icon: 'https://img.freepik.com/premium-vector/vector-creative-project-icon-flat-style_106427-199.jpg?w=2000',
+    allowedSortColumns: ['title'],
+  };
 }
