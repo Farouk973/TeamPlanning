@@ -1,0 +1,33 @@
+.form-fields {
+  display: flex;
+	flex-flow: wrap;
+	
+  }
+  
+  .form-fields mat-form-field,
+  .form-fields mat-checkbox {
+    //padding-top: 15px;
+    padding-left: 15px;
+    padding-bottom: 30px;
+    max-width: 482px;
+    min-width: 482px;
+    height: 56px;
+   
+  }
+  .container {
+    width: 100%;
+    margin-right:auto;
+    margin-left:auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-sizing :border-box;
+  }
+  button {
+    margin-top: 0.5%;
+     font-size: large;
+    width: 300px;
+    margin-left: 38%
+  }
+  
+  

@@ -10,6 +10,7 @@ export const childRoutes = [
     data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
   },
 
+ 
 
   // {
   //   path: 'profile',

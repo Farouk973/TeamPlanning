@@ -1,0 +1,146 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <div class="form-fields">
+      <div *ngFor="let field of fields">
+        <mat-form-field
+          appearance="outline"
+          *ngIf="field.type === 'string' && field.format === null"
+        >
+          <mat-label>{{ field.name }}</mat-label>
+          <input matInput [formControlName]="field.name" />
+          <mat-error
+            *ngIf="
+              form.get(field.name).invalid ||
+              form.get(field.name).dirty ||
+              form.get(field.name).touched
+            "
+          >
+            <span *ngIf="form.get(field.name).errors?.['minlength']">
+              This field must have at least
+              {{ field.minLength }} characters.</span
+            >
+
+            <span *ngIf="form.get(field.name).errors?.['required']"
+              >This field is required.</span
+            >
+
+            <span *ngIf="form.get(field.name).errors?.['maxlength']"
+              >This field must have at most
+              {{ field.maxLength }} characters.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+          appearance="outline"
+          *ngIf="field.type === 'string' && field.format === 'email'"
+        >
+          <mat-label>{{ field.name }}</mat-label>
+          <input type="email" matInput [formControlName]="field.name" />
+          <mat-error
+            *ngIf="
+              form.get(field.name).invalid ||
+              form.get(field.name).dirty ||
+              form.get(field.name).touched
+            "
+          >
+            <span *ngIf="form.get(field.name).errors?.['minlength']">
+              This field must have at least
+              {{ field.minLength }} characters.</span
+            >
+
+            <span *ngIf="form.get(field.name).errors?.['required']"
+              >This field is required.</span
+            >
+
+            <span *ngIf="form.get(field.name).errors?.['maxlength']"
+              >This field must have at most
+              {{ field.maxLength }} characters.</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field
+          appearance="outline"
+          *ngIf="field.type === 'string' && field.format === 'uuid'"
+        >
+          <mat-label>{{ field.name }}</mat-label>
+          <input matInput [formControlName]="field.name" />
+        </mat-form-field>
+
+        <mat-form-field
+          appearance="outline"
+          *ngIf="field.type === 'number' || field.type === 'integer'"
+        >
+          <mat-label>{{ field.name }}</mat-label>
+          <input matInput type="number" [formControlName]="field.name" />
+          <mat-error
+            *ngIf="
+              form.get(field.name).invalid &&
+              (form.get(field.name).dirty || form.get(field.name).touched)
+            "
+          >
+            <span *ngIf="form.get(field.name).errors?.['required']"
+              >This field is required.</span
+            >
+            <span *ngIf="form.get(field.name).errors?.['min']"
+              >Value must be at least {{ field.minimum }}.</span
+            >
+            <span *ngIf="form.get(field.name).errors?.['max']"
+              >Value cannot exceed {{ field.maximum }}.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field
+          appearance="outline"
+          *ngIf="field.format === 'date-time' && field.type === 'string'"
+        >
+          <mat-label>{{ field.name }}</mat-label>
+          <input
+            matInput
+            [formControlName]="field.name"
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-checkbox
+          *ngIf="field.type === 'boolean'"
+          [formControlName]="field.name"
+          [value]="field.name"
+          >{{ field.name }}</mat-checkbox
+        >
+
+        <mat-form-field
+          *ngIf="field.type === null && field.format === null"
+          appearance="outline"
+        >
+          <mat-label>{{ field.name }}</mat-label>
+          <mat-select [formControlName]="field.name">
+            <mat-option *ngFor="let ref of field.references" [value]="ref">{{
+              ref
+            }}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="
+              form.get(field.name).invalid &&
+              (form.get(field.name).dirty || form.get(field.name).touched)
+            "
+          >
+            <span *ngIf="form.get(field.name).errors?.['required']"
+              >This field is required.</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <!-- <div *ngIf="field.type !== 'String' && field.type !== 'Guid' && field.type !== 'DateTime' && field.type !== 'Boolean'">
+          <p>Unsupported field type "{{ field.type }}"</p>
+        </div> -->
+      </div>
+    </div>
+  </form>
+</div>

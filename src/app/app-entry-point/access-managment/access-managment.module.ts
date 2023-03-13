@@ -51,14 +51,12 @@ import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {CdkMenuModule} from '@angular/cdk/menu';
 import {DialogModule} from '@angular/cdk/dialog';
-import { AddPermissionDialogComponent, DialogAnimationsExampleDialog } from './add-permission-dialog/add-permission-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NXMGContainerModule } from 'src/app/generic/nxm-g-container/nxm-g-container.module';
 
 @NgModule({
   declarations: [
     PermissionsComponent,
-    AddPermissionDialogComponent,
-    DialogAnimationsExampleDialog
   ],
   imports: [
     CommonModule,
@@ -112,7 +110,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ScrollingModule,
     DialogModule,
     ReactiveFormsModule,
-    
+    NXMGContainerModule,
+
     
 
   ]
