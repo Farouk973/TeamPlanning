@@ -2,21 +2,21 @@
   "steps": [
     {
       "label": "Project",
-      "ordre": "1",
+      "order": "1",
       "components": [
 
       ]
     },
     {
       "label": "Features",
-      "ordre": "2",
+      "order": "2",
       "components": [
 
       ]
     },
     {
       "label": "Skills",
-      "ordre": "2",
+      "order": "2",
       "components": [
 
       ]

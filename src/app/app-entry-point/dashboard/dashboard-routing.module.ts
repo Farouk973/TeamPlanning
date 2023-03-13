@@ -16,7 +16,7 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   {
-    path: 'stepper',
+    path: 'stepper-project',
     component: StepperProjectComponent,
   }
 ];

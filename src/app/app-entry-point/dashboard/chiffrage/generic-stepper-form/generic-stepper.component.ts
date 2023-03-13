@@ -1,13 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 
-interface JsonFormControls {
+interface JsonFormStep {
   label: string;
-  ordre: string;
+  order: string;
 
 }
 export interface JsonFormData {
-  steps: JsonFormControls[];
+  steps: JsonFormStep[];
 }
 @Component({
   selector: 'app-generic-stepper',
