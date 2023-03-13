@@ -1,22 +1,26 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+
+
+interface JsonFormControls {
+  label: string;
+  ordre: string;
+
+}
+export interface JsonFormData {
+  steps: JsonFormControls[];
+}
 @Component({
   selector: 'app-generic-stepper',
   templateUrl: './generic-stepper.component.html',
   styleUrls: ['./generic-stepper.component.css']
 })
+
 export class GenericStepperComponent implements OnInit {
- @Input() stepperData:any={};
-  constructor(private http: HttpClient) { }
+ @Input() stepperData!:JsonFormData;
+  constructor() { }
 
   ngOnInit(): void {
-    this.http
-      .get('/assets/stepper.json')
-      .subscribe((formData:any ) => {
-        this.stepperData = formData;
-        console.log(this.stepperData)
 
-      });
   }
 
 }

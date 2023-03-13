@@ -12,11 +12,13 @@ import { MatListModule } from '@angular/material/list';
 
 import { GenericStepperComponent } from './chiffrage/generic-stepper-form/generic-stepper.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { StepperProjectComponent } from './chiffrage/stepper-project/stepper-project.component';
 @NgModule({
   declarations: [
     HomeComponent,
     ProfileComponent,
     GenericStepperComponent,
+    StepperProjectComponent,
   ],
   imports: [
     CommonModule,

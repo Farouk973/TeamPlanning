@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import {GenericStepperComponent} from "./chiffrage/generic-stepper-form/generic-stepper.component";
+import {StepperProjectComponent} from "./chiffrage/stepper-project/stepper-project.component";
 
 
 const routes: Routes = [
@@ -16,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'stepper',
-    component: GenericStepperComponent,
+    component: StepperProjectComponent,
   }
 ];
 
