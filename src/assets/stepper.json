@@ -1,0 +1,27 @@
+{
+  "steps": [
+    {
+      "label": "Project",
+      "order": "1",
+      "components": [
+
+      ]
+    },
+    {
+      "label": "Features",
+      "order": "2",
+      "components": [
+
+      ]
+    },
+    {
+      "label": "Skills",
+      "order": "2",
+      "components": [
+
+      ]
+    }
+  ]
+}
+
+

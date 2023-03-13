@@ -10,11 +10,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 
-
+import { GenericStepperComponent } from './chiffrage/generic-stepper-form/generic-stepper.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { StepperProjectComponent } from './chiffrage/stepper-project/stepper-project.component';
 @NgModule({
   declarations: [
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    GenericStepperComponent,
+    StepperProjectComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +28,7 @@ import { MatListModule } from '@angular/material/list';
     MatIconModule,
     MatCardModule,
     MatListModule,
-  ]
+    MatStepperModule
+ ]
 })
 export class DashboardModule { }
