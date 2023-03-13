@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-generic-stepper',
@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./generic-stepper.component.css']
 })
 export class GenericStepperComponent implements OnInit {
-public  stepperData!:any;
+ @Input() stepperData:any={};
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -14,9 +14,9 @@ public  stepperData!:any;
       .get('/assets/stepper.json')
       .subscribe((formData:any ) => {
         this.stepperData = formData;
+        console.log(this.stepperData)
 
       });
-    console.log(this.stepperData)
   }
 
 }

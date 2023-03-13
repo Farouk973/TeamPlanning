@@ -1,25 +1,24 @@
 {
-    "type": "stepper",
-    "fieldGroup": [
-      {
-        "templateOptions": {
-          "label": "Personal data"
-        },
-        "fieldGroup": [
-          {
-            "key": "firstname",
-            "type": "input",
-            "templateOptions": {
-              "label": "First name",
-              "required": false
-            }
-          }
-        ]
-      }
-    ]
-  }
+  "steps": [
+    {
+      "label": "Step 1",
+      "components": [
 
+      ]
+    },
+    {
+      "label": "Step 2",
+      "components": [
 
+      ]
+    },
+    {
+      "label": "raed",
+      "components": [
 
+      ]
+    }
+  ]
+}
 
 

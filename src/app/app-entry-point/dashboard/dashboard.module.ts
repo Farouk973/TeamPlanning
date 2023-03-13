@@ -12,14 +12,11 @@ import { MatListModule } from '@angular/material/list';
 
 import { GenericStepperComponent } from './chiffrage/generic-stepper-form/generic-stepper.component';
 import { MatStepperModule } from '@angular/material/stepper';
-import { StepperComponent } from './chiffrage/stepper/stepper.component';
-import { FormlyModule } from '@ngx-formly/core';
 @NgModule({
   declarations: [
     HomeComponent,
     ProfileComponent,
     GenericStepperComponent,
-    StepperComponent,
   ],
   imports: [
     CommonModule,
