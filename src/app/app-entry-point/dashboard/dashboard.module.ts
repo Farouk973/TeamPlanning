@@ -17,6 +17,7 @@ import {FormModule} from "../../../shared/generic/form/form.module";
 import {NXMDialogModule} from "../../../shared/generic/nxm-dialog/nxm-dialog.module";
 import {GridViewModule} from "../../../shared/generic/grid-view/grid-view.module";
 import {NXMGContainerModule} from "../../../shared/generic/nxm-g-container/nxm-g-container.module";
+import {DialogStepperModule} from "../../../shared/generic/card-stepper/dialog-stepper.module";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {NXMGContainerModule} from "../../../shared/generic/nxm-g-container/nxm-g
     FormModule,
     NXMDialogModule,
     GridViewModule,
-    NXMGContainerModule
+    NXMGContainerModule,
+    DialogStepperModule
  ]
 })
 export class DashboardModule { }

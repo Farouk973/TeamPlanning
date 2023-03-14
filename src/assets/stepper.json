@@ -50,7 +50,7 @@
       "components": [
         {"type": "GET",
           "endpoint": "https://localhost:44312/meta/GetPermissionListVm",
-          "label": "Enter roles details:",
+          "label": "All projects:",
           "Goto": 4
         }
       ]
