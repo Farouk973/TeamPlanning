@@ -1,4 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {FormComponent} from "../../../../../shared/generic/form/form/form.component";
+import {FormGroup} from "@angular/forms";
 
 
 interface JsonFormStep {
@@ -29,20 +31,15 @@ export interface JsonFormData {
 
 export class GenericStepperComponent implements OnInit {
  @Input() stepperData!:JsonFormData;
+  @ViewChild(FormComponent) childComponent: FormComponent;
   constructor() { }
 
   ngOnInit(): void {
 
-  }
 
-  config = {
-    endpoint: 'https://localhost:44312/api/Permission',
-    metadata: 'https://localhost:44312/meta/GetPermissionListVm',
-    formdata: 'https://localhost:44312/meta/CreatePermissionCommand',
-    formeditdata: 'https://localhost:44312/meta/UpdatePermissionCommand',
-    pageSize: 2,
-    title: 'Project Management',
-    icon: 'https://img.freepik.com/premium-vector/vector-creative-project-icon-flat-style_106427-199.jpg?w=2000',
-    allowedSortColumns: ['title'],
-  };
+  }
+  onNoClick(): void {
+    this.childComponent.submitForm();
+    console.log(this.childComponent.form.value)
+  }
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {DialogContentComponent} from "../dialog-content/dialog-content.component";
-
+export interface Config {
+  endpoint?: string;
+}
 @Component({
   selector: 'app-card-dialog',
   templateUrl: './card-dialog.component.html',

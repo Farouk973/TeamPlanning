@@ -35,8 +35,8 @@ mat-card {
   display: flex;
   display: inline;
   justify-content: center;
-  background-color: #40f689;
-  border-radius: 5px;
+  background-color: #00BA34;
+  border-radius: 4px;
 }
 @media screen and (max-width: 768px) {
   mat-card {
