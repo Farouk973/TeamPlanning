@@ -13,6 +13,11 @@ import { MatListModule } from '@angular/material/list';
 import { GenericStepperComponent } from './chiffrage/generic-stepper-form/generic-stepper.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { StepperProjectComponent } from './chiffrage/stepper-project/stepper-project.component';
+import {FormModule} from "../../../shared/generic/form/form.module";
+import {NXMDialogModule} from "../../../shared/generic/nxm-dialog/nxm-dialog.module";
+import {GridViewModule} from "../../../shared/generic/grid-view/grid-view.module";
+import {NXMGContainerModule} from "../../../shared/generic/nxm-g-container/nxm-g-container.module";
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -28,7 +33,11 @@ import { StepperProjectComponent } from './chiffrage/stepper-project/stepper-pro
     MatIconModule,
     MatCardModule,
     MatListModule,
-    MatStepperModule
+    MatStepperModule,
+    FormModule,
+    NXMDialogModule,
+    GridViewModule,
+    NXMGContainerModule
  ]
 })
 export class DashboardModule { }

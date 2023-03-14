@@ -13,14 +13,14 @@ import { ColumnMetadata, FormService } from '../form.service';
 export class FormComponent implements OnInit {
   constructor(
     private formService: FormService,
-    public dialogRef: MatDialogRef<DialogComponent>
+   // public dialogRef: MatDialogRef<DialogComponent>
   ) {}
   form: FormGroup;
   @Input() metaData: any;
   fields: ColumnMetadata[];
   ngOnInit(): void {
-    console.log(this.metaData.metaData);
-    this.formService.getMetadata(this.metaData.metaData).subscribe((data) => {
+   // console.log(this.metaData.metaData);
+    this.formService.getMetadata(this.metaData).subscribe((data) => {
       this.fields = data;
       this.createForm();
     });
@@ -66,17 +66,17 @@ export class FormComponent implements OnInit {
     if (this.metaData.isUpdate) {
       this.formService
         .updateRow(this.metaData.endpoint, this.form.value)
-        .subscribe((response) => {
+       /* .subscribe((response) => {
           response ? this.dialogRef.close(this.form.value) : null;
-        });
+        });*/
     }
     if (!this.metaData.isUpdate) {
     //  console.error('im in ', this.metaData.isUpdate);
       this.formService
         .addRow(this.metaData.endpoint, this.form.value)
-        .subscribe((response) => {
+        /*.subscribe((response) => {
           response ? this.dialogRef.close(this.form.value) : null;
-        });
+        });*/
 
     }
   }
