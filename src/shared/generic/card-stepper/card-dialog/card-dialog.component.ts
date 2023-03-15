@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {DialogContentComponent} from "../dialog-content/dialog-content.component";
-export interface Config {
-  endpoint?: string;
+import {CardDialogService} from "../card.dialog.service";
+interface JsonFormCard {
+      name:string
 }
 @Component({
   selector: 'app-card-dialog',
@@ -10,11 +11,14 @@ export interface Config {
   styleUrls: ['./card-dialog.component.css']
 })
 export class CardDialogComponent implements OnInit {
+  cards: JsonFormCard[];
+  @Input() endpoint: any;
+  constructor(public dialog: MatDialog ,private cardDialogService : CardDialogService) {}
 
-  constructor(public dialog: MatDialog) {}
-
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogContentComponent);
+  openDialog(cards) {
+    const dialogRef = this.dialog.open(DialogContentComponent , {
+      data: {cards}
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -22,6 +26,9 @@ export class CardDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cardDialogService.getGardData(this.endpoint).subscribe((data)=>{
+      this.cards=data;
+    })
   }
 
 }

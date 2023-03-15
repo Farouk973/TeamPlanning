@@ -2,16 +2,11 @@
 
 <mat-stepper>
   <mat-step *ngFor="let step of stepperData?.steps; let i = index ;let last = last;">
-    <ng-template matStepLabel>{{ step.label }}</ng-template>
-    <div *ngFor="let component of step.components">
-     <strong>{{component.label}} </strong>
-      <app-form *ngIf="component.type === 'POST'"  [metaData]="component.endpoint"></app-form>
-       <app-card-dialog *ngIf="component.type === 'GET'"></app-card-dialog>
-    </div>
+    <ng-template matStepLabel>{{ step.title }}</ng-template>
+    <app-form [metaData]="step.content"></app-form>
     <div class="button-container">
       <button mat-button matStepperPrevious class="mat-raised-button" *ngIf="i !== 0">Back</button>
-      <button mat-button matStepperNext class="mat-raised-button" *ngIf="!last " (click)="onNoClick()">Next</button>
+      <button mat-button matStepperNext class="mat-raised-button" *ngIf="!last " >Next</button>
     </div>
   </mat-step>
 </mat-stepper>
-

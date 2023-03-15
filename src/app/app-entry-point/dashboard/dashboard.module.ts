@@ -19,6 +19,7 @@ import {GridViewModule} from "../../../shared/generic/grid-view/grid-view.module
 import {NXMGContainerModule} from "../../../shared/generic/nxm-g-container/nxm-g-container.module";
 import {DialogStepperModule} from "../../../shared/generic/card-stepper/dialog-stepper.module";
 
+
 @NgModule({
   declarations: [
     HomeComponent,

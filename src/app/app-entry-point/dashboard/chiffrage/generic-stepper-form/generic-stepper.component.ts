@@ -1,27 +1,24 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormComponent} from "../../../../../shared/generic/form/form/form.component";
-import {FormGroup} from "@angular/forms";
-
 
 interface JsonFormStep {
-  label: string;
+  title: string;
   order: string;
-  components :
+  "content": "https://localhost:44312/meta/CreatePermissionCommand"
+  action :
    [
      {
       label: string,
-      endpoint: string;
-       type: string;
     }
     ]
 }
-interface JsonFormComponent {
-  Label: string;
-  endpoint: string;
-}
+
 export interface JsonFormData {
   steps: JsonFormStep[];
 
+}
+export interface Config {
+  formdata?:string;
 }
 @Component({
   selector: 'app-generic-stepper',
@@ -32,14 +29,13 @@ export interface JsonFormData {
 export class GenericStepperComponent implements OnInit {
  @Input() stepperData!:JsonFormData;
   @ViewChild(FormComponent) childComponent: FormComponent;
+  formdata: 'https://localhost:44312/meta/CreatePermissionCommand';
   constructor() { }
 
   ngOnInit(): void {
-
-
+    console.log(this.childComponent)
   }
   onNoClick(): void {
-    this.childComponent.submitForm();
-    console.log(this.childComponent.form.value)
   }
+
 }

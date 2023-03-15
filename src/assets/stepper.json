@@ -1,60 +1,18 @@
 {
   "steps": [
     {
-      "label": "Project",
-      "order": "1",
-      "components": [
-        {"type": "POST",
-          "endpoint": "https://localhost:44312/meta/CreatePermissionCommand",
-          "label": "Enter new project details:",
-          "Goto": 4
-        }
-      ]
-    },
-    {
-      "label": "Features",
-      "order": "2",
-      "components": [
-        {"type": "POST",
-          "endpoint": "https://localhost:44312/meta/UploadPictureCommand",
-          "label": "Enter features details:",
-          "Goto": 4
-        }
-      ]
-    },
-    {
-      "label": "Skills",
-      "order": "2",
-      "components": [
-        {"type": "POST",
-          "endpoint": "",
-          "label": "Enter skills details:",
-          "Goto": 4
-        }
-      ]
-    },
-    {
-      "label": "Roles",
-      "order": "2",
-      "components": [
-        {"type": "POST",
-          "endpoint": "",
-          "label": "Enter roles details:",
-          "Goto": 4
-        }
-      ]
-    },
-    {
-      "label": "Recap",
-      "order": "2",
-      "components": [
-        {"type": "GET",
-          "endpoint": "https://localhost:44312/meta/GetPermissionListVm",
-          "label": "All projects:",
-          "Goto": 4
+      "title": "Step 1",
+      "order": 1,
+      "content": "Step1Component",
+      "actions": [
+        {
+          "label": "Next",
+          "endpoint": "/next",
+          "goto": 2
         }
       ]
     }
+
   ]
 }
 
