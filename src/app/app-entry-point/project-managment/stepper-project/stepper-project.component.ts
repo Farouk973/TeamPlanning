@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {JsonFormData} from "../generic-stepper-form/generic-stepper.component";
+import {Stepper} from "../../../../shared/generic/models/stepper.model";
+
 
 @Component({
   selector: 'app-stepper-project',
@@ -8,7 +9,7 @@ import {JsonFormData} from "../generic-stepper-form/generic-stepper.component";
   styleUrls: ['./stepper-project.component.css']
 })
 export class StepperProjectComponent implements OnInit {
-  public stepperData!: JsonFormData;
+  public stepperData!: Stepper;
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -18,5 +19,4 @@ export class StepperProjectComponent implements OnInit {
         this.stepperData = formData;
       });
   }
-
 }
