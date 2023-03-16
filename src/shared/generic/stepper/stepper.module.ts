@@ -1,4 +1,4 @@
-import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {GenericStepperComponent} from "./generic-stepper-form/generic-stepper.component";
 import {MatToolbarModule} from "@angular/material/toolbar";
@@ -37,7 +37,8 @@ import {DialogStepperModule} from "../card-stepper/dialog-stepper.module";
     GenericStepperComponent
   ],
   schemas: [
-    NO_ERRORS_SCHEMA // <--- Ajouter NO_ERRORS_SCHEMA à la liste des schémas
-  ]
+    NO_ERRORS_SCHEMA, // <--- Ajouter NO_ERRORS_SCHEMA à la liste des schémas
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
 })
 export class StepperModule { }

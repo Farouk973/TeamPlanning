@@ -3,7 +3,7 @@
 <mat-stepper>
   <mat-step *ngFor="let step of stepperData?.steps; let i = index ;let last = last;">
     <ng-template matStepLabel>{{ step.title }}</ng-template>
-    <div  [ngComponentOutlet]="getComponent(step.content)" [ngComponentOutletInputs]="{metaData: 'https://localhost:44312/meta/UploadPictureCommand'}"></div>
+    <div  *ngComponentOutlet="getComponent(step.content);"></div>
     <div class="button-container">
       <button mat-button matStepperPrevious class="mat-raised-button" *ngIf="i !== 0">Back</button>
       <button mat-button matStepperNext class="mat-raised-button" *ngIf="!last " >Next</button>

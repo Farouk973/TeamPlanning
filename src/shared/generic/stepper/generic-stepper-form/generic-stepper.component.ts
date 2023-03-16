@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Type, ViewChild} from '@angular/core';
+import {Component, ComponentFactoryResolver, Input, OnInit, Type, ViewChild, ViewContainerRef} from '@angular/core';
 import {FormComponent} from "../../form/form/form.component";
 import {Stepper} from "../../models/stepper.model";
 
@@ -11,15 +11,17 @@ import {Stepper} from "../../models/stepper.model";
 
 export class GenericStepperComponent implements OnInit {
  @Input() stepperData!:Stepper;
-  public metaData: string = 'https://localhost:44312/meta/UploadPictureCommand';
-  @ViewChild(FormComponent) childComponent: FormComponent;
-  constructor() { }
+  @ViewChild(FormComponent, { read: ViewContainerRef }) podViewContainerRef;
+   metaData: 'https://localhost:44312/meta/UploadPictureCommand' ;
+  constructor( private resolver: ComponentFactoryResolver) { }
 
   ngOnInit(): void {
-  // this.x.steps[0].comp[0] = FormComponent
+
   }
   onNoClick(): void {
   }
+
+
 
   getComponent(componentName: string): Type<any> {
     switch (componentName) {
@@ -28,8 +30,5 @@ export class GenericStepperComponent implements OnInit {
       default:
         throw new Error(`Invalid component name: ${componentName}`);
     }
-  }
-  public getEndpoint(): string {
-    return this.metaData;
   }
 }
