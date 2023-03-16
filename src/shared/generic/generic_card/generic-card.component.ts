@@ -12,8 +12,8 @@ import { Card, CardData, CardOptions } from './Models/cardModel';
 
 export class GenericCardComponent   {
   @Input() data: CardData;
-  @Output() edit: EventEmitter<any> = new EventEmitter();
-  @Output() action: EventEmitter<any> = new EventEmitter();
+  @Output() edit: EventEmitter<Card> = new EventEmitter();
+  @Output() action: EventEmitter<Card> = new EventEmitter();
   constructor(private cardService: GenericCardService) {}
 
   onEdit() {
