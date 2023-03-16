@@ -2,9 +2,14 @@
   <mat-card-header>
     <div *ngIf="data.primaryLabel" class="primary-label" [style.backgroundColor]="data.primaryColor">{{ data.primaryLabel }}</div>
     <ng-container *ngIf="data.showEditButton ">
-      <button mat-icon-button (click)="onUpdate(data.card)">
+      <button mat-icon-button (click)="onEdit()">
         <mat-icon>edit</mat-icon>
       </button>
+      <mat-card-actions *ngIf="data.showIconAction">
+        <button mat-icon-button (click)="onAction()">
+          <mat-icon></mat-icon>
+        </button>
+      </mat-card-actions>
     </ng-container>
   </mat-card-header>
   <mat-card-content>
@@ -19,7 +24,7 @@
                            >
   </ng-container>
   <mat-card-actions *ngIf="data.showIconAction">
-    <button mat-icon-button>
+    <button mat-icon-button (click)="onAction()">
       <mat-icon></mat-icon>
     </button>
   </mat-card-actions>

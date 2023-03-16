@@ -12,14 +12,15 @@ import { Card, CardData, CardOptions } from './Models/cardModel';
 
 export class GenericCardComponent   {
   @Input() data: CardData;
-
+  @Output() edit: EventEmitter<any> = new EventEmitter();
+  @Output() action: EventEmitter<any> = new EventEmitter();
   constructor(private cardService: GenericCardService) {}
 
-  onUpdate(card:Card): void {
-    this.cardService.updateCard(this.data.endpoint, card).subscribe();
+  onEdit() {
+    this.edit.emit();
   }
 
-  onDeleteCard(card: Card): void {
-    this.cardService.deleteCard(this.data.endpoint, card).subscribe();
+  onAction() {
+    this.action.emit();
   }
 }
