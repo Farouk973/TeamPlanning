@@ -21,7 +21,7 @@ steps:
 - task: Npm@1
   inputs:
     command: 'install'
-    workingDir: '$(System.DefaultWorkingDirectory)/my-angular-app'
+    workingDir: ''
   displayName: 'Install npm packages'
 
 - task: SonarQubePrepare@4
