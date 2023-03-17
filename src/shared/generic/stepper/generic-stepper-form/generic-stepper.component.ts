@@ -18,7 +18,9 @@ export class GenericStepperComponent implements OnInit {
 
   getComponent(componentName: string): Type<any> {
     switch (componentName) {
-      case 'Step1Component':
+      case 'NXMForm':
+        return FormComponent;
+      case 'NXMForm':
         return FormComponent;
       default:
         throw new Error(`Invalid component name: ${componentName}`);

@@ -1,20 +1,9 @@
 {
   "steps": [
     {
-      "title": "Step 1",
+      "title": "Project",
       "order": 1,
-      "content": "Step1Component",
-      "actions": [
-        {
-          "label": "Next",
-          "goto": 2
-        }
-      ]
-    },
-    {
-      "title": "Step 1",
-      "order": 1,
-      "content": "Step1Component",
+      "content": "NXMForm",
       "actions": [
         {
           "label": "Next",
@@ -22,7 +11,6 @@
         }
       ]
     }
-
   ]
 }
 
