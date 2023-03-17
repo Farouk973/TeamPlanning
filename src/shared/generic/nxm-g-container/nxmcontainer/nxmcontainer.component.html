@@ -1,24 +1,14 @@
 <div class="container">
   <div class="header">
- 
   </div>
-   
-    <div class="cont-info" > 
-       
+    <div class="cont-info" >      
     <h1 class="title">Gestion Permessions</h1>
- 
     <span class="example-spacer"></span>
-
-
-
     <mat-form-field class="search" appearance="outline">
       <mat-label>Outline form field</mat-label>
       <input matInput placeholder="Placeholder" >
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     </mat-form-field>
-
-
-
     <button
       (click)="openDialog(config.formdata, false, config.endpoint)"
       class="addButton" mat-flat-button>
@@ -34,14 +24,6 @@
     </button>
   </div>
   <div class="grid-view">
-    <!-- <app-grid-view
-      *ngIf="config.endpoint"
-      [endpoint]="config.endpoint"
-      [metadata]="config.metadata"
-      [pageSize]="config.pageSize"
-      [formData]="config.formdata"
-      [formEditData]="config.formeditdata"
-      [allowedSortColumns]="config.allowedSortColumns"
-    ></app-grid-view> -->
+    <app-grid-view [GridView]=grid></app-grid-view>
   </div>
 </div>

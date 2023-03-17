@@ -15,6 +15,13 @@ export const childRoutes = [
     data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
   },
 
+  {
+    path: 'skills',
+    loadChildren: () => import('./skills-managment/skills-managment.module').then(m => m.SkillsManagmentModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
+  },
+
+
 
 
   // {

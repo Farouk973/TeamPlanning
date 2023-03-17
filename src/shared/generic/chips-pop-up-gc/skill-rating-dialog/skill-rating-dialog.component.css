@@ -1,0 +1,29 @@
+.rating {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .star {
+    font-size: 36px;
+    color: #ccc;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .star.filled {
+    color: #14B0EF;
+  }
+  button {
+    margin: 0 15px;
+  }
+  button.cancel {
+    background-color: red;
+    color: #ffffff;
+    border-color:red ;
+  }
+  button.save {
+    background-color: #14B0EF;
+    color: #ffffff;
+    border-color:#14B0EF ;
+  }

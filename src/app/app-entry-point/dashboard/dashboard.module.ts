@@ -35,6 +35,7 @@ import {NXMGContainerModule} from "../../../shared/generic/nxm-g-container/nxm-g
     NXMDialogModule,
     GridViewModule,
     NXMGContainerModule,
+    
  ]
 })
 export class DashboardModule { }

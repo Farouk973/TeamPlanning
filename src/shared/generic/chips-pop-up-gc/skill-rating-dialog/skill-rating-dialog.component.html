@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>{{ data.name }}</h2>
+<mat-dialog-content>
+  <p>Put the required level of {{ data.name }} and affect it to your project</p>
+  <div class="ratestring">
+    <span *ngFor="let star of [1, 2, 3, 4, 5]" class="star" [class.filled]="star <= ratestring" (click)="setRating(star)">
+      <mat-icon>star_border</mat-icon>
+    </span>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button class="cancel" (click)="onCancelClick()">Cancel</button>
+  <button mat-raised-button class="save"  [mat-dialog-close]="rating" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

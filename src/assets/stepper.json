@@ -14,6 +14,36 @@
           "goto": 2
         }
       ]
+    },
+    {
+      "title": "feature",
+      "order": 1,
+      "contentType": "Form",
+      "content":
+       { "endpoint": "https://localhost:44312/api/Role",
+         "metaData": "https://localhost:44312/meta/CreateRoleCommand"
+       },
+      "actions": [
+        {
+          "label": "Next",
+          "goto": 2
+        }
+      ]
+    },
+    {
+      "title": "Project",
+      "order": 1,
+      "contentType": "Form",
+      "content":
+       { "endpoint": "https://localhost:44312/api/Permission",
+         "metaData": "https://localhost:44312/meta/UploadPictureCommand"
+       },
+      "actions": [
+        {
+          "label": "Next",
+          "goto": 2
+        }
+      ]
     }
   ]
 }
