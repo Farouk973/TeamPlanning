@@ -1,13 +1,14 @@
 import {
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   OnInit,
   Output,
 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Actionpanel } from '../../models/ActionPanel.model';
 import { DialogComponent } from '../../nxm-dialog/dialog/dialog.component';
+
 
 @Component({
   selector: 'app-action-panel',
@@ -16,13 +17,14 @@ import { DialogComponent } from '../../nxm-dialog/dialog/dialog.component';
 })
 export class ActionPanelComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
-  @Input() endpoint : string= '';
-  @Input() formEditData : string ='';
-  @Input() objId: any;
+  @Input() actionPanel : Actionpanel;
+  @Input() objId : any;
   @Output() edit = new EventEmitter<number>();
   @Output() delete = new EventEmitter<number>();
   ngOnInit(): void {
-    console.log('object', this.objId);
+    console.log("eeeeeee")
+    console.log(this.actionPanel);
+   
   }
 
   onEdit() {
@@ -41,9 +43,10 @@ export class ActionPanelComponent implements OnInit {
       data: {metaData, isUpdate,endpoint,object},
     });
     dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${Object.keys(result)}`);
      }) 
 
-console.log(this.formEditData)    }
+console.log(this.actionPanel.formEditData)    }
 
 
 }
