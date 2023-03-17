@@ -28,4 +28,5 @@ export interface ColumnMetadata {
   maximum?: number;
   references?: string[] | null;
   description?: string ;
+  item?: string ; //add the type of array items
 }

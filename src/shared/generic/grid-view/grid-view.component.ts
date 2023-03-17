@@ -1,20 +1,14 @@
 import {
-  ChangeDetectorRef,
   Component,
-  HostBinding,
-  Inject,
   Input,
   OnInit,
 } from '@angular/core';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ColumnMetadata } from '../models/ColumnMetadata.model';
+import { GridView } from '../models/GridView.model';
 import { ConfirmationComponent } from '../nxm-dialog/confirmation/confirmation.component';
-import { DialogComponent } from '../nxm-dialog/dialog/dialog.component';
-import { GridviewService, GridData, ColumnMetadata } from './grid-view.service';
+import { SharedServices } from '../SharedServices.service';
+
 @Component({
   selector: 'app-grid-view',
   templateUrl: './grid-view.component.html',
@@ -22,26 +16,25 @@ import { GridviewService, GridData, ColumnMetadata } from './grid-view.service';
 })
 export class GridViewComponent implements OnInit {
   constructor(
-    private gridviewService: GridviewService,
+    public gridviewService: SharedServices,
     private dialog: MatDialog
   ) {}
-
+  // GridView Input
+  @Input() GridView: GridView;
+  // Expression to detect images
   reg: string = '.(jpg|png|jpeg|gif|bmp)';
-  @Input() metadata: string = '';
-  @Input() allowedSortColumns: string[] = [];
-  @Input() endpoint: string = '';
-  @Input() pageSize: number = 10;
-  @Input() formData: string = '';
-  @Input() formEditData: string = '';
+  // gridview rows retrieved
   rows: any[] = [];
-  currentPage: number = 1;
+  // mapping metadata response into columnMetadata
   metadatas: ColumnMetadata[] = [];
   ngOnInit() {
     this.getGridData();
 
-    this.gridviewService.getMetadata(this.metadata).subscribe((data) => {
-      this.metadatas = data;
-    });
+    this.gridviewService
+      .getMetadata(this.GridView.metadata)
+      .subscribe((data) => {
+        this.metadatas = data;
+      });
   }
 
   sortColumn: string = '';
@@ -63,7 +56,7 @@ export class GridViewComponent implements OnInit {
     });
   }
   sortData(column: string) {
-    if (this.allowedSortColumns.includes(column)) {
+    if (this.GridView.allowedSortColumns.includes(column)) {
       if (this.sortColumn === column) {
         this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
       } else {
@@ -74,43 +67,43 @@ export class GridViewComponent implements OnInit {
   }
 
   getGridData() {
-    this.gridviewService.getGridData(this.endpoint).subscribe((data) => {
-      this.rows = data;
-    });
+    this.gridviewService
+      .getData(this.GridView.endpoint)
+      .subscribe((data) => {
+        this.rows = data;
+      });
   }
   getObjectKeys(obj: any) {
-    delete obj.created;
-    delete obj.createdById;
-    delete obj.events;
-    delete obj.modified;
-    delete obj.modifiedById;
-    return Object.keys(obj);
+    const excludeProperties = [
+      'created',
+      'createdById',
+      'events',
+      'modified',
+      'modifiedById',
+    ];
+    return Object.keys(obj).filter((key) => !excludeProperties.includes(key));
   }
   onEditItem(itemId: number) {
-    const index = this.rows.findIndex((item) => item.id === itemId);
-    this.gridviewService
-      .updateRow(this.formEditData, itemId);
+
+    const { actionPanel } = this.GridView;
+    this.gridviewService.updateRow(actionPanel.formEditData, itemId);
   }
 
   onDeleteItem(itemId: number) {
+    const { endpoint } = this.GridView;
+    const index = this.rows.findIndex(({ id }) => id === itemId);
     const dialogRef = this.dialog.open(ConfirmationComponent, {
-      width: '400px',
-      height: '200px',
-
+      width: '300px',
+      height: '220px',
       data: { message: 'Are you sure you want to delete this item?' },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.gridviewService
-          .deleteRow(this.endpoint, itemId)
-          .subscribe((resp) => {
-            if (resp) {
-              const index = this.rows.findIndex((item) => item.id === itemId);
-              if (index !== -1) {
-                this.rows.splice(index, 1);
-              }
-            }
-          });
+        this.gridviewService.deleteRow(endpoint, itemId).subscribe((resp) => {
+          if (resp) {
+            this.rows.splice(index, 1);
+          }
+        });
       }
     });
   }

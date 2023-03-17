@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
+import { Calendar } from 'src/shared/generic/models/Calendar.model';
+import { Container } from 'src/shared/generic/models/Container.model';
+import { Form } from 'src/shared/generic/models/Form.model';
+import { GridView } from 'src/shared/generic/models/GridView.model';
+import { DialogComponent } from 'src/shared/generic/nxm-dialog/dialog/dialog.component';
 import { Permission } from 'src/shared/models/permission.model';
 import { PermissionService } from 'src/shared/services/permission.service';
 export interface PeriodicElement {
@@ -13,13 +20,13 @@ export interface PeriodicElement {
 @Component({
   selector: 'app-permissions',
   templateUrl: './permissions.component.html',
-  styleUrls: ['./permissions.component.css']
+  styleUrls: ['./permissions.component.scss']
 })
 
 export class PermissionsComponent implements OnInit {
   menu!: Permission[];
  
-  constructor(private permissionService: PermissionService,private fb: FormBuilder
+  constructor(private permissionService: PermissionService,private fb: FormBuilder,public dialog: MatDialog
      ) 
           { }
 
@@ -33,6 +40,18 @@ export class PermissionsComponent implements OnInit {
       },
     })
   }
+  action: Actionpanel = {
+    endpoint: 'https://localhost:44312/api/Permission',
+    formEditData: 'https://localhost:44312/meta/UpdatePermissionCommand',
+  };
+
+  grid: GridView = {
+    endpoint: 'https://localhost:44312/api/Permission',
+    formdata: 'https://localhost:44312/meta/CreatePermissionCommand',
+    metadata: 'https://localhost:44312/meta/GetPermissionListVm',
+    allowedSortColumns: ['title'],
+    actionPanel: this.action,
+  };
 
   config = {
     endpoint: 'https://localhost:44312/api/Permission',
@@ -44,6 +63,19 @@ export class PermissionsComponent implements OnInit {
     icon: 'https://img.freepik.com/premium-vector/vector-creative-project-icon-flat-style_106427-199.jpg?w=2000',
     allowedSortColumns: ['title'],
   };
+
+  openDialog(metaData: any, isUpdate: boolean, endpoint: any): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '1067px',
+      height: '519px',
+      data: { metaData, isUpdate, endpoint },
+      
+
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+  }
+
 }
 
   

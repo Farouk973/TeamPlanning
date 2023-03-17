@@ -1,9 +1,18 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
-import { DialogComponent } from '../../nxm-dialog/dialog/dialog.component';
-import { ColumnMetadata, FormService } from '../form.service';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import {  FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Form } from '../../models/Form.model';
+import { SharedServices } from '../../SharedServices.service';
+import { ColumnMetadata } from '../form.service';
+
 
 
 @Component({
@@ -12,23 +21,32 @@ import { ColumnMetadata, FormService } from '../form.service';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  constructor(
-    private formService: FormService,
-   // public dialogRef: MatDialogRef<DialogComponent>
-  ) {}
-  form: FormGroup;
-  @Input() metaData: any;
+  constructor(private formService: SharedServices) {}
+
+  form = new FormGroup({});
+  @Input() formData: Form;
+  @Output() myEvent = new EventEmitter<any>();
+  @ViewChild('buttonToSubmit') buttonToSubmit: ElementRef;
   fields: ColumnMetadata[];
+  ref?;
+  ref2?;
+  // formGroup = new FormGroup({});
   ngOnInit(): void {
-   // console.log(this.metaData.metaData);
-    this.formService.getMetadata(this.metaData).subscribe((data) => {
+    this.formService.getMetadata(this.formData.metaData).subscribe((data) => {
       this.fields = data;
-      this.createForm();
+      this.fields.forEach((element) => {
+        if (element.description) {
+          this.ref = this.ReferenceExistances(element.description);
+        }
+        if (element.type === 'array') {
+          this.ref2 = this.ReferenceExistance(element.item);
+        }
+        this.createForm();
+      });
     });
   }
 
   createForm() {
-    let formGroup = new FormGroup({});
     for (const field of this.fields) {
       let control = new FormControl('', []);
       let validators = [];
@@ -54,31 +72,78 @@ export class FormComponent implements OnInit {
       if (validators.length > 0) {
         control.setValidators(Validators.compose(validators));
       }
-      if (this.metaData.isUpdate && this.metaData.object.hasOwnProperty(field.name)) {
-        control.setValue(this.metaData.object[field.name]); // set the initial value from the data object
+      if (
+        this.formData.Object &&
+        this.formData.Object.hasOwnProperty(field.name)
+      ) {
+        control.setValue(this.formData.Object[field.name]); // set the initial value from the data object
       }
-      formGroup.addControl(field.name, control);
+
+      this.form.addControl(field.name, control);
     }
-    this.form = formGroup;
+  }
+  async submitAsync() {
+    this.buttonToSubmit.nativeElement.click();
+
+    return this.form.valid;
   }
   submitForm() {
-    //console.log('test update', this.metaData.metaData);
-    //console.log('test endpoint', this.metaData.endpoint);
-    if (this.metaData.isUpdate) {
-      this.formService
-        .updateRow(this.metaData.endpoint, this.form.value)
-       /* .subscribe((response) => {
-          response ? this.dialogRef.close(this.form.value) : null;
-        });*/
-    }
-    if (!this.metaData.isUpdate) {
-    //  console.error('im in ', this.metaData.isUpdate);
-      this.formService
-        .addRow(this.metaData.endpoint, this.form.value)
-        /*.subscribe((response) => {
-          response ? this.dialogRef.close(this.form.value) : null;
-        });*/
-
-    }
+    this.submitAsync().then((isValid) => {
+      console.log(isValid);
+      console.log(this.form.value)
+      if (isValid) {
+        if (this.formData.Object) {
+          this.formService
+            .updateRow(this.formData.endpoint, this.form.value)
+            .subscribe(
+              (response) => {
+                if (response.status === 200) {
+                  this.myEvent.emit({
+                    formValue: this.form.value,
+                    response: response,
+                  });
+                }
+              },
+              (error) => {
+                this.myEvent.emit({error:error})
+              }
+            );
+        }
+        if (!this.formData.Object) {
+          this.formService
+            .addRow(this.formData.endpoint, this.form.value)
+            .subscribe(
+              (response) => {
+                this.myEvent.emit({
+                  formValue: this.form.value,
+                  response: response,
+                });
+              },
+              (error) => {}
+            );
+        }
+      }
+    });
+  }
+  toppings = new FormControl('');
+  ReferenceExistances(desc :string) :any
+  {
+  this.formService.getData("https://localhost:44312/api/"+desc)
+  .subscribe({
+    next: (data) => {
+      this.ref = data;
+      console.log(data)
+    },
+  })
+  }
+  ReferenceExistance(desc :string) :any
+  {
+  this.formService.getData("https://localhost:44312/api/"+desc)
+  .subscribe({
+    next: (data) => {
+      this.ref2 = data;
+      console.log(data)
+    },
+  })
   }
 }

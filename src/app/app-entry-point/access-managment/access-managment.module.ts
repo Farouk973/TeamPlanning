@@ -53,11 +53,17 @@ import {CdkMenuModule} from '@angular/cdk/menu';
 import {DialogModule} from '@angular/cdk/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import {NXMGContainerModule} from "../../../shared/generic/nxm-g-container/nxm-g-container.module";
+import { UserPermessionsComponent } from './user-permessions/user-permessions.component';
+import { GridViewModule } from 'src/shared/generic/grid-view/grid-view.module';
+import { FormModule } from 'src/shared/generic/form/form.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
   declarations: [
     PermissionsComponent,
+    UserPermessionsComponent,
   ],
   imports: [
     CommonModule,
@@ -112,6 +118,9 @@ import {NXMGContainerModule} from "../../../shared/generic/nxm-g-container/nxm-g
     DialogModule,
     ReactiveFormsModule,
     NXMGContainerModule,
+    GridViewModule,
+    FormModule,
+    MatChipsModule
 
 
 
