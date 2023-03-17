@@ -1,0 +1,12 @@
+.example-card {
+    min-width: 300px;
+    min-height: 200px;
+    max-width: 300px;
+    max-height: 200px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 12px;
+    border-radius: 15px;
+  }
+
+

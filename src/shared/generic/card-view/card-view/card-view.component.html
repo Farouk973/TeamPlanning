@@ -1,0 +1,44 @@
+<div class="container ">
+    <div class="card">
+        <div class="card-container  align-items-center justify-content-start">
+            <div class="inline-block " *ngFor="let row of sortedRows; let i = index">
+                <mat-card class="example-card" >
+                    <mat-card-header>
+                        <mat-card-title>{{ row[cardView.cardtitle]}}</mat-card-title>
+                        <mat-card-subtitle>zz</mat-card-subtitle>
+                        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" [matMenuTriggerFor]="menu">
+                            <svg width="14" height="34" viewBox="0 0 14 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <rect y="34" width="34" height="14" rx="7" transform="rotate(-90 0 34)" fill="#EDF5F9"/>
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M7 22C5.89543 22 5 22.8954 5 24C5 25.1046 5.89543 26 7 26C8.10457 26 9 25.1046 9 24C9 22.8954 8.10457 22 7 22Z" fill="#768DA9"/>
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M7 15C5.89543 15 5 15.8954 5 17C5 18.1046 5.89543 19 7 19C8.10457 19 9 18.1046 9 17C9 15.8954 8.10457 15 7 15Z" fill="#768DA9"/>
+                              <path fill-rule="evenodd" clip-rule="evenodd" d="M7 8C5.89543 8 5 8.89543 5 10C5 11.1046 5.89543 12 7 12C8.10457 12 9 11.1046 9 10C9 8.89543 8.10457 8 7 8Z" fill="#768DA9"/>
+                              </svg>   
+                      </button>
+                        
+                    </mat-card-header>
+                    <mat-card-content>
+                        {{ row[cardView.carddescription]}}
+              
+                    </mat-card-content>
+                  </mat-card>
+                  <mat-menu #menu="matMenu" xPosition="before">
+                    <app-action-panel
+                    *ngIf="cardView.actionPanel"
+                    [actionPanel]="cardView.actionPanel"
+                    [objId]="row"
+                    (edit)="onEditItem($event)"
+                    (delete)="onDeleteItem($event)"
+                  ></app-action-panel>
+                  </mat-menu>
+            </div>
+    
+        </div>
+    </div>
+  </div>
+  
+
+
+
+  
+
+
