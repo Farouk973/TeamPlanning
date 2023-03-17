@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nxm-tensai-teamplanning-front
-  namespace: teamplanning  
+  namespace: teamplanning
 spec:
   replicas: 1
   selector:
@@ -23,11 +23,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nxm-tensai-projectmanagement-front
-  namespace: backend
+  name: nxm-tensai-teamplanning-front
+  namespace: teamplanning
 spec:
   type: LoadBalancer
   ports:
   - port: 80
   selector:
-    app: nxm-tensai-projectmanagement-front
+    app: nxm-tensai-teamplanning-front
