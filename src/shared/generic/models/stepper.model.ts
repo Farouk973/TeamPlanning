@@ -4,7 +4,7 @@ export interface Stepper {
 interface Step {
   title: string;
   order: string;
-  content: any;
+  content: string;
   action :
     [
       {

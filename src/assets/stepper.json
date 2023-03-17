@@ -3,7 +3,18 @@
     {
       "title": "Project",
       "order": 1,
-      "content": "NXMForm",
+      "content": "NXMForm" ,
+      "actions": [
+        {
+          "label": "Next",
+          "goto": 2
+        }
+      ]
+    },
+    {
+      "title": "Features",
+      "order": 2,
+      "content": "NXMGridView",
       "actions": [
         {
           "label": "Next",

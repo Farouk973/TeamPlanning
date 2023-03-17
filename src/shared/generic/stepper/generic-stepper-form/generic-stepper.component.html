@@ -3,7 +3,8 @@
 <mat-stepper>
   <mat-step *ngFor="let step of stepperData?.steps; let i = index ;let last = last;">
     <ng-template matStepLabel>{{ step.title }}</ng-template>
-    <div  *ngComponentOutlet="getComponent(step.content);"></div>
+    <ng-template  [ngComponentOutlet]="getComponent(step.content)" [ndcDynamicInputs]="inputs"></ng-template>
+    <ng-template  [ngComponentOutlet]="getComponent(step.content)" [ndcDynamicInputs]="inputs"></ng-template>
     <div class="button-container">
       <button mat-button matStepperPrevious class="mat-raised-button" *ngIf="i !== 0">Back</button>
       <button mat-button matStepperNext class="mat-raised-button" *ngIf="!last " >Next</button>

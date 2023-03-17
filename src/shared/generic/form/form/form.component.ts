@@ -5,6 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { DialogComponent } from '../../nxm-dialog/dialog/dialog.component';
 import { ColumnMetadata, FormService } from '../form.service';
 
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',

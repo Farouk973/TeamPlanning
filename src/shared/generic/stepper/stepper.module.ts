@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {GenericStepperComponent} from "./generic-stepper-form/generic-stepper.component";
 import {MatStepperModule} from "@angular/material/stepper";
 import {FormModule} from "../form/form.module";
+import { DynamicIoModule } from 'ng-dynamic-component';
 @NgModule({
   declarations: [
     GenericStepperComponent
@@ -11,6 +12,7 @@ import {FormModule} from "../form/form.module";
     CommonModule,
     MatStepperModule,
     FormModule,
+    DynamicIoModule
   ],
   exports:[
     GenericStepperComponent
