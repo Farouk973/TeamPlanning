@@ -66,4 +66,4 @@ steps:
     kubernetesServiceEndpoint: 'AksTensainNXM'
     command: 'apply'
     useConfigurationFile: true
-    configuration: '$(System.DefaultWorkingDirectory)/k8s-manifests/*.yaml'
+    configuration: 'nxm.tensai.projectmanagement.front.yaml'
