@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nxm-tensai-teamplanning-front
+  namespace: teamplanning  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nxm-tensai-teamplanning-front
+  template:
+    metadata:
+      labels:
+        app: nxm-tensai-teamplanning-front
+    spec:
+      containers:
+      - name: nxm-teamplanning-front
+        image: tensaicontainerregistry.azurecr.io/nxm-teamplanning-front:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nxm-tensai-projectmanagement-front
+  namespace: backend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: nxm-tensai-projectmanagement-front
