@@ -53,7 +53,7 @@ steps:
   displayName: 'Build and push image'
   inputs:
     containerRegistry: 'a9939786-a2e4-4cfa-a2a7-449abb04083d'
-    repository: '$(Build.Repository.Name):$(Build.BuildId)'
+    repository: '$(imageRepository):$(Build.BuildId)'
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'
     tags: |
