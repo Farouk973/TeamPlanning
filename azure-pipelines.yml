@@ -39,6 +39,16 @@ steps:
     project: src
     prod: false
 
+- task: SonarQubeAnalyze@4
+  displayName: 'Run SonarQube analysis'
+  inputs:
+    SonarQube: 'f204c828-52c3-4d3a-90eb-d85ea6a5992b'
+
+- task: SonarQubePublish@4
+  displayName: 'Publish SonarQube analysis'
+  inputs:
+    pollingTimeoutSec: '300'
+
 - task: Docker@2
   displayName: 'Build and push image'
   inputs:
