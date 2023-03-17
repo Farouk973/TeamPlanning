@@ -9,8 +9,13 @@ export const childRoutes = [
     loadChildren: () => import('./access-managment/access-managment.module').then(m => m.AccessManagmentModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
   },
+  {
+    path: 'project',
+    loadChildren: () => import('./project-managment/project-managment.module').then(m => m.ProjectManagmentModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
+  },
 
- 
+
 
   // {
   //   path: 'profile',

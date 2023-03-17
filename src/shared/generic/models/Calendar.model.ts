@@ -1,4 +1,6 @@
-export interface Calendar {
+import {NXMGenericComponent} from "./NXMGenericComponent.model";
+
+export interface Calendar extends NXMGenericComponent {
   endpoint : string,
   startDateCollumn : string,
   endDateCollumn : string,
