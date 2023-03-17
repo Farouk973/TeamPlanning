@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
+import { CardGridView } from 'src/shared/generic/models/CardView.model';
 import { GridView } from 'src/shared/generic/models/GridView.model';
 export interface ChipColor {
   name: string;
@@ -44,6 +45,17 @@ export class UserPermessionsComponent implements OnInit {
     formdata: 'https://localhost:44312/meta/CreatePermissionCommand',
     metadata: 'https://localhost:44312/meta/GetUsersPermessionsVm',
     allowedSortColumns: ['title'],
+    actionPanel: this.action,
+  };
+
+  card: CardGridView = {
+    endpoint: 'https://localhost:44312/api/Role',
+    formdata: 'https://localhost:44312/meta/CreateRoleCommand',
+    metadata: 'https://localhost:44312/meta/GetRoleListVm',
+    cardtitle: "title",
+    carddescription: "description",
+    width: 300,
+    height: 150,
     actionPanel: this.action,
   };
 }
