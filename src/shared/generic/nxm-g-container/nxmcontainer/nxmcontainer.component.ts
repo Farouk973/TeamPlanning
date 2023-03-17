@@ -9,6 +9,11 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
+import { Actionpanel } from '../../models/ActionPanel.model';
+import { Calendar } from '../../models/Calendar.model';
+import { Container } from '../../models/Container.model';
+import { Form } from '../../models/Form.model';
+import { GridView } from '../../models/GridView.model';
 import { DialogComponent } from '../../nxm-dialog/dialog/dialog.component';
 
 import { Config } from './Config.interface';
@@ -50,4 +55,38 @@ export class NXMContainerComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
     });
   }
+
+  action: Actionpanel = {
+    endpoint: 'http://localhost:44312/api/Permession',
+    formEditData: 'http://localhost:44312/meta/UpdatePermissionCommand',
+  };
+  forms: Form = {
+    endpoint: 'http://localhost:44312/api/Projects',
+    // Object: {
+    //   name: 'wajih',
+    //   description: 'hmayed',
+    // },
+    metaData: 'http://localhost:44312/meta/CreatePermissionCommand',
+  };
+  grid: GridView = {
+    endpoint: 'http://localhost:44312/api/Permession',
+    formdata: 'http://localhost:44312/meta/CreatePermissionCommand',
+    metadata: 'https://localhost:44312/meta/GetPermissionListVm',
+    allowedSortColumns: ['title'],
+    actionPanel: this.action,
+  };
+  calendar: Calendar = {
+    displaycollumn: 'Name',
+    endDateCollumn: 'dateTime1',
+    endpoint:
+      'https://requestly.dev/api/mockv2/proj?rq_uid=CtzEtdGYaWOFBXtVgWIzHwrNf8h2',
+    startDateCollumn: 'dateTime',
+    eventColors: 'rgba(1, 150, 27, 0.1)',
+    editable: true,
+  };
+  container: Container = {
+    containerInfo: null,
+    gridView: this.grid,
+  };
+
 }

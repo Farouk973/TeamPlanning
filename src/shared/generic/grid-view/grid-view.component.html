@@ -26,6 +26,15 @@
     <tbody class="table-content">
       <tr class="table-row" *ngFor="let row of sortedRows; let i = index">
         <td class="table-data" *ngFor="let field of metadatas">
+          <div *ngIf="field.type == 'array'">
+            <div *ngIf="row[field.name]">
+              <span *ngFor="let aa of row[field.name]">
+               {{aa.name}},
+              </span>...
+            
+            </div>
+           
+          </div>
           <div *ngIf="field.type == 'boolean'">
             <div *ngIf="row[field.name]">
               <mat-slide-toggle
@@ -66,6 +75,7 @@
           <div *ngIf="field.type === 'string' && field.format === 'date-time'">
             {{ row[field.name] | date }}
           </div>
+         
         </td>
         <td class="table-data">
            <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" [matMenuTriggerFor]="menu">
@@ -80,8 +90,8 @@
       </button>
 <mat-menu #menu="matMenu" xPosition="before">
   <app-action-panel
-  [endpoint]="endpoint"
-  [formEditData]="formEditData"
+  *ngIf="GridView.actionPanel"
+  [actionPanel]="GridView.actionPanel"
   [objId]="row"
   (edit)="onEditItem($event)"
   (delete)="onDeleteItem($event)"
