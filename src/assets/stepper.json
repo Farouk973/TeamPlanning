@@ -3,18 +3,11 @@
     {
       "title": "Project",
       "order": 1,
-      "content": "NXMForm" ,
-      "actions": [
-        {
-          "label": "Next",
-          "goto": 2
-        }
-      ]
-    },
-    {
-      "title": "Features",
-      "order": 2,
-      "content": "NXMGridView",
+      "contentType": "Form",
+      "content":
+       { "endpoint": "https://localhost:44312/api/Permission",
+         "metaData": "https://localhost:44312/meta/UploadPictureCommand"
+       },
       "actions": [
         {
           "label": "Next",

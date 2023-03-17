@@ -34,6 +34,7 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.formService.getMetadata(this.formData.metaData).subscribe((data) => {
       this.fields = data;
+      console.log(this.fields)
       this.fields.forEach((element) => {
         if (element.description) {
           this.ref = this.ReferenceExistances(element.description);

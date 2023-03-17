@@ -1,4 +1,6 @@
-export interface ColumnMetadata {
+import {NXMGenericComponent} from "./NXMGenericComponent.model";
+
+export interface ColumnMetadata extends NXMGenericComponent {
   name: string;
   type: string;
   format: string;

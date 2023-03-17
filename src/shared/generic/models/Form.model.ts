@@ -1,4 +1,6 @@
-export interface Form {
+import {NXMGenericComponent} from "./NXMGenericComponent.model";
+
+export class Form implements NXMGenericComponent {
   metaData : string;
   endpoint : string ;
   Object? : any;

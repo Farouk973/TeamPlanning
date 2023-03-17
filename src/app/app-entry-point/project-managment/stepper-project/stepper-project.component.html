@@ -1,2 +1,3 @@
-<app-generic-stepper [stepperData]="stepperData"></app-generic-stepper>
-
+<div *ngIf="stepper$ | async">
+  <app-generic-stepper [stepper$]="stepper$"></app-generic-stepper>
+</div>

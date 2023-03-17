@@ -1,10 +1,14 @@
-export interface Stepper {
+import {InputsType} from "ng-dynamic-component";
+import {NXMGenericComponent} from "./NXMGenericComponent.model";
+
+export class Stepper implements NXMGenericComponent{
   steps: Step[];
 }
-interface Step {
+export class Step {
   title: string;
   order: string;
-  content: string;
+  contentType: string;
+  content: NXMGenericComponent;
   action :
     [
       {
@@ -12,5 +16,4 @@ interface Step {
       }
     ]
 }
-
 
