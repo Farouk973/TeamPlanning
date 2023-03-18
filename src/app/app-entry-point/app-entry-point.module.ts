@@ -60,11 +60,13 @@ import {DialogModule} from '@angular/cdk/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { ChipsPopUpGCModule } from 'src/shared/generic/chips-pop-up-gc/chips-pop-up-gc.module';
 import { SkillsManagmentModule } from './skills-managment/skills-managment.module';
+import { CatalogueServicesComponent } from './catalogue-services/catalogue-services/catalogue-services.component';
 @NgModule({
   declarations: [
     LayoutComponent,
     SideNavComponent,
     TopNavComponent,
+    CatalogueServicesComponent,
 
   ],
   imports: [
