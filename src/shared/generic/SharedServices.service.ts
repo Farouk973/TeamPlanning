@@ -22,4 +22,7 @@ export class SharedServices {
   deleteRow(endpoint: string, id: number): Observable<number> {
     return this.httpClient.delete<number>(endpoint + '/' + id);
   }
+  search(query: string): Observable<any> {
+    return this.httpClient.get('/api/search?q=' + query);
+  }
 }
