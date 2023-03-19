@@ -2,9 +2,16 @@ import { Type } from "@angular/core";
 
 export interface CardData {
   primaryLabel?: string;
-  endpoint?: string;
+  id?: string;
   primaryColor?: string;
-  textbody: string;
+  labelColor?: string;
+  textbody?: string;
+  minHeight?:string;
+  maxHeight?:string;
+  textLabel?:string;
+  bodyTitle?:string;
+  nbResources?:string;
+  nbHours?:string;
   showEditButton?: boolean;
   showBody?: boolean;
   showFooterAction?:boolean;
@@ -14,7 +21,7 @@ export interface CardData {
   showIconAction?:boolean;
   cardOptions?: CardOptions;
   component?:Type<any>;
-  card:Card;
+  card?:Card;
 
 }
 export interface Card {

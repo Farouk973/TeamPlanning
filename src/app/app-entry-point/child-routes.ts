@@ -23,7 +23,7 @@ export const childRoutes = [
 
   {
     path: 'catalogue',
-    loadChildren: () => import('./catalogue-service/catalogue-service.module').then(m => m.CatalogueServiceModule),
+    loadChildren: () => import('./catalogue-services/catalogue-services/catalogue-services.module').then(m => m.CatalogueServicesModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
 
