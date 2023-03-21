@@ -59,19 +59,10 @@ steps:
     tags: |
       $(Build.BuildId)
 
-- task: Kubernetes@1
-  displayName: 'Deploy to AKS'
-  inputs:
-    connectionType: 'Kubernetes Service Connection'
-    kubernetesServiceEndpoint: 'AksTensainNXM'
-    command: 'apply'
-    useConfigurationFile: true
-    configuration: 'nxm.tensai.projectmanagement.front.yaml'
-
 - task: CopyFiles@2
   displayName: 'Copy manifest file'
   inputs:
-    Contents: 'nxm.tensai.projectmanagement.front.yaml'
+    Contents: 'nxm.tensai.teamplanning.front.yaml'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
