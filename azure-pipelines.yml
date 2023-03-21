@@ -71,8 +71,8 @@ steps:
     rootDirectory: '$(Build.ArtifactStagingDirectory)'
     targetFiles: '**/*.yaml'
     encoding: 'auto'
-    tokenPattern: $(Build.BuildId)
-    tokenValue: $(Build.BuildId)
+    tokenPattern: '$(Build.BuildId)'
+    tokenValue: '$(Build.BuildId)'
     writeBOM: true
     actionOnMissing: 'warn'
     keepToken: false
