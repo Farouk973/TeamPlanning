@@ -65,9 +65,22 @@ steps:
     Contents: 'nxm.tensai.teamplanning.front.yaml'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
+- task: ReplaceTokens@3
+  displayName: 'Replace tokens in manifest file'
+  inputs:
+    rootDirectory: '$(Build.ArtifactStagingDirectory)'
+    targetFiles: '**/*.yaml'
+    encoding: 'auto'
+    tokenPattern: '$(Build.BuildId)'
+    tokenValue: '$(Build.BuildId)'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: false
+  condition: succeededOrFailed()
 - task: PublishBuildArtifacts@1
   displayName: 'Publish artifact'
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'manifests'
     publishLocation: 'Container'
+
