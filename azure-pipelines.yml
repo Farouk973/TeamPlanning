@@ -57,7 +57,7 @@ steps:
     command: 'buildAndPush'
     Dockerfile: 'Dockerfile'
     tags: |
-      $(Build.BuildId)
+      hamza
 
 - task: CopyFiles@2
   displayName: 'Copy manifest file'
