@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: nxm-teamplanning-front
-        image: tensaicontainerregistry.azurecr.io/nxm.teamplanning.front:$(Build.BuildId)
+        image: tensaicontainerregistry.azurecr.io/nxm.teamplanning.front:#{Imagetag}#
         imagePullPolicy: Always
         ports:
         - containerPort: 80
