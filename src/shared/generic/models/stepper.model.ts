@@ -1,4 +1,3 @@
-import {InputsType} from "ng-dynamic-component";
 import {NXMGenericComponent} from "./NXMGenericComponent.model";
 
 export class Stepper implements NXMGenericComponent{

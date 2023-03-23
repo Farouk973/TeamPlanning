@@ -1,0 +1,15 @@
+
+
+{   "label": "Roles",
+     "input": {
+                 "type": "text",
+                 "aria-label":"string",
+                  "placeholder": { "search": "Search...", "addText": "Enter here..."},
+                   "value":""
+                },
+      "optionEndpoint" : "https://localhost:44312/api/Role",
+      "saveInputInBase": "false",
+      "AssignInputToItem": "true",
+      "sourceEndpoint":"",
+       "relatedObject": ""
+}

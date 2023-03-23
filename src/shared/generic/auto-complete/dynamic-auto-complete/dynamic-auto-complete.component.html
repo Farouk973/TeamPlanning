@@ -1,0 +1,24 @@
+<mat-form-field
+  class="example-full-width">
+  <input
+    type="text"
+    placeholder="Pick one"
+    aria-label="Number"
+    matInput
+    [formControl]="myControl"
+    [matAutocomplete]="auto"
+    (keyup.enter)="enter()">
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    (optionSelected)="optionSelected($event.option)">
+    <mat-option
+      *ngFor="let option of filteredOptions | async"
+      [value]="option">
+      <span>{{ option }}</span>
+      <button mat-icon-button class="my-button" (click)="addOption(option)">+</button>
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+
+{{selectedValue}}
