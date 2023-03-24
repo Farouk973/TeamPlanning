@@ -1,18 +1,15 @@
 import {NXMGenericComponent} from "./NXMGenericComponent.model";
 
 export class AutoComplete implements NXMGenericComponent{
-  label: string;
-  input: Input;
-  optionEndpoint: string;
+  label?: string;
+  input?: Input;
+  optionsDataEndpoint?: string;
+  addToItem?: string
   saveInputInBase: boolean;
   assignInputToItem: boolean;
   sourceEndpoint:string
 }
 class Input {
-  type : string;
-  ariaLabel: string;
-  placeholder:{
-    search: string;
-    addText: string;
-  }
+  type?: string;
+  placeholder?:string
 }

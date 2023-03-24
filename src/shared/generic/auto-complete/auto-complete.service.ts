@@ -7,8 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class AutoCompleteService {
   constructor(private http: HttpClient) {}
-  getOptions(endpoint: string): Observable<any[]> {
+  getDataOptions(endpoint: string): Observable<any[]> {
     return this.http.get<any[]>(endpoint);
+  }
+
+  addToBase(endpoint: any,object: any): Observable<any> {
+    return this.http.post<any>(endpoint, object);
   }
 
 }

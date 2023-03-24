@@ -17,12 +17,13 @@ import {AutoCompleteService} from "../auto-complete.service";
     }
   ]
 })
-export class DynamicAutoCompleteComponent implements OnInit , ControlValueAccessor{
-  @Input()   autoComplete$: Observable<AutoComplete> ;
-  autocomplete = new AutoComplete();
+export class DynamicAutoCompleteComponent implements OnInit {
+
+  @Input() autoComplete$!:Observable<AutoComplete> ;
+  autoComplete = new AutoComplete();
   @Output() added = new EventEmitter();
   myControl = new FormControl();
-  @Input() options: string[];
+  options: string[];
   selectedValue;
   filteredOptions: Observable<string[]>;
   question = 'Would you like to add ';
@@ -38,17 +39,23 @@ export class DynamicAutoCompleteComponent implements OnInit , ControlValueAccess
   constructor(private autoCompleteService : AutoCompleteService) { }
 
   ngOnInit(): void {
+    this.autoComplete$.subscribe((autoCompleteData)=>{
+      this.autoComplete=autoCompleteData;
+      this.autoCompleteService.getDataOptions(this.autoComplete?.optionsDataEndpoint).subscribe((data)=>{
+        this.options=data.map(r=>r.title);
+        this.filteredOptions = this.myControl.valueChanges.pipe(
+          startWith(''),
+          map(value => this._filter(value || '')),
+        );
+      })
+    })
 
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
+  console.log(this.myControl.setValue)
+
   }
-  private _filter(value: string): string[] {
+    private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
-    this.autoComplete$.subscribe((autoCompleteData)=>{this.autocomplete=autoCompleteData});
   }
   optionSelected(option) {
     if (option.value.indexOf(this.question) === 0) {

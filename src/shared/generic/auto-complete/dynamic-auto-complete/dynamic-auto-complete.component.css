@@ -1,14 +1,6 @@
 .example-full-width {
-  width: 100%;
+  width: 50%;
 }
-.my-button {
-  width: 500px;
-  height: 40px;
-  left: 993px;
-  top: 205px;
-  color: #00B2D9;
-  background-color: transparent;
-  border-radius: 10px;
-  outline: none;
+.my-button:hover {
+  color: #27D8FF;
 }
-

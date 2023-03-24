@@ -1,9 +1,9 @@
 
-  <app-dynamic-auto-complete
-    [options]="options"
-    (added)="onItemAdded($event)">
-  </app-dynamic-auto-complete>
 
   <div *ngIf="autoComplete$ | async">
-    <app-dynamic-auto-complete [autoComplete$]="autoComplete$"></app-dynamic-auto-complete>
+    <app-dynamic-auto-complete
+      [autoComplete$]="autoComplete$"
+      (added)="onItemAdded($event)">
+    </app-dynamic-auto-complete>
+
   </div>

@@ -4,12 +4,13 @@
      "input": {
                  "type": "text",
                  "aria-label":"string",
-                  "placeholder": { "search": "Search...", "addText": "Enter here..."},
+                  "placeholder": "search...",
                    "value":""
                 },
-      "optionEndpoint" : "https://localhost:44312/api/Role",
+      "optionsDataEndpoint" : "https://localhost:44312/api/Role",
+      "addToItem": "add to project",
       "saveInputInBase": "false",
-      "AssignInputToItem": "true",
+      "AssignInputToItem": "false",
       "sourceEndpoint":"",
        "relatedObject": ""
 }
