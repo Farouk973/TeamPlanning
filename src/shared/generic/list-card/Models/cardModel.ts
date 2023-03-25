@@ -1,6 +1,7 @@
 import { Type } from "@angular/core";
 
 export interface CardData {
+  endpoint?: string;
   primaryLabel?: string;
   id?: string;
   primaryColor?: string;
@@ -19,10 +20,9 @@ export interface CardData {
   showCardActions?: boolean;
   showFooter?: boolean;
   showIconAction?:boolean;
-  cardOptions?: CardOptions;
   component?:Type<any>;
   card?:Card;
-
+ 
 }
 export interface Card {
   id:string;
@@ -32,14 +32,3 @@ export interface Card {
 
 }
 
-export interface ButtonOptions {
-    title: string;
-    bootstrapClass: string;
-  }
-  
-  export interface CardOptions {
-    title: string;
-    subtitle: string;
-    color: string;
-    buttons?: ButtonOptions[];
-  }

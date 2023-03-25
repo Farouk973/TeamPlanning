@@ -1,6 +1,8 @@
-import { CardData } from "src/shared/generic/generic_card/Models/cardModel";
+import { CardData } from "src/shared/generic/list-card/Models/cardModel";
+
 
 export const mockCardData: CardData={
+    endpoint: "https://localhost:5001/api/service",
     primaryColor: '#00b2d91a',
     labelColor: '#00B2D9',
     minHeight:"105px",

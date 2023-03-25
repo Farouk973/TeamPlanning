@@ -1,0 +1,105 @@
+mat-card {
+    margin-bottom: 16px;
+  }
+  
+  mat-card .primary-label {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+    display: inline-block;
+    box-sizing: border-box;
+  }
+  .card-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+   
+  }
+  
+  .card-list .col-md-3 {
+    box-sizing: border-box;
+    width: 33%;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  /* Row class */
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px; /* Adjust for negative margins on col class */
+    margin-left: -15px; /* Adjust for negative margins on col class */
+  }
+  
+  /* Column class */
+  .col {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 15px; /* Adjust for negative margins on row class */
+    padding-left: 15px; /* Adjust for negative margins on row class */
+  }
+  .card-list .spacer {
+    padding-top: 30px;
+  }
+  
+   
+    button.mat-icon-button {
+      background-color: white;
+    }
+    .spacer {
+      padding-top: 30px;
+    }
+    .card-list .menu-wrapper {
+      float: right;
+    }
+    
+   
+   
+    .header {
+      display: flex;
+      align-items: center;
+    }
+    
+    .titleService {
+      margin-right: 20px;
+      padding-top: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 20px;
+      font-weight:700 ;
+    }
+    
+   
+    
+    .search-bar {
+      position: relative;
+      display: inline-block;
+      align-items: center;
+      background-color: transparent;
+      border-radius: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      margin-left: 30px;
+      width: 40%;
+    }
+    
+    .search-icon {
+      position: absolute;
+      right: 10px;
+      color: #aaa;
+      font-size: 20px;
+    }
+    
+    input[type="text"] {
+      border: none;
+      outline: none;
+      font-size: 16px;
+      color: #333;
+      width: 100%;
+      background-color: transparent;
+    }
+    
+    input[type="text"]::placeholder {
+      color: #aaa;
+    }

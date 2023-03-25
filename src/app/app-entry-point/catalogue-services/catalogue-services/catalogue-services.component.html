@@ -11,18 +11,8 @@
     <button mat-button>{{category.primaryLabel}}</button>
   </div>
 </div>
-<div class="card-list" style="display: flex; flex-wrap: wrap;">
-  <div *ngFor="let card of cardDataList" class="col-md-3 stretch spacer">
-    <app-generic-card [data]="card">
-      <div class="menu-wrapper">
-        <button mat-icon-button [matMenuTriggerFor]="appMenu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #appMenu="matMenu">
-          <button mat-menu-item>Edit</button>
-          <button mat-menu-item>Delete</button>
-        </mat-menu>
-      </div>
-    </app-generic-card>
-  </div>
-</div>
+
+  <app-list-card [data]="card"> </app-list-card>
+
+  
+
