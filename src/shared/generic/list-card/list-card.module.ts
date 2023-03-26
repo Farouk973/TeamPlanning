@@ -26,6 +26,7 @@ import { MatMenuModule } from '@angular/material/menu';
         DynamicModule,
         MatMenuModule,
       
+      
     ]
 })
 export class ListCardModule { }

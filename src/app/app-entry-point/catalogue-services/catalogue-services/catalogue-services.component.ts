@@ -8,7 +8,8 @@ import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-catalogue-services',
   templateUrl: './catalogue-services.component.html',
-  styleUrls: ['./catalogue-services.component.css']
+  styleUrls: ['./catalogue-services.component.css'],
+ 
 })
 export class CatalogueServicesComponent implements OnInit {
   searchForm: FormGroup;

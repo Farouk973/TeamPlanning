@@ -8,10 +8,12 @@ import { SearchBarModel } from '../models/bar-search.model';
 import { SharedServices } from '../SharedServices.service';
 import { Card, CardData } from './Models/cardModel';
 
+
 @Component({
   selector: 'app-list-card',
   templateUrl: './list-card.component.html',
-  styleUrls: ['./list-card.component.css']
+  styleUrls: ['./list-card.component.css'],
+ 
 })
 export class ListCardComponent implements OnInit {
   @Input() data: CardData;
