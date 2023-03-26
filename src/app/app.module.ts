@@ -63,11 +63,12 @@ import { CommonModule } from '@angular/common';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    AuthentificateComponent
-    
+    AuthentificateComponent,
+   
    
 
 

@@ -17,6 +17,7 @@
   flex-wrap: wrap;
   margin-right: -15px; /* Adjust for negative margins on col class */
   margin-left: -15px; /* Adjust for negative margins on col class */
+  padding-top: 15px;
 }
 
 /* Column class */
@@ -51,14 +52,11 @@
   
   .titleService {
     margin-right: 20px;
-    padding-top: 10px;
+    padding-top: 0px;
     font-family: 'DM Sans', sans-serif;
     font-size: 20px;
     font-weight:700 ;
   }
-  
- 
-  
   .search-bar {
     position: relative;
     display: inline-block;
@@ -90,3 +88,5 @@
   input[type="text"]::placeholder {
     color: #aaa;
   }
+ 
+  

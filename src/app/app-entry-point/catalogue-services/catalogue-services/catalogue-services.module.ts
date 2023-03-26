@@ -7,10 +7,12 @@ import { CatalogueServicesRoutingModule } from '../catalogue-service-routing.mod
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SearchBarModule } from "../../../../shared/generic/search-bar/search-bar.module";
 import { ListCardModule } from 'src/shared/generic/list-card/list-card.module';
+
+
 
 
 
@@ -26,7 +28,8 @@ import { ListCardModule } from 'src/shared/generic/list-card/list-card.module';
         MatButtonModule,
         MatToolbarModule,
         FormsModule,
-        SearchBarModule
+        SearchBarModule,
+        ReactiveFormsModule
     ]
 })
 

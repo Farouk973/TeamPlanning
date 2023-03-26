@@ -1,8 +1,9 @@
-
 import { Component, OnInit } from '@angular/core';
-import { HttpRepositoryService } from 'src/core/httpRepository.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { CardData } from 'src/shared/generic/list-card/Models/cardModel';
 import { categoryData, mockCardData } from './mock-data/data';
+import { debounceTime } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-catalogue-services',
@@ -10,31 +11,40 @@ import { categoryData, mockCardData } from './mock-data/data';
   styleUrls: ['./catalogue-services.component.css']
 })
 export class CatalogueServicesComponent implements OnInit {
-searchResults: any;
-search:string;
-private readonly apiUrl = 'api/Service';
+  searchForm: FormGroup;
+  categories: CardData[] = categoryData;
+  card: CardData = mockCardData;
+  baseUrl = 'https://localhost:5001/api/Service/filter';
 
-
-categories: CardData[] = categoryData;
-card: CardData =mockCardData;
-  
-
-handleSearchEvent($event: any) {
-throw new Error('Method not implemented.');
-}
-
-
-  constructor(private httpRepository: HttpRepositoryService) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-  
-  }
-  onSearch($event: Event) {
-    
-    }
-   
+    this.searchForm = this.formBuilder.group({
+      searchTerm: ['']
+    });
 
- 
+    this.searchForm.get('searchTerm').valueChanges.pipe(
+      debounceTime(500)
+    ).subscribe(() => {
+     
+      this.search();
+    });
   }
+
+  search() {
+    const searchTerm = this.searchForm.get('searchTerm').value;
+   
+   
+  if (!searchTerm) {
+    // if search term is null or empty, reset to initial endpoint
+    this.card.endpoint.next("https://localhost:5001/api/service");
+  } else {
+    // if search term is not empty, set endpoint with search term
+    this.card.endpoint.next(`${this.baseUrl}?SearchedWord=${searchTerm}`);
+  }
+  }
+}
+ 
+  
   
 

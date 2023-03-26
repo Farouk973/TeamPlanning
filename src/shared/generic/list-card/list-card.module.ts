@@ -10,19 +10,22 @@ import { MatMenuModule } from '@angular/material/menu';
 
 
 
+
 @NgModule({
-  declarations: [
-    ListCardComponent
-  ],
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatPaginatorModule,
-    DynamicModule,
-    MatMenuModule,
-  ],
-  exports: [ListCardComponent] 
+    declarations: [
+        ListCardComponent,
+     
+    ],
+    exports: [ListCardComponent],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatButtonModule,
+        MatIconModule,
+        MatPaginatorModule,
+        DynamicModule,
+        MatMenuModule,
+      
+    ]
 })
 export class ListCardModule { }

@@ -1,7 +1,8 @@
 import { Type } from "@angular/core";
+import { BehaviorSubject, Subject } from "rxjs";
 
 export interface CardData {
-  endpoint?: string;
+  endpoint?: BehaviorSubject<string>;
   primaryLabel?: string;
   id?: string;
   primaryColor?: string;

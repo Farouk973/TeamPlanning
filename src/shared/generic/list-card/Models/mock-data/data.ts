@@ -1,8 +1,9 @@
+import { BehaviorSubject } from "rxjs";
 import { CardData } from "../cardModel";
 
 
 export const mockCardData: CardData={
-    endpoint:"api/Service",
+    endpoint: new BehaviorSubject<string>('api/Service'),
     primaryColor: '#00b2d91a',
     labelColor: '#00B2D9',
     minHeight:"105px",
@@ -16,4 +17,4 @@ export const mockCardData: CardData={
     showIconAction: false,
     
   };
-
+  
