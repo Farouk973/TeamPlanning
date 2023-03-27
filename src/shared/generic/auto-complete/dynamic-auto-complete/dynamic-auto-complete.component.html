@@ -10,16 +10,13 @@
            [matAutocomplete]="auto"
            (keyup.enter)="enter()">
   </div>
-
-
-
   <mat-autocomplete
     #auto="matAutocomplete"
     (optionSelected)="optionSelected($event.option)">
     <mat-option
       *ngFor="let option of filteredOptions | async"
       [value]="option">
-      <mat-icon mat-icon-button  class="my-button" (click)="addOption(option)"> add_circle</mat-icon>
+      <mat-icon mat-icon-button  class="my-button" (click)="addOptionToItem(option)"> add_circle</mat-icon>
       <span>{{ option }}</span>
     </mat-option>
   </mat-autocomplete>

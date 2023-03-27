@@ -6,12 +6,10 @@
                  "aria-label":"string",
                   "placeholder": "search..."
                 },
-      "optionsDataEndpoint" : "https://localhost:44312/api/Role",
-      "sourceSaveItemEndpoint":"",
-      "sourceAssignItemEndpoint":"https://localhost:44312/api/Role",
-       "getIdLastItemEndpoint": "https://localhost:44312/api/Users",
-      "saveInputInBase": "true",
-      "assignInputToItem": "false"
-
+      "optionsDataEndpoint" : "/api/Role",
+      "sourceSaveItemEndpoint":"/api/Users",
+      "sourceAssignItemEndpoint":"/api/Role",
+       "getIdLastItemEndpoint": "/api/Users",
+      "saveInputInBase": "true"
 
 }

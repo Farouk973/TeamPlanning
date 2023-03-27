@@ -1,7 +1,7 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
 import {AutoComplete} from "../../models/AutoComplete.model";
 import {Observable} from "rxjs";
-import {ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {FormControl} from "@angular/forms";
 import { map, startWith } from 'rxjs/operators';
 import {AutoCompleteService} from "../auto-complete.service";
 
@@ -9,13 +9,7 @@ import {AutoCompleteService} from "../auto-complete.service";
   selector: 'app-dynamic-auto-complete',
   templateUrl: './dynamic-auto-complete.component.html',
   styleUrls: ['./dynamic-auto-complete.component.css'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DynamicAutoCompleteComponent ),
-      multi: true
-    }
-  ]
+
 })
 export class DynamicAutoCompleteComponent implements OnInit {
 
@@ -60,30 +54,31 @@ export class DynamicAutoCompleteComponent implements OnInit {
       })
     });
 
-
   }
     private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
   optionSelected(option) {
-    if (option.value.indexOf(this.question) === 0) {
-      let newOption = option.value.substring(this.question.length).split('?')[0];
+
+    /*  let newOption = option.value
       this.options.push(newOption);
       this.added.emit(newOption);
       this.myControl.setValue(newOption);
-      this.writeValue(newOption);
-    } else {
-      this.myControl.setValue(option.value);
-      this.writeValue(option.value);
-    }
+      this.writeValue(newOption);*/
+
   }
 
   enter() {
     const controlValue = this.myControl.value;
+    const data = {description: controlValue }
+    console.log(data)
+    this.autoCompleteService.addToBase(this.autoComplete.sourceSaveItemEndpoint , data).subscribe((data)=>{
+
+    })
     if (!this.options.some(entry => entry === controlValue)) {
       this.added.emit(controlValue);
-      const index = this.options.push(controlValue);
+      this.options.push(controlValue);
       setTimeout(
         () => {
           this.myControl.setValue(controlValue);
@@ -114,7 +109,7 @@ export class DynamicAutoCompleteComponent implements OnInit {
     this.onTouched = fn;
   }
 
-  addOption(option) {
+  addOptionToItem(option) {
     console.log(option)
     this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint ,this.idItem ,option).subscribe((assignItem)=>{
       console.log(assignItem)
