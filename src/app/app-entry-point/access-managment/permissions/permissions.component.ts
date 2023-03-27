@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 import { Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
 import { Calendar } from 'src/shared/generic/models/Calendar.model';
 import { Container } from 'src/shared/generic/models/Container.model';
@@ -41,23 +42,23 @@ export class PermissionsComponent implements OnInit {
     })
   }
   action: Actionpanel = {
-    endpoint: 'https://localhost:44312/api/Permission',
-    formEditData: 'https://localhost:44312/meta/UpdatePermissionCommand',
+    endpoint: `${environment.baseUrl}/api/Permission`,
+    formEditData: `${environment.baseUrl}/meta/UpdatePermissionCommand`,
   };
 
   grid: GridView = {
-    endpoint: 'https://localhost:44312/api/Permission',
-    formdata: 'https://localhost:44312/meta/CreatePermissionCommand',
-    metadata: 'https://localhost:44312/meta/GetPermissionListVm',
+    endpoint: `${environment.baseUrl}/api/Permission`,
+    formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
+    metadata: `${environment.baseUrl}/meta/GetPermissionListVm`,
     allowedSortColumns: ['title'],
     actionPanel: this.action,
   };
 
   config = {
-    endpoint: 'https://localhost:44312/api/Permission',
-    metadata: 'https://localhost:44312/meta/GetPermissionListVm',
-    formdata: 'https://localhost:44312/meta/CreatePermissionCommand',
-    formeditdata: 'https://localhost:44312/meta/UpdatePermissionCommand',
+    endpoint: `${environment.baseUrl}/api/Permission`,
+    metadata: `${environment.baseUrl}/meta/GetPermissionListVm`,
+    formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
+    formeditdata: `${environment.baseUrl}/meta/UpdatePermissionCommand`,
     pageSize: 2,
     title: 'Project Management',
     icon: 'https://img.freepik.com/premium-vector/vector-creative-project-icon-flat-style_106427-199.jpg?w=2000',

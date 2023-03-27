@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import {  FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Form } from '../../models/Form.model';
 import { SharedServices } from '../../SharedServices.service';
 import { ColumnMetadata } from '../form.service';
@@ -129,7 +130,7 @@ export class FormComponent implements OnInit {
   toppings = new FormControl('');
   ReferenceExistances(desc :string) :any
   {
-  this.formService.getData("https://localhost:44312/api/"+desc)
+  this.formService.getData(`${environment.baseUrl}/api/`+desc)
   .subscribe({
     next: (data) => {
       this.ref = data;
@@ -139,7 +140,7 @@ export class FormComponent implements OnInit {
   }
   ReferenceExistance(desc :string) :any
   {
-  this.formService.getData("https://localhost:44312/api/"+desc)
+  this.formService.getData(`${environment.baseUrl}/api/`+desc)
   .subscribe({
     next: (data) => {
       this.ref2 = data;

@@ -9,6 +9,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Actionpanel } from '../../models/ActionPanel.model';
 import { Calendar } from '../../models/Calendar.model';
 import { Container } from '../../models/Container.model';
@@ -57,21 +58,21 @@ export class NXMContainerComponent implements OnInit {
   }
 
   action: Actionpanel = {
-    endpoint: 'http://localhost:44312/api/Permession',
-    formEditData: 'http://localhost:44312/meta/UpdatePermissionCommand',
+    endpoint: `${environment.baseUrl}/api/Permession`,
+    formEditData: `${environment.baseUrl}/meta/UpdatePermissionCommand`,
   };
   forms: Form = {
-    endpoint: 'http://localhost:44312/api/Projects',
+    endpoint: `${environment.baseUrl}/api/Projects`,
     // Object: {
     //   name: 'wajih',
     //   description: 'hmayed',
     // },
-    metaData: 'http://localhost:44312/meta/CreatePermissionCommand',
+    metaData: `${environment.baseUrl}/meta/CreatePermissionCommand`,
   };
   grid: GridView = {
-    endpoint: 'http://localhost:44312/api/Permession',
-    formdata: 'http://localhost:44312/meta/CreatePermissionCommand',
-    metadata: 'https://localhost:44312/meta/GetPermissionListVm',
+    endpoint: `${environment.baseUrl}/api/Permession`,
+    formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
+    metadata: `${environment.baseUrl}/meta/GetPermissionListVm`,
     allowedSortColumns: ['title'],
     actionPanel: this.action,
   };
