@@ -8,6 +8,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
 import { SkillRatingDialogComponent } from './skill-rating-dialog/skill-rating-dialog.component';
 import { MatInputModule } from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { SearchBarCGModule } from '../search-bar-cg/search-bar-cg.module';
 
 
 
@@ -27,9 +29,8 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule, 
     MatDialogModule ,
     MatInputModule,
-    
-   
-    
+    MatAutocompleteModule,
+    SearchBarCGModule
   ],
   exports:[
     SkillRatingDialogComponent,

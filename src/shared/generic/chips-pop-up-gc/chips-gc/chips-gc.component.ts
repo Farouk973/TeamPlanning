@@ -1,11 +1,15 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { servicechipsservice } from '../servicechips.service';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-import { bigdomain, domain, endpoints } from '../../models/domain.model';
+import { bigdomain, domain,subdomain, endpoints } from '../../models/domain.model';
 import { SkillRatingDialogComponent } from '../skill-rating-dialog/skill-rating-dialog.component';
+import {Observable} from "rxjs";
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { HttpClient } from '@angular/common/http';
+import { searchmodel } from '../../models/search.model';
 
 
 interface ExampleFlatNode {
@@ -20,22 +24,23 @@ interface ExampleFlatNode {
   styleUrls: ['./chips-gc.component.css']
 })
 export class ChipsGCComponent implements OnInit {
-  Endpoints:endpoints = {endpointsave:"",Metadata: ""} ;
   treeData: bigdomain[] = [];
   allchip: domain[] = [];
   searchValue: string = '';
+  searchText: string;
+  @Input() Endpoints!:Observable<endpoints>;
+  public searchmodel : Observable<searchmodel> ;
 
 
-constructor(private dialog: MatDialog,private servicechipsservice: servicechipsservice) {}
+constructor(private dialog: MatDialog,private servicechipsservice: servicechipsservice,private http:HttpClient) {}
   ngOnInit(): void {
-    this.servicechipsservice.getEndpoints().subscribe(endpoints => {
-        this.Endpoints = endpoints;
-        console.log(this.Endpoints);
-        this.servicechipsservice.getApiData(this.Endpoints.Metadata).subscribe(data => {
-          this.treeData = data.bigdomain;
-          this.dataSource.data = this.treeData;
-    });
-        })
+    this.searchmodel=this.http.get<searchmodel>('assets/input.json');
+    this.Endpoints.subscribe((enpointData:any ) => {
+      this.servicechipsservice.getApiData(enpointData.Metadata).subscribe(data => {
+              this.treeData = data.bigdomain;
+              this.dataSource.data = this.treeData;
+        });
+      });
   }
   private _transformer = (node: bigdomain, level: number) => {
     return {
@@ -91,6 +96,18 @@ constructor(private dialog: MatDialog,private servicechipsservice: servicechipss
       console.log('The dialog was closed');
     });
   }
+  openDialog1(event: MatAutocompleteSelectedEvent) {
+    const dialogRef = this.dialog.open(SkillRatingDialogComponent, {
+      data: {
+        selectedOption: event.option.value
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog closed with result: ${result}`);
+    });
+  }
+  
   }
   
 

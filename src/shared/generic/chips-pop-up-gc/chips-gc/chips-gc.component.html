@@ -2,7 +2,7 @@
     <div class="sidebar">
       <h2>Categories:</h2>
       <div class="search-bar">
-        <input type="text" [(ngModel)]="searchValue"  name="input" placeholder="Search categories...">
+        <input type="text" [(ngModel)]="searchValue" (input)="filterTreeData()"  name="input" placeholder="Search categories...">
       </div>
       <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="mat-tree">
         <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onNodeClicked(node)" class="mat-tree-node">
@@ -19,16 +19,27 @@
     <div class="content">
   
       <div class="skill-container">
-        <div class="search-bar-right">
-          <input type="text" list="skills" placeholder="Search skills..." #skillInput >
-          <datalist id="skills">
-            <option *ngFor="let chip of allchip" [value]="chip.name" ></option>
-        </datalist>
-        </div>
-        <h1>{{selectedNode||"no categorie has been selected"}} </h1>
-        <mat-chip-list> 
+        <div>
+          <app-search-bar-cg [Searchmodel]="searchmodel"></app-search-bar-cg>
+          <button>save</button>
+      </div>
+        <!-- <div class="search-bar-right">
+          <mat-form-field>
+            <input type="text" placeholder="Search skills..." matInput [matAutocomplete]="auto" [(ngModel)]="searchText" >
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="openDialog1($event)">
+              <ng-container *ngFor="let bigcategory of treeData" >
+                <ng-container *ngFor="let subcategory of bigcategory.subdomain">
+                  <mat-option *ngFor="let category of subcategory.domain | filterOptions: searchText" [value]="category.name">{{category.name}}</mat-option>
+              </ng-container>
+            </ng-container>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div> -->
+        <h1>{{selectedNode || "no category has been selected"}}</h1>
+        <mat-chip-list>
           <mat-chip *ngFor="let chips of selectedchips" (click)="openDialog(chips)">
-            {{ chips.name }}</mat-chip>
+            {{chips.name}}
+          </mat-chip>
         </mat-chip-list>
       </div>
     </div>
