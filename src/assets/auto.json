@@ -6,7 +6,7 @@
                  "aria-label":"string",
                   "placeholder": "search..."
                 },
-      "saveInputInBase": "true",
+      "saveInputInBase": false,
       "optionsDataEndpoint" : "/api/Role",
       "sourceSaveItemEndpoint":"/api/Users",
       "sourceAssignItemEndpoint":"/api/Role",

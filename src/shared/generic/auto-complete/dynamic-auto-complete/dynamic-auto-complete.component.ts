@@ -23,7 +23,7 @@ export class DynamicAutoCompleteComponent implements OnInit {
   idItem: string ="azert";
   selectedValue;
   filteredOptions: Observable<string[]>;
-  question = 'Would you like to add ';
+   isTrue : boolean
   // Function to call when the option changes.
   onChange = (autoComplete: string) => {};
 
@@ -36,14 +36,16 @@ export class DynamicAutoCompleteComponent implements OnInit {
   constructor(private autoCompleteService : AutoCompleteService) { }
 
   ngOnInit(): void {
+
     this.autoComplete$.subscribe((autoCompleteData)=>{
       this.autoComplete=autoCompleteData;
+      this.isTrue=this.autoComplete.saveInputInBase;
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       this.autoCompleteService.getDataOptions(this.autoComplete?.optionsDataEndpoint).subscribe((data)=>{
         this.options=data.map(r=>r.title);
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         this.autoCompleteService.getIdLastItem(this.autoComplete?.getIdLastItemEndpoint).subscribe((id :any)=>{
-          this.idItem=id.map(i=>i.id);
+          this.idItem=id;
           console.log(this.idItem)
         });
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////

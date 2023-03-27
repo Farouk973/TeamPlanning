@@ -1,25 +1,33 @@
+<div>
+  <mat-form-field class="example-full-width" >
 
-<mat-form-field class="example-full-width" >
-  <div >
     <mat-label>{{autoComplete?.label}}</mat-label>
-    <input
-           type="{{autoComplete?.input?.type}}"
-           placeholder="{{autoComplete?.input?.placeholder}}"
-           matInput
-           [formControl]="myControl"
-           [matAutocomplete]="auto"
-           (keyup.enter)="enter()">
-  </div>
-  <mat-autocomplete
-    #auto="matAutocomplete"
-    (optionSelected)="optionSelected($event.option)">
-    <mat-option
-      *ngFor="let option of filteredOptions | async"
-      [value]="option">
-      <mat-icon mat-icon-button  class="my-button" (click)="addOptionToItem(option)"> add_circle</mat-icon>
-      <span>{{ option }}</span>
-    </mat-option>
-  </mat-autocomplete>
-</mat-form-field>
-
+    <input  [hidden]="!isTrue"
+      type="{{autoComplete?.input?.type}}"
+      placeholder="{{autoComplete?.input?.placeholder}}"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+      (keyup.enter)="enter()"
+    >
+    <input  [hidden]="isTrue"
+            type="{{autoComplete?.input?.type}}"
+            placeholder="{{autoComplete?.input?.placeholder}}"
+            matInput
+            [formControl]="myControl"
+            [matAutocomplete]="auto"
+            (keyup.enter)="enter()"
+    >
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="optionSelected($event.option)">
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="option">
+        <mat-icon mat-icon-button  class="my-button" (click)="addOptionToItem(option)"> add_circle</mat-icon>
+        <span>{{ option }}</span>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
 
