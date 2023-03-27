@@ -1,16 +1,17 @@
 
 
-{   "label": "Roles",
+{   "label": "Add roles to project",
      "input": {
                  "type": "text",
                  "aria-label":"string",
-                  "placeholder": "search...",
-                   "value":""
+                  "placeholder": "search..."
                 },
       "optionsDataEndpoint" : "https://localhost:44312/api/Role",
-      "addToItem": "add to project",
-      "saveInputInBase": "false",
-      "AssignInputToItem": "false",
-      "sourceEndpoint":"",
-       "relatedObject": ""
+      "sourceSaveItemEndpoint":"",
+      "sourceAssignItemEndpoint":"https://localhost:44312/api/Role",
+       "getIdLastItemEndpoint": "https://localhost:44312/api/Users",
+      "saveInputInBase": "true",
+      "assignInputToItem": "false"
+
+
 }

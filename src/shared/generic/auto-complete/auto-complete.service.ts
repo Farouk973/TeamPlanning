@@ -11,8 +11,16 @@ export class AutoCompleteService {
     return this.http.get<any[]>(endpoint);
   }
 
+  getIdLastItem(endpoint: string): Observable<any[]> {
+    return this.http.get<any[]>(endpoint);
+  }
+
+  assignToItem(endpoint: any,idItem: string ,object: any): Observable<any> {
+    return this.http.post<any>(endpoint+`/${idItem}`, object);
+  }
+
+
   addToBase(endpoint: any,object: any): Observable<any> {
     return this.http.post<any>(endpoint, object);
   }
-
 }

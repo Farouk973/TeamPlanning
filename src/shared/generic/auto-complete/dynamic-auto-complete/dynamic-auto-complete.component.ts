@@ -21,9 +21,12 @@ export class DynamicAutoCompleteComponent implements OnInit {
 
   @Input() autoComplete$!:Observable<AutoComplete> ;
   autoComplete = new AutoComplete();
+
+
   @Output() added = new EventEmitter();
   myControl = new FormControl();
   options: string[];
+  idItem: string ="azert";
   selectedValue;
   filteredOptions: Observable<string[]>;
   question = 'Would you like to add ';
@@ -41,16 +44,22 @@ export class DynamicAutoCompleteComponent implements OnInit {
   ngOnInit(): void {
     this.autoComplete$.subscribe((autoCompleteData)=>{
       this.autoComplete=autoCompleteData;
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       this.autoCompleteService.getDataOptions(this.autoComplete?.optionsDataEndpoint).subscribe((data)=>{
         this.options=data.map(r=>r.title);
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        this.autoCompleteService.getIdLastItem(this.autoComplete?.getIdLastItemEndpoint).subscribe((id :any)=>{
+          this.idItem=id.map(i=>i.id);
+          console.log(this.idItem)
+        });
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         this.filteredOptions = this.myControl.valueChanges.pipe(
           startWith(''),
           map(value => this._filter(value || '')),
         );
       })
-    })
+    });
 
-  console.log(this.myControl.setValue)
 
   }
     private _filter(value: string): string[] {
@@ -107,5 +116,8 @@ export class DynamicAutoCompleteComponent implements OnInit {
 
   addOption(option) {
     console.log(option)
+    this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint ,this.idItem ,option).subscribe((assignItem)=>{
+      console.log(assignItem)
+    });
   }
 }

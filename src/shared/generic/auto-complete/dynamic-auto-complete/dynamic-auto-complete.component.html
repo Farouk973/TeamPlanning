@@ -1,29 +1,15 @@
 
-<mat-form-field class="example-full-width">
-
+<mat-form-field class="example-full-width" >
+  <div >
     <mat-label>{{autoComplete?.label}}</mat-label>
-   <div>
-     <div *ngIf="false">
-       <input
-         type="{{autoComplete?.input?.type}}"
-         placeholder="{{autoComplete?.input?.placeholder}}"
-         matInput
-         [formControl]="myControl"
-         [matAutocomplete]="auto"
-         (keyup.enter)="enter()"
-       >
-     </div>
-     <div *ngIf="true">
-       <input
-         type="{{autoComplete?.input?.type}}"
-         placeholder="{{autoComplete?.input?.placeholder}}"
-         matInput
-         [formControl]="myControl"
-         [matAutocomplete]="auto"
-
-       >
-     </div>
-   </div>
+    <input
+           type="{{autoComplete?.input?.type}}"
+           placeholder="{{autoComplete?.input?.placeholder}}"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto"
+           (keyup.enter)="enter()">
+  </div>
 
 
 

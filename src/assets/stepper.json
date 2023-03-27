@@ -5,8 +5,8 @@
       "order": 1,
       "contentType": "Form",
       "content":
-       { "endpoint": "https://localhost:44312/api/Users",
-         "metaData": "https://localhost:44312/meta/CreateUserCommand"
+       { "endpoint": "https://localhost:44312/api/Project/add-project",
+         "metaData": "https://localhost:44312/meta/CreateProjectCommand"
        },
       "actions": [
         {
@@ -16,12 +16,12 @@
       ]
     },
     {
-      "title": "feature",
+      "title": "Roles",
       "order": 1,
-      "contentType": "Form",
+      "contentType": "AutoComplete",
       "content":
-       { "endpoint": "https://localhost:44312/api/Role",
-         "metaData": "https://localhost:44312/meta/CreateRoleCommand"
+       { "endpoint": "",
+         "metaData": ""
        },
       "actions": [
         {
@@ -38,6 +38,21 @@
        { "endpoint": "https://localhost:44312/api/Permission",
          "metaData": "https://localhost:44312/meta/UploadPictureCommand"
        },
+      "actions": [
+        {
+          "label": "Next",
+          "goto": 2
+        }
+      ]
+    },
+    {
+      "title": "x",
+      "order": 1,
+      "contentType": "Form",
+      "content":
+      { "endpoint": "https://localhost:44312/api/Permission",
+        "metaData": "https://localhost:44312/meta/UploadPictureCommand"
+      },
       "actions": [
         {
           "label": "Next",

@@ -4,10 +4,8 @@ export class AutoComplete implements NXMGenericComponent{
   label?: string;
   input?: Input;
   optionsDataEndpoint?: string;
-  addToItem?: string
-  saveInputInBase: boolean;
-  assignInputToItem: boolean;
-  sourceEndpoint:string
+  sourceAssignItemEndpoint?:string;
+  getIdLastItemEndpoint?:string;
 }
 class Input {
   type?: string;
