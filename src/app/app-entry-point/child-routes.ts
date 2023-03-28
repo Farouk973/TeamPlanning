@@ -31,6 +31,12 @@ export const childRoutes = [
     loadChildren: () => import('./feature-managment/feature-managment.module').then(m => m.FeatureManagmentModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
+  {
+    path: 'roles',
+    loadChildren: () => import('./roles-management/roles-management.module').then(m => m.RolesManagementModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
+  },
+
 
 
 
