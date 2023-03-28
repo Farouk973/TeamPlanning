@@ -20,11 +20,13 @@ export class DynamicAutoCompleteComponent implements OnInit {
   @Output() added = new EventEmitter();
   myControl = new FormControl();
   options: string[];
+  idOptions:object;
   idItem: string ="azert";
   selectedValue;
   filteredOptions: Observable<string[]>;
   chipsOptions: string[]=[];
    isTrue : boolean
+
   // Function to call when the option changes.
   onChange = (autoComplete: string) => {};
 
@@ -43,7 +45,8 @@ export class DynamicAutoCompleteComponent implements OnInit {
       this.isTrue=this.autoComplete.saveInputInBase;
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       this.autoCompleteService.getDataOptions(this.autoComplete?.optionsDataEndpoint).subscribe((data)=>{
-        this.options=data.map(t=>t.title);
+        this.options=data.map(t=>t.title );
+        this.idOptions=data.map(i=>i.id)
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         this.autoCompleteService.getIdLastItem(this.autoComplete?.getIdLastItemEndpoint).subscribe((id :any)=>{
           this.idItem=id;

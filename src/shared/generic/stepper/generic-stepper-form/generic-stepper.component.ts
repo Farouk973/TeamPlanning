@@ -3,6 +3,7 @@ import {FormComponent} from "../../form/form/form.component";
 import {Stepper} from "../../models/stepper.model";
 import {Observable} from "rxjs";
 import {FeatureComponent} from "../../../../app/app-entry-point/feature-managment/feature/feature.component";
+import {RolesComponent} from "../../../../app/app-entry-point/roles-management/roles/roles.component";
 
 
 @Component({
@@ -37,8 +38,10 @@ export class GenericStepperComponent implements OnInit {
     switch (contentType) {
       case 'Form':
         return FormComponent;
-      case 'AutoComplete':
+      case 'Features':
         return FeatureComponent;
+      case 'Roles':
+        return RolesComponent;
       default:
         throw new Error(`Invalid component name: ${contentType}`);
     }

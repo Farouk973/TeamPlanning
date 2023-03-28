@@ -17,8 +17,8 @@
     },
     {
       "title": "Features",
-      "order": 1,
-      "contentType": "AutoComplete",
+      "order": 2,
+      "contentType": "Features",
       "content":
        { "endpoint": "",
          "metaData": ""
@@ -31,13 +31,13 @@
       ]
     },
     {
-      "title": "Project",
-      "order": 1,
-      "contentType": "Form",
+      "title": "Roles",
+      "order": 3,
+      "contentType": "Roles",
       "content":
-       { "endpoint": "https://localhost:44312/api/Permission",
-         "metaData": "https://localhost:44312/meta/UploadPictureCommand"
-       },
+      { "endpoint": "",
+        "metaData": ""
+      },
       "actions": [
         {
           "label": "Next",
