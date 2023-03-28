@@ -1,4 +1,4 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AutoComplete} from "../../models/AutoComplete.model";
 import {Observable} from "rxjs";
 import {FormControl} from "@angular/forms";
@@ -23,6 +23,7 @@ export class DynamicAutoCompleteComponent implements OnInit {
   idItem: string ="azert";
   selectedValue;
   filteredOptions: Observable<string[]>;
+  chipsOptions: string[]=[];
    isTrue : boolean
   // Function to call when the option changes.
   onChange = (autoComplete: string) => {};
@@ -42,7 +43,7 @@ export class DynamicAutoCompleteComponent implements OnInit {
       this.isTrue=this.autoComplete.saveInputInBase;
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       this.autoCompleteService.getDataOptions(this.autoComplete?.optionsDataEndpoint).subscribe((data)=>{
-        this.options=data.map(r=>r.title);
+        this.options=data.map(t=>t.title);
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         this.autoCompleteService.getIdLastItem(this.autoComplete?.getIdLastItemEndpoint).subscribe((id :any)=>{
           this.idItem=id;
@@ -61,24 +62,17 @@ export class DynamicAutoCompleteComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
-  optionSelected(option) {
-
-    /*  let newOption = option.value
-      this.options.push(newOption);
-      this.added.emit(newOption);
-      this.myControl.setValue(newOption);
-      this.writeValue(newOption);*/
-
-  }
 
   enter() {
     const controlValue = this.myControl.value;
-    const data = {description: controlValue }
-    console.log(data)
-    this.autoCompleteService.addToBase(this.autoComplete.sourceSaveItemEndpoint , data).subscribe((data)=>{
+    if(this.isTrue) {
+      const data = {description: controlValue }
+      console.log(data)
+      this.autoCompleteService.addToBase(this.autoComplete.sourceSaveItemEndpoint , data).subscribe((data)=>{
+      })
+    }
 
-    })
-    if (!this.options.some(entry => entry === controlValue)) {
+    if (!this.options.some(entry => entry === controlValue) && this.isTrue) {
       this.added.emit(controlValue);
       this.options.push(controlValue);
       setTimeout(
@@ -112,9 +106,19 @@ export class DynamicAutoCompleteComponent implements OnInit {
   }
 
   addOptionToItem(option) {
-    console.log(option)
+    this.chipsOptions.push(option);
     this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint ,this.idItem ,option).subscribe((assignItem)=>{
       console.log(assignItem)
     });
+
+  }
+
+  removeOptionAfterAssign(option) {
+
+    const index = this.chipsOptions.indexOf(option);
+    if (index >= 0) {
+      this.chipsOptions.splice(index, 1);
+    }
   }
 }
+

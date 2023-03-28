@@ -1,0 +1,13 @@
+{    "label": "Add Roles to project:",
+  "input": {
+    "type": "text",
+    "placeholder": "Search..."
+  },
+  "labelChips": "Roles of project:",
+  "saveInputInBase": false,
+  "getIdLastItemEndpoint": "/api/Users",
+  "optionsDataEndpoint" : "/api/Role",
+  "sourceSaveItemEndpoint":"/api/Users",
+  "sourceAssignItemEndpoint":"/api/Role",
+  "sourceDeleteOptionAfterAssignToItemEndpoint": "/api/delete"
+}

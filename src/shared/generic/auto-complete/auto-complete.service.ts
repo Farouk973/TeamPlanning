@@ -25,4 +25,8 @@ export class AutoCompleteService {
   addToBase(endpoint: any,object: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}`+endpoint, object);
   }
+
+  deleteOptionAfterAssignToItem(endpoint: any,id :string): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}`+ endpoint +`/${id}`);
+  }
 }

@@ -6,10 +6,11 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
-    DynamicAutoCompleteComponent
+    DynamicAutoCompleteComponent,
   ],
   imports: [
     CommonModule,
@@ -18,6 +19,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatInputModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatChipsModule,
+
   ],
   exports : [
     DynamicAutoCompleteComponent

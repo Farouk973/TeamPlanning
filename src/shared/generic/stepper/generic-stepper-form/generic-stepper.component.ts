@@ -1,9 +1,8 @@
 import {Component, Input, OnInit, Type,} from '@angular/core';
 import {FormComponent} from "../../form/form/form.component";
 import {Stepper} from "../../models/stepper.model";
-import {GridViewComponent} from "../../grid-view/grid-view.component";
 import {Observable} from "rxjs";
-import {FeatureComponent} from "../../../../app/app-entry-point/feature-mangment/feature/feature.component";
+import {FeatureComponent} from "../../../../app/app-entry-point/feature-managment/feature/feature.component";
 
 
 @Component({

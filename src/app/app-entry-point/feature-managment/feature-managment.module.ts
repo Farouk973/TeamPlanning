@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { FeatureMangmentRoutingModule } from './feature-mangment-routing.module';
+import { FeatureManagmentRoutingModule } from './feature-managment-routing.module';
 import { FeatureComponent } from './feature/feature.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
@@ -15,7 +14,7 @@ import {AutoCompleteModule} from "../../../shared/generic/auto-complete/auto-com
   ],
     imports: [
         CommonModule,
-        FeatureMangmentRoutingModule,
+        FeatureManagmentRoutingModule,
         MatSelectModule,
         MatAutocompleteModule,
         FormsModule,
@@ -23,4 +22,4 @@ import {AutoCompleteModule} from "../../../shared/generic/auto-complete/auto-com
         AutoCompleteModule
     ]
 })
-export class FeatureMangmentModule { }
+export class FeatureManagmentModule { }

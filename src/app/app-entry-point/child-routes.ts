@@ -28,7 +28,7 @@ export const childRoutes = [
   },
   {
     path: 'feature',
-    loadChildren: () => import('./feature-mangment/feature-mangment.module').then(m => m.FeatureMangmentModule),
+    loadChildren: () => import('./feature-managment/feature-managment.module').then(m => m.FeatureManagmentModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
 
