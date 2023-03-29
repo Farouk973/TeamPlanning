@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Type,} from '@angular/core';
+import {Component, Input, OnInit, Type, ViewChild, ViewContainerRef,} from '@angular/core';
 import {FormComponent} from "../../form/form/form.component";
 import {Stepper} from "../../models/stepper.model";
 import {Observable} from "rxjs";
@@ -15,23 +15,19 @@ import {RolesComponent} from "../../../../app/app-entry-point/roles-management/r
 export class GenericStepperComponent implements OnInit {
  @Input() stepper$!:Observable<Stepper>;
   stepper = new Stepper();
+  form = {'metaData':'https://localhost:44312/meta/CreateRoleCommand','endpoint':'https://localhost:44312/api/Role'}
+  @ViewChild(FormComponent) childComponent: FormComponent;
+  constructor() {
+  }
+
   ngOnInit(): void {
     this.stepper$.subscribe((stepperData:any ) => {
-
       this.stepper= stepperData;
-/*      this.http
-        .get('/assets/stepper.json').
-        .subscribe((formData:any ) => {
-          formData.steps.forEach(step =>{
-            let _step = new Step();
-            _step.title = step.title;
-            _step.order =step.order;
-            _step.action= step.action;
-            _step.content = new Form();
-            this.stepper.steps.push(_step);
-          })
-        });*/
       });
+  }
+
+  reload(){
+    window.location.reload()
   }
 
   getComponent(contentType: string): Type<any> {
@@ -45,5 +41,9 @@ export class GenericStepperComponent implements OnInit {
       default:
         throw new Error(`Invalid component name: ${contentType}`);
     }
+  }
+
+  onFormSubmit() {
+     // this.childComponent.submitForm();
   }
 }

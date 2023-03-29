@@ -5,15 +5,10 @@
       "order": 1,
       "contentType": "Form",
       "content":
-       { "endpoint": "https://localhost:44312/api/Project/add-project",
-         "metaData": "https://localhost:44312/meta/CreateProjectCommand"
+       { "endpoint": "https://localhost:44312/api/Role",
+         "metaData": "https://localhost:44312/meta/CreateRoleCommand"
        },
-      "actions": [
-        {
-          "label": "Next",
-          "goto": 2
-        }
-      ]
+        "input" : true
     },
     {
       "title": "Features",
@@ -23,12 +18,7 @@
        { "endpoint": "",
          "metaData": ""
        },
-      "actions": [
-        {
-          "label": "Next",
-          "goto": 2
-        }
-      ]
+      "input" : false
     },
     {
       "title": "Roles",
@@ -38,29 +28,24 @@
       { "endpoint": "",
         "metaData": ""
       },
-      "actions": [
-        {
-          "label": "Next",
-          "goto": 2
-        }
-      ]
-    },
-    {
-      "title": "x",
-      "order": 1,
-      "contentType": "Form",
-      "content":
-      { "endpoint": "https://localhost:44312/api/Permission",
-        "metaData": "https://localhost:44312/meta/UploadPictureCommand"
-      },
-      "actions": [
-        {
-          "label": "Next",
-          "goto": 2
-        }
-      ]
+      "input" : false
+
     }
-  ]
+
+  ],
+  "next": {
+        "label": "Next",
+        "endpoint": ""
+  },
+  "back": {
+    "label": "Back",
+    "endpoint": ""
+  },
+  "end": {
+    "label": "End",
+    "endpoint": ""
+  },
+  "valueDuration": "1000"
 }
 
 

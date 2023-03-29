@@ -2,17 +2,21 @@ import {NXMGenericComponent} from "./NXMGenericComponent.model";
 
 export class Stepper implements NXMGenericComponent{
   steps: Step[];
+  next : action;
+  back : action;
+  end: action;
+  valueDuration: number;
 }
-export class Step {
+class Step {
   title: string;
   order: string;
   contentType: string;
   content: NXMGenericComponent;
-  action :
-    [
-      {
-        label: string,
-      }
-    ]
+  input:boolean;
 }
 
+class action {
+  label: string;
+  endpoint :string
+
+}
