@@ -61,12 +61,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ChipsPopUpGCModule } from 'src/shared/generic/chips-pop-up-gc/chips-pop-up-gc.module';
 import { SkillsManagmentModule } from './skills-managment/skills-managment.module';
 
+
 @NgModule({
     declarations: [
         LayoutComponent,
         SideNavComponent,
         TopNavComponent,
-      
+
     ],
     imports: [
         CommonModule,
@@ -130,7 +131,8 @@ import { SkillsManagmentModule } from './skills-managment/skills-managment.modul
         ScrollingModule,
         DialogModule,
         SkillsManagmentModule,
-       
+
+
     ]
 })
 export class AppEntryPointModule { }

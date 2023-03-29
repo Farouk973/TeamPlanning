@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Step, Stepper} from "../../../../shared/generic/models/stepper.model";
-import {Form} from "../../../../shared/generic/models/Form.model";
+import { Stepper} from "../../../../shared/generic/models/stepper.model";
 import {Observable} from "rxjs";
 @Component({
   selector: 'app-stepper-project',

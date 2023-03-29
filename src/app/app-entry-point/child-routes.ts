@@ -26,6 +26,17 @@ export const childRoutes = [
     loadChildren: () => import('./catalogue-service/catalogue-service.module').then(m => m.CatalogueServiceModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
+  {
+    path: 'feature',
+    loadChildren: () => import('./feature-managment/feature-managment.module').then(m => m.FeatureManagmentModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
+  },
+  {
+    path: 'roles',
+    loadChildren: () => import('./roles-management/roles-management.module').then(m => m.RolesManagementModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
+  },
+
 
 
 

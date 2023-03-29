@@ -58,8 +58,8 @@ import { GridViewModule } from 'src/shared/generic/grid-view/grid-view.module';
 import { FormModule } from 'src/shared/generic/form/form.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { CardViewModule } from 'src/shared/generic/card-view/card-view.module';
 import { RoleComponent } from './role/role.component';
+import {CardViewModule} from "../../../shared/generic/card-view/card-view.module";
 
 
 @NgModule({
