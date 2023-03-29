@@ -1,4 +1,5 @@
 import {NXMGenericComponent} from "./NXMGenericComponent.model";
+import {StepperOrientation} from "@angular/cdk/stepper";
 
 export class Stepper implements NXMGenericComponent{
   steps: Step[];
@@ -6,6 +7,7 @@ export class Stepper implements NXMGenericComponent{
   back : action;
   end: action;
   valueDuration: number;
+  orientation: StepperOrientation;
 }
 class Step {
   title: string;
@@ -17,6 +19,7 @@ class Step {
 
 class action {
   label: string;
-  endpoint :string
+  endpoint :string;
+  style : string;
 
 }

@@ -1,9 +1,20 @@
-import {Component, Input, OnInit, Type, ViewChild, ViewContainerRef,} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnInit, QueryList,
+  TemplateRef,
+  Type,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import {FormComponent} from "../../form/form/form.component";
 import {Stepper} from "../../models/stepper.model";
 import {Observable} from "rxjs";
 import {FeatureComponent} from "../../../../app/app-entry-point/feature-managment/feature/feature.component";
 import {RolesComponent} from "../../../../app/app-entry-point/roles-management/roles/roles.component";
+
 
 
 @Component({
@@ -12,11 +23,13 @@ import {RolesComponent} from "../../../../app/app-entry-point/roles-management/r
   styleUrls: ['./generic-stepper.component.css']
 })
 
-export class GenericStepperComponent implements OnInit {
+export class GenericStepperComponent implements OnInit , AfterViewInit {
  @Input() stepper$!:Observable<Stepper>;
   stepper = new Stepper();
-  form = {'metaData':'https://localhost:44312/meta/CreateRoleCommand','endpoint':'https://localhost:44312/api/Role'}
   @ViewChild(FormComponent) childComponent: FormComponent;
+  @ViewChild('test') test: TemplateRef<any> ;
+  @ViewChild('mydiv') mydiv: TemplateRef<any> ;
+  @ViewChildren('item') item: QueryList<any> ;
   constructor() {
   }
 
@@ -24,6 +37,10 @@ export class GenericStepperComponent implements OnInit {
     this.stepper$.subscribe((stepperData:any ) => {
       this.stepper= stepperData;
       });
+
+  }
+  ngAfterViewInit(): void {
+    console.log('afterViewInit', this.item)
   }
 
   reload(){
@@ -44,6 +61,6 @@ export class GenericStepperComponent implements OnInit {
   }
 
   onFormSubmit() {
-     // this.childComponent.submitForm();
+      this.childComponent.submitForm();
   }
 }
