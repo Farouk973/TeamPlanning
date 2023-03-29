@@ -7,7 +7,6 @@ import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree'
 import { bigdomain, domain,subdomain, endpoints } from '../../models/domain.model';
 import { SkillRatingDialogComponent } from '../skill-rating-dialog/skill-rating-dialog.component';
 import {Observable} from "rxjs";
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { HttpClient } from '@angular/common/http';
 import { searchmodel } from '../../models/search.model';
 
@@ -30,16 +29,24 @@ export class ChipsGCComponent implements OnInit {
   searchText: string;
   @Input() Endpoints!:Observable<endpoints>;
   public searchmodel : Observable<searchmodel> ;
-
+  receivedData: string;
+  domainselected:any;
 
 constructor(private dialog: MatDialog,private servicechipsservice: servicechipsservice,private http:HttpClient) {}
   ngOnInit(): void {
-    this.searchmodel=this.http.get<searchmodel>('assets/input.json');
+
+    this.searchmodel=this.http.get<searchmodel>('assets/SearchCG.json');
     this.Endpoints.subscribe((enpointData:any ) => {
       this.servicechipsservice.getApiData(enpointData.Metadata).subscribe(data => {
               this.treeData = data.bigdomain;
               this.dataSource.data = this.treeData;
         });
+      });
+      this.servicechipsservice.getData().subscribe(data => {
+        this.receivedData = data;
+        this.domainselected=this.searchdomain(data);
+        this.openDialog(this.domainselected);
+        console.log('Received data:', this.domainselected.name);
       });
   }
   private _transformer = (node: bigdomain, level: number) => {
@@ -87,6 +94,20 @@ constructor(private dialog: MatDialog,private servicechipsservice: servicechipss
     const chips = clickedSubcategoryObj?.domain;
     this.selectedchips = chips || [];
   }
+  searchdomain(data: string): domain | undefined {
+    const category = this.treeData.find(category => 
+      category.subdomain!.some(subCategory => subCategory.domain.find(d => d.name === data))
+    );
+    if (category) {
+      const subCategory = category.subdomain!.find(subCategory => 
+        subCategory.domain.find(d => d.name === data)
+      );
+      if (subCategory) {
+        return subCategory.domain.find(d => d.name === data);
+      }
+    }
+    return undefined;
+  }
   openDialog(chips: domain) {
     const dialogRef = this.dialog.open(SkillRatingDialogComponent, {
       data: chips
@@ -94,17 +115,6 @@ constructor(private dialog: MatDialog,private servicechipsservice: servicechipss
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-    });
-  }
-  openDialog1(event: MatAutocompleteSelectedEvent) {
-    const dialogRef = this.dialog.open(SkillRatingDialogComponent, {
-      data: {
-        selectedOption: event.option.value
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog closed with result: ${result}`);
     });
   }
   

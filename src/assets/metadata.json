@@ -12,7 +12,7 @@
                         },
                         {
                             "name": "CSS",
-                            "rate": "0"
+                            "rate": "3"
                         },
                         {
                             "name": "JavaScript",
@@ -65,6 +65,10 @@
                     ]
                 }
             ]
+        },
+        {
+            "name": "Others",
+            "subdomain": [{"domain":[]}]
         }
     ]
 }

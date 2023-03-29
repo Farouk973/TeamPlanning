@@ -1,11 +1,5 @@
-.rating {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
+
   .star {
-    font-size: 36px;
     color: #ccc;
     cursor: pointer;
     margin-right: 10px;

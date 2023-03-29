@@ -1,4 +1,4 @@
-{ "label": "skills",
+{ "label": "search skills",
 "input": {
 "type": "text",
 "aria_label":"string",
@@ -6,6 +6,7 @@
 "value":""
 },
 "optionEndpoint" : "assets/metadata.json",
+"addoption":true,
 "saveInputInBase": "false",
 "AssignInputToItem": "true",
 "sourceEndpoint":"",

@@ -17,24 +17,10 @@
       </mat-tree>
     </div>
     <div class="content">
-  
       <div class="skill-container">
         <div>
           <app-search-bar-cg [Searchmodel]="searchmodel"></app-search-bar-cg>
-          <button>save</button>
       </div>
-        <!-- <div class="search-bar-right">
-          <mat-form-field>
-            <input type="text" placeholder="Search skills..." matInput [matAutocomplete]="auto" [(ngModel)]="searchText" >
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="openDialog1($event)">
-              <ng-container *ngFor="let bigcategory of treeData" >
-                <ng-container *ngFor="let subcategory of bigcategory.subdomain">
-                  <mat-option *ngFor="let category of subcategory.domain | filterOptions: searchText" [value]="category.name">{{category.name}}</mat-option>
-              </ng-container>
-            </ng-container>
-            </mat-autocomplete>
-          </mat-form-field>
-        </div> -->
         <h1>{{selectedNode || "no category has been selected"}}</h1>
         <mat-chip-list>
           <mat-chip *ngFor="let chips of selectedchips" (click)="openDialog(chips)">

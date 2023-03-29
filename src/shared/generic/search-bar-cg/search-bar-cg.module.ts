@@ -7,12 +7,16 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { ForumSearchComponent } from './forum-search/forum-search.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
 @NgModule({
   declarations: [
-    SearchBarCgComponent
+    SearchBarCgComponent,
+    ForumSearchComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -20,6 +24,9 @@ import { CommonModule } from '@angular/common';
     MatInputModule,
     MatAutocompleteModule,
     CommonModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatIconModule
   ],
   exports:[
     SearchBarCgComponent

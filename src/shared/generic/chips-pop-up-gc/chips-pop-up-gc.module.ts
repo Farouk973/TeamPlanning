@@ -24,7 +24,6 @@ import { SearchBarCGModule } from '../search-bar-cg/search-bar-cg.module';
     MatChipsModule,
     MatIconModule,
     MatTreeModule, 
-    MatDialogModule,
     CommonModule,
     MatIconModule, 
     MatDialogModule ,
