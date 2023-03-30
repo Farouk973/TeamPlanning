@@ -4,7 +4,7 @@
   width: 100%;
 }
 .mat-raised-button {
-  background-color: #00b2d9;
+
   border-radius: 12px;
   max-width: 150px;
   width: 50%;
@@ -12,3 +12,4 @@
 mat-stepper {
   background-color: #fafafa;
 }
+

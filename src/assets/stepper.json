@@ -35,17 +35,21 @@
   ],
   "next": {
         "label": "Next",
-        "endpoint": ""
+        "endpoint": "",
+         "style": "background-color: #00b2d9;"
   },
   "back": {
     "label": "Back",
-    "endpoint": ""
+    "endpoint": "",
+    "style": "background-color: #00b2d9;"
   },
   "end": {
     "label": "End",
-    "endpoint": ""
+    "endpoint": "",
+    "style": "background-color: #00b2d9;"
   },
-  "valueDuration": "1000"
+  "valueDuration": "1000",
+  "orientation": "horizontal"
 }
 
 
