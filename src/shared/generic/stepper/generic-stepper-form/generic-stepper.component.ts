@@ -1,6 +1,6 @@
 import {
   AfterViewInit,
-  Component,
+  Component, ContentChildren,
   ElementRef,
   Input,
   OnInit, QueryList,
@@ -27,10 +27,10 @@ import {MatStep, MatStepper} from "@angular/material/stepper";
 export class GenericStepperComponent implements OnInit , AfterViewInit {
  @Input() stepper$!:Observable<Stepper>;
   stepper = new Stepper();
-  @ViewChild(FormComponent) childComponent: FormComponent;
-  @ViewChildren('item') items: QueryList<any> ;
-
+  //@ViewChild(FormComponent) childComponent: FormComponent;
+  @ViewChildren(FormComponent) items: QueryList<FormComponent> ;
   component: any;
+  form ={'metaData':'https://localhost:44312/meta/CreateRoleCommand', 'endpoint':'https://localhost:44312/api/Role'}
   constructor() {
   }
 
@@ -41,11 +41,12 @@ export class GenericStepperComponent implements OnInit , AfterViewInit {
 
   }
   ngAfterViewInit(): void {
+    console.log('itmes',this.items)
    // console.log('afterViewInit', this.items)
     //console.log('afterViewInitArrays',this.item.toArray());
     this.items.changes.subscribe(() => {
-    this.component= this.items.toArray()[0].elementRef.nativeElement;
-      console.log('afterViewInit',this.items.toArray()[0].elementRef);
+   // this.component= this.items.toArray()[0];
+
     });
 
   }
@@ -54,7 +55,7 @@ export class GenericStepperComponent implements OnInit , AfterViewInit {
     window.location.reload()
   }
 
-  getComponent(contentType: string): Type<any> {
+  getComponent(contentType: string):any {
     switch (contentType) {
       case 'Form':
         return FormComponent;
@@ -67,6 +68,7 @@ export class GenericStepperComponent implements OnInit , AfterViewInit {
     }
   }
   onFormSubmit(): void {
-    this.component.submitForm();
+  //  console.log(this.childComponent)
+    this.items.first.submitForm()
   }
 }
