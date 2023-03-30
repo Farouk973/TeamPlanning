@@ -7,7 +7,7 @@
   "labelChips": "Roles of project:",
   "saveInputInBase": false,
   "getIdLastItemEndpoint": "/api/Users",
-  "optionsDataEndpoint" : "/api/Permission",
+  "optionsDataEndpoint" : "/api/Role",
   "sourceSaveItemEndpoint":"/api/Users",
   "sourceAssignItemEndpoint":"/api/Role",
   "sourceDeleteOptionAfterAssignToItemEndpoint": "/api/delete"

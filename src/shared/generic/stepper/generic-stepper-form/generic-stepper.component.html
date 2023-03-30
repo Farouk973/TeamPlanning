@@ -1,21 +1,14 @@
 <div>
   <input id="duration" value="{{stepper.valueDuration}}" type="number" #duration [hidden]="true">
-
   <mat-stepper [animationDuration]="duration.value" [orientation]="stepper.orientation" >
     <mat-step *ngFor="let step of stepper?.steps; let i = index ;let last = last;" >
       <ng-template  matStepLabel>{{ step.title }}</ng-template>
-      <div *ngIf="step.input" >
         <ng-template #item  [ngComponentOutlet]="getComponent(step.contentType)" [ndcDynamicInputs]="{'formData' : step.content }" ></ng-template>
-      </div>
-      <div *ngIf="!step.input">
-        <ng-template [ngComponentOutlet]="getComponent(step.contentType)" ></ng-template>
-      </div>
       <div class="button-container">
         <button mat-button matStepperPrevious  class="mat-raised-button" *ngIf="i !== 0" style="{{stepper.next.style}}">{{stepper.back.label}}</button>
-        <button mat-button matStepperNext class="mat-raised-button" *ngIf="!last " style="{{stepper.next.style}}" (click)="onFormSubmit()" >{{stepper.next.label}}</button>
+        <button mat-button matStepperNext class="mat-raised-button" *ngIf="!last"  style="{{stepper.next.style}}" (click)="onFormSubmit()" >{{stepper.next.label}}</button>
         <button mat-button matStepperNext class="mat-raised-button" *ngIf="last "  style="{{stepper.next.style}}" (click)="reload()" >{{stepper.end.label}}</button>
       </div>
     </mat-step>
   </mat-stepper>
 </div>
-

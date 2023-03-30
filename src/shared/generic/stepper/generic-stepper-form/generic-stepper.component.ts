@@ -14,6 +14,7 @@ import {Stepper} from "../../models/stepper.model";
 import {Observable} from "rxjs";
 import {FeatureComponent} from "../../../../app/app-entry-point/feature-managment/feature/feature.component";
 import {RolesComponent} from "../../../../app/app-entry-point/roles-management/roles/roles.component";
+import {MatStep, MatStepper} from "@angular/material/stepper";
 
 
 
@@ -27,9 +28,9 @@ export class GenericStepperComponent implements OnInit , AfterViewInit {
  @Input() stepper$!:Observable<Stepper>;
   stepper = new Stepper();
   @ViewChild(FormComponent) childComponent: FormComponent;
-  @ViewChild('test') test: TemplateRef<any> ;
-  @ViewChild('mydiv') mydiv: TemplateRef<any> ;
-  @ViewChildren('item') item: QueryList<any> ;
+  @ViewChildren('item') items: QueryList<any> ;
+
+  component: any;
   constructor() {
   }
 
@@ -40,7 +41,13 @@ export class GenericStepperComponent implements OnInit , AfterViewInit {
 
   }
   ngAfterViewInit(): void {
-    console.log('afterViewInit', this.item)
+   // console.log('afterViewInit', this.items)
+    //console.log('afterViewInitArrays',this.item.toArray());
+    this.items.changes.subscribe(() => {
+    this.component= this.items.toArray()[0].elementRef.nativeElement;
+      console.log('afterViewInit',this.items.toArray()[0].elementRef);
+    });
+
   }
 
   reload(){
@@ -59,8 +66,7 @@ export class GenericStepperComponent implements OnInit , AfterViewInit {
         throw new Error(`Invalid component name: ${contentType}`);
     }
   }
-
-  onFormSubmit() {
-      this.childComponent.submitForm();
+  onFormSubmit(): void {
+    this.component.submitForm();
   }
 }
