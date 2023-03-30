@@ -7,9 +7,11 @@ import { Calendar } from 'src/shared/generic/models/Calendar.model';
 import { Container } from 'src/shared/generic/models/Container.model';
 import { Form } from 'src/shared/generic/models/Form.model';
 import { GridView } from 'src/shared/generic/models/GridView.model';
+import { SelectOrder } from 'src/shared/generic/models/SelectOrder.model';
 import { DialogComponent } from 'src/shared/generic/nxm-dialog/dialog/dialog.component';
 import { Permission } from 'src/shared/models/permission.model';
 import { PermissionService } from 'src/shared/services/permission.service';
+import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 export interface PeriodicElement {
   name: string;
   title: number;
@@ -34,6 +36,12 @@ export class PermissionsComponent implements OnInit {
   ngOnInit() {
     this.getMenu();
    }
+
+   openOrderDialog() {
+    this.dialog.open(OrderDialogComponent, {
+      
+    });
+  }
   getMenu() {
     this.permissionService.getMenu().subscribe({
       next: (data) => {
@@ -52,6 +60,14 @@ export class PermissionsComponent implements OnInit {
     metadata: `${environment.baseUrl}/meta/GetPermissionListVm`,
     allowedSortColumns: ['title'],
     actionPanel: this.action,
+  };
+  
+
+  select : SelectOrder = {
+    endpointData : 'https://localhost:44312/api/Permission',
+    endpointAction : 'https://localhost:44312/api/Permission/ordre',
+    InterfaceName : 'change menu order',
+    TaskSelectCollumn : 'name',
   };
 
   config = {
