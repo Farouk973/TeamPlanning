@@ -35,29 +35,7 @@
           </mat-error>
         </mat-form-field>
         <!-- aaaaaaaaaaaaaaaaaa -->
-        <mat-form-field
-          *ngIf="
-            field.type === 'string' &&
-            field.format === 'uuid' &&
-            field.description !== null
-          "
-          class="example-full-width"
-          appearance="fill"
-        >
-          <mat-label>{{ field.name }}</mat-label>
-          <input
-            type="text"
-            placeholder="Pick one"
-            matInput
-            [matAutocomplete]="auto"
-            [formControlName]="field.name"
-          />
-          <mat-autocomplete autoActiveFirstOption  #auto="matAutocomplete">
-            <mat-option *ngFor="let option of ref | async" [value]="option.id">
-              {{ option.firstName }}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
+       
 
         <mat-form-field
           appearance="outline"
@@ -157,7 +135,7 @@
           >{{ field.name }}</mat-checkbox
         >
 
-      <mat-form-field *ngIf="field.type === null && field.format === null " appearance="outline">
+       <mat-form-field *ngIf="field.type === null && field.format === null && field.references[0] " appearance="outline">
           <mat-label>{{ field.name }}</mat-label>
           <mat-select [formControlName]="field.name">
             <mat-option *ngFor="let ref of field.references" [value]="ref">{{
@@ -170,23 +148,65 @@
                     ">
             <span *ngIf="form.get(field.name).errors?.['required']">This field is required.</span>
           </mat-error>
-        </mat-form-field> 
-<!--         
-        <mat-form-field *ngIf="field.type === null && field.format === null && field.description !== null"
+        </mat-form-field>  
+
+         <mat-form-field *ngIf="field.type === null && field.format === null && field.description !== null && !field.references[0] "
           class="example-full-width" appearance="outline">
-          <mat-label>{{field.name}}</mat-label>
-          <input type="text" placeholder="Pick one" matInput [matAutocomplete]="auto">
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"> <mat-option *ngFor="let option of ref "
-              [value]="option">{{option.title}}
-            </mat-option> </mat-autocomplete>
-        </mat-form-field>
-         -->
-        <mat-form-field appearance="outline" *ngIf=" field.type === 'array'">
+          <mat-label >{{field.name}}</mat-label>
+          <!-- [formControl]="searchDataCtrl" -->
+          <input matInput [matAutocomplete]="auto"
+          [formControl]="searchDataCtrl"   [formControlName]="field.name" (focus)="onselectData(field.name)" >
+    
+          <mat-autocomplete [panelWidth]="400" #auto="matAutocomplete" (optionSelected)="onSelected()">
+            <!-- [displayWith]="displayWith" --> 
+            
+            <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+            <ng-container *ngIf="!isLoading">
+              <mat-option *ngFor="let data of filteredData" [value]="data">
+                <span><b>{{data.title}}</b> ({{data.title}})</span>
+              </mat-option>
+            </ng-container>
+          </mat-autocomplete>
+        </mat-form-field> 
+         
+
+
+
+
+
+
+        
+        <!-- <mat-form-field appearance="outline" *ngIf=" field.type === 'array'">
           <mat-label>{{ field.name }}</mat-label>
-          <mat-select [formControl]="toppings" multiple>
-            <mat-option *ngFor="let option of ref2" [value]="option" Selected>{{option.title}}</mat-option>
+          <mat-select [formControlName]="field.name" multiple>
+            <mat-option *ngFor="let option of map.get(field.item)" [value]="option" Selected>{{option.title}}</mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
+
+
+
+          <mat-select-trigger appearance="outline" *ngIf=" field.type === 'array'">
+            <mat-chip-list>
+              <mat-chip disableRipple *ngFor="let selected of valueControl.value" [selectable]="true" [removable]="true"
+                (removed)="removeOption(selected)">
+                {{ selected.title }}
+                <i class="multiselect-chip-remove" matChipRemove matRipple></i>
+              </mat-chip>
+            </mat-chip-list>
+          </mat-select-trigger>
+          <mat-form-field appearance="outline" *ngIf=" field.type === 'array'">
+            <mat-label>{{ field.name }}</mat-label>
+            <mat-select [formControlName]="field.name"  multiple>
+          
+              <mat-option  *ngFor="let option of map.get(field.name)" [value]="option.id">
+                {{ option.title }}
+              </mat-option>
+
+
+            </mat-select>
+          </mat-form-field>
+
+          
         </div>
         </div>
 

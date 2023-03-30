@@ -60,6 +60,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CardViewModule } from 'src/shared/generic/card-view/card-view.module';
 import { RoleComponent } from './role/role.component';
+import { OrderSelectModule } from 'src/shared/generic/order-select/order-select.module';
+import { OrderDialogComponent } from './permissions/order-dialog/order-dialog.component';
+import { KanbanModule } from 'src/shared/generic/kanban/kanban.module';
 
 
 @NgModule({
@@ -67,6 +70,7 @@ import { RoleComponent } from './role/role.component';
     PermissionsComponent,
     UserPermessionsComponent,
     RoleComponent,
+    OrderDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -124,7 +128,9 @@ import { RoleComponent } from './role/role.component';
     GridViewModule,
     FormModule,
     MatChipsModule,
-    CardViewModule
+    CardViewModule,
+    OrderSelectModule,
+    KanbanModule
 
 
 

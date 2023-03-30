@@ -6,9 +6,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatChipsModule} from '@angular/material/chips';
 @NgModule({
   declarations: [FormComponent],
   imports: [
@@ -17,10 +18,13 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatInputModule,
     MatCheckboxModule,
     MatSelectModule,
+    MatOptionModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatChipsModule,
+     
   ],
   exports: [FormComponent],
   
