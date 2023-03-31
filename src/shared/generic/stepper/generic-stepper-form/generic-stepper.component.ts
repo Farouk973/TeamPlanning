@@ -31,7 +31,7 @@ export class GenericStepperComponent implements OnInit, AfterViewInit {
   @ViewChildren('stepperComponent') items: QueryList<FormComponent>;
   component: any;
   form = {'metaData': 'https://localhost:44312/meta/CreateRoleCommand', 'endpoint': 'https://localhost:44312/api/Role'}
-
+  actionType : string;
   constructor() {
   }
 
@@ -76,6 +76,7 @@ export class GenericStepperComponent implements OnInit, AfterViewInit {
   }
 
   onFormSubmit(): void {
-    this.component.submitForm();
+    this.actionType ='';
+  this.actionType= 'CREATE';
   }
 }
