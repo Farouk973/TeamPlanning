@@ -28,6 +28,11 @@ export class FormComponent implements OnInit {
   @Input() formData: Form;
   @Output() myEvent = new EventEmitter<any>();
   @ViewChild('buttonToSubmit') buttonToSubmit: ElementRef;
+
+  @Input() set submitType(type: string) {
+    this.submitByType(type);
+  }
+
   fields: ColumnMetadata[];
   map = new Map();
   searchDataCtrl = new FormControl();
@@ -149,11 +154,54 @@ export class FormComponent implements OnInit {
       console.log(this.form.controls['role'])
     }
   }
+
   async submitAsync() {
     this.buttonToSubmit.nativeElement.click();
 
     return this.form.valid;
   }
+
+  submitByType(type: string) {
+    this.submitAsync().then((isValid) => {
+      console.log(isValid);
+      console.log(this.form.value);
+      console.log(type);
+      if (isValid) {
+        if (this.formData.Object && type == "UPDATE") {
+          this.formService
+            .updateRow(this.formData.endpoint, this.form.value)
+            .subscribe(
+              (response) => {
+                if (response.status === 200) {
+                  this.myEvent.emit({
+                    formValue: this.form.value,
+                    response: response,
+                  });
+                }
+              },
+              (error) => {
+                this.myEvent.emit({error: error})
+              }
+            );
+        }
+        if (!this.formData.Object && type == "CREATE") {
+          this.formService
+            .addRow(this.formData.endpoint, this.form.value)
+            .subscribe(
+              (response) => {
+                this.myEvent.emit({
+                  formValue: this.form.value,
+                  response: response,
+                });
+              },
+              (error) => {
+              }
+            );
+        }
+      }
+    });
+  }
+
   submitForm() {
     this.submitAsync().then((isValid) => {
       if (isValid) {
@@ -170,7 +218,7 @@ export class FormComponent implements OnInit {
                 }
               },
               (error) => {
-                this.myEvent.emit({error:error})
+                this.myEvent.emit({error: error})
               }
             );
         }
@@ -184,7 +232,8 @@ export class FormComponent implements OnInit {
                   response: response,
                 });
               },
-              (error) => {}
+              (error) => {
+              }
             );
         }
       }

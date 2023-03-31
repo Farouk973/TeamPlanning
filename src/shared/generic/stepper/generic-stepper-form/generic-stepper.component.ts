@@ -1,6 +1,6 @@
 import {
   AfterViewInit,
-  Component,
+  Component, ContentChild, ContentChildren,
   ElementRef,
   Input,
   OnInit, QueryList,
@@ -17,44 +17,52 @@ import {RolesComponent} from "../../../../app/app-entry-point/roles-management/r
 import {MatStep, MatStepper} from "@angular/material/stepper";
 
 
-
 @Component({
   selector: 'app-generic-stepper',
   templateUrl: './generic-stepper.component.html',
   styleUrls: ['./generic-stepper.component.css']
 })
 
-export class GenericStepperComponent implements OnInit , AfterViewInit {
- @Input() stepper$!:Observable<Stepper>;
+export class GenericStepperComponent implements OnInit, AfterViewInit {
+  @Input() stepper$!: Observable<Stepper>;
   stepper = new Stepper();
   @ViewChild(FormComponent) childComponent: FormComponent;
-  @ViewChildren('item') items: QueryList<any> ;
-
+  // @ViewChildren('templateRef') items: QueryList<any> ;
+  @ViewChildren('stepperComponent') items: QueryList<FormComponent>;
   component: any;
+  form = {'metaData': 'https://localhost:44312/meta/CreateRoleCommand', 'endpoint': 'https://localhost:44312/api/Role'}
+  actionType : string;
   constructor() {
   }
 
   ngOnInit(): void {
-    this.stepper$.subscribe((stepperData:any ) => {
-      this.stepper= stepperData;
-      });
-
-  }
-  ngAfterViewInit(): void {
-   // console.log('afterViewInit', this.items)
-    //console.log('afterViewInitArrays',this.item.toArray());
-    this.items.changes.subscribe(() => {
-    this.component= this.items.toArray()[0].elementRef.nativeElement;
-      console.log('afterViewInit',this.items.toArray()[0].elementRef);
+    this.stepper$.subscribe((stepperData: any) => {
+      this.stepper = stepperData;
     });
 
   }
 
-  reload(){
+  ngAfterViewInit(): void {
+
+/*    console.log('afterViewInit', this.items.forEach(
+      item => {
+        console.log(item)
+      }
+    ))*/
+    //console.log('afterViewInitArrays',this.item.toArray());
+    /*   this.items.changes.subscribe(() => {
+         this.component=  this.items.toArray()[0].elementRef.nativeElement.previousElementSibling;
+         console.log('itmes',this.items.toArray()[0].elementRef.nativeElement.previousElementSibling)
+
+       });*/
+
+  }
+
+  reload() {
     window.location.reload()
   }
 
-  getComponent(contentType: string): Type<any> {
+  getComponent(contentType: string): any {
     switch (contentType) {
       case 'Form':
         return FormComponent;
@@ -66,7 +74,9 @@ export class GenericStepperComponent implements OnInit , AfterViewInit {
         throw new Error(`Invalid component name: ${contentType}`);
     }
   }
+
   onFormSubmit(): void {
-    this.component.submitForm();
+    this.actionType ='';
+  this.actionType= 'CREATE';
   }
 }
