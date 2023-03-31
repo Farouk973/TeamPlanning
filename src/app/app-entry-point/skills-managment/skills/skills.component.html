@@ -1,1 +1,3 @@
-<app-chips-gc></app-chips-gc>
+<div *ngIf="Endpoints | async">
+<app-chips-gc [Endpoints]="Endpoints" ></app-chips-gc>
+</div>
