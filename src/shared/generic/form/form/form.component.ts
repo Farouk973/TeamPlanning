@@ -7,13 +7,12 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import {  FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { Form } from '../../models/Form.model';
-import { SharedServices } from '../../SharedServices.service';
-import { ColumnMetadata } from '../form.service';
-
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {environment} from 'src/environments/environment';
+import {Form} from '../../models/Form.model';
+import {SharedServices} from '../../SharedServices.service';
+import {ColumnMetadata} from '../form.service';
 
 
 @Component({
@@ -22,15 +21,22 @@ import { ColumnMetadata } from '../form.service';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  constructor(private formService: SharedServices) {}
+  constructor(private formService: SharedServices) {
+  }
 
   form = new FormGroup({});
   @Input() formData: Form;
   @Output() myEvent = new EventEmitter<any>();
   @ViewChild('buttonToSubmit') buttonToSubmit: ElementRef;
+
+  @Input() set submitType(type: string) {
+    this.submitByType(type);
+  }
+
   fields: ColumnMetadata[];
   ref?;
   ref2?;
+
   // formGroup = new FormGroup({});
   ngOnInit(): void {
     this.formService.getMetadata(this.formData.metaData).subscribe((data) => {
@@ -84,11 +90,54 @@ export class FormComponent implements OnInit {
       this.form.addControl(field.name, control);
     }
   }
+
   async submitAsync() {
     this.buttonToSubmit.nativeElement.click();
 
     return this.form.valid;
   }
+
+  submitByType(type: string) {
+    this.submitAsync().then((isValid) => {
+      console.log(isValid);
+      console.log(this.form.value);
+      console.log(type);
+      if (isValid) {
+        if (this.formData.Object && type == "UPDATE") {
+          this.formService
+            .updateRow(this.formData.endpoint, this.form.value)
+            .subscribe(
+              (response) => {
+                if (response.status === 200) {
+                  this.myEvent.emit({
+                    formValue: this.form.value,
+                    response: response,
+                  });
+                }
+              },
+              (error) => {
+                this.myEvent.emit({error: error})
+              }
+            );
+        }
+        if (!this.formData.Object && type == "CREATE") {
+          this.formService
+            .addRow(this.formData.endpoint, this.form.value)
+            .subscribe(
+              (response) => {
+                this.myEvent.emit({
+                  formValue: this.form.value,
+                  response: response,
+                });
+              },
+              (error) => {
+              }
+            );
+        }
+      }
+    });
+  }
+
   submitForm() {
     this.submitAsync().then((isValid) => {
       console.log(isValid);
@@ -107,7 +156,7 @@ export class FormComponent implements OnInit {
                 }
               },
               (error) => {
-                this.myEvent.emit({error:error})
+                this.myEvent.emit({error: error})
               }
             );
         }
@@ -121,31 +170,33 @@ export class FormComponent implements OnInit {
                   response: response,
                 });
               },
-              (error) => {}
+              (error) => {
+              }
             );
         }
       }
     });
   }
+
   toppings = new FormControl('');
-  ReferenceExistances(desc :string) :any
-  {
-  this.formService.getData(`${environment.baseUrl}/api/`+desc)
-  .subscribe({
-    next: (data) => {
-      this.ref = data;
-      console.log(data)
-    },
-  })
+
+  ReferenceExistances(desc: string): any {
+    this.formService.getData(`${environment.baseUrl}/api/` + desc)
+      .subscribe({
+        next: (data) => {
+          this.ref = data;
+          console.log(data)
+        },
+      })
   }
-  ReferenceExistance(desc :string) :any
-  {
-  this.formService.getData(`${environment.baseUrl}/api/`+desc)
-  .subscribe({
-    next: (data) => {
-      this.ref2 = data;
-      console.log(data)
-    },
-  })
+
+  ReferenceExistance(desc: string): any {
+    this.formService.getData(`${environment.baseUrl}/api/` + desc)
+      .subscribe({
+        next: (data) => {
+          this.ref2 = data;
+          console.log(data)
+        },
+      })
   }
 }

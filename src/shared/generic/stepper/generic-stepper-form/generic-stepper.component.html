@@ -1,14 +1,15 @@
 <div>
   <input id="duration" value="{{stepper.valueDuration}}" type="number" #duration [hidden]="true">
   <mat-stepper [animationDuration]="duration.value" [orientation]="stepper.orientation" >
-    <mat-step *ngFor="let step of stepper?.steps; let i = index ;let last = last;" >
+
+
+
+    <mat-step #stepperComponent *ngFor="let step of stepper?.steps; let i = index ;let last = last;" >
+
       <ng-template  matStepLabel>{{ step.title }}</ng-template>
 
-       <!-- <ng-template  [ngTemplateOutlet]="getComponent(step.contentType)" [ndcDynamicInputs]="{'formData' : step.content }" ></ng-template> -->
-        <!--<app-form [formData]="form"> </app-form>-->
+      <ng-template #templateRef  [ngComponentOutlet]="getComponent(step.contentType)" [ndcDynamicInputs]="{'formData' : step.content , 'submitType': 'CREATE'}" ></ng-template>
 
-
-   <ng-template  [ngTemplateOutlet]="mytemplate"></ng-template>
       <div class="button-container">
         <button mat-button matStepperPrevious  class="mat-raised-button" *ngIf="i !== 0" style="{{stepper.next.style}}">{{stepper.back.label}}</button>
         <button mat-button matStepperNext class="mat-raised-button" *ngIf="!last"  style="{{stepper.next.style}}" (click)="onFormSubmit()" >{{stepper.next.label}}</button>
@@ -17,10 +18,4 @@
     </mat-step>
   </mat-stepper>
 </div>
-
- <!-- <ng-template #mytemplate > <app-form [formData]="form"> </app-form> </ng-template>-->
-<ng-template #mytemplate >
-  <app-form [formData]="form"> </app-form>
-  <!--<ng-template  [ngComponentOutlet]="getComponent(stepper.steps[0].contentType)" [ndcDynamicInputs]="{'formData' : stepper.steps[0].content }" ></ng-template>-->
-</ng-template>
 

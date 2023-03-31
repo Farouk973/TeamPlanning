@@ -1,6 +1,6 @@
 import {
   AfterViewInit,
-  Component, ContentChildren,
+  Component, ContentChild, ContentChildren,
   ElementRef,
   Input,
   OnInit, QueryList,
@@ -17,45 +17,52 @@ import {RolesComponent} from "../../../../app/app-entry-point/roles-management/r
 import {MatStep, MatStepper} from "@angular/material/stepper";
 
 
-
 @Component({
   selector: 'app-generic-stepper',
   templateUrl: './generic-stepper.component.html',
   styleUrls: ['./generic-stepper.component.css']
 })
 
-export class GenericStepperComponent implements OnInit , AfterViewInit {
- @Input() stepper$!:Observable<Stepper>;
+export class GenericStepperComponent implements OnInit, AfterViewInit {
+  @Input() stepper$!: Observable<Stepper>;
   stepper = new Stepper();
-  //@ViewChild(FormComponent) childComponent: FormComponent;
-  @ViewChildren(FormComponent) items: QueryList<FormComponent> ;
+  @ViewChild(FormComponent) childComponent: FormComponent;
+  // @ViewChildren('templateRef') items: QueryList<any> ;
+  @ViewChildren('stepperComponent') items: QueryList<FormComponent>;
   component: any;
-  form ={'metaData':'https://localhost:44312/meta/CreateRoleCommand', 'endpoint':'https://localhost:44312/api/Role'}
+  form = {'metaData': 'https://localhost:44312/meta/CreateRoleCommand', 'endpoint': 'https://localhost:44312/api/Role'}
+
   constructor() {
   }
 
   ngOnInit(): void {
-    this.stepper$.subscribe((stepperData:any ) => {
-      this.stepper= stepperData;
-      });
-
-  }
-  ngAfterViewInit(): void {
-    console.log('itmes',this.items)
-   // console.log('afterViewInit', this.items)
-    //console.log('afterViewInitArrays',this.item.toArray());
-    this.items.changes.subscribe(() => {
-   // this.component= this.items.toArray()[0];
-
+    this.stepper$.subscribe((stepperData: any) => {
+      this.stepper = stepperData;
     });
 
   }
 
-  reload(){
+  ngAfterViewInit(): void {
+
+/*    console.log('afterViewInit', this.items.forEach(
+      item => {
+        console.log(item)
+      }
+    ))*/
+    //console.log('afterViewInitArrays',this.item.toArray());
+    /*   this.items.changes.subscribe(() => {
+         this.component=  this.items.toArray()[0].elementRef.nativeElement.previousElementSibling;
+         console.log('itmes',this.items.toArray()[0].elementRef.nativeElement.previousElementSibling)
+
+       });*/
+
+  }
+
+  reload() {
     window.location.reload()
   }
 
-  getComponent(contentType: string):any {
+  getComponent(contentType: string): any {
     switch (contentType) {
       case 'Form':
         return FormComponent;
@@ -67,8 +74,19 @@ export class GenericStepperComponent implements OnInit , AfterViewInit {
         throw new Error(`Invalid component name: ${contentType}`);
     }
   }
+
   onFormSubmit(): void {
-  //  console.log(this.childComponent)
-    this.items.first.submitForm()
+/*
+  this.items.map(i => {
+     // i.submitForm()
+      console.log(i)
+    })
+*/
+
+    /*  console.log('afterViewInit', this.items.forEach(
+        item => {console.log(item)
+
+        }
+      ))*/
   }
 }
