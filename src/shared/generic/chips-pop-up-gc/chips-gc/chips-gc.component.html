@@ -1,33 +1,44 @@
+<div class="header">
+  <h2>Add {{namedomain}}</h2>
+  <div class="search-container">
+    <app-search-bar-cg [Searchmodel]="searchmodel"></app-search-bar-cg>
+  </div>
+</div>
+
 <div class="container">
-    <div class="sidebar">
-      <h2>Categories:</h2>
-      <div class="search-bar">
-        <input type="text" [(ngModel)]="searchValue" (input)="filterTreeData()"  name="input" placeholder="Search categories...">
-      </div>
-      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="mat-tree">
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onNodeClicked(node)" class="mat-tree-node">
-          {{node.name}}
-        </mat-tree-node>
-        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding class="mat-tree-node">
-          <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name" class="mat-tree-node-toggle">
-            <mat-icon>{{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}</mat-icon>
-            <b>{{node.name}}</b>
-          </button>
-        </mat-tree-node>
-      </mat-tree>
+  <div class="sidebar">
+    <h2>{{namesubdomain}}</h2>
+    <div class="search-bar">
+      
+      <input type="text" [(ngModel)]="searchValue" (input)="filterTreeData()" name="input" placeholder="Search {{namesubdomain}}...">
+      <mat-icon class="search-icon">search</mat-icon>
     </div>
-    <div class="content">
-      <div class="skill-container">
-        <div>
-          <app-search-bar-cg [Searchmodel]="searchmodel"></app-search-bar-cg>
-      </div>
-        <h1>{{selectedNode || "no category has been selected"}}</h1>
-        <mat-chip-list>
-          <mat-chip *ngFor="let chips of selectedchips" (click)="openDialog(chips)">
-            {{chips.name}}
-          </mat-chip>
-        </mat-chip-list>
-      </div>
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="mat-tree">
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onNodeClicked(node)" class="mat-tree-node">
+        <span class="mat-tree-node__label">{{node.name}}</span>
+      </mat-tree-node>
+      <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding class="mat-tree-node">
+        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name" class="mat-tree-node-toggle">
+          <mat-icon class="mat-icon__toggle">{{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}</mat-icon>
+          <span class="mat-tree-node__label">{{node.name}}</span>
+        </button>
+      </mat-tree-node>
+    </mat-tree>
+  </div>
+  <div class="content">
+    <div class="skill-container">
+      <h1 *ngIf="selectedNode && selectedNode.trim() !== ''">
+        {{namedomain}} of "{{ selectedNode }}"
+      </h1>
+      <h1 *ngIf="!(selectedNode && selectedNode.trim() !== '')">
+        No {{ namesubdomain }} has been selected
+      </h1>
+      <mat-chip-list class="mat-chip-list__container">
+        <mat-chip *ngFor="let chips of selectedchips" class="mat-chip__item" (click)="openDialog(chips)" >
+          {{chips.name}}
+      <span *ngIf="addedchips.includes(chips)" [matBadge]="4" matBadgeOverlap="false" class="demo-section">Added</span>
+        </mat-chip>
+      </mat-chip-list>
     </div>
   </div>
-  
+</div>

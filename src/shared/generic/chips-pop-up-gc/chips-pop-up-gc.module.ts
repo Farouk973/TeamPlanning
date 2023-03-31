@@ -10,6 +10,7 @@ import { SkillRatingDialogComponent } from './skill-rating-dialog/skill-rating-d
 import { MatInputModule } from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { SearchBarCGModule } from '../search-bar-cg/search-bar-cg.module';
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 
@@ -29,7 +30,9 @@ import { SearchBarCGModule } from '../search-bar-cg/search-bar-cg.module';
     MatDialogModule ,
     MatInputModule,
     MatAutocompleteModule,
-    SearchBarCGModule
+    SearchBarCGModule,
+    MatBadgeModule
+    
   ],
   exports:[
     SkillRatingDialogComponent,

@@ -3,21 +3,75 @@
     color: #ccc;
     cursor: pointer;
     margin-right: 10px;
+    transition: color 0.3s ease;
   }
   
   .star.filled {
     color: #14B0EF;
+    transition: color 0.3s ease;
   }
   button {
     margin: 0 15px;
   }
   button.cancel {
-    background-color: red;
-    color: #ffffff;
-    border-color:red ;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 30px;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #BFD1E3;
+    border-radius: 12px;
+    color: #768DA9;
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 10px;
+    cursor: pointer;
   }
+  
+  button.cancel:hover {
+    background: #BFD1E3;
+  }
+  
   button.save {
-    background-color: #14B0EF;
-    color: #ffffff;
-    border-color:#14B0EF ;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 30px;
+    gap: 10px;
+    background: #00B2D9;
+    border: 1px solid #BFD1E3;
+    border-radius: 12px;
+    color: #FFFFFF;
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 10px;
+    cursor: pointer;
   }
+  
+  button.save:hover {
+    background: #00A3C3;
+  }
+  p {
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size:14px;
+    display: flex;
+    align-items: center;
+    color: #080C3E;
+    
+  }
+  h2 {
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+display: flex;
+align-items: center;
+color: #5B6D8E;
+  }
+  

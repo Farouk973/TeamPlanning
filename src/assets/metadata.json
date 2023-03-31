@@ -8,15 +8,15 @@
                     "domain": [
                         {
                             "name": "HTML",
-                            "rate": "0"
+                            "rate": 0
                         },
                         {
                             "name": "CSS",
-                            "rate": "3"
+                            "rate": 0
                         },
                         {
                             "name": "JavaScript",
-                            "rate": "0"
+                            "rate": 0
                         }
                     ]
                 },
@@ -25,11 +25,11 @@
                     "domain": [
                         {
                             "name": "Node.js",
-                            "rate": "0"
+                            "rate": 0
                         },
                         {
                             "name": "Express",
-                            "rate": "0"
+                            "rate": 0
                         }
                     ]
                 }
@@ -43,11 +43,11 @@
                     "domain": [
                         {
                             "name": "Swift",
-                            "rate": "0"
+                            "rate": 0
                         },
                         {
                             "name": "Objective-C",
-                            "rate": "0"
+                            "rate": 0
                         }
                     ]
                 },
@@ -56,19 +56,15 @@
                     "domain": [
                         {
                             "name": "Java",
-                            "rate": "0"
+                            "rate": 0
                         },
                         {
                             "name": "Kotlin",
-                            "rate": "0"
+                            "rate": 0
                         }
                     ]
                 }
             ]
-        },
-        {
-            "name": "Others",
-            "subdomain": [{"domain":[]}]
         }
     ]
 }

@@ -52,9 +52,9 @@ export class SearchBarCgComponent implements OnInit {
     this.formGroup = this.fb.group({
       'form': ['']
     })
-    this.formGroup.get('form').valueChanges.pipe(debounceTime(200)).
+    this.formGroup.get('form').valueChanges.pipe(debounceTime(500)).
       subscribe(response => {
-        console.log('data is ', response);
+        // console.log('data is ', response);
         if (response && response.length > 1) {
           this.filterData(response)
         } else {
@@ -82,7 +82,7 @@ export class SearchBarCgComponent implements OnInit {
       data: { i: i, treeData: treeData }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
     });
   }
   isAddoptionValid(): boolean {
