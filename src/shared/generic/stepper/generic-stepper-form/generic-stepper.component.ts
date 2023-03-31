@@ -76,17 +76,6 @@ export class GenericStepperComponent implements OnInit, AfterViewInit {
   }
 
   onFormSubmit(): void {
-/*
-  this.items.map(i => {
-     // i.submitForm()
-      console.log(i)
-    })
-*/
-
-    /*  console.log('afterViewInit', this.items.forEach(
-        item => {console.log(item)
-
-        }
-      ))*/
+    this.component.submitForm();
   }
 }
