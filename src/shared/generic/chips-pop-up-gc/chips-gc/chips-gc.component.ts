@@ -148,6 +148,47 @@ export class ChipsGCComponent implements OnInit {
         
       }
     });
+    
+  }
+  handleDialogResult(result: any) {
+    console.log('Dialog result:', result);
+    // if (this.treeData.includes(result.bigDomain)){
+
+    //   const subdomain = result.subDomain;
+    //   const bigdomain = result.bigDomain;
+    //   const skillName = result.skillName;
+      
+    //   // find the subdomain and add the skill name to it
+    //   for (let i = 0; i < this.treeData.length; i++) {
+    //     if (this.treeData[i].name === bigdomain.name) {
+    //       for (let j = 0; j < this.treeData[i].subdomain.length; j++) {
+    //         if (this.treeData[i].subdomain[j].name === subdomain.name) {
+    //           this.treeData[i].subdomain[j].domain.push({ name: skillName,rate:0 });
+    //           break;
+    //         }
+    //       }
+    //       break;
+    //     }
+    //   }
+    // }
+    // console.log(this.treeData)
+    const bigDomainIndex = this.treeData.findIndex(d => d.name === result.bigDomain.name);
+
+    if (bigDomainIndex !== -1) {
+      // Find the index of the sub domain in the big domain's sub domain array
+      const subDomainIndex = this.treeData[bigDomainIndex].subdomain.findIndex(d => d.name === result.subDomain.name);
+  
+      if (subDomainIndex !== -1) {
+        // Check if the skill name is already in the domain array
+        const skillExists = this.treeData[bigDomainIndex].subdomain[subDomainIndex].domain.some(d => d.name === result.skillName);
+  
+        if (!skillExists) {
+          // Add the skill name to the domain array
+          this.treeData[bigDomainIndex].subdomain[subDomainIndex].domain.push({ name: result.skillName,rate:0 });
+        }
+      }
+    }
+    console.log(this.treeData)
   }
 }
 

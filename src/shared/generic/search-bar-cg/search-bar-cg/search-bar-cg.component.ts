@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime, map, Observable } from 'rxjs';
 import { Apiresponse, bigdomain, endpoints } from '../../models/domain.model';
@@ -15,12 +15,13 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class SearchBarCgComponent implements OnInit {
   @Input() Searchmodel!: Observable<searchmodel>;
-
+  @Output() dialogResult = new EventEmitter<any>();
   options = [];
   treeData: bigdomain[] = [];
   searchdata: searchmodel;
   filteredOptions
   formGroup: FormGroup;
+  chipadded: bigdomain;
   constructor(private fb: FormBuilder, private http: HttpClient, private eventservice: servicechipsservice,private dialog: MatDialog) { }
 
   ngOnInit() {
@@ -82,14 +83,12 @@ export class SearchBarCgComponent implements OnInit {
       data: { i: i, treeData: treeData }
     });
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed');
+      console.log('The dialog was closed',result);
+      this.dialogResult.emit(result);
     });
   }
   isAddoptionValid(): boolean {
     const formValue = this.formGroup.get('form').value.toLowerCase();
     return formValue.length > 1 && !this.filteredOptions.map(op => op.toLowerCase()).includes(formValue) && this.searchdata.addoption;
   }
-  
-  
-
 }

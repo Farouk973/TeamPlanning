@@ -28,10 +28,20 @@ export class ForumSearchComponent implements OnInit {
       subDomain: ['', Validators.required],
       bigDomain: ['', Validators.required],
     });
-    console.log(this.data)
   }
   onCancelClick(): void {
     this.dialogRef.close();
+  }
+  onSaveClick(): void {
+    if (this.form.valid) {
+      const formValue = this.form.value;
+      const result = {
+        skillName: formValue.skillName,
+        subDomain: formValue.subDomain,
+        bigDomain: formValue.bigDomain,
+      };
+      this.dialogRef.close(result);
+    }
   }
 
   get skillName() {
