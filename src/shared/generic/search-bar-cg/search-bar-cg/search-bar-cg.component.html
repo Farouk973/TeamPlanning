@@ -1,0 +1,16 @@
+<div class="container">
+  <form [formGroup]="formGroup">
+    <mat-form-field>
+      <input formControlName="form" matInput type={{searchdata.input.type}} [matAutocomplete]="auto" placeholder= {{searchdata.label}}/>
+      <mat-icon class="search-icon" matSuffix>search</mat-icon>
+      <mat-autocomplete #auto="matAutocomplete" >
+        <mat-option *ngFor="let item of filteredOptions" [value]="item" (click)="onClick(item)">
+          {{item}}
+        </mat-option>
+        <mat-option *ngIf="isAddoptionValid()" (click)="onClickadd(formGroup.get('form').value)" value="{{formGroup.get('form').value}}">
+         Add "{{formGroup.get('form').value}}"  <mat-icon>add</mat-icon>
+        </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>

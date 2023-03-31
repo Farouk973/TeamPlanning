@@ -16,16 +16,21 @@ export class SkillRatingDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: domain) {}
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    
   }
-  ratestring = Number(this.data.rate);
-  
   onCancelClick(): void {
     this.dialogRef.close();
   }
   setRating(star: number) {
-    this.ratestring = star;
-    console.log(this.ratestring);
+    this.data.rate = star;
+    console.log(this.data.rate);
+  }
+  onSaveClick(): void {
+    const dataToSave = {
+      name: this.data.name,
+      rate: this.data.rate
+    };
+    this.dialogRef.close(dataToSave);
   }
 
 }

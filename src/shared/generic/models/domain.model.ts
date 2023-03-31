@@ -1,6 +1,8 @@
 export interface endpoints{
     Metadata:string;
     endpointsave:string;
+    subdomainname:string;
+    domainname:string;
 }
 export interface Apiresponse{
     bigdomain:bigdomain[];
@@ -15,8 +17,9 @@ export interface subdomain{
 }
 export interface domain{
     name:string;
-    rate:string;
-    popup:popup;
+    rate:number;
+    count?: number;
+   
 }
 export interface popup{
     endpoint:string;
