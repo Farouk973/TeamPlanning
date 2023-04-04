@@ -103,3 +103,45 @@ mat-card {
     input[type="text"]::placeholder {
       color: #aaa;
     }
+    .mat-form-field-flex {
+      width: 100%;
+    }
+    
+    .mat-form-field-wrapper {
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .form-field-group {
+      display: flex;
+      flex-direction: column;
+      border-radius: 10px;
+      border: 2px solid transparent;
+    }
+    .form-field-group input.mat-input-element,
+    .form-field-group textarea.mat-input-element {
+      height: 50px;
+      border-radius: 10px;
+      border: 2px solid transparent;
+    }
+    
+    .mat-form-field-appearance-fill .mat-form-field-infix {
+      border-radius: 20px;
+    }
+    
+    .mat-form-field-underline {
+      display: none;
+    }
+    
+    textarea.mat-input-element {
+      height: 90%;
+      border-radius: 10px;
+      border: 2px solid transparent;
+    }
+    .mat-form-field-appearance-fill .mat-form-field-infix {
+      border-radius: 20px;
+    }
+    
+    .mat-form-field-infix textarea.mat-input-element,
+    .mat-form-field-infix input.mat-input-element {
+      border-radius: 20px;
+    }

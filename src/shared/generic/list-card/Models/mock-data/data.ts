@@ -9,12 +9,15 @@ export const mockCardData: CardData={
     minHeight:"105px",
     maxHeight:"105px",
     showEditButton: false,
+   
+    
     showBody: false,
     showFooterAction: false,
     showDropdownMenu: false,
     showCardActions: false,
     showFooter: false,
     showIconAction: false,
+    editing:false
     
   };
   

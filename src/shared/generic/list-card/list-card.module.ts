@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DynamicModule } from 'ng-dynamic-component';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -25,6 +27,8 @@ import { MatMenuModule } from '@angular/material/menu';
         MatPaginatorModule,
         DynamicModule,
         MatMenuModule,
+        MatFormFieldModule,
+        FormsModule
       
       
     ]

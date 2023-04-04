@@ -1,49 +1,61 @@
-
-
 <div class="card-list" style="display: flex; flex-wrap: wrap;">
-<div *ngFor="let card of cardDataList" class="col-md-3 stretch spacer">
-<mat-card >
-    <ng-content></ng-content>
-    <div *ngIf="card?.primaryLabel" class="primary-label" [style.backgroundColor]="card?.primaryColor" [style.Color]="card?.labelColor">{{ card?.primaryLabel }}</div>
-    <div class="menu-wrapper">
+  <div *ngFor="let card of cardDataList" class="col-md-3 stretch spacer">
+    <mat-card>
+      <ng-content></ng-content>
+      <div *ngIf="!card.editing">
+      <div *ngIf="card?.primaryLabel" class="primary-label" [style.backgroundColor]="card?.primaryColor" [style.Color]="card?.labelColor">{{ card?.primaryLabel }}</div>
+      <div class="menu-wrapper">
         <button mat-icon-button [matMenuTriggerFor]="appMenu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #appMenu="matMenu">
-          <button mat-menu-item>Edit</button>
-          <button mat-menu-item>Delete</button>
+          <button mat-menu-item (click)="onEdit(card.id)">Edit</button>
+          <button mat-menu-item (click)="onDelete(card.id)">Delete</button>
         </mat-menu>
       </div>
-    <ng-content></ng-content>
-    <mat-card-header>
-      
-      <ng-container *ngIf="card?.showEditButton ">
-        <button mat-icon-button (click)="onEdit()">
-          <mat-icon>edit</mat-icon>
-        </button>
-        <mat-card-actions *ngIf="card?.showIconAction">
-          <button mat-icon-button (click)="onAction()">
-            <mat-icon></mat-icon>
+      <mat-card-header>
+        <ng-container *ngIf="!card.editing && card?.showEditButton">
+          <button mat-icon-button (click)="onEdit(card.id)">
+            <mat-icon>edit</mat-icon>
           </button>
-        </mat-card-actions>
-      </ng-container>
-    </mat-card-header>
-    <mat-card-content [style.min-height]="card.minHeight" [style.max-height]="data.maxHeight">
-      
+          <mat-card-actions *ngIf="card?.showIconAction">
+            <button mat-icon-button (click)="onAction()">
+              <mat-icon></mat-icon>
+            </button>
+          </mat-card-actions>
+        </ng-container>
+      </mat-card-header>
+      <mat-card-content *ngIf="!card.editing" [style.min-height]="card.minHeight" [style.max-height]="card.maxHeight">
         <div class="my-component-body" contenteditable="true">
-         {{card?.textbody}}
+          {{card?.textbody}}
         </div>
-     
-    </mat-card-content>
-    <ng-container  *ngIf="card?.component"
-      [ngComponentOutlet]="card?.component"
-                             >
-    </ng-container>
-    <mat-card-actions *ngIf="card?.showIconAction">
-      <button mat-icon-button (click)="onAction()">
-        <mat-icon></mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+      </mat-card-content>
+    </div>
+      <mat-card-content *ngIf="card.editing" [style.min-height]="'210px'" [style.max-height]="'210px'">
+        <div class="form-field-group">
+          <mat-label>{{card.bodyTitleName}}</mat-label>
+          <input matInput [(ngModel)]="card.bodyTitle" name="title" style="border-radius: 10px; border: 2px solid #00b2d91a;">
+        </div>
+        <div class="form-field-group">
+          <mat-label>{{card.textbodyName}}</mat-label>
+          <textarea matInput [(ngModel)]="card.textbody" name="textbody" style="border-radius: 10px; border: 2px solid #00b2d91a; height: 70px;"></textarea>
+        </div>
+        <div class="form-field-group">
+          <mat-label>{{card.primaryLabelName}}</mat-label>
+          <input matInput [(ngModel)]="card.primaryLabel" name="primaryLabel" style="border-radius: 10px; border: 2px solid #00b2d91a;">
+        </div>
+        <button mat-button color="primary" (click)="saveCard()">Save</button>
+        <button mat-button (click)="card.editing = false">Cancel</button>
+      </mat-card-content>
+      
+      
+      
+      <ng-container *ngIf="!card.editing && card?.component" [ngComponentOutlet]="card?.component"></ng-container>
+      <mat-card-actions *ngIf="!card.editing && card?.showIconAction">
+        <button mat-icon-button (click)="onAction()">
+          <mat-icon></mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

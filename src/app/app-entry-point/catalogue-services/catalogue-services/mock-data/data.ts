@@ -8,6 +8,9 @@ export const mockCardData: CardData={
     labelColor: '#00B2D9',
     minHeight:"130px",
     maxHeight:"130px",
+    bodyTitleName: "Title",
+    textbodyName:"Description",
+    primaryLabelName:"Category",
     showEditButton: false,
     showBody: false,
     showFooterAction: false,
@@ -15,6 +18,7 @@ export const mockCardData: CardData={
     showCardActions: false,
     showFooter: false,
     showIconAction: false,
+    editing: false
   
   };
   export const CommonCssBehaviours={
