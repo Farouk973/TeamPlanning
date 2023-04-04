@@ -27,7 +27,7 @@
       </mat-card-header>
       <mat-card-content *ngIf="!card.editing" [style.min-height]="card.minHeight" [style.max-height]="card.maxHeight">
         <div class="my-component-body" contenteditable="true">
-          {{card?.textbody}}
+          {{card?.textbody}}{{card.id}}
         </div>
       </mat-card-content>
     </div>

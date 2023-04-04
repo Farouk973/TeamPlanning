@@ -24,8 +24,12 @@ export class SharedServices {
   updateRow(endpoint:any,object:any):Observable<any>{
     return this.httpClient.put<any>(endpoint,object);
   }
+
   deleteRow(endpoint: string, id: number): Observable<number> {
     return this.httpClient.delete<number>(endpoint + '/' + id);
+  }
+  deleteCard(endpoint: string, id: string): Observable<string> {
+    return this.httpClient.delete<string>(endpoint + '/' + id);
   }
   search(query: string): Observable<any> {
     return this.httpClient.get('/api/search?q=' + query);

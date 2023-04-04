@@ -4,6 +4,8 @@ import { CardData } from "src/shared/generic/list-card/Models/cardModel";
 
 export const mockCardData: CardData={
     endpoint: new BehaviorSubject<string>("https://localhost:5001/api/service"),
+    updateEndpoint: "https://localhost:5001/api/service",
+    deleteEndpoint: "https://localhost:5001/api/service",
     primaryColor: '#00b2d91a',
     labelColor: '#00B2D9',
     minHeight:"130px",
