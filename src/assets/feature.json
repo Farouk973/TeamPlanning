@@ -8,8 +8,8 @@
        "labelChips": "Features of project:",
        "saveInputInBase": true,
        "getIdLastItemEndpoint": "/api/Users",
-       "optionsDataEndpoint" : "/api/Role",
-       "sourceSaveItemEndpoint":"/api/Users",
+       "optionsDataEndpoint" : "/api/Feature/get-features",
+       "sourceSaveItemEndpoint":"/api/Feature/add-feature",
        "sourceAssignItemEndpoint":"/api/Role",
       "sourceDeleteOptionAfterAssignToItemEndpoint": "/api/delete"
 }

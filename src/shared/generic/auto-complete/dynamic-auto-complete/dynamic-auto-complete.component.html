@@ -6,12 +6,11 @@
       placeholder="{{autoComplete?.input?.placeholder}}"
       matInput
       [formControl]="myControl"
-      [matAutocomplete]="auto"
-      (keyup.enter)="enter()">
-    <mat-autocomplete
-      #auto="matAutocomplete"
+      [matAutocomplete]="auto">
+    <p class="my-button"  *ngIf="(filteredOptions | async)?.length === 0" (click)="enter()">Would you like to add that?</p>
 
-   >
+    <mat-autocomplete
+      #auto="matAutocomplete">
         <mat-option
           *ngFor="let option of filteredOptions | async ;"
           [value]="option">
@@ -22,6 +21,7 @@
 
     </mat-autocomplete>
   </mat-form-field>
+
 </div>
 <div>
   <mat-form-field class="example-chip-list" appearance="fill">
@@ -33,3 +33,4 @@
     </mat-chip-list>
   </mat-form-field>
 </div>
+

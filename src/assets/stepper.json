@@ -5,21 +5,12 @@
       "order": 1,
       "contentType": "Form",
       "content":
-       { "endpoint": "https://localhost:44312/api/Role",
-         "metaData": "https://localhost:44312/meta/CreateRoleCommand"
+       { "endpoint": "https://localhost:44312/api/Project/add-project",
+         "metaData": "https://localhost:44312/meta/CreateProjectCommand"
        },
         "input" : true
     },
-    {
-      "title": "Project",
-      "order": 1,
-      "contentType": "Form",
-      "content":
-      { "endpoint": "https://localhost:44312/api/Role",
-        "metaData": "https://localhost:44312/meta/CreateRoleCommand"
-      },
-      "input" : true
-    },
+
     {
       "title": "Features",
       "order": 2,
@@ -29,18 +20,8 @@
          "metaData": ""
        },
       "input" : false
-    },
-    {
-      "title": "Roles",
-      "order": 3,
-      "contentType": "Roles",
-      "content":
-      { "endpoint": "",
-        "metaData": ""
-      },
-      "input" : false
-
     }
+
 
   ],
   "next": {
