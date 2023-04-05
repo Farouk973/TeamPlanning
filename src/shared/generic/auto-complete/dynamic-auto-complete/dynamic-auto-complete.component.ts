@@ -20,8 +20,7 @@ export class DynamicAutoCompleteComponent implements OnInit {
   @Output() added = new EventEmitter();
   myControl = new FormControl();
   options: string[];
-  idItem: string ="642beebb4022dfc90b1892ab";
-  mapping: string =''
+  idItem: string ="642da514b25522e9ceed2fa0";
   selectedValue;
   filteredOptions: Observable<string[]>;
   optionLength: Observable<number>;
@@ -45,19 +44,20 @@ export class DynamicAutoCompleteComponent implements OnInit {
       this.autoComplete=autoCompleteData;
       this.isTrue=this.autoComplete.saveInputInBase;
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint , this.idItem).subscribe((data)=>{
+        this.chipsOptions=data[this.autoComplete?.nameListOfChips]
+        console.log(this.chipsOptions)
+      });
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       this.autoCompleteService.getDataOptions(this.autoComplete?.optionsDataEndpoint).subscribe((data)=>{
-        this.options=data.map((d)=>d[this.autoComplete.nameAttributeForSearch]);
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        this.autoCompleteService.getIdLastItem(this.autoComplete?.getIdLastItemEndpoint).subscribe((id :any)=>{
-          this.idItem=id;
-          console.log(this.idItem)
-        });
+        this.options=data.map((d)=>d[this.autoComplete.nameAttributeForSearch])
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         this.filteredOptions = this.myControl.valueChanges.pipe(
           startWith(''),
           map(value => this._filter(value || '')),
         );
-      })
+      });
+
     });
 
   }
@@ -111,17 +111,23 @@ export class DynamicAutoCompleteComponent implements OnInit {
   }
 
   addOptionToItem(option) {
-    this.chipsOptions.push(option);
+   // this.chipsOptions.push(option);
     let data = { [this.autoComplete.nameAttributeForSearch]: option}
     this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint ,this.idItem , data).subscribe((assignItem)=>{
       console.log(assignItem)
     });
-
+    this.autoComplete$.subscribe((autoCompleteData)=> {
+      this.autoComplete = autoCompleteData;
+      this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, this.idItem).subscribe((data) => {
+        this.chipsOptions = data[this.autoComplete?.nameListOfChips]
+        console.log(this.chipsOptions)
+      });
+    });
   }
 
-  removeOptionAfterAssign(option) {
-
-    const index = this.chipsOptions.indexOf(option);
+  removeOptionAfterAssign(option :string) {
+console.log(option['id'])
+  const index = this.chipsOptions.indexOf(option);
     if (index >= 0) {
       this.chipsOptions.splice(index, 1);
     }

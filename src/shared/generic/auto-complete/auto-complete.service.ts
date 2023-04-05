@@ -21,6 +21,10 @@ export class AutoCompleteService {
     return this.http.post<any>(`${this.baseUrl}`+ endpoint +`/${idItem}`, object);
   }
 
+  getItem(endpoint: any,idItem: string ): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}`+ endpoint +`/${idItem}`);
+  }
+
 
   addToBase(endpoint: any,object: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}`+endpoint, object);

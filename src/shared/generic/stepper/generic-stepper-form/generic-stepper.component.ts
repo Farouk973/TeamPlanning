@@ -15,6 +15,8 @@ import {Observable} from "rxjs";
 import {FeatureComponent} from "../../../../app/app-entry-point/feature-managment/feature/feature.component";
 import {RolesComponent} from "../../../../app/app-entry-point/roles-management/roles/roles.component";
 import {MatStep, MatStepper} from "@angular/material/stepper";
+import {GridViewComponent} from "../../grid-view/grid-view.component";
+import {RecopProjectComponent} from "../../../../app/app-entry-point/project-managment/recop-project/recop-project.component";
 
 
 @Component({
@@ -70,6 +72,8 @@ export class GenericStepperComponent implements OnInit, AfterViewInit {
         return FeatureComponent;
       case 'Roles':
         return RolesComponent;
+      case 'Recop':
+        return RecopProjectComponent;
       default:
         throw new Error(`Invalid component name: ${contentType}`);
     }

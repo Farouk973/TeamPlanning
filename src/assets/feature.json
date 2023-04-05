@@ -12,5 +12,7 @@
         "nameAttributeForSearch": "description",
        "sourceSaveItemEndpoint":"/api/Feature/add-feature",
        "sourceAssignItemEndpoint":"/api/Project/addFeatureToProject",
-      "sourceDeleteOptionAfterAssignToItemEndpoint": "/api/delete"
+        "getItemEndpoint":"/api/Project/get-project",
+         "nameListOfChips": "features",
+        "sourceDeleteOptionAfterAssignToItemEndpoint": "/api/delete"
 }

@@ -30,6 +30,16 @@
         "metaData": ""
       },
       "input" : false
+    },
+    {
+      "title": "Recop",
+      "order": 4,
+      "contentType": "Recop",
+      "content":
+      { "endpoint": "",
+        "metaData": ""
+      },
+      "input" : false
     }
 
 

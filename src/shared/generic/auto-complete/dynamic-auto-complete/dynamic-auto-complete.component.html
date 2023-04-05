@@ -23,7 +23,7 @@
   <mat-form-field class="example-chip-list" appearance="fill">
     <mat-label>{{autoComplete.labelChips}}</mat-label>
     <mat-chip-list >
-      <mat-chip *ngFor="let option of chipsOptions "   (removed)="removeOptionAfterAssign(option)">{{option}}   <button matChipRemove >
+      <mat-chip *ngFor="let option of chipsOptions "   (removed)="removeOptionAfterAssign(option)">{{option[autoComplete.nameAttributeForSearch]}}   <button matChipRemove >
         <mat-icon>cancel</mat-icon>
       </button></mat-chip>
     </mat-chip-list>
