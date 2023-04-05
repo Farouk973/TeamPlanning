@@ -8,7 +8,8 @@
   "saveInputInBase": false,
   "getIdLastItemEndpoint": "/api/Users",
   "optionsDataEndpoint" : "/api/Role",
+  "nameAttributeForSearch": "title",
   "sourceSaveItemEndpoint":"/api/Users",
-  "sourceAssignItemEndpoint":"/api/Role",
+  "sourceAssignItemEndpoint":"/api/Project/addRoleToProject",
   "sourceDeleteOptionAfterAssignToItemEndpoint": "/api/delete"
 }

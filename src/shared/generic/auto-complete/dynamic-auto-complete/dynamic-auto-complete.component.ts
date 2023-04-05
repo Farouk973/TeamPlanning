@@ -20,10 +20,11 @@ export class DynamicAutoCompleteComponent implements OnInit {
   @Output() added = new EventEmitter();
   myControl = new FormControl();
   options: string[];
-  idOptions:object;
-  idItem: string ="azert";
+  idItem: string ="642beebb4022dfc90b1892ab";
+  mapping: string =''
   selectedValue;
   filteredOptions: Observable<string[]>;
+  optionLength: Observable<number>;
   chipsOptions: string[]=[];
    isTrue : boolean
 
@@ -45,8 +46,7 @@ export class DynamicAutoCompleteComponent implements OnInit {
       this.isTrue=this.autoComplete.saveInputInBase;
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       this.autoCompleteService.getDataOptions(this.autoComplete?.optionsDataEndpoint).subscribe((data)=>{
-        this.options=data.map(t=>t.title );
-        this.idOptions=data.map(i=>i.id)
+        this.options=data.map((d)=>d[this.autoComplete.nameAttributeForSearch]);
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         this.autoCompleteService.getIdLastItem(this.autoComplete?.getIdLastItemEndpoint).subscribe((id :any)=>{
           this.idItem=id;
@@ -65,6 +65,8 @@ export class DynamicAutoCompleteComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
+
+
 
   enter() {
     const controlValue = this.myControl.value;
@@ -110,7 +112,8 @@ export class DynamicAutoCompleteComponent implements OnInit {
 
   addOptionToItem(option) {
     this.chipsOptions.push(option);
-    this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint ,this.idItem ,option).subscribe((assignItem)=>{
+    let data = { [this.autoComplete.nameAttributeForSearch]: option}
+    this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint ,this.idItem , data).subscribe((assignItem)=>{
       console.log(assignItem)
     });
 
