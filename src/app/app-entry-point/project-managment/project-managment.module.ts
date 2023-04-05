@@ -8,7 +8,7 @@ import {ProjectManagmentRoutingModule} from "./project-managment-routing.module"
 
 @NgModule({
   declarations: [
-    StepperProjectComponent
+    StepperProjectComponent,
   ],
   imports: [
     CommonModule,
