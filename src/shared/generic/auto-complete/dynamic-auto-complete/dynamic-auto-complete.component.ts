@@ -20,7 +20,7 @@ export class DynamicAutoCompleteComponent implements OnInit {
   @Output() added = new EventEmitter();
   myControl = new FormControl();
   options: string[];
-  idItem: string ="azert";
+  idItem: string ="642beebb4022dfc90b1892ab";
   mapping: string =''
   selectedValue;
   filteredOptions: Observable<string[]>;
@@ -112,7 +112,8 @@ export class DynamicAutoCompleteComponent implements OnInit {
 
   addOptionToItem(option) {
     this.chipsOptions.push(option);
-    this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint ,this.idItem ,option).subscribe((assignItem)=>{
+    let data = { [this.autoComplete.nameAttributeForSearch]: option}
+    this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint ,this.idItem , data).subscribe((assignItem)=>{
       console.log(assignItem)
     });
 

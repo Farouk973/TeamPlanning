@@ -11,6 +11,6 @@
        "optionsDataEndpoint" : "/api/Feature/get-features",
         "nameAttributeForSearch": "description",
        "sourceSaveItemEndpoint":"/api/Feature/add-feature",
-       "sourceAssignItemEndpoint":"/api/Role",
+       "sourceAssignItemEndpoint":"/api/Feature/addFeatureToProject",
       "sourceDeleteOptionAfterAssignToItemEndpoint": "/api/delete"
 }
