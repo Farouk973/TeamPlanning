@@ -9,6 +9,7 @@
        "saveInputInBase": true,
        "getIdLastItemEndpoint": "/api/Users",
        "optionsDataEndpoint" : "/api/Feature/get-features",
+        "nameAttributeForSearch": "description",
        "sourceSaveItemEndpoint":"/api/Feature/add-feature",
        "sourceAssignItemEndpoint":"/api/Role",
       "sourceDeleteOptionAfterAssignToItemEndpoint": "/api/delete"

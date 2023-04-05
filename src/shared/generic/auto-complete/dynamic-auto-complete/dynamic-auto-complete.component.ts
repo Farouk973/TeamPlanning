@@ -20,8 +20,8 @@ export class DynamicAutoCompleteComponent implements OnInit {
   @Output() added = new EventEmitter();
   myControl = new FormControl();
   options: string[];
-  question = 'Would you like to add ';
   idItem: string ="azert";
+  mapping: string =''
   selectedValue;
   filteredOptions: Observable<string[]>;
   optionLength: Observable<number>;
@@ -46,9 +46,7 @@ export class DynamicAutoCompleteComponent implements OnInit {
       this.isTrue=this.autoComplete.saveInputInBase;
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       this.autoCompleteService.getDataOptions(this.autoComplete?.optionsDataEndpoint).subscribe((data)=>{
-        this.options=data.map(d=>d.description);
-        console.log(this.options)
-       // this.idOptions=data.map(i=>i.id)
+        this.options=data.map((d)=>d[this.autoComplete.nameAttributeForSearch]);
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         this.autoCompleteService.getIdLastItem(this.autoComplete?.getIdLastItemEndpoint).subscribe((id :any)=>{
           this.idItem=id;

@@ -20,6 +20,16 @@
          "metaData": ""
        },
       "input" : false
+    },
+    {
+      "title": "Roles",
+      "order": 3,
+      "contentType": "Roles",
+      "content":
+      { "endpoint": "",
+        "metaData": ""
+      },
+      "input" : false
     }
 
 

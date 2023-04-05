@@ -7,8 +7,7 @@
       matInput
       [formControl]="myControl"
       [matAutocomplete]="auto">
-    <p class="my-button"  *ngIf="(filteredOptions | async)?.length === 0" (click)="enter()">Would you like to add that?</p>
-
+    <p class="my-button"  *ngIf="(filteredOptions | async)?.length === 0 && isTrue" (click)="enter()">Would you like to add that?</p>
     <mat-autocomplete
       #auto="matAutocomplete">
         <mat-option
@@ -16,12 +15,9 @@
           [value]="option">
           <mat-icon mat-icon-button  class="my-button" (click)="addOptionToItem(option )"> add_circle</mat-icon>
           <span>{{ option}}</span>
-
         </mat-option>
-
     </mat-autocomplete>
   </mat-form-field>
-
 </div>
 <div>
   <mat-form-field class="example-chip-list" appearance="fill">
