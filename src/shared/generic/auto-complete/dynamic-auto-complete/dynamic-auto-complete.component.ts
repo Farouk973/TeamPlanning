@@ -20,7 +20,8 @@ export class DynamicAutoCompleteComponent implements OnInit {
   @Output() added = new EventEmitter();
   myControl = new FormControl();
   options: string[];
-  idItem: string ="642da514b25522e9ceed2fa0";
+  data: string[]
+  idItem: string ="642ecc35fa31cfb9eeef6648";
   selectedValue;
   filteredOptions: Observable<string[]>;
   optionLength: Observable<number>;
@@ -44,13 +45,9 @@ export class DynamicAutoCompleteComponent implements OnInit {
       this.autoComplete=autoCompleteData;
       this.isTrue=this.autoComplete.saveInputInBase;
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint , this.idItem).subscribe((data)=>{
-        this.chipsOptions=data[this.autoComplete?.nameListOfChips]
-        console.log(this.chipsOptions)
-      });
-      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       this.autoCompleteService.getDataOptions(this.autoComplete?.optionsDataEndpoint).subscribe((data)=>{
-        this.options=data.map((d)=>d[this.autoComplete.nameAttributeForSearch])
+        this.options=data.map((m)=>m[this.autoComplete.nameAttributeForSearch] )
+        this.data=data.map((m)=>m.id + '=*>' + m[this.autoComplete.nameAttributeForSearch] )
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         this.filteredOptions = this.myControl.valueChanges.pipe(
           startWith(''),
@@ -61,10 +58,12 @@ export class DynamicAutoCompleteComponent implements OnInit {
     });
 
   }
+
     private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    return this.data.filter(option => option.split("=*>")[1].toLowerCase().includes(filterValue));
   }
+
 
 
 
@@ -74,6 +73,10 @@ export class DynamicAutoCompleteComponent implements OnInit {
       const data = {description: controlValue }
       console.log(data)
       this.autoCompleteService.addToBase(this.autoComplete.sourceSaveItemEndpoint , data).subscribe((data)=>{
+        this.autoCompleteService.getDataOptions(this.autoComplete?.optionsDataEndpoint).subscribe((data)=>{
+          this.options=data.map((m)=>m[this.autoComplete.nameAttributeForSearch] )
+          this.data=data.map((m)=>m.id + '=*>' + m[this.autoComplete.nameAttributeForSearch] )
+        });
       })
     }
 
@@ -111,26 +114,30 @@ export class DynamicAutoCompleteComponent implements OnInit {
   }
 
   addOptionToItem(option) {
-   // this.chipsOptions.push(option);
-    let data = { [this.autoComplete.nameAttributeForSearch]: option}
-    this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint ,this.idItem , data).subscribe((assignItem)=>{
+    let idAdded=option.split("=*>")[0]
+    this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint ,this.idItem ,idAdded).subscribe((assignItem)=>{
       console.log(assignItem)
-    });
-    this.autoComplete$.subscribe((autoCompleteData)=> {
-      this.autoComplete = autoCompleteData;
-      this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, this.idItem).subscribe((data) => {
-        this.chipsOptions = data[this.autoComplete?.nameListOfChips]
-        console.log(this.chipsOptions)
+      this.autoComplete$.subscribe((autoCompleteData)=> {
+        this.autoComplete = autoCompleteData;
+        this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, this.idItem).subscribe((data) => {
+          this.chipsOptions = data[this.autoComplete?.nameListOfChips]
+        });
       });
     });
+
   }
 
   removeOptionAfterAssign(option :string) {
-console.log(option['id'])
-  const index = this.chipsOptions.indexOf(option);
-    if (index >= 0) {
-      this.chipsOptions.splice(index, 1);
+    let idUnassigned= option['id']
+    this.autoCompleteService.deleteOptionAfterAssignToItem(this.autoComplete.sourceUnassignOptionAfterAssignToItemEndpoint, this.idItem, idUnassigned).
+    subscribe((unassignItem)=> {
+        console.log(unassignItem)
+      this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, this.idItem).subscribe((data) => {
+        this.chipsOptions = data[this.autoComplete?.nameListOfChips]
+      });
     }
+    );
   }
+
 }
 

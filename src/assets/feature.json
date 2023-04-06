@@ -14,5 +14,5 @@
        "sourceAssignItemEndpoint":"/api/Project/addFeatureToProject",
         "getItemEndpoint":"/api/Project/get-project",
          "nameListOfChips": "features",
-        "sourceDeleteOptionAfterAssignToItemEndpoint": "/api/delete"
+        "sourceUnassignOptionAfterAssignToItemEndpoint": "/api/Project/unassignFeatureFromProject"
 }

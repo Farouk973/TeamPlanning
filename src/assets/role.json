@@ -13,5 +13,5 @@
   "sourceAssignItemEndpoint":"/api/Project/addRoleToProject",
   "getItemEndpoint":"/api/Project/get-project",
   "nameListOfChips": "roles",
-  "sourceDeleteOptionAfterAssignToItemEndpoint": "/api/delete"
+  "sourceUnassignOptionAfterAssignToItemEndpoint": "/api/Project/unassignRoleFromProject"
 }
