@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   Component, ContentChild, ContentChildren,
   ElementRef,
-  Input,
+  Input, OnChanges,
   OnInit, QueryList,
   TemplateRef,
   Type,
@@ -14,9 +14,8 @@ import {Stepper} from "../../models/stepper.model";
 import {Observable} from "rxjs";
 import {FeatureComponent} from "../../../../app/app-entry-point/feature-managment/feature/feature.component";
 import {RolesComponent} from "../../../../app/app-entry-point/roles-management/roles/roles.component";
-import {MatStep, MatStepper} from "@angular/material/stepper";
-import {GridViewComponent} from "../../grid-view/grid-view.component";
 import {RecopProjectComponent} from "../../../../app/app-entry-point/project-managment/recop-project/recop-project.component";
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -34,7 +33,11 @@ export class GenericStepperComponent implements OnInit, AfterViewInit {
   component: any;
   form = {'metaData': 'https://localhost:44312/meta/CreateRoleCommand', 'endpoint': 'https://localhost:44312/api/Role'}
   actionType : string;
-  constructor() {
+  idItem : string;
+  id : string;
+
+
+  constructor( public http : HttpClient) {
   }
 
   ngOnInit(): void {
@@ -43,7 +46,6 @@ export class GenericStepperComponent implements OnInit, AfterViewInit {
     });
 
   }
-
   ngAfterViewInit(): void {
 
 /*    console.log('afterViewInit', this.items.forEach(
@@ -81,6 +83,13 @@ export class GenericStepperComponent implements OnInit, AfterViewInit {
 
   onFormSubmit(): void {
     this.actionType ='';
-  this.actionType= 'CREATE';
+    this.actionType= 'CREATE';
+
   }
+  formResponse(event) :string{
+    console.log('event',event.response.projectId)
+    return event.response.projectId;
+  }
+
+
 }

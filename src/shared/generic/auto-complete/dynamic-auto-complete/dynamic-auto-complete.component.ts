@@ -16,6 +16,10 @@ export class DynamicAutoCompleteComponent implements OnInit {
   @Input() autoComplete$!:Observable<AutoComplete> ;
   autoComplete = new AutoComplete();
 
+  @Input() set showItem(id :any) {
+    this.showProject(id);
+    console.log('idItem',id)
+  }
 
   @Output() added = new EventEmitter();
   myControl = new FormControl();
@@ -27,7 +31,7 @@ export class DynamicAutoCompleteComponent implements OnInit {
   optionLength: Observable<number>;
   chipsOptions: string[]=[];
    isTrue : boolean
-
+  idProject!: any
   // Function to call when the option changes.
   onChange = (autoComplete: string) => {};
 
@@ -138,6 +142,8 @@ export class DynamicAutoCompleteComponent implements OnInit {
     }
     );
   }
-
+  showProject(id :any){
+    this.idItem=id
+  }
 }
 

@@ -21,8 +21,6 @@
 <!--  <p class="my-button"  *ngIf="(filteredOptions | async)?.length === 0 && isTrue"  (click)="optionAdded = !optionAdded" (click)="enter()">Would you like to add that?</p>-->
 </div>
 <div>
-
-
     <mat-chip-list >
       <mat-chip *ngFor="let option of chipsOptions "   (removed)="removeOptionAfterAssign(option)">{{option[autoComplete.nameAttributeForSearch]}}   <button matChipRemove >
         <mat-icon>cancel</mat-icon>
