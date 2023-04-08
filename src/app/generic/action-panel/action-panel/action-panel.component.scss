@@ -1,0 +1,24 @@
+.mb10:hover {
+  background-color: #F4FDFF
+  ;
+}
+.mdc-card {
+  display: inline;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.example-card :hover{
+  cursor: pointer;
+
+}
+.delete{
+  color: #FF5C5C;
+}
+.mat-mdc-card-header {
+  display: flex;
+  padding: 16px 11px 16px 16px;
+}
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+}
+

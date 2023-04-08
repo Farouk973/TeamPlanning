@@ -1,8 +1,20 @@
-import {Component, Input, OnInit, Type,} from '@angular/core';
+import {
+  AfterViewInit,
+  Component, ContentChild, ContentChildren,
+  ElementRef,
+  Input,
+  OnInit, QueryList,
+  TemplateRef,
+  Type,
+  ViewChild,
+  ViewChildren
+} from '@angular/core';
 import {FormComponent} from "../../form/form/form.component";
 import {Stepper} from "../../models/stepper.model";
-import {GridViewComponent} from "../../grid-view/grid-view.component";
 import {Observable} from "rxjs";
+import {FeatureComponent} from "../../../../app/app-entry-point/feature-managment/feature/feature.component";
+import {RolesComponent} from "../../../../app/app-entry-point/roles-management/roles/roles.component";
+import {MatStep, MatStepper} from "@angular/material/stepper";
 
 
 @Component({
@@ -11,36 +23,60 @@ import {Observable} from "rxjs";
   styleUrls: ['./generic-stepper.component.css']
 })
 
-export class GenericStepperComponent implements OnInit {
- @Input() stepper$!:Observable<Stepper>;
+export class GenericStepperComponent implements OnInit, AfterViewInit {
+  @Input() stepper$!: Observable<Stepper>;
   stepper = new Stepper();
-  ngOnInit(): void {
-    this.stepper$.subscribe((stepperData:any ) => {
-
-      this.stepper= stepperData;
-/*      this.http
-        .get('/assets/stepper.json').
-        .subscribe((formData:any ) => {
-          formData.steps.forEach(step =>{
-            let _step = new Step();
-            _step.title = step.title;
-            _step.order =step.order;
-            _step.action= step.action;
-            _step.content = new Form();
-            this.stepper.steps.push(_step);
-          })
-        });*/
-      });
+  @ViewChild(FormComponent) childComponent: FormComponent;
+  // @ViewChildren('templateRef') items: QueryList<any> ;
+  @ViewChildren('stepperComponent') items: QueryList<FormComponent>;
+  component: any;
+  form = {'metaData': 'https://localhost:44312/meta/CreateRoleCommand', 'endpoint': 'https://localhost:44312/api/Role'}
+  actionType : string;
+  constructor() {
   }
 
-  getComponent(contentType: string): Type<any> {
+  ngOnInit(): void {
+    this.stepper$.subscribe((stepperData: any) => {
+      this.stepper = stepperData;
+    });
+
+  }
+
+  ngAfterViewInit(): void {
+
+/*    console.log('afterViewInit', this.items.forEach(
+      item => {
+        console.log(item)
+      }
+    ))*/
+    //console.log('afterViewInitArrays',this.item.toArray());
+    /*   this.items.changes.subscribe(() => {
+         this.component=  this.items.toArray()[0].elementRef.nativeElement.previousElementSibling;
+         console.log('itmes',this.items.toArray()[0].elementRef.nativeElement.previousElementSibling)
+
+       });*/
+
+  }
+
+  reload() {
+    window.location.reload()
+  }
+
+  getComponent(contentType: string): any {
     switch (contentType) {
       case 'Form':
         return FormComponent;
-      case 'NXMGridView':
-        return GridViewComponent;
+      case 'Features':
+        return FeatureComponent;
+      case 'Roles':
+        return RolesComponent;
       default:
         throw new Error(`Invalid component name: ${contentType}`);
     }
+  }
+
+  onFormSubmit(): void {
+    this.actionType ='';
+  this.actionType= 'CREATE';
   }
 }

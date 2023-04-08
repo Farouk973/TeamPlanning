@@ -68,7 +68,7 @@ import { CommonModule } from '@angular/common';
   declarations: [
     AppComponent,
     AuthentificateComponent,
-   
+
    
 
 

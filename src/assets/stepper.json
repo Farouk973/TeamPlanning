@@ -5,47 +5,52 @@
       "order": 1,
       "contentType": "Form",
       "content":
-       { "endpoint": "https://localhost:44312/api/Permission",
-         "metaData": "https://localhost:44312/meta/UploadPictureCommand"
+       { "endpoint": "https://localhost:44312/api/Project/add-project",
+         "metaData": "https://localhost:44312/meta/CreateProjectCommand"
        },
-      "actions": [
-        {
-          "label": "Next",
-          "goto": 2
-        }
-      ]
+        "input" : true
+    },
+
+    {
+      "title": "Features",
+      "order": 2,
+      "contentType": "Features",
+      "content":
+       { "endpoint": "",
+         "metaData": ""
+       },
+      "input" : false
     },
     {
-      "title": "feature",
-      "order": 1,
-      "contentType": "Form",
+      "title": "Roles",
+      "order": 3,
+      "contentType": "Roles",
       "content":
-       { "endpoint": "https://localhost:44312/api/Role",
-         "metaData": "https://localhost:44312/meta/CreateRoleCommand"
-       },
-      "actions": [
-        {
-          "label": "Next",
-          "goto": 2
-        }
-      ]
-    },
-    {
-      "title": "Project",
-      "order": 1,
-      "contentType": "Form",
-      "content":
-       { "endpoint": "https://localhost:44312/api/Permission",
-         "metaData": "https://localhost:44312/meta/UploadPictureCommand"
-       },
-      "actions": [
-        {
-          "label": "Next",
-          "goto": 2
-        }
-      ]
+      { "endpoint": "",
+        "metaData": ""
+      },
+      "input" : false
     }
-  ]
+
+
+  ],
+  "next": {
+        "label": "Next",
+        "endpoint": "",
+         "style": "background-color: #00b2d9;"
+  },
+  "back": {
+    "label": "Back",
+    "endpoint": "",
+    "style": "background-color: #00b2d9;"
+  },
+  "end": {
+    "label": "End",
+    "endpoint": "",
+    "style": "background-color: #00b2d9;"
+  },
+  "valueDuration": "1000",
+  "orientation": "horizontal"
 }
 
 

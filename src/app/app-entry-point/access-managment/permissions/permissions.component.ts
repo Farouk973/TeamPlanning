@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 import { Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
 import { Calendar } from 'src/shared/generic/models/Calendar.model';
 import { Container } from 'src/shared/generic/models/Container.model';
 import { Form } from 'src/shared/generic/models/Form.model';
 import { GridView } from 'src/shared/generic/models/GridView.model';
+import { SelectOrder } from 'src/shared/generic/models/SelectOrder.model';
 import { DialogComponent } from 'src/shared/generic/nxm-dialog/dialog/dialog.component';
 import { Permission } from 'src/shared/models/permission.model';
 import { PermissionService } from 'src/shared/services/permission.service';
+import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 export interface PeriodicElement {
   name: string;
   title: number;
@@ -33,6 +36,12 @@ export class PermissionsComponent implements OnInit {
   ngOnInit() {
     this.getMenu();
    }
+
+   openOrderDialog() {
+    this.dialog.open(OrderDialogComponent, {
+      
+    });
+  }
   getMenu() {
     this.permissionService.getMenu().subscribe({
       next: (data) => {
@@ -41,23 +50,31 @@ export class PermissionsComponent implements OnInit {
     })
   }
   action: Actionpanel = {
-    endpoint: 'https://localhost:44312/api/Permission',
-    formEditData: 'https://localhost:44312/meta/UpdatePermissionCommand',
+    endpoint: `${environment.baseUrl}/api/Permission`,
+    formEditData: `${environment.baseUrl}/meta/UpdatePermissionCommand`,
   };
 
   grid: GridView = {
-    endpoint: 'https://localhost:44312/api/Permission',
-    formdata: 'https://localhost:44312/meta/CreatePermissionCommand',
-    metadata: 'https://localhost:44312/meta/GetPermissionListVm',
+    endpoint: `${environment.baseUrl}/api/Permission`,
+    formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
+    metadata: `${environment.baseUrl}/meta/GetPermissionListVm`,
     allowedSortColumns: ['title'],
     actionPanel: this.action,
   };
+  
+
+  select : SelectOrder = {
+    endpointData : 'https://localhost:44312/api/Permission',
+    endpointAction : 'https://localhost:44312/api/Permission/ordre',
+    InterfaceName : 'change menu order',
+    TaskSelectCollumn : 'name',
+  };
 
   config = {
-    endpoint: 'https://localhost:44312/api/Permission',
-    metadata: 'https://localhost:44312/meta/GetPermissionListVm',
-    formdata: 'https://localhost:44312/meta/CreatePermissionCommand',
-    formeditdata: 'https://localhost:44312/meta/UpdatePermissionCommand',
+    endpoint: `${environment.baseUrl}/api/Permission`,
+    metadata: `${environment.baseUrl}/meta/GetPermissionListVm`,
+    formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
+    formeditdata: `${environment.baseUrl}/meta/UpdatePermissionCommand`,
     pageSize: 2,
     title: 'Project Management',
     icon: 'https://img.freepik.com/premium-vector/vector-creative-project-icon-flat-style_106427-199.jpg?w=2000',

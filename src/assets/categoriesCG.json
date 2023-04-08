@@ -1,4 +1,8 @@
 {
     "Metadata": "assets/metadata.json",
-    "endpointsave":""
+    "endpointsave":"",
+    "subdomainname":"Categories",
+    "domainname":"skills"
+
+
 }

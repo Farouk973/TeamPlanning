@@ -6,12 +6,15 @@ import { FormModule } from '../form/form.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { ActiondialogComponent } from './actiondialog/actiondialog.component';
+import { GridViewModule } from '../grid-view/grid-view.module';
 
 
 @NgModule({
   declarations: [
     DialogComponent,
     ConfirmationComponent,
+    ActiondialogComponent,
     
   ],
   imports: [
@@ -19,8 +22,8 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     CommonModule,
     MatDialogModule,
     MatButtonModule,
-    MatIconModule
-    
+    MatIconModule,
+    GridViewModule
   ],
   exports :[DialogComponent]
 })

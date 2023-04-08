@@ -1,0 +1,16 @@
+
+
+{    "label": "Add features to project:",
+     "input": {
+                 "type": "text",
+                  "placeholder": "Enter here..."
+                },
+       "labelChips": "Features of project:",
+       "saveInputInBase": true,
+       "getIdLastItemEndpoint": "/api/Users",
+       "optionsDataEndpoint" : "/api/Feature/get-features",
+        "nameAttributeForSearch": "description",
+       "sourceSaveItemEndpoint":"/api/Feature/add-feature",
+       "sourceAssignItemEndpoint":"/api/Project/addFeatureToProject",
+      "sourceDeleteOptionAfterAssignToItemEndpoint": "/api/delete"
+}

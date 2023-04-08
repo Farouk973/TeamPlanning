@@ -1,19 +1,25 @@
-import {InputsType} from "ng-dynamic-component";
 import {NXMGenericComponent} from "./NXMGenericComponent.model";
+import {StepperOrientation} from "@angular/cdk/stepper";
 
 export class Stepper implements NXMGenericComponent{
   steps: Step[];
+  next : action;
+  back : action;
+  end: action;
+  valueDuration: number;
+  orientation: StepperOrientation;
 }
-export class Step {
+class Step {
   title: string;
   order: string;
   contentType: string;
   content: NXMGenericComponent;
-  action :
-    [
-      {
-        label: string,
-      }
-    ]
+  input:boolean;
 }
 
+class action {
+  label: string;
+  endpoint :string;
+  style : string;
+
+}

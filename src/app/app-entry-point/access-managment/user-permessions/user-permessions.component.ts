@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
+import { environment } from 'src/environments/environment';
 import { Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
 import { CardGridView } from 'src/shared/generic/models/CardView.model';
 import { GridView } from 'src/shared/generic/models/GridView.model';
@@ -25,10 +26,10 @@ export class UserPermessionsComponent implements OnInit {
   ngOnInit(): void {
   }
   config = {
-    endpoint: 'https://localhost:44312/api/Users',
-    metadata: 'https://localhost:44312/meta/GetUsersPermessionsVm',
-    formdata: 'https://localhost:44312/meta/CreatePermissionCommand',
-    formeditdata: 'https://localhost:44312/meta/UpdateUserRoleEtPermessionsCommand',
+    endpoint: `${environment.baseUrl}/api/Users`,
+    metadata: `${environment.baseUrl}/meta/GetUsersPermessionsVm`,
+    formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
+    formeditdata: `${environment.baseUrl}/meta/UpdateUserRoleEtPermessionsCommand`,
     pageSize: 2,
     title: 'Permessions Management',
     icon: 'https://img.freepik.com/premium-vector/vector-creative-project-icon-flat-style_106427-199.jpg?w=2000',
@@ -36,22 +37,22 @@ export class UserPermessionsComponent implements OnInit {
   };
 
   action: Actionpanel = {
-    endpoint: 'https://localhost:44312/api/Users',
-    formEditData: 'https://localhost:44312/meta/UpdateUserRoleEtPermessionsCommand',
+    endpoint: `${environment.baseUrl}/api/Users`,
+    formEditData: `${environment.baseUrl}/meta/UpdateUserRoleEtPermessionsCommand`,
   };
 
   grid: GridView = {
-    endpoint: 'https://localhost:44312/api/Users',
-    formdata: 'https://localhost:44312/meta/CreatePermissionCommand',
-    metadata: 'https://localhost:44312/meta/GetUsersPermessionsVm',
+    endpoint: `${environment.baseUrl}/api/Users`,
+    formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
+    metadata: `${environment.baseUrl}/meta/GetUsersPermessionsVm`,
     allowedSortColumns: ['title'],
     actionPanel: this.action,
   };
 
   card: CardGridView = {
-    endpoint: 'https://localhost:44312/api/Role',
-    formdata: 'https://localhost:44312/meta/CreateRoleCommand',
-    metadata: 'https://localhost:44312/meta/GetRoleListVm',
+    endpoint: `${environment.baseUrl}/api/Role`,
+    formdata: `${environment.baseUrl}/meta/CreateRoleCommand`,
+    metadata: `${environment.baseUrl}/meta/GetRoleListVm`,
     cardtitle: "title",
     carddescription: "description",
     width: 300,

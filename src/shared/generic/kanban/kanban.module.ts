@@ -9,7 +9,9 @@ import { KanbanComponent } from './kanban/kanban.component';
     KanbanComponent
   ],
   imports: [
-    CommonModule
-  ]
+    CommonModule,
+
+  ],
+  exports: [KanbanComponent],
 })
 export class KanbanModule { }

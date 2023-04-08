@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 import { Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
 import { CardGridView } from 'src/shared/generic/models/CardView.model';
 import { Form } from 'src/shared/generic/models/Form.model';
@@ -17,19 +18,19 @@ export class RoleComponent implements OnInit {
   ngOnInit(): void {
   }
   action: Actionpanel = {
-    endpoint: 'https://localhost:44312/api/Users',
-    formEditData: 'https://localhost:44312/meta/UpdateUserRoleEtPermessionsCommand',
+    endpoint: `${environment.baseUrl}/api/Users`,
+    formEditData: `${environment.baseUrl}/meta/UpdateUserRoleEtPermessionsCommand`,
   };
 
   forms: Form = {
-             endpoint: 'https://localhost:44312/api/Role',
+             endpoint: `${environment.baseUrl}/api/Role`,
              
-             metaData: 'https://localhost:44312/meta/CreateRoleCommand', };
+             metaData: `${environment.baseUrl}/meta/CreateRoleCommand`, };
 
   card: CardGridView = {
-    endpoint: 'https://localhost:44312/api/Role',
-    formdata: 'https://localhost:44312/meta/CreateRoleCommand',
-    metadata: 'https://localhost:44312/meta/GetRoleListVm',
+    endpoint: `${environment.baseUrl}/api/Role`,
+    formdata: `${environment.baseUrl}/meta/CreateRoleCommand`,
+    metadata: `${environment.baseUrl}/meta/GetRoleListVm`,
     cardtitle: "title",
     carddescription: "description",
     width: 300,
