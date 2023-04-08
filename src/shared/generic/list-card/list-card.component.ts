@@ -43,12 +43,11 @@ retrieveData(): void {
  
  private mapCardDataList(cardData: CardData[]): CardData[] {
   return cardData.map((dataCard: CardData) => {
-    const dynamicProps = {};
-    dynamicProps[this.data.primaryLabelName] = dataCard.bodyTitle;
+   
     return {
       ...dataCard,
       ...this.data,
-      ...dynamicProps,
+      
     };
   });
 } onAction(){
@@ -61,26 +60,34 @@ onEdit(cardId: string) {
    
   
 }
-saveCard(cardId) {
+saveCard(cardId: string) {
   const cardIndex = this.cardDataList.findIndex(card => card.id === cardId);
+
   if (cardIndex >= 0) {
     this.cardDataList[cardIndex].editing = true;
     this.editingCardIndex = cardIndex;
-    const { id, bodyTitle, textbody,nbHours,nbResources } = this.cardDataList[cardIndex];
-    this.editingCard = { id, bodyTitle, textbody,nbHours,nbResources  };
+
+    const { id, bodyTitleName, textbodyName, primaryLabelName } = this.cardDataList[cardIndex];
+    const editingCard = { id, [bodyTitleName]: this.cardDataList[cardIndex][bodyTitleName], [textbodyName]: this.cardDataList[cardIndex][textbodyName], [primaryLabelName]: this.cardDataList[cardIndex][primaryLabelName] };
+    
+    this.editingCard = editingCard;
+    console.log(this.editingCard)
+    
   }
-  // Make API call to post the edited card data to the server
-  this.listCardService.updateRow(this.data.updateEndpoint, this.editingCard)
-    .subscribe(response => {
-      // If the update was successful, update the card in the list and exit editing mode
-      console.log(this.editingCard)
-    }, error => {
-      // If there was an error, log it and exit editing mode without updating the card
+
+  this.listCardService.updateRow(this.data.updateEndpoint, this.editingCard).subscribe(
+    response => {
+      console.log(this.editingCard);
+      this.cardDataList[cardIndex].editing = false;
+    },
+    error => {
       console.error('Error updating card:', error);
-      
       this.editingCardIndex = this.editingCard = null;
-    });
+    }
+  );
 }
+
+
  onDelete(cardId: string) {
   
   const cardIndex = this.cardDataList.findIndex(card => card.id === cardId);

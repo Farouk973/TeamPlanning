@@ -23,8 +23,6 @@
 /* Column class */
 .col {
   position: relative;
-  width: 100%;
-  min-height: 1px;
   padding-right: 15px; /* Adjust for negative margins on row class */
   padding-left: 15px; /* Adjust for negative margins on row class */
 }
