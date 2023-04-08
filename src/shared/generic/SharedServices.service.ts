@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ColumnMetadata } from './models/ColumnMetadata.model';
+import { CardData } from './list-card/Models/cardModel';
 
 @Injectable({providedIn: 'root'})
 export class SharedServices {
@@ -9,6 +10,10 @@ export class SharedServices {
 
   getData(endpoint: string): Observable<any[]> {
     return this.httpClient.get<any[]>(endpoint);
+  }
+  getParametrizedData(endpoint:string,pageNb:any){
+    const params = new HttpParams().set('parameterValue', pageNb);
+    return this.httpClient.get<any>(endpoint, {params});
   }
   getMetadata(modelName: string): Observable<ColumnMetadata[]> {
     return this.httpClient.get<ColumnMetadata[]>(modelName);
@@ -19,8 +24,12 @@ export class SharedServices {
   updateRow(endpoint:any,object:any):Observable<any>{
     return this.httpClient.put<any>(endpoint,object);
   }
+
   deleteRow(endpoint: string, id: number): Observable<number> {
     return this.httpClient.delete<number>(endpoint + '/' + id);
+  }
+  deleteCard(endpoint: string, id: string): Observable<string> {
+    return this.httpClient.delete<string>(endpoint + '/' + id);
   }
   search(query: string): Observable<any> {
     return this.httpClient.get('/api/search?q=' + query);

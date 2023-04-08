@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {CatalogueServiceComponent} from './services/catalogue-service.component'
+import {CatalogueServicesComponent} from './catalogue-services/catalogue-services.component'
 
 const routes: Routes = [
   {
     path: '',
-    component: CatalogueServiceComponent,
+    component: CatalogueServicesComponent,
   },
 
 ];
