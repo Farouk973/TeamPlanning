@@ -17,8 +17,8 @@ export interface CardData {
   textLabel?:string;
   bodyTitle?:string;
   bodyTitleName?:string;
-  nbResources?:string;
-  nbHours?:string;
+  nbResources?:number;
+  nbHours?:number;
   showEditButton?: boolean;
   showBody?: boolean;
   showFooterAction?:boolean;

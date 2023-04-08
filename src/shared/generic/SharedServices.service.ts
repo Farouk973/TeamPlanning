@@ -13,7 +13,7 @@ export class SharedServices {
   }
   getParametrizedData(endpoint:string,pageNb:any){
     const params = new HttpParams().set('parameterValue', pageNb);
-    return this.httpClient.get<CardData[]>(endpoint, {params});
+    return this.httpClient.get<any>(endpoint, {params});
   }
   getMetadata(modelName: string): Observable<ColumnMetadata[]> {
     return this.httpClient.get<ColumnMetadata[]>(modelName);

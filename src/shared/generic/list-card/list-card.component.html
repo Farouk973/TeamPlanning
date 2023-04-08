@@ -3,7 +3,7 @@
     <mat-card>
       <ng-content></ng-content>
       <div *ngIf="!card.editing">
-      <div *ngIf="card?.primaryLabel" class="primary-label" [style.backgroundColor]="card?.primaryColor" [style.Color]="card?.labelColor">{{ card?.primaryLabel }}</div>
+      <div *ngIf="card?.primaryLabelName" class="primary-label" [style.backgroundColor]="card?.primaryColor" [style.Color]="card?.labelColor"> {{ card.primaryLabel}}</div>
       <div class="menu-wrapper">
         <button mat-icon-button [matMenuTriggerFor]="appMenu">
           <mat-icon>more_vert</mat-icon>
@@ -27,7 +27,7 @@
       </mat-card-header>
       <mat-card-content *ngIf="!card.editing" [style.min-height]="card.minHeight" [style.max-height]="card.maxHeight">
         <div class="my-component-body" contenteditable="true">
-          {{card?.textbody}}{{card.id}}
+          {{card?.textbody}}
         </div>
       </mat-card-content>
     </div>
@@ -44,7 +44,7 @@
           <mat-label>{{card.primaryLabelName}}</mat-label>
           <input matInput [(ngModel)]="card.primaryLabel" name="primaryLabel" style="border-radius: 10px; border: 2px solid #00b2d91a;">
         </div>
-        <button mat-button color="primary" (click)="saveCard()">Save</button>
+        <button mat-button color="primary" (click)="saveCard(card.id)">Save</button>
         <button mat-button (click)="card.editing = false">Cancel</button>
       </mat-card-content>
       

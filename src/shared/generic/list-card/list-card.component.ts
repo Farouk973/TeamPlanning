@@ -35,35 +35,45 @@ export class ListCardComponent implements OnInit {
 retrieveData(): void {
   this.data?.endpoint?.subscribe((endpointValue) => {
     this.listCardService.getParametrizedData(endpointValue, this.params)
-      .subscribe((cardData) => this.cardDataList = this.mapCardDataList(cardData));
+      .subscribe((cardData) => {this.cardDataList = this.mapCardDataList(cardData) ; console.log(this.cardDataList) });
+
   });
 }
 
  
-   private mapCardDataList(cardData: CardData[]): CardData[] {
-   return cardData.map((dataCard: CardData) => ({
-     ...dataCard,
-     ...this.data
-   }));
- }
- onAction(){
+ private mapCardDataList(cardData: CardData[]): CardData[] {
+  return cardData.map((dataCard: CardData) => {
+    const dynamicProps = {};
+    dynamicProps[this.data.primaryLabelName] = dataCard.bodyTitle;
+    return {
+      ...dataCard,
+      ...this.data,
+      ...dynamicProps,
+    };
+  });
+} onAction(){
 
  }
 onEdit(cardId: string) {
   const cardIndex = this.cardDataList.findIndex(card => card.id === cardId);
+  
+    this.cardDataList[cardIndex].editing = true;
+   
+  
+}
+saveCard(cardId) {
+  const cardIndex = this.cardDataList.findIndex(card => card.id === cardId);
   if (cardIndex >= 0) {
     this.cardDataList[cardIndex].editing = true;
     this.editingCardIndex = cardIndex;
-    const { id, bodyTitle, textbody } = this.cardDataList[cardIndex];
-    this.editingCard = { id, bodyTitle, textbody };
+    const { id, bodyTitle, textbody,nbHours,nbResources } = this.cardDataList[cardIndex];
+    this.editingCard = { id, bodyTitle, textbody,nbHours,nbResources  };
   }
-}
-saveCard() {
   // Make API call to post the edited card data to the server
   this.listCardService.updateRow(this.data.updateEndpoint, this.editingCard)
     .subscribe(response => {
       // If the update was successful, update the card in the list and exit editing mode
-      
+      console.log(this.editingCard)
     }, error => {
       // If there was an error, log it and exit editing mode without updating the card
       console.error('Error updating card:', error);
