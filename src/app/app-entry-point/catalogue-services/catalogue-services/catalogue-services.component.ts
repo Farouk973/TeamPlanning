@@ -15,7 +15,8 @@ export class CatalogueServicesComponent implements OnInit {
   searchForm: FormGroup;
   categories: CardData[] = categoryData;
   card: CardData = mockCardData;
-  baseUrl = 'https://localhost:5001/api/Service/filter';
+  baseUrl = 'https://localhost:5001/api/Service';
+  selectedCategory = '';
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -41,8 +42,19 @@ export class CatalogueServicesComponent implements OnInit {
     this.card.endpoint.next("https://localhost:5001/api/service");
   } else {
     // if search term is not empty, set endpoint with search term
-    this.card.endpoint.next(`${this.baseUrl}?SearchedWord=${searchTerm}`);
+    this.card.endpoint.next(`${this.baseUrl}/search?SearchedWord=${searchTerm}`);
   }
+  }
+   filter(category: string) {
+    if (category === this.selectedCategory) {
+      // if already selected, reset to initial endpoint
+      this.card.endpoint.next(`${this.baseUrl}/filter`);
+      this.selectedCategory = '';
+    } else {
+      // if not selected, set endpoint with category
+      this.card.endpoint.next(`${this.baseUrl}/filter?Category=${category}`);
+      this.selectedCategory = category;
+    }
   }
 }
  
