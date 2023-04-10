@@ -26,7 +26,7 @@ export class FormComponent implements OnInit {
 
   form = new FormGroup({});
   @Input() formData: Form;
-  @Output() myEvent = new EventEmitter<any>();
+  @Output() myEvent = new EventEmitter<any>(true);
   @ViewChild('buttonToSubmit') buttonToSubmit: ElementRef;
 
   @Input() set submitType(type: string) {
@@ -158,7 +158,7 @@ export class FormComponent implements OnInit {
   }
 
   async submitAsync() {
-    this.buttonToSubmit.nativeElement.click();
+    this.buttonToSubmit?.nativeElement.click();
 
     return this.form.valid;
   }

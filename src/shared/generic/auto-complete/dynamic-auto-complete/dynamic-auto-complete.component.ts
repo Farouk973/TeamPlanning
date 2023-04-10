@@ -4,6 +4,9 @@ import {Observable} from "rxjs";
 import {FormControl} from "@angular/forms";
 import { map, startWith } from 'rxjs/operators';
 import {AutoCompleteService} from "../auto-complete.service";
+import {CookieService} from "ngx-cookie-service";
+import {Location} from "@angular/common";
+import url from "url";
 
 @Component({
   selector: 'app-dynamic-auto-complete',
@@ -16,22 +19,21 @@ export class DynamicAutoCompleteComponent implements OnInit {
   @Input() autoComplete$!:Observable<AutoComplete> ;
   autoComplete = new AutoComplete();
 
-  @Input() set showItem(id :any) {
-    this.showProject(id);
-    console.log('idItem',id)
-  }
+  @Input()  set idResponse (id: string){
+    this.addOptionToItem(id)
+  };
 
   @Output() added = new EventEmitter();
   myControl = new FormControl();
   options: string[];
   data: string[]
-  idItem: string ="642ecc35fa31cfb9eeef6648";
+ // idItem: string ="642ecc35fa31cfb9eeef6648";
   selectedValue;
   filteredOptions: Observable<string[]>;
   optionLength: Observable<number>;
   chipsOptions: string[]=[];
    isTrue : boolean
-  idProject!: any
+   // idResponse = this.cookieService.get('cookieName');
   // Function to call when the option changes.
   onChange = (autoComplete: string) => {};
 
@@ -41,10 +43,9 @@ export class DynamicAutoCompleteComponent implements OnInit {
   get value() {
     return this.selectedValue;
   }
-  constructor(private autoCompleteService : AutoCompleteService) { }
+  constructor(private autoCompleteService : AutoCompleteService,private cookieService: CookieService) { }
 
   ngOnInit(): void {
-
     this.autoComplete$.subscribe((autoCompleteData)=>{
       this.autoComplete=autoCompleteData;
       this.isTrue=this.autoComplete.saveInputInBase;
@@ -117,13 +118,14 @@ export class DynamicAutoCompleteComponent implements OnInit {
     this.onTouched = fn;
   }
 
-  addOptionToItem(option) {
+  addOptionToItem(option ) {
+    let id=  this.cookieService.get('idResponse');
     let idAdded=option.split("=*>")[0]
-    this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint ,this.idItem ,idAdded).subscribe((assignItem)=>{
+    this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint , id ,idAdded).subscribe((assignItem)=>{
       console.log(assignItem)
       this.autoComplete$.subscribe((autoCompleteData)=> {
         this.autoComplete = autoCompleteData;
-        this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, this.idItem).subscribe((data) => {
+        this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, id).subscribe((data) => {
           this.chipsOptions = data[this.autoComplete?.nameListOfChips]
         });
       });
@@ -132,18 +134,17 @@ export class DynamicAutoCompleteComponent implements OnInit {
   }
 
   removeOptionAfterAssign(option :string) {
+    let id=  this.cookieService.get('idResponse');
     let idUnassigned= option['id']
-    this.autoCompleteService.deleteOptionAfterAssignToItem(this.autoComplete.sourceUnassignOptionAfterAssignToItemEndpoint, this.idItem, idUnassigned).
+    this.autoCompleteService.deleteOptionAfterAssignToItem(this.autoComplete.sourceUnassignOptionAfterAssignToItemEndpoint,id, idUnassigned).
     subscribe((unassignItem)=> {
         console.log(unassignItem)
-      this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, this.idItem).subscribe((data) => {
+      this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, id).subscribe((data) => {
         this.chipsOptions = data[this.autoComplete?.nameListOfChips]
       });
     }
     );
   }
-  showProject(id :any){
-    this.idItem=id
-  }
+
 }
 

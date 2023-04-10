@@ -23,6 +23,7 @@
     "@angular/router": "^14.0.0",
     "angular-auth-oidc-client": "15.0.2",
     "ng-dynamic-component": "^10.7.0",
+    "ngx-cookie-service": "^14.0.0",
     "ngx-highlightjs": "^4.1.4",
     "primeflex": "^3.3.0",
     "rxjs": "~7.5.0",

@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component, ContentChild, ContentChildren,
   ElementRef,
   Input, OnChanges,
@@ -11,56 +11,48 @@ import {
 } from '@angular/core';
 import {FormComponent} from "../../form/form/form.component";
 import {Stepper} from "../../models/stepper.model";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable, of, Subject} from "rxjs";
 import {FeatureComponent} from "../../../../app/app-entry-point/feature-managment/feature/feature.component";
 import {RolesComponent} from "../../../../app/app-entry-point/roles-management/roles/roles.component";
 import {RecopProjectComponent} from "../../../../app/app-entry-point/project-managment/recop-project/recop-project.component";
 import {HttpClient} from "@angular/common/http";
+import {Location} from "@angular/common";
+import {ActivatedRoute, Router, RouterModule, UrlSerializer, UrlTree} from "@angular/router";
+import {CookieService} from "ngx-cookie-service";
+import {IoEventContextToken} from "ng-dynamic-component";
 
 
 @Component({
   selector: 'app-generic-stepper',
   templateUrl: './generic-stepper.component.html',
-  styleUrls: ['./generic-stepper.component.css']
+  styleUrls: ['./generic-stepper.component.css'],
+  providers: [
+    {
+      provide: IoEventContextToken,
+      useExisting: GenericStepperComponent,
+    },
+  ],
 })
 
-export class GenericStepperComponent implements OnInit, AfterViewInit {
+export class GenericStepperComponent implements OnInit {
   @Input() stepper$!: Observable<Stepper>;
   stepper = new Stepper();
-  @ViewChild(FormComponent) childComponent: FormComponent;
-  // @ViewChildren('templateRef') items: QueryList<any> ;
-  @ViewChildren('stepperComponent') items: QueryList<FormComponent>;
-  component: any;
-  form = {'metaData': 'https://localhost:44312/meta/CreateRoleCommand', 'endpoint': 'https://localhost:44312/api/Role'}
-  actionType : string;
-  idItem : string;
-  id : string;
+
+  actionType: string;
+  idItem: string;
+  idResponse: string = '';
 
 
-  constructor( public http : HttpClient) {
+  constructor(public http: HttpClient, private cookieService: CookieService, private location: Location) {
+
   }
 
   ngOnInit(): void {
     this.stepper$.subscribe((stepperData: any) => {
       this.stepper = stepperData;
     });
-
   }
-  ngAfterViewInit(): void {
 
-/*    console.log('afterViewInit', this.items.forEach(
-      item => {
-        console.log(item)
-      }
-    ))*/
-    //console.log('afterViewInitArrays',this.item.toArray());
-    /*   this.items.changes.subscribe(() => {
-         this.component=  this.items.toArray()[0].elementRef.nativeElement.previousElementSibling;
-         console.log('itmes',this.items.toArray()[0].elementRef.nativeElement.previousElementSibling)
-
-       });*/
-
-  }
 
   reload() {
     window.location.reload()
@@ -81,14 +73,30 @@ export class GenericStepperComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onFormSubmit(): void {
-    this.actionType ='';
-    this.actionType= 'CREATE';
 
+  formResponse(event) {
+     this.idResponse= event.response.projectId
+    this.cookieService.set('idResponse', event.response.projectId);
   }
-  formResponse(event) :string{
-    console.log('event',event.response.projectId)
-    return event.response.projectId;
+
+
+  onFormSubmit(step : string): void {
+    if (step == 'Form') {
+      this.actionType = '';
+      this.actionType = 'CREATE'
+
+    }
+    setTimeout(()=>{
+      console.log('onSubmit', this.idResponse)
+      if (step == 'Features') {
+         this.idResponse=this.idResponse
+
+      }
+    },5000)
+
+
+
+
   }
 
 
