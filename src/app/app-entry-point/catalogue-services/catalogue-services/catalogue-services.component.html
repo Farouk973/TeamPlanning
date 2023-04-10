@@ -7,7 +7,7 @@
 </div>
 <div class="row">
   <div class="col" *ngFor="let category of categories">
-    <button class="primary-label" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'" mat-button>{{category.primaryLabel}}</button>
+    <button (click)="filter(category.primaryLabel)" class="primary-label" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'" mat-button>{{category.primaryLabel}}</button>
   </div>
 </div>
 

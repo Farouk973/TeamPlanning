@@ -15,6 +15,7 @@ mat-card {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    min-height: 80vh;
    
   }
   
@@ -145,3 +146,23 @@ mat-card {
     .mat-form-field-infix input.mat-input-element {
       border-radius: 20px;
     }
+        .button-container {
+          float: right;
+          margin-right: 30px;
+          padding-bottom: 30px;
+  
+}
+
+.button-container button {
+  background-color: #00b2d91a;
+  color: #00B2D9;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-left: 10px;
+}
+    .button-container button:first-child {
+        margin-left: 0;
+    }
+    
+    

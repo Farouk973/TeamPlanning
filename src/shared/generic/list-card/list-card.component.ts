@@ -1,13 +1,13 @@
 import { ElementRef, Output, ViewChild } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Input } from '@angular/core';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit,OnDestroy, AfterViewInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { mockCardData } from 'src/app/app-entry-point/catalogue-services/catalogue-services/mock-data/data';
 import { SearchBarModel } from '../models/bar-search.model';
 import { SharedServices } from '../SharedServices.service';
 import { Card, CardData } from './Models/cardModel';
-
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-card',
@@ -20,25 +20,31 @@ export class ListCardComponent implements OnInit {
   cardDataList: CardData[];
   editingCardIndex: number = null;
   editingCard: CardData = null;
-  searchBarModel:SearchBarModel;
   cardDataMock: CardData =mockCardData;
   params:number=1;
   searchResults: any;
+  private destroy$: Subject<void> = new Subject<void>();
   constructor(public listCardService: SharedServices) {}
 
 
   ngOnInit(): void {
     this.retrieveData();
    }
-  
+   ngOnDestroy(): void {
+  this.destroy$.next();
+  this.destroy$.complete();
+}
     
 retrieveData(): void {
-  this.data?.endpoint?.subscribe((endpointValue) => {
+  this.data?.endpoint?.pipe(
+    takeUntil(this.destroy$)
+  ).subscribe((endpointValue) => {
     this.listCardService.getParametrizedData(endpointValue, this.params)
-      .subscribe((cardData) => {this.cardDataList = this.mapCardDataList(cardData) ; console.log(this.cardDataList) });
+      .subscribe((cardData) => {this.cardDataList = this.mapCardDataList(cardData) });
 
   });
 }
+
 
  
  private mapCardDataList(cardData: CardData[]): CardData[] {
@@ -71,14 +77,18 @@ saveCard(cardId: string) {
     const editingCard = { id, [bodyTitleName]: this.cardDataList[cardIndex][bodyTitleName], [textbodyName]: this.cardDataList[cardIndex][textbodyName], [primaryLabelName]: this.cardDataList[cardIndex][primaryLabelName] };
     
     this.editingCard = editingCard;
-    console.log(this.editingCard)
+  
     
   }
+  this.saveToServer();
 
-  this.listCardService.updateRow(this.data.updateEndpoint, this.editingCard).subscribe(
+}
+
+private saveToServer(){
+    this.listCardService.updateRow(this.data.updateEndpoint, this.editingCard).subscribe(
     response => {
-      console.log(this.editingCard);
-      this.cardDataList[cardIndex].editing = false;
+      
+      this.cardDataList[this.editingCardIndex].editing = false;
     },
     error => {
       console.error('Error updating card:', error);
@@ -86,7 +96,19 @@ saveCard(cardId: string) {
     }
   );
 }
+onPrev(): void {
+  if (this.params > 1) {
+    this.params--;
+    this.retrieveData();
+  }
+}
 
+onNext(): void {
+  if (this.cardDataList.length > 0) {
+    this.params++;
+    this.retrieveData();
+  }
+}
 
  onDelete(cardId: string) {
   
