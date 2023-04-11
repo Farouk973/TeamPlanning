@@ -36,6 +36,11 @@ export const childRoutes = [
     loadChildren: () => import('./roles-management/roles-management.module').then(m => m.RolesManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
+  {
+    path: 's',
+    loadChildren: () => import('./spreadsheets-management/spreadsheets-management.module').then(m => m.SpreadsheetsManagementModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
+  },
 
 
 
