@@ -11,5 +11,7 @@
   "nameAttributeForSearch": "title",
   "sourceSaveItemEndpoint":"/api/Users",
   "sourceAssignItemEndpoint":"/api/Project/addRoleToProject",
-  "sourceDeleteOptionAfterAssignToItemEndpoint": "/api/delete"
+  "getItemEndpoint":"/api/Project/get-project",
+  "nameListOfChips": "roles",
+  "sourceUnassignOptionAfterAssignToItemEndpoint": "/api/Project/unassignRoleFromProject"
 }
