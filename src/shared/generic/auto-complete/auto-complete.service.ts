@@ -17,16 +17,20 @@ export class AutoCompleteService {
     return this.http.get<any[]>(`${this.baseUrl}`+endpoint);
   }
 
-  assignToItem(endpoint: any,idItem: string ,object: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}`+ endpoint +`/${idItem}`, object);
+  assignToItem(endpoint: string,idItem: string ,idAdded: string ): Observable<any> {
+    return this.http.options<any>(`${this.baseUrl}`+ endpoint +`/${idItem}`+ `/${idAdded}`);
+  }
+
+  getItem(endpoint: string,idItem: string ): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}`+ endpoint +`/${idItem}`);
   }
 
 
-  addToBase(endpoint: any,object: any): Observable<any> {
+  addToBase(endpoint: string,object: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}`+endpoint, object);
   }
 
-  deleteOptionAfterAssignToItem(endpoint: any,id :string): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}`+ endpoint +`/${id}`);
+  deleteOptionAfterAssignToItem(endpoint: string,idItem: string ,idUnassigned: string ): Observable<any> {
+    return this.http.options<any>(`${this.baseUrl}`+ endpoint +`/${idItem}`+ `/${idUnassigned}`);
   }
 }

@@ -1,0 +1,17 @@
+<div class="header">
+  <span class="titleService">Service Catalogue</span>
+  <form (ngSubmit)="search()" [formGroup]="searchForm" class="search-bar">
+    <mat-icon class="search-icon">search</mat-icon>
+    <input type="text" placeholder="Search" name="search" formControlName="searchTerm">
+</form>
+</div>
+<div class="row">
+  <div class="col" *ngFor="let category of categories">
+    <button (click)="filter(category.primaryLabel)" class="primary-label" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'" mat-button>{{category.primaryLabel}}</button>
+  </div>
+</div>
+
+  <app-list-card [data]="card"> </app-list-card>
+
+  
+

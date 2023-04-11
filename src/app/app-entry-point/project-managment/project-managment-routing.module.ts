@@ -5,7 +5,7 @@ import {StepperProjectComponent} from "./stepper-project/stepper-project.compone
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'project',
     component: StepperProjectComponent ,
   }
 ];

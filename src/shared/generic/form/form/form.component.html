@@ -35,7 +35,7 @@
           </mat-error>
         </mat-form-field>
         <!-- aaaaaaaaaaaaaaaaaa -->
-       
+
 
         <mat-form-field
           appearance="outline"
@@ -148,7 +148,7 @@
                     ">
             <span *ngIf="form.get(field.name).errors?.['required']">This field is required.</span>
           </mat-error>
-        </mat-form-field>  
+        </mat-form-field>
 
          <mat-form-field *ngIf="field.type === null && field.format === null && field.description !== null && !field.references[0] "
           class="example-full-width" appearance="outline">
@@ -156,10 +156,10 @@
           <!-- [formControl]="searchDataCtrl" -->
           <input matInput [matAutocomplete]="auto"
           [formControl]="searchDataCtrl"   [formControlName]="field.name" (focus)="onselectData(field.name)" >
-    
+
           <mat-autocomplete [panelWidth]="400" #auto="matAutocomplete" (optionSelected)="onSelected()">
-            <!-- [displayWith]="displayWith" --> 
-            
+            <!-- [displayWith]="displayWith" -->
+
             <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
             <ng-container *ngIf="!isLoading">
               <mat-option *ngFor="let data of filteredData" [value]="data">
@@ -167,15 +167,15 @@
               </mat-option>
             </ng-container>
           </mat-autocomplete>
-        </mat-form-field> 
-         
+        </mat-form-field>
 
 
 
 
 
 
-        
+
+
         <!-- <mat-form-field appearance="outline" *ngIf=" field.type === 'array'">
           <mat-label>{{ field.name }}</mat-label>
           <mat-select [formControlName]="field.name" multiple>
@@ -197,7 +197,7 @@
           <mat-form-field appearance="outline" *ngIf=" field.type === 'array'">
             <mat-label>{{ field.name }}</mat-label>
             <mat-select [formControlName]="field.name"  multiple>
-          
+
               <mat-option  *ngFor="let option of map.get(field.name)" [value]="option.id">
                 {{ option.title }}
               </mat-option>
@@ -206,7 +206,7 @@
             </mat-select>
           </mat-form-field>
 
-          
+
         </div>
         </div>
 

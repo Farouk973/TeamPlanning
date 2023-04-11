@@ -10,7 +10,7 @@ export const childRoutes = [
     data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
   },
   {
-    path: 'project',
+    path: 'stepper',
     loadChildren: () => import('./project-managment/project-managment.module').then(m => m.ProjectManagmentModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
   },
@@ -23,7 +23,7 @@ export const childRoutes = [
 
   {
     path: 'catalogue',
-    loadChildren: () => import('./catalogue-service/catalogue-service.module').then(m => m.CatalogueServiceModule),
+    loadChildren: () => import('./catalogue-services/catalogue-services/catalogue-services.module').then(m => m.CatalogueServicesModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
   {

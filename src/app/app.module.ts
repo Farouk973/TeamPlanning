@@ -62,11 +62,14 @@ import { NXMGContainerModule } from '../shared/generic/nxm-g-container/nxm-g-con
 import { CommonModule } from '@angular/common';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     AuthentificateComponent,
 
+   
 
 
   ],

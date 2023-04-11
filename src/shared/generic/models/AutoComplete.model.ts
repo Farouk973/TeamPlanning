@@ -10,7 +10,9 @@ export class AutoComplete implements NXMGenericComponent{
   sourceSaveItemEndpoint?: string;
   sourceAssignItemEndpoint?:string;
   getIdLastItemEndpoint?:string;
-  sourceDeleteOptionAfterAssignToItemEndpoint?:string;
+  getItemEndpoint?:string
+  nameListOfChips?: string
+  sourceUnassignOptionAfterAssignToItemEndpoint?:string;
 }
 class Input {
   type?: string;
