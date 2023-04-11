@@ -3,13 +3,26 @@
     <mat-expansion-panel   hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          {{project?.name}}
+         Product name:
         </mat-panel-title>
+        <mat-panel-description>
+          {{project?.name}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-expansion-panel-header>
         <mat-panel-title>
-          {{project?.visibility}}
+          Description:
         </mat-panel-title>
         <mat-panel-description>
           {{project?.description}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            Visibility:
+        </mat-panel-title>
+        <mat-panel-description>
+          {{project?.visibility}}
         </mat-panel-description>
       </mat-expansion-panel-header>
 

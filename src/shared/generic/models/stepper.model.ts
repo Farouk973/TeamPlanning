@@ -5,15 +5,17 @@ export class Stepper implements NXMGenericComponent{
   steps: Step[];
   next : action;
   back : action;
-  end: action;
+  validate: action;
+  delete: action;
   valueDuration: number;
   orientation: StepperOrientation;
 }
 class Step {
   title: string;
-  order: string;
+  order: number;
   contentType: string;
   content: NXMGenericComponent;
+  contentforUpdate: NXMGenericComponent;
   input:boolean;
 }
 

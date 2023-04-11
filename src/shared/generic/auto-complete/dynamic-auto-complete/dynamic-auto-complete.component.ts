@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {AutoComplete} from "../../models/AutoComplete.model";
 import {Observable} from "rxjs";
 import {FormControl} from "@angular/forms";
@@ -6,7 +6,6 @@ import { map, startWith } from 'rxjs/operators';
 import {AutoCompleteService} from "../auto-complete.service";
 import {CookieService} from "ngx-cookie-service";
 import {Location} from "@angular/common";
-import url from "url";
 
 @Component({
   selector: 'app-dynamic-auto-complete',
@@ -14,14 +13,10 @@ import url from "url";
   styleUrls: ['./dynamic-auto-complete.component.css'],
 
 })
-export class DynamicAutoCompleteComponent implements OnInit {
+export class DynamicAutoCompleteComponent implements OnInit  {
 
   @Input() autoComplete$!:Observable<AutoComplete> ;
   autoComplete = new AutoComplete();
-
-  @Input()  set idResponse (id: string){
-    this.addOptionToItem(id)
-  };
 
   @Output() added = new EventEmitter();
   myControl = new FormControl();
@@ -33,17 +28,17 @@ export class DynamicAutoCompleteComponent implements OnInit {
   optionLength: Observable<number>;
   chipsOptions: string[]=[];
    isTrue : boolean
-   // idResponse = this.cookieService.get('cookieName');
-  // Function to call when the option changes.
+
   onChange = (autoComplete: string) => {};
 
   // Function to call when the input is touched (when the autocomplete is clicked).
   onTouched = () => {};
+  private string: any;
 
   get value() {
     return this.selectedValue;
   }
-  constructor(private autoCompleteService : AutoCompleteService,private cookieService: CookieService) { }
+  constructor(private autoCompleteService : AutoCompleteService,private cookieService: CookieService , private location : Location) { }
 
   ngOnInit(): void {
     this.autoComplete$.subscribe((autoCompleteData)=>{
@@ -61,16 +56,12 @@ export class DynamicAutoCompleteComponent implements OnInit {
       });
 
     });
-
   }
 
     private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.data.filter(option => option.split("=*>")[1].toLowerCase().includes(filterValue));
   }
-
-
-
 
   enter() {
     const controlValue = this.myControl.value;
@@ -118,8 +109,9 @@ export class DynamicAutoCompleteComponent implements OnInit {
     this.onTouched = fn;
   }
 
-  addOptionToItem(option ) {
-    let id=  this.cookieService.get('idResponse');
+  addOptionToItem(option){
+    const url = this.location.path();
+    let id = url.substring(url.lastIndexOf('/') + 1);
     let idAdded=option.split("=*>")[0]
     this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint , id ,idAdded).subscribe((assignItem)=>{
       console.log(assignItem)
@@ -130,11 +122,11 @@ export class DynamicAutoCompleteComponent implements OnInit {
         });
       });
     });
-
   }
 
   removeOptionAfterAssign(option :string) {
-    let id=  this.cookieService.get('idResponse');
+    const url = this.location.path();
+    let id = url.substring(url.lastIndexOf('/') + 1);
     let idUnassigned= option['id']
     this.autoCompleteService.deleteOptionAfterAssignToItem(this.autoComplete.sourceUnassignOptionAfterAssignToItemEndpoint,id, idUnassigned).
     subscribe((unassignItem)=> {

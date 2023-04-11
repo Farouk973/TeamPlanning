@@ -10,7 +10,7 @@ export const childRoutes = [
     data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
   },
   {
-    path: 'project',
+    path: 'stepper',
     loadChildren: () => import('./project-managment/project-managment.module').then(m => m.ProjectManagmentModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
   },

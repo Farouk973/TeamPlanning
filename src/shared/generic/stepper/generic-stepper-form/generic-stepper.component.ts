@@ -1,25 +1,21 @@
 import {
-  AfterViewInit, ChangeDetectorRef,
-  Component, ContentChild, ContentChildren,
-  ElementRef,
-  Input, OnChanges,
-  OnInit, QueryList,
-  TemplateRef,
-  Type,
-  ViewChild,
-  ViewChildren
+  Component,
+  Input,
+  OnInit,
+
 } from '@angular/core';
 import {FormComponent} from "../../form/form/form.component";
 import {Stepper} from "../../models/stepper.model";
-import {BehaviorSubject, Observable, of, Subject} from "rxjs";
+import { Observable,} from "rxjs";
 import {FeatureComponent} from "../../../../app/app-entry-point/feature-managment/feature/feature.component";
 import {RolesComponent} from "../../../../app/app-entry-point/roles-management/roles/roles.component";
 import {RecopProjectComponent} from "../../../../app/app-entry-point/project-managment/recop-project/recop-project.component";
 import {HttpClient} from "@angular/common/http";
-import {Location} from "@angular/common";
-import {ActivatedRoute, Router, RouterModule, UrlSerializer, UrlTree} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {IoEventContextToken} from "ng-dynamic-component";
+import {GenericStepperService} from "../generic.stepper.service";
+import {Location} from "@angular/common";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -37,13 +33,10 @@ import {IoEventContextToken} from "ng-dynamic-component";
 export class GenericStepperComponent implements OnInit {
   @Input() stepper$!: Observable<Stepper>;
   stepper = new Stepper();
-
   actionType: string;
-  idItem: string;
-  idResponse: string = '';
-
-
-  constructor(public http: HttpClient, private cookieService: CookieService, private location: Location) {
+  order : number;
+  idResponse : string ='';
+  constructor(public http: HttpClient, private genericStepperService : GenericStepperService , private location : Location , private router : Router) {
 
   }
 
@@ -66,7 +59,7 @@ export class GenericStepperComponent implements OnInit {
         return FeatureComponent;
       case 'Roles':
         return RolesComponent;
-      case 'Recop':
+      case 'Recap':
         return RecopProjectComponent;
       default:
         throw new Error(`Invalid component name: ${contentType}`);
@@ -75,29 +68,36 @@ export class GenericStepperComponent implements OnInit {
 
 
   formResponse(event) {
-     this.idResponse= event.response.projectId
-    this.cookieService.set('idResponse', event.response.projectId);
+    this.idResponse= event.response.projectId
+    const url = this.location.path().split('?')[0] + '/' + event.response.projectId;
+    this.location.replaceState(url);
   }
 
 
-  onFormSubmit(step : string): void {
-    if (step == 'Form') {
+  onFormSubmit(step : number ): void {
+
+    if (step == 1) {
       this.actionType = '';
       this.actionType = 'CREATE'
+      this.order= 1
+    }
+    if (step == 2) {
+     this.order= 2
+    }
+
+    if (step == 3) {
+      this.order= 3
 
     }
-    setTimeout(()=>{
-      console.log('onSubmit', this.idResponse)
-      if (step == 'Features') {
-         this.idResponse=this.idResponse
-
-      }
-    },5000)
-
-
-
-
   }
 
-
+  deleteItem(){
+    this.genericStepperService.deleteItem(this.stepper.delete.endpoint, this.idResponse ).subscribe((response)=>{
+      console.log(response)
+    })
+    this.router.navigate(['/']);
+  }
+  validateItem() {
+    this.router.navigate(['/']);
+  }
 }

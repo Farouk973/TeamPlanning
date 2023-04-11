@@ -32,9 +32,9 @@
       "input" : false
     },
     {
-      "title": "Recop",
+      "title": "Recap",
       "order": 4,
-      "contentType": "Recop",
+      "contentType": "Recap",
       "content":
       { "endpoint": "",
         "metaData": ""
@@ -54,9 +54,14 @@
     "endpoint": "",
     "style": "background-color: #00b2d9;"
   },
-  "end": {
-    "label": "End",
+  "validate": {
+    "label": "Validate",
     "endpoint": "",
+    "style": "background-color: #00b2d9;"
+  },
+  "delete": {
+    "label": "Delete",
+    "endpoint": "/api/Project/delete-project",
     "style": "background-color: #00b2d9;"
   },
   "valueDuration": "1000",
