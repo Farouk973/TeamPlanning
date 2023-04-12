@@ -1,70 +1,37 @@
 {
-    "bigdomain": [
-        {
-            "name": "Web Development",
-            "subdomain": [
-                {
-                    "name": "Frontend Development",
-                    "domain": [
-                        {
-                            "name": "HTML",
-                            "rate": 0
-                        },
-                        {
-                            "name": "CSS",
-                            "rate": 0
-                        },
-                        {
-                            "name": "JavaScript",
-                            "rate": 0
-                        }
-                    ]
-                },
-                {
-                    "name": "Backend Development",
-                    "domain": [
-                        {
-                            "name": "Node.js",
-                            "rate": 0
-                        },
-                        {
-                            "name": "Express",
-                            "rate": 0
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Mobile Development",
-            "subdomain": [
-                {
-                    "name": "iOS Development",
-                    "domain": [
-                        {
-                            "name": "Swift",
-                            "rate": 0
-                        },
-                        {
-                            "name": "Objective-C",
-                            "rate": 0
-                        }
-                    ]
-                },
-                {
-                    "name": "Android Development",
-                    "domain": [
-                        {
-                            "name": "Java",
-                            "rate": 0
-                        },
-                        {
-                            "name": "Kotlin",
-                            "rate": 0
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
+  "Metadata": [
+    {
+      "nameclassback": "bigcategory",
+      "namemodel":"bigdomain",
+      "endpoint": "https://localhost:44312/api/Skills/get-bigcategories",
+      "mapping": {
+        "name": "name",
+        "categories": "subdomain",
+        "id":"id"
+      }
+    },
+    {
+      "nameclassback": "category",
+      "namemodel":"subdomain",
+      "endpoint": "https://localhost:44312/api/Skills/get-categories",
+      "mapping": {
+        "name": "name",
+        "skills": "domain",
+        "bigcategoryId": "bigdomain_id",
+        "id":"id"
+      }
+    },
+    {
+      "nameclassback": "skills",
+      "namemodel":"domain",
+      "endpoint": "https://localhost:44312/api/Skills/get-skills",
+      "mapping": {
+        "name": "name",
+        "rate": "value",
+        "categoryId": "subdomain_id",
+        "id":"id"
+      }
+    }
+    
+  ]
 }

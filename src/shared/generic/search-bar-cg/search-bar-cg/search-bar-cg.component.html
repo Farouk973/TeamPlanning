@@ -1,7 +1,7 @@
 <div class="container">
   <form [formGroup]="formGroup">
     <mat-form-field>
-      <input formControlName="form" matInput type={{searchdata.input.type}} [matAutocomplete]="auto" placeholder= {{searchdata.label}}/>
+      <input formControlName="form" matInput type="text" [matAutocomplete]="auto" placeholder= "search skill"/>
       <mat-icon class="search-icon" matSuffix>search</mat-icon>
       <mat-autocomplete #auto="matAutocomplete" >
         <mat-option *ngFor="let item of filteredOptions" [value]="item" (click)="onClick(item)">

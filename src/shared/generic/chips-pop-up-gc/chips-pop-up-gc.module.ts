@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { SearchBarCGModule } from '../search-bar-cg/search-bar-cg.module';
 import {MatBadgeModule} from '@angular/material/badge';
+import { DomainChipsGCComponent } from './domain-chips-gc/domain-chips-gc.component';
 
 
 
@@ -18,7 +19,8 @@ import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [
     SkillRatingDialogComponent,
-    ChipsGCComponent
+    ChipsGCComponent,
+    DomainChipsGCComponent
   ],
   imports: [
     FormsModule,
@@ -36,7 +38,7 @@ import {MatBadgeModule} from '@angular/material/badge';
   ],
   exports:[
     SkillRatingDialogComponent,
-    ChipsGCComponent
+    ChipsGCComponent,DomainChipsGCComponent
    ]
 })
 export class ChipsPopUpGCModule { }

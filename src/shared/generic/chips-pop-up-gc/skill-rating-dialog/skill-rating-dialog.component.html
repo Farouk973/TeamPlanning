@@ -2,7 +2,7 @@
 <mat-dialog-content>
   <p>Put the required level of {{ data.name }} to your project</p>
   <div class="ratestring">
-    <span *ngFor="let star of [1, 2, 3, 4, 5]" class="star" [class.filled]="star <= data.rate" (click)="setRating(star)">
+    <span *ngFor="let star of [1, 2, 3, 4, 5]" class="star" [class.filled]="star <= data.value" (click)="setRating(star)">
       <mat-icon>star_border</mat-icon>
     </span>
   </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject  } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { domain } from '../../models/domain.model';
+import { domain } from '../../models/bigdomain.model';
 @Component({
   selector: 'app-skill-rating-dialog',
   templateUrl: './skill-rating-dialog.component.html',
@@ -22,13 +22,13 @@ export class SkillRatingDialogComponent implements OnInit {
     this.dialogRef.close();
   }
   setRating(star: number) {
-    this.data.rate = star;
-    console.log(this.data.rate);
+    this.data.value = star;
+    console.log(this.data.value);
   }
   onSaveClick(): void {
     const dataToSave = {
       name: this.data.name,
-      rate: this.data.rate
+      value: this.data.value
     };
     this.dialogRef.close(dataToSave);
   }

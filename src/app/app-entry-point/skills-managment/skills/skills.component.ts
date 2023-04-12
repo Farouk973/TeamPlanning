@@ -15,7 +15,7 @@ export class SkillsComponent implements OnInit {
 
   ngOnInit(): void {
     this.Endpoints=this.http.get<endpoints>('assets/categoriesCG.json');
-    console.log(this.Endpoints)
+    
   }
 
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, map, of, switchMap, tap } from 'rxjs';
 import { Apiresponse, endpoints } from '../models/domain.model';
+import { Metadata } from '../models/bigdomain.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,10 @@ export class servicechipsservice {
   getEndpoints(): Observable<endpoints> {
     return this.http.get<endpoints>('assets/categoriesCG.json');
   }
-
 }
+
+
+
+
+
+
