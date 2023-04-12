@@ -4,6 +4,7 @@ import { SpreadsheetsComponent } from './spreadsheets/spreadsheets.component';
 import {MatTableModule} from "@angular/material/table";
 import {FormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatCardModule} from "@angular/material/card";
 
 
 
@@ -18,7 +19,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     CommonModule,
     MatTableModule,
     FormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCardModule
   ]
 })
 export class SpreadsheetsModule { }
