@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import {HttpClient} from "@angular/common/http";
 
+
 const USER_DATA = [
   {
     name: 'John Smith',
@@ -52,6 +53,12 @@ const COLUMNS_SCHEMA = [
   },
 ];
 
+export interface TableData {
+  columnHeader: string[];
+  rowHeader: string[];
+}
+
+const ELEMENT_DATA = [  { c: '1', d: '2', aa: '3' },  { c: '4', d: '5', aa: '6' },];
 @Component({
   selector: 'app-spreadsheets',
   templateUrl: './spreadsheets.component.html',
@@ -62,23 +69,27 @@ export class SpreadsheetsComponent implements OnInit {
   displayedColumns: string[] = COLUMNS_SCHEMA.map((col) => col.key);
   dataSource = USER_DATA;
   columnsSchema: any = COLUMNS_SCHEMA;
+/*
+  displayedColumns: string[] = COLUMNS_SCHEMA.map((col) => col.key);
+  dataSource = USER_DATA;
+  columnsSchema: any = COLUMNS_SCHEMA;
   features: string[];
   roles: string[];
-
+;*/
   data = {
-    columnHeader: [],
-    rowHeader: [],
-    reportData: [],
-    xAxismetricData: [],
-    yAxisMetrciData: []
-  };
+    columnHeader: ["a","b",'aa'],
+    rowHeader: ["c","d","k"],
+    reportData: [[1,2,3], [1,2,2],[1,2,4]],
+  }
+
+
 
   constructor(private http: HttpClient) {
 
   }
 
   ngOnInit(): void {
-    this.http.get('https://localhost:44312/api/Project/get-project/6436a1db5914a251bbba1bbc').subscribe((data:any)=>{
+/*    this.http.get('https://localhost:44312/api/Project/get-project/6436a1db5914a251bbba1bbc').subscribe((data:any)=>{
       this.roles= data.roles.map((t)=>t.title)
       console.log('roles',this.roles)
       this.data.columnHeader=this.roles
@@ -91,7 +102,7 @@ export class SpreadsheetsComponent implements OnInit {
       console.log('features',this.features)
       this.data.rowHeader=   this.features
 
-    })
+    })*/
   }
 
 }

@@ -8,6 +8,7 @@ import {MatCardModule} from "@angular/material/card";
 
 
 
+
 @NgModule({
   declarations: [
     SpreadsheetsComponent
@@ -20,7 +21,8 @@ import {MatCardModule} from "@angular/material/card";
     MatTableModule,
     FormsModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+
   ]
 })
 export class SpreadsheetsModule { }

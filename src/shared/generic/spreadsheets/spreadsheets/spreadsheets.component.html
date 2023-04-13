@@ -1,6 +1,59 @@
+<table mat-table [dataSource]="dataSource">
+  <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
+    <th mat-header-cell *matHeaderCellDef>
+      {{ col.label }}
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
+        <div class="btn-edit" *ngSwitchCase="'isEdit'">
+          <button mat-button (click)="element.isEdit = !element.isEdit">
+            Edit
+          </button>
+        </div>
+        <span *ngSwitchCase="'date'">
+          {{ element[col.key] | date: 'mediumDate' }}
+        </span>
+        <span *ngSwitchDefault>
+          {{ element[col.key] }}
+        </span>
+      </div>
+      <div [ngSwitch]="col.type" *ngIf="element.isEdit">
+        <div class="btn-edit" *ngSwitchCase="'isEdit'">
+          <button mat-button (click)="element.isEdit = !element.isEdit">
+            Done
+          </button>
+        </div>
 
+          <input
+            type="number"
+            matInput
+            (ngModelChange)="element[col.key] = $event"
+            [ngModel]="element[col.key]"
+          />
+      </div>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<table>
+  <thead>
+  <tr>
+    <th></th>
+    <th *ngFor="let columnHeader of data.columnHeader">{{ columnHeader }}</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let rowHeader of data.rowHeader; let rowIndex = index">
+    <td>{{ rowHeader }}</td>
+    <td *ngFor="let reportData of data.reportData[rowIndex]">{{ reportData }}</td>
+    <td><button >Supprimer</button></td>
+  </tr>
+  </tbody>
+</table>
 
-
+<!--
 
   <table style="border-collapse: collapse;">
     <thead>
@@ -23,64 +76,12 @@
   </table>
 
 
-<table mat-table [dataSource]="data.reportData" class="mat-elevation-z8">
-  <ng-container *ngFor="let item of data.rowHeader; let i = index" matColumnDef="{{item}}">
-    <mat-header-cell *matHeaderCellDef>{{item}}</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element[i]}}</mat-cell>
-  </ng-container>
-  <ng-container *ngFor="let item of data.columnHeader; let j = index" matColumnDef="{{item}}">
-    <mat-header-cell *matHeaderCellDef>{{item}}</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{element[j]}}</mat-cell>
-  </ng-container>
-  <mat-header-row *matHeaderRowDef="data.columnHeader"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: data.rowHeader;"></mat-row>
-</table >
 
 
-*
-<div style="display:inline-flex;min-width:850px">
-  <div style="min-width:150px">
-    <div *ngFor="let item of data.rowHeader">
-      <span [ngClass]="{'hide':item == 'null'}" style="width:150px"> {{item}} </span>
-    </div>
-  </div>
-
-  <div style="min-width:700px">
-    <div style="display:inline-flex;width:150px;min-width:150px" *ngFor="let item of data.columnHeader">
-			<span>
-        {{item}}
-      </span>
-    </div>
-
-    <div *ngFor="let item of data.reportData">
-      <div style="display:inline-flex;width:150px;min-width:150px" *ngFor="let child of item">
-        {{child}}
-      </div>
-    </div>
-  </div>
-</div>
-*
 
 
-<table style="border-collapse: collapse;">
-  <thead>
-  <tr>
-    <th style="border: 1px solid black; min-width: 150px;"></th>
-    <th *ngFor="let item of data.columnHeader" style="border: 1px solid black; min-width: 150px;">
-      {{item}}
-    </th>
-  </tr>
-  </thead>
-  <tbody>
-  <ng-container *ngFor="let item of data.reportData; let i = index">
-    <tr>
-      <td *ngFor="let header of data.rowHeader; let j = index" style="border: 1px solid black; min-width: 150px;">
-        <span [ngClass]="{'hide':header == 'null'}">{{header}}</span>
-      </td>
-      <td *ngFor="let child of item; let k = index" style="border: 1px solid black; min-width: 150px;">
-        {{child}}
-      </td>
-    </tr>
-  </ng-container>
-  </tbody>
-</table>
+
+
+
+
+-->
