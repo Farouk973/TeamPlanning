@@ -36,6 +36,8 @@ export class GenericStepperComponent implements OnInit {
   actionType: string;
   order : number;
   idResponse : string ='';
+
+  chiffrage: boolean ;
   constructor(public http: HttpClient, private genericStepperService : GenericStepperService , private location : Location , private router : Router) {
 
   }
@@ -98,6 +100,6 @@ export class GenericStepperComponent implements OnInit {
     this.router.navigate(['/']);
   }
   validateItem() {
-    this.router.navigate(['/']);
+   this.chiffrage= !this.chiffrage
   }
 }

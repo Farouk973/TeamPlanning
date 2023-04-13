@@ -5,6 +5,8 @@ import {MatTableModule} from "@angular/material/table";
 import {FormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatCardModule} from "@angular/material/card";
+import {MatIconModule} from "@angular/material/icon";
+import {CdkAccordionModule} from "@angular/cdk/accordion";
 
 
 
@@ -22,6 +24,7 @@ import {MatCardModule} from "@angular/material/card";
     FormsModule,
     MatFormFieldModule,
     MatCardModule,
+    MatIconModule,
 
   ]
 })

@@ -1,48 +1,3 @@
-p {
-  font-family: Lato;
-}
-table {
-  width: 90%;
-  margin: auto;
-  margin-top: 25px;
-}
-.btn-edit {
-  text-align: right;
-}
-h2 {
-  text-align: center;
-  padding-top: 20px;
-}
-
-.table-header {
-  width: 90%;
-  margin: auto;
-  text-align: right;
-  margin-bottom: 10px;
-}
-
-.button-add-row {
-  background: #1b9e1b;
-  color: #ffffff;
-}
-
-.button-remove-rows {
-  background: red;
-  color: #ffffff;
-  margin-right: 5px;
-}
-
-.button-remove {
-  color: red;
-}
-
-::ng-deep .mat-form-field-infix {
-  width: 100% !important;
-}
-
-.form-input {
-  padding-right: 5px;
-}
 table {
   border-collapse: collapse;
   width: 100%;
@@ -51,22 +6,46 @@ table {
   margin-bottom: 20px;
 }
 
-th,
-td {
+th, td {
   text-align: center;
   border: 1px solid #ddd;
   padding: 8px;
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color:rgba(0, 178, 217, 0.5);
   font-weight: bold;
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #cef2fa;
 }
 
 .hide {
   display: none;
+}
+
+mat-icon:hover {
+  color: #27D8FF;
+}
+input {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+/* Media queries */
+@media screen and (max-width: 300px) {
+  table {
+    font-size: 12px;
+  }
+
+  th, td  {
+    padding: 20px;
+  }
+
+  input {
+    font-size: 20px;
+    padding: 12px;
+  }
 }

@@ -1,87 +1,24 @@
-<table mat-table [dataSource]="dataSource">
-  <ng-container [matColumnDef]="col.key" *ngFor="let col of columnsSchema">
-    <th mat-header-cell *matHeaderCellDef>
-      {{ col.label }}
-    </th>
-    <td mat-cell *matCellDef="let element">
-      <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
-        <div class="btn-edit" *ngSwitchCase="'isEdit'">
-          <button mat-button (click)="element.isEdit = !element.isEdit">
-            Edit
-          </button>
-        </div>
-        <span *ngSwitchCase="'date'">
-          {{ element[col.key] | date: 'mediumDate' }}
-        </span>
-        <span *ngSwitchDefault>
-          {{ element[col.key] }}
-        </span>
-      </div>
-      <div [ngSwitch]="col.type" *ngIf="element.isEdit">
-        <div class="btn-edit" *ngSwitchCase="'isEdit'">
-          <button mat-button (click)="element.isEdit = !element.isEdit">
-            Done
-          </button>
-        </div>
-
-          <input
-            type="number"
-            matInput
-            (ngModelChange)="element[col.key] = $event"
-            [ngModel]="element[col.key]"
-          />
-      </div>
-    </td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
-<table>
+<table *ngIf="chiffrage">
   <thead>
   <tr>
-    <th></th>
+    <th>Features/Roles</th>
     <th *ngFor="let columnHeader of data.columnHeader">{{ columnHeader }}</th>
-    <th>Actions</th>
   </tr>
   </thead>
   <tbody>
+
   <tr *ngFor="let rowHeader of data.rowHeader; let rowIndex = index">
     <td>{{ rowHeader }}</td>
-    <td *ngFor="let reportData of data.reportData[rowIndex]">{{ reportData }}</td>
-    <td><button >Supprimer</button></td>
+    <td *ngFor="let reportData of data.reportData[rowIndex]; let colIndex = index">
+      <span *ngIf="!editModeStyle">{{ reportData }}</span>
+      <input type="number" [(ngModel)]="data.reportData[rowIndex][colIndex]" *ngIf="editModeStyle">
+    </td>
+    <td>
+      <mat-icon  *ngIf="editModeStyle" (click)="toggleEditMode(rowIndex)">edit</mat-icon>
+      <mat-icon *ngIf="!editModeStyle"(click)="toggleEditMode(rowIndex)">done</mat-icon>
+    </td>
+
   </tr>
+
   </tbody>
 </table>
-
-<!--
-
-  <table style="border-collapse: collapse;">
-    <thead>
-    <tr>
-      <th style="border: 1px solid black; min-width: 150px;"></th>
-      <th *ngFor="let item of data.columnHeader" style="border: 1px solid black; min-width: 150px;">
-        {{item}}
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of data.rowHeader; let i = index">
-      <td style="border: 1px solid black; min-width: 150px;">
-        <span [ngClass]="{'hide':item == 'null'}">{{item}}</span>
-      </td>
-      <td style="border: 1px solid black; min-width: 150px;" *ngFor="let child of data.columnHeader">
-      </td>
-    </tr>
-    </tbody>
-  </table>
-
-
-
-
-
-
-
-
-
-
--->
