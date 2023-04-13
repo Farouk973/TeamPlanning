@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 
 import {HttpClient} from "@angular/common/http";
 import {SpreadsheetsService} from "../spreadsheets.service";
@@ -10,7 +10,7 @@ import {Location} from "@angular/common";
   templateUrl: './spreadsheets.component.html',
   styleUrls: ['./spreadsheets.component.css']
 })
-export class SpreadsheetsComponent implements OnInit {
+export class SpreadsheetsComponent implements OnInit , OnChanges {
 
 
   data = {
@@ -24,6 +24,7 @@ export class SpreadsheetsComponent implements OnInit {
   features: string[];
   roles: string[];
   @Input() chiffrage: boolean ;
+  @Input() order ;
   constructor(private http: HttpClient , private spreadsheetsService : SpreadsheetsService , private location : Location) {
 
   }
@@ -38,19 +39,18 @@ export class SpreadsheetsComponent implements OnInit {
 
     const url = this.location.path();
     let id = url.substring(url.lastIndexOf('/') + 1);
-    this.spreadsheetsService.getItem('/api/Project/get-project','6437fe577c69a37224949309').subscribe((data)=>{
+    this.spreadsheetsService.getItem('/api/Project/get-project',id).subscribe((data)=>{
       this.roles= data.roles.map((t)=>t.title)
       console.log('roles',this.roles)
       this.data.columnHeader=this.roles
     })
 
-    this.spreadsheetsService.getItem('/api/Project/get-project','6437fe577c69a37224949309').subscribe((data)=>{
+    this.spreadsheetsService.getItem('/api/Project/get-project',id).subscribe((data)=>{
       this.features= data.features.map((d)=>d.description)
       console.log('features',this.features)
       this.data.rowHeader=   this.features
-
+      this.bb()
     })
-   this.bb()
 
   }
   bb(){
