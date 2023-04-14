@@ -23,9 +23,9 @@ export class SpreadsheetsComponent implements  OnChanges {
   }
   editMode: boolean[][] = [];
   editModeStyle : boolean = false;
-  firstRowEditMode : boolean= false;
+  rowIndex : any
   @Input() chiffrage: boolean ;
-  @Input() order ;
+
   constructor(private http: HttpClient , private spreadsheetsService : SpreadsheetsService , private location : Location) {
 
   }

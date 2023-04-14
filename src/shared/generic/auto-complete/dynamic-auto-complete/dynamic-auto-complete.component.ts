@@ -22,7 +22,6 @@ export class DynamicAutoCompleteComponent implements OnInit  {
   myControl = new FormControl();
   options: string[];
   data: string[]
- // idItem: string ="642ecc35fa31cfb9eeef6648";
   selectedValue;
   filteredOptions: Observable<string[]>;
   optionLength: Observable<number>;
