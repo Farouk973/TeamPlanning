@@ -1,7 +1,7 @@
-<table *ngIf="chiffrage">
+<table >
   <thead>
   <tr>
-    <th>Features/Roles</th>
+    <th>{{spreadsheets.nameCaseIntersection}}</th>
     <th *ngFor="let columnHeader of data.columnHeader">{{ columnHeader }}</th>
   </tr>
   </thead>
@@ -11,7 +11,7 @@
     <td>{{ rowHeader }}</td>
     <td *ngFor="let reportData of data.reportData[rowIndex]; let colIndex = index">
       <span *ngIf="!editModeStyle">{{ reportData }}</span>
-      <input type="number" [(ngModel)]="data.reportData[rowIndex][colIndex]" *ngIf="editModeStyle">
+      <input type="{{spreadsheets.inputType}}" [(ngModel)]="data.reportData[rowIndex][colIndex]" *ngIf="editModeStyle">
     </td>
     <td>
       <mat-icon  *ngIf="editModeStyle" (click)="toggleEditMode(rowIndex)">edit</mat-icon>

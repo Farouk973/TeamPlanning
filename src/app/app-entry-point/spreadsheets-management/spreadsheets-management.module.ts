@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SpreadsheetsManagementRoutingModule } from './spreadsheets-management-routing.module';
@@ -18,8 +18,8 @@ import {SpreadsheetsModule} from "../../../shared/generic/spreadsheets/spreadshe
     SpreadsheetsModule,
 
   ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
+  exports: [
+    SpreadsheetsProjectComponent
+  ]
 })
 export class SpreadsheetsManagementModule { }

@@ -7,7 +7,8 @@ import { RecopProjectComponent } from './recop-project/recop-project.component';
 import {CdkAccordionModule} from "@angular/cdk/accordion";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatChipsModule} from "@angular/material/chips";
-import {SpreadsheetsModule} from "../../../shared/generic/spreadsheets/spreadsheets.module";
+import {SpreadsheetsManagementModule} from "../spreadsheets-management/spreadsheets-management.module";
+
 
 
 
@@ -23,7 +24,8 @@ import {SpreadsheetsModule} from "../../../shared/generic/spreadsheets/spreadshe
         CdkAccordionModule,
         MatExpansionModule,
         MatChipsModule,
-        SpreadsheetsModule
+        SpreadsheetsManagementModule
+
     ]
 
 })

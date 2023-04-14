@@ -1,1 +1,6 @@
-<app-spreadsheets></app-spreadsheets>
+
+
+<div *ngIf="spreadsheets$ | async" [hidden]="!chiffrage">
+  <app-spreadsheets [spreadsheets$]="spreadsheets$" [chiffrage]="chiffrage" ></app-spreadsheets>
+</div>
+

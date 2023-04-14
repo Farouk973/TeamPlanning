@@ -3,6 +3,8 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {HttpClient} from "@angular/common/http";
 import {SpreadsheetsService} from "../spreadsheets.service";
 import {Location} from "@angular/common";
+import {Observable} from "rxjs";
+import {Spreadsheets} from "../../models/Spreadsheets.model";
 
 
 @Component({
@@ -10,9 +12,10 @@ import {Location} from "@angular/common";
   templateUrl: './spreadsheets.component.html',
   styleUrls: ['./spreadsheets.component.css']
 })
-export class SpreadsheetsComponent implements OnInit , OnChanges {
+export class SpreadsheetsComponent implements  OnChanges {
 
-
+  @Input() spreadsheets$!:Observable<Spreadsheets> ;
+  spreadsheets = new Spreadsheets()
   data = {
     columnHeader: [],
     rowHeader: [],
@@ -21,42 +24,40 @@ export class SpreadsheetsComponent implements OnInit , OnChanges {
   editMode: boolean[][] = [];
   editModeStyle : boolean = false;
   firstRowEditMode : boolean= false;
-  features: string[];
-  roles: string[];
   @Input() chiffrage: boolean ;
   @Input() order ;
   constructor(private http: HttpClient , private spreadsheetsService : SpreadsheetsService , private location : Location) {
 
   }
 
-  ngOnInit(): void {
-
-
-
-  }
-
   ngOnChanges(changes: SimpleChanges) {
 
-    const url = this.location.path();
-    let id = url.substring(url.lastIndexOf('/') + 1);
-    this.spreadsheetsService.getItem('/api/Project/get-project',id).subscribe((data)=>{
-      this.roles= data.roles.map((t)=>t.title)
-      console.log('roles',this.roles)
-      this.data.columnHeader=this.roles
-    })
+    this.spreadsheets$.subscribe((spreadsheetsData)=>{
+      this.spreadsheets= spreadsheetsData;
 
-    this.spreadsheetsService.getItem('/api/Project/get-project',id).subscribe((data)=>{
-      this.features= data.features.map((d)=>d.description)
-      console.log('features',this.features)
-      this.data.rowHeader=   this.features
-      this.bb()
+      const url = this.location.path();
+      let id = url.substring(url.lastIndexOf('/') + 1);
+      console.log("id",id)
+
+      this.spreadsheetsService.getItem(this.spreadsheets.columnHeaderEndpoint,id).subscribe((data)=>{
+        this.data.columnHeader= data.roles.map((t)=>t[this.spreadsheets.mappingNameColumnHeader])
+
+      })
+
+
+      this.spreadsheetsService.getItem(this.spreadsheets.rowHeaderEndpoint,id).subscribe((data)=>{
+        this.data.rowHeader= data.features.map((d)=>d[this.spreadsheets.mappingNameRowHeader])
+        this.fillMatrixByZero()
+      })
+
+
     })
 
   }
-  bb(){
-    for (let i = 0; i < this.features.length; i++) {
+  fillMatrixByZero(){
+    for (let i = 0; i < this.data.rowHeader.length; i++) {
       let row = [];
-      for (let j = 0; j < this.roles.length; j++) {
+      for (let j = 0; j < this.data.columnHeader.length; j++) {
         row.push('0');
       }
       this.data.reportData.push(row);
@@ -64,11 +65,16 @@ export class SpreadsheetsComponent implements OnInit , OnChanges {
   }
   toggleEditMode(rowIndex: number) {
     this.editModeStyle = ! this.editModeStyle
-    if (!this.editMode[rowIndex]) {
-      this.editMode[rowIndex] = new Array(this.data.columnHeader.length).fill(false);
+    if(!this.editModeStyle){
+      if (!this.editMode[rowIndex]) {
+        this.editMode[rowIndex] = new Array(this.data.columnHeader.length).fill(false);
+        this.editMode[rowIndex].fill(!this.editMode[rowIndex][0]);
+        console.log("data",this.data.reportData)
+      }
+
     }
-    this.editMode[rowIndex].fill(!this.editMode[rowIndex][0]);
-    console.log("data",this.data.reportData)
-  }
+
+    }
+
 
 }

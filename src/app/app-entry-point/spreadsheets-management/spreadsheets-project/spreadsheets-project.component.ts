@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {Spreadsheets} from "../../../../shared/generic/models/Spreadsheets.model";
 
 @Component({
   selector: 'app-spreadsheets-project',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpreadsheetsProjectComponent implements OnInit {
 
-  constructor() { }
+  public spreadsheets$ : Observable<Spreadsheets> ;
+  @Input() chiffrage : boolean;
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.spreadsheets$=this.http.get<Spreadsheets>('/assets/spreadsheets.json');
   }
 
 }

@@ -6,19 +6,21 @@ import {FormModule} from "../form/form.module";
 import { DynamicIoModule } from 'ng-dynamic-component';
 import {RouterModule} from "@angular/router";
 import {SpreadsheetsModule} from "../spreadsheets/spreadsheets.module";
+import {SpreadsheetsManagementModule} from "../../../app/app-entry-point/spreadsheets-management/spreadsheets-management.module";
 @NgModule({
   declarations: [
     GenericStepperComponent
   ],
-    imports: [
-        CommonModule,
-        MatStepperModule,
-        FormModule,
-        DynamicIoModule,
-        RouterModule,
-        SpreadsheetsModule,
+  imports: [
+    CommonModule,
+    MatStepperModule,
+    FormModule,
+    DynamicIoModule,
+    RouterModule,
+    SpreadsheetsModule,
+    SpreadsheetsManagementModule,
 
-    ],
+  ],
   exports:[
     GenericStepperComponent
   ],

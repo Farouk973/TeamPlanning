@@ -10,12 +10,11 @@ import { Observable,} from "rxjs";
 import {FeatureComponent} from "../../../../app/app-entry-point/feature-managment/feature/feature.component";
 import {RolesComponent} from "../../../../app/app-entry-point/roles-management/roles/roles.component";
 import {RecopProjectComponent} from "../../../../app/app-entry-point/project-managment/recop-project/recop-project.component";
-import {HttpClient} from "@angular/common/http";
-import {CookieService} from "ngx-cookie-service";
 import {IoEventContextToken} from "ng-dynamic-component";
 import {GenericStepperService} from "../generic.stepper.service";
 import {Location} from "@angular/common";
 import {Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -36,8 +35,7 @@ export class GenericStepperComponent implements OnInit {
   actionType: string;
   order : number;
   idResponse : string ='';
-
-  chiffrage: boolean ;
+  chiff: boolean = false
   constructor(public http: HttpClient, private genericStepperService : GenericStepperService , private location : Location , private router : Router) {
 
   }
@@ -99,7 +97,8 @@ export class GenericStepperComponent implements OnInit {
     })
     this.router.navigate(['/']);
   }
+
   validateItem() {
-   this.chiffrage= !this.chiffrage
+    this.chiff = true
   }
 }
