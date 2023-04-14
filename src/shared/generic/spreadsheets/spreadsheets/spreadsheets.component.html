@@ -1,0 +1,24 @@
+<table aria-describedby="table-description" >
+  <thead>
+  <tr>
+    <th>{{spreadsheets.nameCaseIntersection}}</th>
+    <th *ngFor="let columnHeader of data.columnHeader">{{ columnHeader }}</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let rowHeader of data.rowHeader; let rowIndex = index"  >
+    <td>{{ rowHeader }}</td>
+    <td *ngFor="let reportData of data.reportData[rowIndex]; let colIndex = index">
+      <span *ngIf="!editModeStyle">{{ reportData }}</span>
+      <input type="{{spreadsheets.inputType}}" [(ngModel)]="data.reportData[rowIndex][colIndex]" *ngIf="editModeStyle">
+    </td>
+
+  </tr>
+  </tbody>
+</table>
+<div class="button-container">
+  <button mat-button class="mat-raised-button" *ngIf="!editModeStyle"   (click)="toggleEditMode(rowIndex)" >Edit</button>
+  <button mat-button class="mat-raised-button" *ngIf="editModeStyle"   (click)="toggleEditMode(rowIndex)" >Confirm</button>
+</div>
+
