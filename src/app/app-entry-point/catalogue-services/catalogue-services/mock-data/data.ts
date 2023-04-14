@@ -28,7 +28,14 @@ export const mockCardData: CardData={
     labelColor: '#00B2D9',
 
   }
-  export const categoryData: CardData[]=[{
+  export const categoryData: CardData[]=[
+    {
+      ...CommonCssBehaviours,
+      primaryLabel: 'All'
+       
+     
+     },
+    {
    ...CommonCssBehaviours,
    primaryLabel: 'Sport'
     
@@ -64,5 +71,5 @@ export const mockCardData: CardData={
      
    
    }
-  
+   
   ];

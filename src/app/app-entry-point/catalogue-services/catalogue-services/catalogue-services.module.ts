@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SearchBarModule } from "../../../../shared/generic/search-bar/search-bar.module";
 import { ListCardModule } from 'src/shared/generic/list-card/list-card.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DataTableGenericModule } from "src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.module";
 
 
 
@@ -29,7 +31,9 @@ import { ListCardModule } from 'src/shared/generic/list-card/list-card.module';
         MatToolbarModule,
         FormsModule,
         SearchBarModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatDialogModule,
+        DataTableGenericModule
     ]
 })
 
