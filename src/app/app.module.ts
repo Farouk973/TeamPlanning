@@ -77,6 +77,7 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatTableModule,
 
   ],
 
@@ -132,6 +133,7 @@ import { CommonModule } from '@angular/common';
     DialogModule,
     HighlightModule,
     AuthConfigModule,
+  
   ],
 
   providers: [

@@ -4,7 +4,13 @@
   flex-wrap: wrap;
  
 }
+.service-request{
+margin-left: 30px;
 
+}
+.dialog-title {
+  text-align: center;
+}
 .card-list .col-md-3 {
   box-sizing: border-box;
   width: 33%;

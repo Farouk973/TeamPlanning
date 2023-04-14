@@ -4,6 +4,7 @@
     <mat-icon class="search-icon">search</mat-icon>
     <input type="text" placeholder="Search" name="search" formControlName="searchTerm">
 </form>
+<button (click)="openDialogue()" class="service-request" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'" mat-button>Request multiple services</button>
 </div>
 <div class="row">
   <div class="col" *ngFor="let category of categories">
@@ -13,5 +14,14 @@
 
   <app-list-card [data]="card"> </app-list-card>
 
-  
+  <ng-template #dialogTemplate let-dialogRef="dialogRef">
+    <h2 mat-dialog-title>Request services</h2>
+    <mat-dialog-content>
+      <p>Add from below services to create your request bundle</p>
+     <app-data-table-generic></app-data-table-generic>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button (click)="dialogRef.close()">Close</button>
+    </mat-dialog-actions>
+  </ng-template>
 

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CardData } from 'src/shared/generic/list-card/Models/cardModel';
 import { categoryData, mockCardData } from './mock-data/data';
 import { debounceTime } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
-
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 @Component({
   selector: 'app-catalogue-services',
   templateUrl: './catalogue-services.component.html',
@@ -17,8 +17,9 @@ export class CatalogueServicesComponent implements OnInit {
   card: CardData = mockCardData;
   baseUrl = 'https://localhost:5001/api/Service';
   selectedCategory = '';
-
-  constructor(private formBuilder: FormBuilder) { }
+  @ViewChild('dialogTemplate') dialogTemplate: TemplateRef<any>;
+  
+  constructor(private formBuilder: FormBuilder,private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.searchForm = this.formBuilder.group({
@@ -46,7 +47,10 @@ export class CatalogueServicesComponent implements OnInit {
   }
   }
    filter(category: string) {
-    if (category === this.selectedCategory) {
+    if (category === "All") {
+      this.card.endpoint.next("https://localhost:5001/api/service");
+    }
+   else if (category === this.selectedCategory) {
       // if already selected, reset to initial endpoint
       this.card.endpoint.next(`${this.baseUrl}/filter`);
       this.selectedCategory = '';
@@ -55,6 +59,13 @@ export class CatalogueServicesComponent implements OnInit {
       this.card.endpoint.next(`${this.baseUrl}/filter?Category=${category}`);
       this.selectedCategory = category;
     }
+  }
+  openDialogue(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.width = '500px';
+
+    this.dialog.open(this.dialogTemplate);
+
   }
 }
  
