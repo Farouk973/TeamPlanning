@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { endpoints } from 'src/shared/generic/models/domain.model';
+import { endpoints } from 'src/shared/generic/models/bigdomain.model';
 import {Observable} from "rxjs";
 import { HttpClient } from '@angular/common/http';
 

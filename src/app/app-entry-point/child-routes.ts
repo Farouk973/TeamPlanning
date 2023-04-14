@@ -27,6 +27,12 @@ export const childRoutes = [
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
 
+  {
+    path: 'usertab',
+    loadChildren: () => import('./user-tab-management/user-tab-management.module').then(m => m.UserTabManagementModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
+  },
+
 
 
   // {

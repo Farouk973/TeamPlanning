@@ -96,6 +96,6 @@ export class SearchBarCgComponent implements OnInit {
   }
   isAddoptionValid(): boolean {
     const formValue = this.formGroup.get('form').value.toLowerCase();
-    return formValue.length > 1 && !this.filteredOptions.map(op => op.toLowerCase()).includes(formValue) ;
+    return formValue.length > 1 && !this.filteredOptions?.map(op => op.toLowerCase()).includes(formValue) ;
   }
 }

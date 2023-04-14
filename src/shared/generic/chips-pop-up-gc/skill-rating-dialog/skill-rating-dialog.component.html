@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>{{ data.name }}</h2>
 <mat-dialog-content>
-  <p>Put the required level of {{ data.name }} to your project</p>
+  <p>Put the level of {{ data.name }}</p>
   <div class="ratestring">
     <span *ngFor="let star of [1, 2, 3, 4, 5]" class="star" [class.filled]="star <= data.value" (click)="setRating(star)">
       <mat-icon>star_border</mat-icon>

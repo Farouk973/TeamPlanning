@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, map, of, switchMap, tap } from 'rxjs';
-import { Apiresponse, endpoints } from '../models/domain.model';
-import { Metadata } from '../models/bigdomain.model';
+
+import { Apiresponse, Metadata, endpoints } from '../models/bigdomain.model';
 
 @Injectable({
   providedIn: 'root'

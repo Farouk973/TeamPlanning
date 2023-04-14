@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { bigdomain } from '../../models/domain.model';
+import { bigdomain } from '../../models/bigdomain.model';
 import { SearchBarCgComponent } from '../search-bar-cg/search-bar-cg.component';
 
 @Component({

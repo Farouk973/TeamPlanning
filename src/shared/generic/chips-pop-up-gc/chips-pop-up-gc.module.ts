@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChipsGCComponent } from './chips-gc/chips-gc.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,7 +18,6 @@ import { DomainChipsGCComponent } from './domain-chips-gc/domain-chips-gc.compon
 @NgModule({
   declarations: [
     SkillRatingDialogComponent,
-    ChipsGCComponent,
     DomainChipsGCComponent
   ],
   imports: [
@@ -38,7 +36,7 @@ import { DomainChipsGCComponent } from './domain-chips-gc/domain-chips-gc.compon
   ],
   exports:[
     SkillRatingDialogComponent,
-    ChipsGCComponent,DomainChipsGCComponent
+    DomainChipsGCComponent
    ]
 })
 export class ChipsPopUpGCModule { }

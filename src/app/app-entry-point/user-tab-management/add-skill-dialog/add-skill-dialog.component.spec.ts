@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChipsGCComponent } from './chips-gc.component';
+import { AddSkillDialogComponent } from './add-skill-dialog.component';
 
-describe('ChipsGCComponent', () => {
-  let component: ChipsGCComponent;
-  let fixture: ComponentFixture<ChipsGCComponent>;
+describe('AddSkillDialogComponent', () => {
+  let component: AddSkillDialogComponent;
+  let fixture: ComponentFixture<AddSkillDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChipsGCComponent ]
+      declarations: [ AddSkillDialogComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ChipsGCComponent);
+    fixture = TestBed.createComponent(AddSkillDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

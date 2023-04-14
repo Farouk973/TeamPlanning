@@ -1,5 +1,5 @@
 <div class="header">
-    <h2>Add skills</h2>
+    <h2>Add {{this.namedomain}}</h2>
     <div class="search-container">
         <app-search-bar-cg [Treedata]="this.treedata"  (dialogResult)="handleDialogResult($event)"></app-search-bar-cg>
     </div>
@@ -7,7 +7,7 @@
 
 <div class="container">
     <div class="sidebar">
-        <h2>category</h2>
+        <h2>{{this.namesubdomain}}</h2>
         <div class="search-bar">
 
             <input type="text" [(ngModel)]="searchValue" (input)="filterTreeData()" name="input"
@@ -32,10 +32,10 @@
     <div class="content">
         <div class="skill-container">
             <h1 *ngIf="selectedNode && selectedNode.trim() !== ''">
-                of "{{ selectedNode }}"
+                {{this.namedomain}} of "{{ selectedNode }}"
             </h1>
             <h1 *ngIf="!(selectedNode && selectedNode.trim() !== '')">
-                No domain has been selected
+                No {{this.namesubdomain}} has been selected
             </h1>
             <mat-chip-list class="mat-chip-list__container">
                 <mat-chip *ngFor="let chip of selectedchips" class="mat-chip__item" 

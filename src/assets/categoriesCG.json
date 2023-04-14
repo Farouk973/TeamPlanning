@@ -1,8 +1,6 @@
 {
-    "Metadata": "assets/back.json",
+    "Metadata": "assets/Metadata.json",
     "endpointsave":"",
     "subdomainname":"Categories",
     "domainname":"skills"
-
-
 }

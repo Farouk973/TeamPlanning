@@ -1,0 +1,17 @@
+<mat-tab-group mat-align-tabs="center" class="my-tab-group">
+  <mat-tab label="Projects"></mat-tab>
+  <mat-tab label="Profile">
+    <h2 class="profile-heading">Skills</h2>
+    <p class="profile-text">Here are your current skills:</p>
+    <ul class="profile-list">
+      <li *ngFor="let skill of skillsChanged | async" class="skill-item">
+        <span class="skill-name">{{ skill.name }}</span> 
+        <span class="skill-stars">
+          <mat-icon *ngFor="let star of getSkillValueStars(skill.value)">star_border</mat-icon>
+        </span>
+      </li>
+</ul>
+    <button mat-raised-button (click)="openAddSkillDialog()" class="profile-button">Add Skill</button>
+  </mat-tab>
+  <mat-tab label="Feature"></mat-tab>
+</mat-tab-group>

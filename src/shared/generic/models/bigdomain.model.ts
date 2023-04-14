@@ -7,6 +7,7 @@ export interface Metadata {
     };
 }
 
+
 export interface Apiresponse {
     bigdomain: bigdomain[];
 }
@@ -26,4 +27,10 @@ export interface domain {
     name: string;
     value: number;
 
+}
+export interface endpoints{
+    Metadata:string;
+    endpointsave:string;
+    subdomainname:string;
+    domainname:string;
 }

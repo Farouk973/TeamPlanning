@@ -1,9 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { servicechipsservice } from '../servicechips.service';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Metadata, bigdomain, domain, subdomain } from '../../models/bigdomain.model';
+import { Metadata, bigdomain, domain, endpoints, subdomain } from '../../models/bigdomain.model';
 import { Observable } from 'rxjs';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
@@ -22,7 +22,7 @@ interface ExampleFlatNode {
 })
 
 export class DomainChipsGCComponent implements OnInit {
-  endpoint = 'assets/back.json';
+  
 
   constructor(private dialog: MatDialog, private servicechipsservice: servicechipsservice, private http: HttpClient, private snackBar: MatSnackBar, private cdr: ChangeDetectorRef) { }
   apiResponse = {};
@@ -31,11 +31,16 @@ export class DomainChipsGCComponent implements OnInit {
   searchValue: string = '';
   domainselected: any;
   receivedData: string;
+  @Output() listoutput = new EventEmitter<any>();
   addedchips: domain[] = [];
-
+  @Input() Endpoints!: Observable<endpoints>;
+  namesubdomain
+  namedomain
+  metadatastring
   async ngOnInit(): Promise<void> {
     //map keys from the endpoints and metdata
-    const response = await this.http.get<Metadata[]>('assets/Metadata.json').toPromise();
+    await this.subscribeToEndpoints();
+    const response = await this.http.get<Metadata[]>(this.metadatastring).toPromise();
     const metadata = response['Metadata'];
     for (const metadataItem of metadata) {
       const apiResponse = await this.http.get<any[]>(metadataItem.endpoint).toPromise();
@@ -79,6 +84,18 @@ export class DomainChipsGCComponent implements OnInit {
       console.log('Received data:', this.domainselected.name);
     });
 
+  }
+  async subscribeToEndpoints() {
+    return new Promise<void>((resolve, reject) => {
+      this.Endpoints.subscribe((enpointData: any) => {
+        this.namesubdomain = enpointData.subdomainname;
+        this.namedomain = enpointData.domainname;
+        this.metadatastring = enpointData.Metadata;
+        resolve();
+      }, (error: any) => {
+        reject(error);
+      });
+    });
   }
   private _transformer = (node: bigdomain, level: number) => {
     return {
@@ -141,9 +158,10 @@ export class DomainChipsGCComponent implements OnInit {
   }
   openDialog(chips: domain) {
     const dialogRef = this.dialog.open(SkillRatingDialogComponent, {
-      data: chips
+      data: chips,
+      
     });
-
+    
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         let isAlreadyAdded = this.addedchips.find(item => item.name === result.name);
@@ -167,33 +185,13 @@ export class DomainChipsGCComponent implements OnInit {
           });
         }
         console.log(this.addedchips);
-
+        this.listoutput.emit(this.addedchips);
       }
     });
 
   }
   handleDialogResult(result: any) {
-    console.log('Dialog result:', result);
-    // if (this.treeData.includes(result.bigDomain)){
-
-    //   const subdomain = result.subDomain;
-    //   const bigdomain = result.bigDomain;
-    //   const skillName = result.skillName;
-      
-    //   // find the subdomain and add the skill name to it
-    //   for (let i = 0; i < this.treeData.length; i++) {
-    //     if (this.treeData[i].name === bigdomain.name) {
-    //       for (let j = 0; j < this.treeData[i].subdomain.length; j++) {
-    //         if (this.treeData[i].subdomain[j].name === subdomain.name) {
-    //           this.treeData[i].subdomain[j].domain.push({ name: skillName,rate:0 });
-    //           break;
-    //         }
-    //       }
-    //       break;
-    //     }
-    //   }
-    // }
-    // console.log(this.treeData)
+    //console.log('Dialog result:', result);
     const bigDomainIndex = this.treedata.findIndex(d => d.name === result.bigDomain.name);
 
     if (bigDomainIndex !== -1) {
@@ -221,6 +219,7 @@ export class DomainChipsGCComponent implements OnInit {
       this.addedchips.splice(index, 1);
     }
     console.log(this.addedchips);
+    this.listoutput.emit(this.addedchips);
   }
 
 }
