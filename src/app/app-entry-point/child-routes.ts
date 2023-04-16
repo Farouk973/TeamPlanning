@@ -43,6 +43,12 @@ export const childRoutes = [
   },
 
 
+  {
+    path: 'usertab',
+    loadChildren: () => import('./user-tab-management/user-tab-management.module').then(m => m.UserTabManagementModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
+  },
+
 
 
   // {

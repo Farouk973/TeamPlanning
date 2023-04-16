@@ -61,6 +61,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ChipsPopUpGCModule } from 'src/shared/generic/chips-pop-up-gc/chips-pop-up-gc.module';
 import { SkillsManagmentModule } from './skills-managment/skills-managment.module';
 import { CatalogueServicesModule } from './catalogue-services/catalogue-services/catalogue-services.module';
+import { UserTabManagementModule } from './user-tab-management/user-tab-management.module';
 
 
 @NgModule({
@@ -134,6 +135,7 @@ import { CatalogueServicesModule } from './catalogue-services/catalogue-services
         SkillsManagmentModule,
         CatalogueServicesModule
 
+        UserTabManagementModule
 
     ]
 })

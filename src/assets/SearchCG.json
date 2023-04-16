@@ -5,7 +5,7 @@
 "placeholder":"Search...",
 "value":""
 },
-"optionEndpoint" : "assets/metadata.json",
+"optionEndpoint" : "assets/back.json",
 "addoption":true,
 "saveInputInBase": "false",
 "AssignInputToItem": "true",

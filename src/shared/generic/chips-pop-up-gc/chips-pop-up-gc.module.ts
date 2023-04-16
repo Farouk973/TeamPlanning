@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChipsGCComponent } from './chips-gc/chips-gc.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
@@ -11,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { SearchBarCGModule } from '../search-bar-cg/search-bar-cg.module';
 import {MatBadgeModule} from '@angular/material/badge';
+import { DomainChipsGCComponent } from './domain-chips-gc/domain-chips-gc.component';
 
 
 
@@ -18,7 +18,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [
     SkillRatingDialogComponent,
-    ChipsGCComponent
+    DomainChipsGCComponent
   ],
   imports: [
     FormsModule,
@@ -36,7 +36,7 @@ import {MatBadgeModule} from '@angular/material/badge';
   ],
   exports:[
     SkillRatingDialogComponent,
-    ChipsGCComponent
+    DomainChipsGCComponent
    ]
 })
 export class ChipsPopUpGCModule { }
