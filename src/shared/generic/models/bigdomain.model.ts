@@ -30,7 +30,8 @@ export interface domain {
 }
 export interface endpoints{
     Metadata:string;
-    endpointsave:string;
+    endpointsavedomain:string;
     subdomainname:string;
     domainname:string;
+    mappingsaveendpoint:{};
 }

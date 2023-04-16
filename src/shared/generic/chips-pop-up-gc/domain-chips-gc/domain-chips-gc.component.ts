@@ -37,6 +37,8 @@ export class DomainChipsGCComponent implements OnInit {
   namesubdomain
   namedomain
   metadatastring
+  endpointsavedomain
+  mappingsaveendpoint:{}
   async ngOnInit(): Promise<void> {
     //map keys from the endpoints and metdata
     await this.subscribeToEndpoints();
@@ -91,6 +93,8 @@ export class DomainChipsGCComponent implements OnInit {
         this.namesubdomain = enpointData.subdomainname;
         this.namedomain = enpointData.domainname;
         this.metadatastring = enpointData.Metadata;
+        this.endpointsavedomain=enpointData.endpointsavedomain;
+        this.mappingsaveendpoint=enpointData.mappingsaveendpoint;
         resolve();
       }, (error: any) => {
         reject(error);
@@ -191,9 +195,10 @@ export class DomainChipsGCComponent implements OnInit {
 
   }
   handleDialogResult(result: any) {
-    //console.log('Dialog result:', result);
-    const bigDomainIndex = this.treedata.findIndex(d => d.name === result.bigDomain.name);
+    console.log('Dialog result:', result);
+    
 
+    const bigDomainIndex = this.treedata.findIndex(d => d.name === result.bigDomain.name);
     if (bigDomainIndex !== -1) {
       // Find the index of the sub domain in the big domain's sub domain array
       const subDomainIndex = this.treedata[bigDomainIndex].subdomain.findIndex(d => d.name === result.subDomain.name);
@@ -205,6 +210,12 @@ export class DomainChipsGCComponent implements OnInit {
         if (!skillExists) {
           // Add the skill name to the domain array
           this.treedata[bigDomainIndex].subdomain[subDomainIndex].domain.push({ name: result.skillName,value:0 ,});
+
+          const data = { [this.mappingsaveendpoint['name']]: result.skillName, [this.mappingsaveendpoint['subdomainid']]: result.subDomain.id };
+    this.http.post(this.endpointsavedomain, data)
+      .subscribe(response => {
+        console.log(response);
+      });
         }
       }
     }
@@ -221,6 +232,7 @@ export class DomainChipsGCComponent implements OnInit {
     console.log(this.addedchips);
     this.listoutput.emit(this.addedchips);
   }
+ 
 
 }
 

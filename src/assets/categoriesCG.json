@@ -1,6 +1,10 @@
 {
     "Metadata": "assets/Metadata.json",
-    "endpointsave":"",
+    "endpointsavedomain":"https://localhost:44312/api/Skills/add-skill",
+    "mappingsaveendpoint": {
+        "name": "name",
+        "subdomainid": "categoryId"
+      },
     "subdomainname":"Categories",
     "domainname":"skills"
 }
