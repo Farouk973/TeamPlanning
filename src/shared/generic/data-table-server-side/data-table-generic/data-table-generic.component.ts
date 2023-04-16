@@ -1,8 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, MatSortHeaderIntl } from '@angular/material/sort';
+import { DomSanitizer } from '@angular/platform-browser';
+import { CustomCellComponent } from './custom-cell/custom-cell.component';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { SharedServices } from '../../SharedServices.service';
+import { NumberInput } from '@angular/cdk/coercion';
 @Component({
   selector: 'app-data-table-generic',
   templateUrl: './data-table-generic.component.html',
@@ -12,66 +17,76 @@ import { MatSort, MatSortHeaderIntl } from '@angular/material/sort';
   ]
  
 })
+
 export class DataTableGenericComponent implements OnInit {
-  displayedColumns: string[] = ['column1', 'column2','column3','column4','column5'];
+
   dataSource = new MatTableDataSource<any>();
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  // Set the number of items per page
-  pageSize = 10;
-  // Set the initial page number
-  currentPage = 1;
-  // Set the total number of items (this would be retrieved from the server)
+  pageSize = 3;
   totalItems = 100;
+  selectedRows: any[] = [];
+  @Input() data: DataTableGenericInput;
+  @ViewChild(MatPaginator,{static:true}) paginator: MatPaginator;
+  private destroy$: Subject<void> = new Subject<void>();
+ 
+pageIndex = 0;
   public paginationPages: number[] = [];
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient, public listCardService: SharedServices) {}
 
   ngOnInit() {
-    this.getData(1);
-    this.generatePaginationPages();
-    this.dataSource.sort = this.sort;
+    this.getData();
+    this.dataSource.paginator = this.paginator;
+  
     
   }
-
-  get totalPages(): number {
-    return Math.ceil(this.totalItems / this.pageSize);
+  onSelectedRowsChange(rows: any[]) {
+    this.selectedRows = rows;
   }
-
-  // Go to the next page
-  nextPage() {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      // Call your API with the new page number
-      this.getData(this.currentPage);
-    }
+  onSubmit(){
+    console.log(this.selectedRows)
   }
-  goToPage(page: number): void {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-      // Call your API with the new page number
-      this.getData(this.currentPage);
-    }
-  }
-  generatePaginationPages() {
-    this.paginationPages = [];
-    for (let i = 1; i <= this.totalPages; i++) {
-      this.paginationPages.push(i);
-    }
-  }
-  // Go to the previous page
-  previousPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      // Call your API with the new page number
-      this.getData(this.currentPage);
-    }
-  }
-  getData(pageNb: number) {
-    const endpoint = "https://localhost:5001/api/service";
-    const params = new HttpParams().set('parameterValue', pageNb.toString());
-
-    this.httpClient.get<any>(endpoint, { params }).subscribe(data => {
-      console.log(data);
-      this.dataSource.data = data;
+  getData() {
+    this.data?.endpoint?.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((endpointValue) => {
+      this.listCardService.getParametrizedData(endpointValue, this.data.params)
+        .subscribe((data) => {this.dataSource.data = data[this.data.tableFor],
+          this.totalItems= data.total
+        });
+  
     });
   }
+  onPageChanged(event: PageEvent) {
+    if ((event.pageIndex/event.length === Math.ceil(event.length / event.pageSize) - 1) && (this.totalItems>event.length) ) {
+      this.data.showRenderButton = true;
+      
+    }
+  }
+}
+export interface TableColumn {
+
+  columnDef: string;
+  header: string;
+  cel?: (element: any) => any;
+  component?: any ;
+  componentInput?:any;
+}
+
+
+export interface DataTableGenericInput {
+  columns?: TableColumn[];
+  columnDefs?: string[];
+  sortActive?: string;
+  sortDirection?: 'asc' | 'desc';
+  sortDisableClear?: boolean;
+  width?: string;
+  params:Number ;
+  endpoint:BehaviorSubject<string>;
+  updateEndpoint?:string;
+  totalItemEndpoint?:string;
+  tableFor?:string;
+  pageSize?:NumberInput;
+  pageIndex?:NumberInput;
+  length?:NumberInput;
+  showRenderButton?:boolean
 }
