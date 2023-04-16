@@ -1,5 +1,5 @@
 {
-    "Metadata": "assets/Metadata.json",
+    "Metadata": "assets/metadata.json",
     "endpointsavedomain":"https://localhost:44312/api/Skills/add-skill",
     "mappingsaveendpoint": {
         "name": "name",

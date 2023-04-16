@@ -133,7 +133,7 @@ import { UserTabManagementModule } from './user-tab-management/user-tab-manageme
         ScrollingModule,
         DialogModule,
         SkillsManagmentModule,
-        CatalogueServicesModule
+        CatalogueServicesModule,
 
         UserTabManagementModule
 
