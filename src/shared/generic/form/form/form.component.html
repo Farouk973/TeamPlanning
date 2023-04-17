@@ -157,9 +157,7 @@
           <input matInput [matAutocomplete]="auto"
           [formControl]="searchDataCtrl"   [formControlName]="field.name" (focus)="onselectData(field.name)" >
 
-          <mat-autocomplete [panelWidth]="400" #auto="matAutocomplete" (optionSelected)="onSelected()">
-            <!-- [displayWith]="displayWith" -->
-
+          <mat-autocomplete [displayWith]="displayDataTitle" [panelWidth]="400" #auto="matAutocomplete" >            
             <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
             <ng-container *ngIf="!isLoading">
               <mat-option *ngFor="let data of filteredData" [value]="data">
@@ -169,26 +167,10 @@
           </mat-autocomplete>
         </mat-form-field>
 
-
-
-
-
-
-
-
-        <!-- <mat-form-field appearance="outline" *ngIf=" field.type === 'array'">
-          <mat-label>{{ field.name }}</mat-label>
-          <mat-select [formControlName]="field.name" multiple>
-            <mat-option *ngFor="let option of map.get(field.item)" [value]="option" Selected>{{option.title}}</mat-option>
-          </mat-select>
-        </mat-form-field> -->
-
-
-
           <mat-select-trigger appearance="outline" *ngIf=" field.type === 'array'">
             <mat-chip-list>
               <mat-chip disableRipple *ngFor="let selected of valueControl.value" [selectable]="true" [removable]="true"
-                (removed)="removeOption(selected)">
+             >
                 {{ selected.title }}
                 <i class="multiselect-chip-remove" matChipRemove matRipple></i>
               </mat-chip>
@@ -196,17 +178,18 @@
           </mat-select-trigger>
           <mat-form-field appearance="outline" *ngIf=" field.type === 'array'">
             <mat-label>{{ field.name }}</mat-label>
-            <mat-select [formControlName]="field.name"  multiple>
-
+            <mat-select [formControlName]="field.name"  multiple>      
               <mat-option  *ngFor="let option of map.get(field.name)" [value]="option.id">
                 {{ option.title }}
               </mat-option>
-
-
             </mat-select>
-          </mat-form-field>
+          </mat-form-field>  
 
 
+
+
+
+          
         </div>
         </div>
 

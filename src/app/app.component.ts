@@ -11,15 +11,15 @@ export class AppComponent {
   title = 'team-planning';
   isAuthenticated = false;
   constructor(public oidcSecurityService: OidcSecurityService) {
-    // this.oidcSecurityService.checkAuth()
-    // .subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
-    //   if (!isAuthenticated) {
-    //     this.login();
-    //   } else {
-    //     console.log('current user:', userData);
-    //     this.isAuthenticated = true;
-    //   }
-    // });
+     this.oidcSecurityService.checkAuth()
+     .subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
+       if (!isAuthenticated) {
+         this.login();
+       } else {
+         console.log('current user:', userData);
+         this.isAuthenticated = true;
+       }
+     });
     this.isAuthenticated = true;
   }
   ngOnInit() {}

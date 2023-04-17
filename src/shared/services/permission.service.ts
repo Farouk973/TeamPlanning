@@ -12,4 +12,7 @@ export class PermissionService {
   getMenu() {
     return this.httpRepositoryService.get<any>(`${this.BASE_URI}`);
 }
+getMenuUser(id : any) {
+  return this.httpRepositoryService.get<any>(`${this.BASE_URI}`+"/user-permessions/"+id);
+}
 }

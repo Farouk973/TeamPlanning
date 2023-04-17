@@ -20,6 +20,7 @@
             {{ sortDirection === "asc" ? "▲" : "▼" }}
           </span>
         </th>
+        <th class="header__item" *ngFor="let action of GridView.actions" >{{action.actionThtitle}}</th>
         <th class="header__item">Actions</th>
       </tr>
     </thead>
@@ -75,8 +76,18 @@
           <div *ngIf="field.type === 'string' && field.format === 'date-time'">
             {{ row[field.name] | date }}
           </div>
-         
+        
         </td>
+
+        <td *ngFor="let action of GridView.actions">
+          <button
+         (click)="openDialogaction(action.Compoment,row.id)"
+          class="actionButton" mat-flat-button>
+         <span class="buttonText" style="margin-left: 3%;">{{action.actionButtonTitle}}</span> 
+    
+        </button>
+         </td>
+        
         <td class="table-data">
            <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" [matMenuTriggerFor]="menu">
             <svg width="14" height="34" viewBox="0 0 14 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -92,7 +103,7 @@
   <app-action-panel
   *ngIf="GridView.actionPanel"
   [actionPanel]="GridView.actionPanel"
-  [objId]="row"
+  [objId]="row"     
   (edit)="onEditItem($event)"
   (delete)="onDeleteItem($event)"
 ></app-action-panel>

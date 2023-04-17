@@ -22,9 +22,6 @@ export class ActionPanelComponent implements OnInit {
   @Output() edit = new EventEmitter<number>();
   @Output() delete = new EventEmitter<number>();
   ngOnInit(): void {
-    console.log("eeeeeee")
-    console.log(this.actionPanel);
-   
   }
 
   onEdit() {
@@ -48,5 +45,16 @@ export class ActionPanelComponent implements OnInit {
 
 console.log(this.actionPanel.formEditData)    }
 
+openDialogaffecte(metaData: any,isUpdate: boolean,endpoint:any,object= this.objId): void {
+  const dialogRef = this.dialog.open(DialogComponent, {
+    width: '1067px',
+    height: '519px',
+    data: {metaData, isUpdate,endpoint,object},
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${Object.keys(result)}`);
+   }) 
+
+console.log(this.actionPanel.formEditData)    }
 
 }
