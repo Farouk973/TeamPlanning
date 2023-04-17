@@ -63,6 +63,8 @@ import { RoleComponent } from './role/role.component';
 import { OrderSelectModule } from 'src/shared/generic/order-select/order-select.module';
 import { OrderDialogComponent } from './permissions/order-dialog/order-dialog.component';
 import { KanbanModule } from 'src/shared/generic/kanban/kanban.module';
+import { ItemComponent } from './permissions/item/item.component';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -71,6 +73,8 @@ import { KanbanModule } from 'src/shared/generic/kanban/kanban.module';
     UserPermessionsComponent,
     RoleComponent,
     OrderDialogComponent,
+    ItemComponent,
+    UsersComponent,
   ],
   imports: [
     CommonModule,
@@ -135,5 +139,6 @@ import { KanbanModule } from 'src/shared/generic/kanban/kanban.module';
 
 
   ]
+  ,exports:[RoleComponent]
 })
 export class AccessManagmentModule { }

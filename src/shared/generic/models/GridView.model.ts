@@ -7,4 +7,11 @@ export interface GridView extends NXMGenericComponent {
     formdata: string;
     actionPanel?: Actionpanel;
     allowedSortColumns: string[];
+    actions? : GridAction[]
   }
+
+  export interface GridAction {
+    actionThtitle : string;
+    actionButtonTitle : string ;
+    Compoment?: any;
+   }

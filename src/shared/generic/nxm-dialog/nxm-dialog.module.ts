@@ -23,7 +23,8 @@ import { GridViewModule } from '../grid-view/grid-view.module';
     MatDialogModule,
     MatButtonModule,
     MatIconModule,
-    GridViewModule
+    GridViewModule,
+    
   ],
   exports :[DialogComponent]
 })

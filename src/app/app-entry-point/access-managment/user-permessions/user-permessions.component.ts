@@ -37,12 +37,12 @@ export class UserPermessionsComponent implements OnInit {
   };
 
   action: Actionpanel = {
-    endpoint: `${environment.baseUrl}/api/Users`,
+    endpoint: `${environment.baseUrl}/api/Users/RoleEtpermessions`,
     formEditData: `${environment.baseUrl}/meta/UpdateUserRoleEtPermessionsCommand`,
   };
 
   grid: GridView = {
-    endpoint: `${environment.baseUrl}/api/Users`,
+    endpoint: `${environment.baseUrl}/api/Users/permessions`,
     formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
     metadata: `${environment.baseUrl}/meta/GetUsersPermessionsVm`,
     allowedSortColumns: ['title'],

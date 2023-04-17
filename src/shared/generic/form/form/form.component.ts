@@ -43,14 +43,10 @@ export class FormComponent implements OnInit {
   minLengthTerm = 3;
   selectedMovieData: any = "";
   // formGroup = new FormGroup({});
- x:any[]
   public isAllSelected: boolean;
 
   valueControl = new FormControl();
 
-  public removeOption(optionToRemove: any): void {
-    this.formData.Object['permissions'].setValue(this.formData.Object['permissions'].value.filter(option => optionToRemove.id !== option.id));
-  }
   ngOnInit(): void {
 
     this.formService.getMetadata(this.formData.metaData).subscribe((data) => {
@@ -58,7 +54,13 @@ export class FormComponent implements OnInit {
       this.fields.forEach((element) => {
    
         if (element.type === 'array') {
-     this.ReferenceExistances(element.name);
+               this.ReferenceExistances(element.name);
+        }
+        if (element.type === null && element.format === null && element.description !== null &&!element.references[0]) {
+          console.log(element.name)
+          this.inputName=element.name
+          this.searchDataCtrl.setValue(this.formData.Object[this.inputName].title)    
+
         }
         this.createForm();
       });
@@ -95,19 +97,17 @@ export class FormComponent implements OnInit {
     });
 
   }
-  onSelected() {
-    this.selectedMovieData = this.selectedMovieData;
-  }
+
 
   onselectData(value : string){
     this.inputName = value;
+
   }
 
-  clearSelection() {
-    this.selectedMovieData = "";
-    this.filteredData = [];
-  }
 
+  displayDataTitle(data: any): string {
+    return data.title;
+  }
   createForm() {
 
     for (const field of this.fields) {
@@ -140,18 +140,14 @@ export class FormComponent implements OnInit {
         this.formData.Object.hasOwnProperty(field.name)
       ) {
         control.setValue(this.formData.Object[field.name]); // set the initial value from the data object
-
       }
       if(field.type === 'array'){
              
         const ids: string[] = this.formData.Object[field.name].map((object) => object.id);
        control.setValue(ids); // set the initial value from the data object
-
-
- }
+      }
 
       this.form.addControl(field.name, control);
-      console.log(this.form.controls['role'])
     }
   }
 
@@ -163,7 +159,7 @@ export class FormComponent implements OnInit {
 
   submitByType(type: string) {
     this.submitAsync().then((isValid) => {
-      console.log(isValid);
+      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
       console.log(this.form.value);
       console.log(type);
       if (isValid) {

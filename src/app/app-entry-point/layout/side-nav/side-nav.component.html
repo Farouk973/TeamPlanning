@@ -9,7 +9,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
      
-      <a mat-list-item *ngFor="let i of m.items">
+      <a mat-list-item *ngFor="let i of m.items" (click)="redirectItem(i.path)">
         <mat-icon class="sidenav-icon"></mat-icon>
         {{i.name}}
       </a>
