@@ -6,7 +6,9 @@ import {StepperProjectComponent} from "./stepper-project/stepper-project.compone
 const routes: Routes = [
   {
     path: 'project',
-    component: StepperProjectComponent ,
+    component: StepperProjectComponent, children:[
+  {path: ':id', component :StepperProjectComponent}
+]
   }
 ];
 @NgModule({
