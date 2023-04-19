@@ -7,8 +7,8 @@ const routes: Routes = [
   {
     path: 'project',
     component: StepperProjectComponent, children:[
-  {path: ':id', component :StepperProjectComponent}
-]
+      {path: ':id', component :StepperProjectComponent}
+    ]
   }
 ];
 @NgModule({

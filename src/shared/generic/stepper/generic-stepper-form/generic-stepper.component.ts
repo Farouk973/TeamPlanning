@@ -15,6 +15,8 @@ import {GenericStepperService} from "../generic.stepper.service";
 import {Location} from "@angular/common";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {MatDialog} from "@angular/material/dialog";
+import {SpreadsheetsProjectComponent} from "../../../../app/app-entry-point/spreadsheets-management/spreadsheets-project/spreadsheets-project.component";
 
 
 @Component({
@@ -36,7 +38,7 @@ export class GenericStepperComponent implements OnInit {
   order : number;
   idResponse : string ='';
   chiff: boolean = false
-  constructor(public http: HttpClient, private genericStepperService : GenericStepperService , private location : Location , private router : Router) {
+  constructor(public http: HttpClient, private genericStepperService : GenericStepperService , private location : Location , private router : Router , public dialog: MatDialog) {
 
   }
 
@@ -45,7 +47,6 @@ export class GenericStepperComponent implements OnInit {
       this.stepper = stepperData;
     });
   }
-
 
   reload() {
     window.location.reload()
@@ -89,6 +90,10 @@ export class GenericStepperComponent implements OnInit {
       this.order= 3
 
     }
+    if (step == 4) {
+      this.order= 4
+
+    }
   }
 
   deleteItem(){
@@ -100,5 +105,6 @@ export class GenericStepperComponent implements OnInit {
 
   validateItem() {
     this.chiff = true
+    this.router.navigate(['/chiffrage/chiff/', this.idResponse])
   }
 }
