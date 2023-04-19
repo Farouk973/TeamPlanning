@@ -7,6 +7,8 @@ import { AddSkillDialogComponent } from './add-skill-dialog/add-skill-dialog.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { ChipsPopUpGCModule } from 'src/shared/generic/chips-pop-up-gc/chips-pop-up-gc.module';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatTabsModule,
     MatDialogModule,
     ChipsPopUpGCModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatChipsModule
   ]
 })
 export class UserTabManagementModule { }

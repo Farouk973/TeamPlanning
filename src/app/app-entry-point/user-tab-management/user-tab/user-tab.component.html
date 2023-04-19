@@ -1,17 +1,34 @@
 <mat-tab-group mat-align-tabs="center" class="my-tab-group">
-  <mat-tab label="Projects"></mat-tab>
+  <mat-tab label="Projects">
+    <div class="card-container">
+      <mat-card *ngFor="let project of userProjects" class="project-card">
+        <mat-card-header>
+          <mat-card-title class="project-name">{{ project.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="project-description">{{ project.description }}</p>
+          <mat-chip-list class="project-languages">
+            <mat-chip *ngFor="let language of project.Languages" class="project-language">{{ language }}</mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-tab>
   <mat-tab label="Profile">
     <h2 class="profile-heading">Skills</h2>
-    <p class="profile-text">Here are your current skills:</p>
-    <ul class="profile-list">
-      <li *ngFor="let skill of skillsChanged | async" class="skill-item">
-        <span class="skill-name">{{ skill.name }}</span> 
-        <span class="skill-stars">
-          <mat-icon *ngFor="let star of getSkillValueStars(skill.value)">star_border</mat-icon>
-        </span>
-      </li>
+<p class="profile-text">Here are your current skills:</p>
+<ul class="profile-list">
+  <li *ngFor="let skill of skillsChanged | async; let i = index" class="skill-item">
+    <span class="skill-name">{{ skill.name }}</span> 
+    <span class="skill-stars">
+      <mat-icon *ngFor="let star of getSkillValueStars(skill.value)">star_border</mat-icon>
+    </span>
+    <button mat-icon-button class="delete-button" (click)="deleteSkill(i)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </li>
 </ul>
-    <button mat-raised-button (click)="openAddSkillDialog()" class="profile-button">Add Skill</button>
+<button mat-raised-button (click)="openAddSkillDialog()" class="profile-button">Add Skill</button>
   </mat-tab>
   <mat-tab label="Feature"></mat-tab>
 </mat-tab-group>
