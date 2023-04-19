@@ -134,5 +134,8 @@ export class DynamicAutoCompleteComponent implements OnInit  {
     );
   }
 
+  clearInput() {
+    this.myControl.setValue('');
+  }
 }
 
