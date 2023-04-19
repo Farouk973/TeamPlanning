@@ -5,7 +5,7 @@ import {SpreadsheetsProjectComponent} from "./spreadsheets-project/spreadsheets-
 const routes: Routes = [
 
   {
-    path: 'chiff',
+    path: 'cost-project',
     component: SpreadsheetsProjectComponent,children:[
       { path : ':id' , component : SpreadsheetsProjectComponent}
     ]

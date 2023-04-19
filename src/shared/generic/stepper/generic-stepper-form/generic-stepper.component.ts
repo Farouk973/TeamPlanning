@@ -105,6 +105,6 @@ export class GenericStepperComponent implements OnInit {
 
   validateItem() {
     this.chiff = true
-    this.router.navigate(['/chiffrage/chiff/', this.idResponse])
+    this.router.navigate(['/costing/cost-project/', this.idResponse])
   }
 }

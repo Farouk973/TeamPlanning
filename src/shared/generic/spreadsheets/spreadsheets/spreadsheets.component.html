@@ -1,24 +1,22 @@
-<table aria-describedby="table-description" >
-  <thead>
-  <tr>
-    <th>{{spreadsheets.nameCaseIntersection}}</th>
-    <th *ngFor="let columnHeader of data.columnHeader">{{ columnHeader }}</th>
-  </tr>
-  </thead>
-  <tbody>
+<h1 class="title" fxLayoutAlign.gt-md="center" >costing of a project : {{titleProject}}</h1>
+<div fxLayout="column" fxLayoutAlign="center"  >
+  <div class="button-container" fxLayoutAlign="end" >
+    <button mat-button class="mat-raised-button" *ngIf="!editModeStyle"   (click)="toggleEditMode(rowIndex)" >  <p  >Edit</p></button>
+    <button mat-button class="mat-raised-button" *ngIf="editModeStyle"   (click)="toggleEditMode(rowIndex)" >  <p  >Confirm</p></button>
+  </div>
+  <mat-grid-list cols="{{ data.columnHeader.length + 1 }}"  rowHeight="3:1" >
+    <mat-grid-tile  > <span>{{spreadsheets.nameCaseIntersection}}</span></mat-grid-tile>
+    <mat-grid-tile *ngFor="let colHeader of data.columnHeader" > <span>{{ colHeader }}</span></mat-grid-tile>
 
-  <tr *ngFor="let rowHeader of data.rowHeader; let rowIndex = index"  >
-    <td>{{ rowHeader }}</td>
-    <td *ngFor="let reportData of data.reportData[rowIndex]; let colIndex = index">
-      <span *ngIf="!editModeStyle">{{ reportData }}</span>
-      <input type="{{spreadsheets.inputType}}" [(ngModel)]="data.reportData[rowIndex][colIndex]" *ngIf="editModeStyle">
-    </td>
+    <ng-container *ngFor="let rowHeader of data.rowHeader; let rowIndex = index" >
+      <mat-grid-tile fxFlex="1 1 auto"    ><span>{{ rowHeader}}</span></mat-grid-tile>
+      <mat-grid-tile *ngFor="let reportData of data.reportData[rowIndex]; let colIndex = index">
+        <span *ngIf="!editModeStyle">{{reportData }}</span>
+        <input type="{{spreadsheets.inputType}}" min="0" [(ngModel)]="data.reportData[rowIndex][colIndex]" *ngIf="editModeStyle">
+      </mat-grid-tile>
 
-  </tr>
-  </tbody>
-</table>
-<div class="button-container">
-  <button mat-button class="mat-raised-button" *ngIf="!editModeStyle"   (click)="toggleEditMode(rowIndex)" >Edit</button>
-  <button mat-button class="mat-raised-button" *ngIf="editModeStyle"   (click)="toggleEditMode(rowIndex)" >Confirm</button>
+    </ng-container>
+  </mat-grid-list>
 </div>
+
 

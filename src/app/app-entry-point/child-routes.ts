@@ -37,7 +37,7 @@ export const childRoutes = [
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
   {
-    path: 'chiffrage',
+    path: 'costing',
     loadChildren: () => import('./spreadsheets-management/spreadsheets-management.module').then(m => m.SpreadsheetsManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
