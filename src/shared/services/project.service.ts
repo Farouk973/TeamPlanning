@@ -7,11 +7,15 @@ import { HttpRepositoryService } from 'src/core/httpRepository.service';
 })
 export class ProjectService {
 
-  private BASE_URI = 'api/Project/get-project';
-
+  private PROJECT = 'api/Project/get-project';
+  private PROJECTS = 'api/Project/get-projects';
   constructor(private httpRepositoryService: HttpRepositoryService) { }
 
   getProject(projectId: any) {
-    return this.httpRepositoryService.get<any>(`${this.BASE_URI}/${projectId}`);
+    return this.httpRepositoryService.get<any>(`${this.PROJECT}/${projectId}`);
+  }
+
+  getProjects() {
+    return this.httpRepositoryService.get<any>(`${this.PROJECTS}`);
   }
 }

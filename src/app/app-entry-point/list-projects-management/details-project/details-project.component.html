@@ -1,0 +1,15 @@
+<mat-dialog-content class="mat-typography">
+  <h2 mat-dialog-title>Features</h2>
+  <mat-chip-list >
+    <mat-chip  *ngFor="let f of data.p.features" style="background-color: rgba(0, 178, 217, 0.1)"> {{f.description}}</mat-chip>
+  </mat-chip-list>
+
+  <h2 mat-dialog-title>Roles</h2>
+  <mat-chip-list >
+    <mat-chip  *ngFor="let r of data.p.roles" style="background-color: rgba(0, 178, 217, 0.1)"> {{r.title}}</mat-chip>
+  </mat-chip-list>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="mat-raised-button" mat-button [mat-dialog-close]="true" cdkFocusInitial><p>Cancel</p></button>
+</mat-dialog-actions>

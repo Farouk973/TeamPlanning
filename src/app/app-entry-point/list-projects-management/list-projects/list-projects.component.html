@@ -1,0 +1,23 @@
+<div class="header" fxLayoutAlign.gt-md="center" >
+  <span class="titleService">All projects</span>
+  <div  class="search-bar">
+    <mat-icon class="search-icon">search</mat-icon>
+    <input type="text" placeholder="Search" name="search"   [(ngModel)]=" inputSearch">
+  </div>
+</div>
+<div fxLayout="row wrap" fxLayoutGap="40px"      style="padding-left: 50px; padding-top: 50px;" >
+  <div *ngFor="let p of projects; let i=index;" [hidden]="p.name.toLowerCase().indexOf(inputSearch.toLowerCase()) === -1" >
+    <mat-card   >
+      <div class="card">
+        <mat-card-content class="card-content">
+          <p>{{p.visibility}}</p>
+        </mat-card-content>
+        <mat-icon class="more-icon" (click)="openDialog(p)">more_vert</mat-icon>
+      </div>
+      <h1>{{p.name}}</h1>
+      <h3>{{p.description}}</h3>
+      <h2>Created at: {{p.created | date:'yyyy-MM-dd HH:mm'}}</h2>
+    </mat-card>
+  </div>
+</div>
+
