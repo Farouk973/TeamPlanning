@@ -1,6 +1,7 @@
 <h1 class="title" fxLayoutAlign.gt-md="center" >costing of a project : {{titleProject}}</h1>
-<div fxLayout="column" fxLayoutAlign="center"  >
+<div fxLayout="column" fxLayoutAlign="center">
   <div class="button-container" fxLayoutAlign="end" >
+    <button mat-button class="mat-raised-button"(click)="dispalyProjects()"><p  >All pojects</p></button>
     <button mat-button class="mat-raised-button" *ngIf="!editModeStyle"   (click)="toggleEditMode(rowIndex)" >  <p  >Edit</p></button>
     <button mat-button class="mat-raised-button" *ngIf="editModeStyle"   (click)="toggleEditMode(rowIndex)" >  <p  >Confirm</p></button>
   </div>

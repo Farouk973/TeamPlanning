@@ -5,6 +5,7 @@ import {SpreadsheetsService} from "../spreadsheets.service";
 import {Location} from "@angular/common";
 import {Observable} from "rxjs";
 import {Spreadsheets} from "../../models/Spreadsheets.model";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -26,7 +27,9 @@ export class SpreadsheetsComponent implements  OnChanges {
   editModeStyle : boolean = false;
   rowIndex : any
   titleProject : string;
-  constructor(private http: HttpClient , private spreadsheetsService : SpreadsheetsService , private location : Location) {
+
+  chiffrage : any = [];
+  constructor(private http: HttpClient , private spreadsheetsService : SpreadsheetsService , private location : Location , private router : Router) {
 
   }
 
@@ -73,10 +76,23 @@ export class SpreadsheetsComponent implements  OnChanges {
         this.editMode[rowIndex].fill(!this.editMode[rowIndex][0]);
         console.log("data",this.data.reportData)
       }
-
+    }
+    if(!this.editModeStyle){
+      this.chiffrage = []
+      for (let row of this.data.reportData) {
+        const obj = {};
+        for (let i = 0; i < row.length; i++) {
+          obj['Role' + i] = row[i];
+        }
+        this.chiffrage.push(obj);
+      }
+      console.log("chiffrage",this.chiffrage)
     }
 
     }
 
 
+  dispalyProjects() {
+    this.router.navigate(['projects/list-projects'])
+  }
 }
