@@ -3,7 +3,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {HttpClient} from "@angular/common/http";
 import {SpreadsheetsService} from "../spreadsheets.service";
 import {Location} from "@angular/common";
-import {Observable} from "rxjs";
+import {Observable, toArray} from "rxjs";
 import {Spreadsheets} from "../../models/Spreadsheets.model";
 import {Router} from "@angular/router";
 import {logExperimentalWarnings} from "@angular-devkit/build-angular/src/builders/browser-esbuild/experimental-warnings";
@@ -42,22 +42,36 @@ export class SpreadsheetsComponent implements  OnChanges {
 
       const url = this.location.path();
       let id = url.substring(url.lastIndexOf('/') + 1);
+      let totlaJ_Cout = ["TOTAL DAY" , "COSTING"]
+      let TJM_DAY = ['TJM £' , 'NUMBER OF DAY']
+      let TOTAL = ['TOTAL']
+
+
 
       this.spreadsheetsService.getItem(this.spreadsheets.columnHeaderEndpoint,id).subscribe((data)=>{
-        this.data.columnHeader= data.roles.map((t)=>t[this.spreadsheets.mappingNameColumnHeader])
+        this.data.columnHeader=data.roles.map((t)=>t[this.spreadsheets.mappingNameColumnHeader]).concat(totlaJ_Cout)
+
+
         this.titleProject=data.name
+        console.log(this.data.columnHeader)
 
       })
 
 
       this.spreadsheetsService.getItem(this.spreadsheets.rowHeaderEndpoint,id).subscribe((data)=>{
-        this.data.rowHeader= data.features.map((d)=>d[this.spreadsheets.mappingNameRowHeader])
+        this.data.rowHeader= TJM_DAY.concat(data.features.map((d)=>d[this.spreadsheets.mappingNameRowHeader]).concat(TOTAL))
         this.fillMatrixByZero()
       })
 
 
+      this.spreadsheetsService.getItem(this.spreadsheets.rowHeaderEndpoint,id).subscribe((data)=>{
+        if( data.costing.map((obj) => Object.values(obj)).length != 0){
+          this.data.reportData = data.costing.map((obj) => Object.values(obj))
 
+        }
 
+      })
+      console.log('datarr',this.data)
     })
 
 
@@ -92,22 +106,18 @@ export class SpreadsheetsComponent implements  OnChanges {
         }
         this.chiffrage.push(obj);
       }
-      console.log(this.chiffrage)
+      for (let i = 2; i < this.data.reportData.length -1; i++) {
+        let sum = 0;
+        for (let j = 0; j < this.data.reportData[j].length - 2; j++) {
+          sum += this.data.reportData[i][j];
+        }
+       // data.reportData[i][data.reportData[i].length - 2] = sum;
+        console.log("sum", sum)
+      }
 
       this.spreadsheetsService.addCosting('/api/Project/addCostingToProject' , id , this.chiffrage ).subscribe( (response)=>
         console.log(response))
 
-      this.spreadsheetsService.getItem(this.spreadsheets.rowHeaderEndpoint,id).subscribe((data)=>{
-        const numCols = Object.keys(data.costing[0]).length;
-        for (let i = 0; i < data.costing.length; i++) {
-          const row = [];
-          for (let j = 0; j < numCols; j++) {
-            const colName = 'role' + j;
-            row.push(data.costing[i][colName]);
-          }
-          this.data.reportData.push(row);
-        }
-      })
 
 
       }

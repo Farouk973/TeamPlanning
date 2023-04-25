@@ -6,14 +6,16 @@
     <button mat-button class="mat-raised-button" *ngIf="editModeStyle"   (click)="toggleEditMode(rowIndex)" >  <p  >Confirm</p></button>
   </div>
   <mat-grid-list cols="{{ data.columnHeader.length + 1 }}"  rowHeight="3:1" >
-    <mat-grid-tile  > <span>{{spreadsheets.nameCaseIntersection}}</span></mat-grid-tile>
-    <mat-grid-tile *ngFor="let colHeader of data.columnHeader" > <span>{{ colHeader }}</span></mat-grid-tile>
+    <mat-grid-tile  > <span></span></mat-grid-tile>
+    <mat-grid-tile *ngFor="let colHeader of data.columnHeader ; let colIndex = index" [ngClass]="{'const': colIndex >= data.columnHeader.length - 2 }"> <span>{{ colHeader }}</span></mat-grid-tile>
 
-    <ng-container *ngFor="let rowHeader of data.rowHeader; let rowIndex = index" >
-      <mat-grid-tile fxFlex="1 1 auto"    ><span>{{ rowHeader}}</span></mat-grid-tile>
-      <mat-grid-tile *ngFor="let reportData of data.reportData[rowIndex]; let colIndex = index">
-        <span *ngIf="!editModeStyle">{{reportData }}</span>
-        <input type="{{spreadsheets.inputType}}" min="0" [(ngModel)]="data.reportData[rowIndex][colIndex]" *ngIf="editModeStyle">
+    <ng-container *ngFor="let rowHeader of data.rowHeader; let rowIndex = index ;" >
+      <mat-grid-tile fxFlex="1 1 auto"  [ngClass]="{'const': rowIndex < 2 || rowIndex > data.rowHeader.length - 2 }"   ><span>{{ rowHeader}}</span></mat-grid-tile>
+      <mat-grid-tile *ngFor="let reportData of data.reportData[rowIndex] ; let colIndex = index" >
+        <span *ngIf="!editModeStyle && !(rowIndex < 2 && (colIndex === data.columnHeader.length - 1 || colIndex === data.columnHeader.length - 2))
+          && !(rowIndex > data.rowHeader.length - 2  && colIndex !== data.columnHeader.length - 1  )  " class="reportData">{{reportData }}</span>
+        <input type="{{spreadsheets.inputType}}" min="0" [(ngModel)]="data.reportData[rowIndex][colIndex]"
+               *ngIf="editModeStyle && colIndex < data.columnHeader.length - 2  && rowIndex < data.rowHeader.length -1" >
       </mat-grid-tile>
 
     </ng-container>
