@@ -28,7 +28,8 @@ export class SkillRatingDialogComponent implements OnInit {
   onSaveClick(): void {
     const dataToSave = {
       name: this.data.name,
-      value: this.data.value
+      value: this.data.value,
+      id:this.data.id
     };
     this.dialogRef.close(dataToSave);
   }

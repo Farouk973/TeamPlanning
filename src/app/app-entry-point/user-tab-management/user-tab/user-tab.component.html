@@ -1,34 +1,63 @@
 <mat-tab-group mat-align-tabs="center" class="my-tab-group">
   <mat-tab label="Projects">
     <div class="card-container">
-      <mat-card *ngFor="let project of userProjects" class="project-card">
+      <mat-card *ngFor="let project of projectList|async" class="project-card">
         <mat-card-header>
           <mat-card-title class="project-name">{{ project.name }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <p class="project-description">{{ project.description }}</p>
           <mat-chip-list class="project-languages">
-            <mat-chip *ngFor="let language of project.Languages" class="project-language">{{ language }}</mat-chip>
+            <mat-chip *ngFor="let skill of project.skills" class="project-language">{{ skill.name }}</mat-chip>
           </mat-chip-list>
         </mat-card-content>
       </mat-card>
     </div>
   </mat-tab>
   <mat-tab label="Profile">
-    <h2 class="profile-heading">Skills</h2>
-<p class="profile-text">Here are your current skills:</p>
-<ul class="profile-list">
-  <li *ngFor="let skill of skillsChanged | async; let i = index" class="skill-item">
-    <span class="skill-name">{{ skill.name }}</span> 
-    <span class="skill-stars">
-      <mat-icon *ngFor="let star of getSkillValueStars(skill.value)">star_border</mat-icon>
-    </span>
-    <button mat-icon-button class="delete-button" (click)="deleteSkill(i)">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </li>
-</ul>
-<button mat-raised-button (click)="openAddSkillDialog()" class="profile-button">Add Skill</button>
+    <div class="profile-container">
+      <div class="profile-header">
+        <h2 class="profile-heading">Skills</h2>
+        <button mat-raised-button class="profile-button" (click)="openAddSkillDialog()">Add Skills</button>
+      </div>
+      <p class="profile-text"*ngIf="pagedSkillList?.length !== 0">Here are your current skills:</p>
+      <div class="profile-text" *ngIf="pagedSkillList?.length === 0">
+        <p>No sKill is available.</p>
+      </div>
+      <ul class="profile-list">
+        <li *ngFor="let skill of pagedSkillList ; let i = index" class="skill-item">
+          <span class="skill-name">{{ skill.name }}</span>
+          <span class="skill-stars">
+            <mat-icon *ngFor="let star of getSkillValueStars(skill.rate)">star_border</mat-icon>
+          </span>
+          <button mat-icon-button class="delete-button" (click)="deleteSkill(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </li>
+      </ul>
+      <mat-paginator *ngIf="totalSkills > 5" [length]="totalSkills" [pageSize]="pageSize" [pageIndex]="currentPageIndex"
+                     (page)="onPageChange($event)">
+      </mat-paginator>
+    </div>
   </mat-tab>
-  <mat-tab label="Feature"></mat-tab>
+  <mat-tab label="Features">
+    <div class="feature-header">
+      <h2>Features</h2>
+      <p>Here are your current features:</p>
+    </div>
+    <div class="feature-container" *ngIf="(featureList | async)?.length === 0">
+      <p>No features available.</p>
+    </div>
+    <ul class="feature-list" *ngIf="(featureList | async)?.length > 0">
+      <li *ngFor="let feature of featureList | async">
+        <div class="feature-item">
+          <div class="feature-details">
+            <ul>
+           <li class="feature-description">{{ feature.description }}</li>
+          </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+    </mat-tab>
 </mat-tab-group>

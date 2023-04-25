@@ -54,7 +54,7 @@ export class DomainChipsGCComponent implements OnInit {
         return acc;
       }, {});
       
-      console.log(transformedResponse);
+      //console.log(transformedResponse);
       const mappedData = transformedResponse[metadataItem.nameclassback].map(data => {
         const mappedObj = {} as any;
         for (const key in metadataItem.mapping) {
@@ -72,7 +72,7 @@ export class DomainChipsGCComponent implements OnInit {
         .map((sd) => {
           const domains = this.transformedResponse['domain']
             .filter((d) => d.subdomain_id === sd.id)
-            .map((d) => ({ name: d.name, value: d.value }));
+            .map((d) => ({ name: d.name, value: d.value,id:d.id }));
           return { id: sd.id, bigdomain_id: sd.bigdomain_id, name: sd.name, domain: domains };
         });
       this.treedata.push({ name: bd.name, subdomain: subdomains });
@@ -145,6 +145,7 @@ export class DomainChipsGCComponent implements OnInit {
     const clickedSubcategoryObj = clickedCategoryObj?.subdomain?.find(subCategory => subCategory.name === this.selectedNode);
     const chips = clickedSubcategoryObj?.domain;
     this.selectedchips = chips || [];
+    console.log(this.selectedchips)
   }
   searchdomain(data: string): domain | undefined {
     const category = this.treedata.find(category =>
@@ -209,7 +210,7 @@ export class DomainChipsGCComponent implements OnInit {
   
         if (!skillExists) {
           // Add the skill name to the domain array
-          this.treedata[bigDomainIndex].subdomain[subDomainIndex].domain.push({ name: result.skillName,value:0 ,});
+          this.treedata[bigDomainIndex].subdomain[subDomainIndex].domain.push({ name: result.skillName,value:0 });
 
           const data = { [this.mappingsaveendpoint['name']]: result.skillName, [this.mappingsaveendpoint['subdomainid']]: result.subDomain.id };
     this.http.post(this.endpointsavedomain, data)

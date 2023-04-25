@@ -9,6 +9,7 @@ import { ChipsPopUpGCModule } from 'src/shared/generic/chips-pop-up-gc/chips-pop
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { MatChipsModule } from '@angular/material/chips';
     ChipsPopUpGCModule,
     MatIconModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatPaginatorModule
   ]
 })
 export class UserTabManagementModule { }

@@ -9,17 +9,17 @@ import { domain, endpoints } from 'src/shared/generic/models/bigdomain.model';
   styleUrls: ['./add-skill-dialog.component.css']
 })
 export class AddSkillDialogComponent implements OnInit {
-  public Endpoints : Observable<endpoints> ;
-  selectedchips:domain[];
+  public Endpoints : Observable<any> ;
+  selectedchips:any[];
   constructor(private http: HttpClient,public dialogRef: MatDialogRef<AddSkillDialogComponent>) { }
 
   ngOnInit(): void {
-    this.Endpoints=this.http.get<endpoints>('assets/categoriesCG.json');
+    this.Endpoints=this.http.get<any>('assets/categoriesCG.json');
   }
   onCancelClick(): void {
     this.dialogRef.close();
   }
-  handlechipsResult(result: domain[]) {
+  handlechipsResult(result: any[]) {
     this.selectedchips=result
     
   }
