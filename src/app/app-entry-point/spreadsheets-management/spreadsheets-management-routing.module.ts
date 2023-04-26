@@ -5,8 +5,10 @@ import {SpreadsheetsProjectComponent} from "./spreadsheets-project/spreadsheets-
 const routes: Routes = [
 
   {
-    path: '',
-    component: SpreadsheetsProjectComponent,
+    path: 'cost-project',
+    component: SpreadsheetsProjectComponent,children:[
+      { path : ':id' , component : SpreadsheetsProjectComponent}
+    ]
   }
 ];
 

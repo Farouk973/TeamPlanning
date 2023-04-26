@@ -3,13 +3,19 @@
   justify-content: center;
   width: 100%;
 }
-.mat-raised-button {
 
-  border-radius: 12px;
-  max-width: 150px;
-  width: 50%;
-}
 mat-stepper {
   background-color: #fafafa;
 }
 
+
+.mat-raised-button{
+  margin-left: 30px;
+  border-radius: 12px ;
+  width: 150px;
+  height: 38px;
+
+}
+p{
+  color : #E9EBF0;
+}

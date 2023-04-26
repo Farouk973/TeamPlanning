@@ -37,7 +37,7 @@ export const childRoutes = [
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
   {
-    path: 's',
+    path: 'costing',
     loadChildren: () => import('./spreadsheets-management/spreadsheets-management.module').then(m => m.SpreadsheetsManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
@@ -49,7 +49,11 @@ export const childRoutes = [
     data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
   },
 
-
+  {
+    path: 'projects',
+    loadChildren: () => import('./list-projects-management/list-projects-management.module').then(m => m.ListProjectsManagementModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
+  }
 
   // {
   //   path: 'profile',
