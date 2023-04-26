@@ -64,7 +64,12 @@ export const mockCardData: CardData={
   pageSize:3,
   pageIndex:1,
   length:100,
-  showRenderButton:false
+  showRenderButton:false,
+  submitButtonClass:"submit-button",
+  cancelButtonClass:"cancel-button",
+  submitButtonLabel:"submit bundle request",
+  cancelButtonLabel:"cancel",
+  updateEndpoint:"https://localhost:5001/service-bundle"
   
   };
   export const CommonCssBehaviours={

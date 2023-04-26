@@ -13,14 +13,8 @@
   <tr mat-row *matRowDef="let row; columns: data.columnDefs;"></tr>
 </table>
 
-<mat-paginator [pageSize]="data.pageSize"
-               [pageIndex]="data.pageIndex"
-               [length]="data.length"
-               [showFirstLastButtons]="true"
-               [pageSizeOptions]="[3,5, 10, 25, 100]"
-               (page)="onPageChanged($event)"
-              >
-          
+<mat-paginator [pageSizeOptions]="pageSizeOptions" class="custom-paginator">
+ 
 </mat-paginator>
 <div *ngIf="data.showRenderButton">
   <button mat-icon-button>
@@ -31,6 +25,6 @@
   </button>
 </div>
 <div style="text-align:center;margin-top:20px;">
-  <button mat-button  class="submit-button" (click)="onSubmit()">Create request bundle</button>
-  <button mat-button  class="cancel-button" (click)="onSubmit()">Cancel</button>
+  <button mat-button [class]="data.submitButtonClass" (click)="onSubmit()"> {{data.submitButtonLabel}} </button>
+  <button mat-button [class]="data.cancelButtonClass" (click)="onCancel()"> {{data.cancelButtonLabel}} </button>
 </div>

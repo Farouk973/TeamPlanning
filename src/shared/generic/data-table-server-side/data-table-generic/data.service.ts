@@ -30,52 +30,63 @@ export class DataService {
       const database = (event.target as IDBRequest).result;
 
       const store = database.createObjectStore('my-data', { keyPath: 'id' });
-
+      store.createIndex('id', 'id');
       console.log('Database upgraded successfully');
     };
   }
 
-  public saveData(data: any[]): Observable<any> {
-    const transaction = this.database.transaction(['my-data'], 'readwrite');
-    const store = transaction.objectStore('my-data');
+  public saveData(index: number, dataArray: any[]): Observable<any> {
+  const transaction = this.database.transaction(['my-data'], 'readwrite');
+  const store = transaction.objectStore('my-data');
   
-    data.forEach((item) => {
-      store.put(item);
-    });
-  
-    return new Observable<any>((observer) => {
-      transaction.oncomplete = (event) => {
-        console.log('Data saved successfully');
-        observer.next(data);
-        observer.complete();
-      };
-  
-      transaction.onerror = (event) => {
-        console.error('Failed to save data', event);
-        observer.error(event);
-      };
-    });
-  }
-  
-  public loadData(): Observable<any[]> {
-    const transaction = this.database.transaction(['my-data'], 'readonly');
-    const store = transaction.objectStore('my-data');
-    const request = store.getAll();
+  store.put({ id: index, data: dataArray });
 
-    return new Observable<any[]>((observer) => {
-      request.onsuccess = (event) => {
-        const data = (event.target as IDBRequest).result;
-        console.log('Data loaded successfully');
-        observer.next(data);
-        observer.complete();
-      };
+  return new Observable(observer => {
+    transaction.oncomplete = event => {
+      console.log('Data saved successfully');
+      observer.next(dataArray);
+      observer.complete();
+    };
 
-      request.onerror = (event) => {
-        console.error('Failed to load data', event);
-        observer.error(event);
-      };
-    });
-  }
+    transaction.onerror = event => {
+      console.error('Failed to save data', event);
+      observer.error(event);
+    };
+  });
+}
+
+  
+public getData(id: number): Observable<any> {
+  const transaction = this.database.transaction(['my-data'], 'readonly');
+  const store = transaction.objectStore('my-data');
+  
+  const index = store.index('id');
+
+  const request = index.get(id);
+
+  return new Observable(observer => {
+    request.onsuccess = (event:Event) => {
+      const result =(event.target as IDBRequest).result;
+
+      if (result) {
+        observer.next(result.data);
+      } else {
+        observer.error(`No data found with ID ${id}`);
+      }
+
+      observer.complete();
+    };
+
+    request.onerror = event => {
+      console.error(`Failed to retrieve data with ID ${id}`, event);
+      observer.error(event);
+    };
+  });
+}
+
+
+
+
 
  
 }

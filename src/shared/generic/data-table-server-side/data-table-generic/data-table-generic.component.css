@@ -42,7 +42,31 @@ button.cancel-button {
 ::ng-deep .mat-header-row {
   background-color: #F4F6F8;
 }
+.custom-paginator ::ng-deep .mat-select {
+  background-color: white;
+ 
+  border-color: #E2E2EA;
+  
+}
+.custom-paginator ::ng-deep .mat-select-arrow {
+  color: #7D8DA7;
+}
+.custom-paginator ::ng-deep .mat-form-field-underline {
+  display: none;
+}
+.custom-paginator ::ng-deep .mat-select-arrow-active {
+  color: #00B2D9;
+}
+.custom-paginator ::ng-deep .mat-paginator-range-label{
+   margin-right: 22rem;
+}
+ 
 
-th.mat-header-cell {
-  height: 20px;
+table, th, td {
+ border-color:transparent;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+th {
+  background-color: #F4F6F8;
 }
