@@ -7,3 +7,66 @@
     background-color: transparent;
     border: none;
   }
+  .pagination p {
+    text-align: right;
+    padding-top: 5px;
+    margin-right: 20px;
+  }
+
+button.submit-button {
+  background-color: #00B2D9;
+  border-radius: 8px;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+
+button.submit-button:hover {
+  background-color: #0095B3;
+}
+button.cancel-button {
+  background-color: white;
+  border-radius: 8px;
+  color: #768DA9;
+  width: 100px;
+  border-width: 1px;
+  border-color: #768DA9;
+  border-style: solid;
+  margin:10px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+::ng-deep .mat-header-row {
+  background-color: #F4F6F8;
+}
+.custom-paginator ::ng-deep .mat-select {
+  background-color: white;
+ 
+  border-color: #E2E2EA;
+  
+}
+.custom-paginator ::ng-deep .mat-select-arrow {
+  color: #7D8DA7;
+}
+.custom-paginator ::ng-deep .mat-form-field-underline {
+  display: none;
+}
+.custom-paginator ::ng-deep .mat-select-arrow-active {
+  color: #00B2D9;
+}
+.custom-paginator ::ng-deep .mat-paginator-range-label{
+   margin-right: 22rem;
+}
+ 
+
+table, th, td {
+ border-color:transparent;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+th {
+  background-color: #F4F6F8;
+}

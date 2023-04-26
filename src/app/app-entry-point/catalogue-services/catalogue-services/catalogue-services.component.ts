@@ -1,10 +1,11 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CardData } from 'src/shared/generic/list-card/Models/cardModel';
-import { categoryData, mockCardData } from './mock-data/data';
+import { categoryData, mockCardData, mockDataTableData } from './mock-data/data';
 import { debounceTime } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DataTableGenericInput } from 'src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.component';
 @Component({
   selector: 'app-catalogue-services',
   templateUrl: './catalogue-services.component.html',
@@ -14,6 +15,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 export class CatalogueServicesComponent implements OnInit {
   searchForm: FormGroup;
   categories: CardData[] = categoryData;
+  mockDataTableGenericData:DataTableGenericInput = mockDataTableData ;
   card: CardData = mockCardData;
   baseUrl = 'https://localhost:5001/api/Service';
   selectedCategory = '';

@@ -1,0 +1,10 @@
+<div *ngIf="!element.totalCount">
+    <button mat-button class="add-button" (click)="toggleCountVisibility(element)">Add</button>
+  </div>
+  <div *ngIf="element.totalCount">
+    <button mat-button class="count-button"  (click)="decrementCount(element)">-</button>
+    <span>{{ element.totalCount }}</span>
+    <button mat-button class="count-button"  (click)="incrementCount(element)">+</button>
+   
+    
+  </div>

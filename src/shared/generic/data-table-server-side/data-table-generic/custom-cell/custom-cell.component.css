@@ -1,0 +1,25 @@
+button.add-button
+{
+  background-color: #00B2D9;
+  border-radius: 8px;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+button.add-button:hover
+:hover {
+  background-color: #0095B3;
+}
+.count-button {
+    border-radius: 50%;
+  
+    background-color: #292D32;
+    color: white;
+  }
+  
+  .count-button span {
+    display: inline-block;
+    transform: translate(2px, 2px);
+  }

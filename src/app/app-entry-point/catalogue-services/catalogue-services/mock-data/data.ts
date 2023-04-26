@@ -1,4 +1,6 @@
 import { BehaviorSubject } from "rxjs";
+import { CustomCellComponent } from "src/shared/generic/data-table-server-side/data-table-generic/custom-cell/custom-cell.component";
+import { DataTableGenericInput } from "src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.component";
 import { CardData } from "src/shared/generic/list-card/Models/cardModel";
 
 
@@ -21,6 +23,53 @@ export const mockCardData: CardData={
     showFooter: false,
     showIconAction: false,
     editing: false
+  
+  };
+  export const mockDataTableData: DataTableGenericInput={
+    columns: [
+      { 
+        columnDef: 'bodyTitle',
+        header: 'Service name',
+        cel: (element: any) => `${element.bodyTitle}`
+      },
+      {
+        columnDef: 'category',
+        header: 'Category',
+        cel: (element: any) => `${element.category}`
+      },
+      {
+        columnDef: 'nbhours',
+        header: 'EstimatedTime',
+        cel: (element: any) => `${element.nbhours}`
+      },
+      {
+        columnDef: 'nbresources',
+        header: 'Resources',
+        cel: (element: any) => `${element.nbresources}`
+    
+      },
+      {
+        columnDef: 'Add',
+        header: 'Add',
+        component: CustomCellComponent,
+        
+      }
+    ],
+  columnDefs:['bodyTitle', 'category', 'nbhours', 'nbresources','Add'],
+ 
+  width: "700px",
+  params:1 ,
+  endpoint:new BehaviorSubject<string>("https://localhost:5001/api/service/getLimited"),
+  tableFor:"services",
+  pageSize:3,
+  pageIndex:1,
+  length:100,
+  showRenderButton:false,
+  submitButtonClass:"submit-button",
+  cancelButtonClass:"cancel-button",
+  submitButtonLabel:"submit bundle request",
+  cancelButtonLabel:"cancel",
+  updateEndpoint:"https://localhost:5001/service-bundle"
   
   };
   export const CommonCssBehaviours={

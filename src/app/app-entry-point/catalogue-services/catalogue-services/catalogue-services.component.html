@@ -18,7 +18,7 @@
     <h2 mat-dialog-title>Request services</h2>
     <mat-dialog-content>
       <p>Add from below services to create your request bundle</p>
-     <app-data-table-generic></app-data-table-generic>
+     <app-data-table-generic [data]="mockDataTableGenericData"></app-data-table-generic>
     </mat-dialog-content>
     <mat-dialog-actions>
       <button mat-button (click)="dialogRef.close()">Close</button>
