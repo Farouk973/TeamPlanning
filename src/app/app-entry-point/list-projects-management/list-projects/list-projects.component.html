@@ -4,6 +4,7 @@
     <mat-icon class="search-icon">search</mat-icon>
     <input type="text" placeholder="Search" name="search"   [(ngModel)]=" inputSearch">
   </div>
+  <button  class="mat-raised-button" (click)="toStepper()" mat-button><strong>Add new project</strong></button>
 </div>
 <div fxLayout="row wrap" fxLayoutGap="40px"      style="padding-left: 50px; padding-top: 50px;" >
   <div *ngFor="let p of projects; let i=index;" [hidden]="p.name.toLowerCase().indexOf(inputSearch.toLowerCase()) === -1" >

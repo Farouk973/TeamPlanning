@@ -164,6 +164,16 @@ h2{
   margin-left: 30px;
   width: 40%;
 }
+.mat-raised-button{
+  margin-left: 30px;
+  border-radius: 12px ;
+  width: 150px;
+  height: 38px;
+  background-color: #00b2d9;
+}
+strong{
+  color : #E9EBF0;
+}
 
 .search-icon {
   position: absolute;

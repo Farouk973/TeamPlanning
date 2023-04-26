@@ -27,8 +27,8 @@ input:hover {
   max-width: 150px;
   width: 100px;
   height: 38px;
-  background: #00B2D9;
   background-color: #00b2d9;
+  margin-right: 10px;
 }
 p{
   color: #E9EBF0;
