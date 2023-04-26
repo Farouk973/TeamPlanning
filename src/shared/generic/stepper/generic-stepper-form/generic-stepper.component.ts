@@ -15,6 +15,7 @@ import {GenericStepperService} from "../generic.stepper.service";
 import {Location} from "@angular/common";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {SkillStepperComponent } from 'src/app/app-entry-point/skill-stepper-management/skill-stepper/skill-stepper.component';
 
 
 @Component({
@@ -59,7 +60,9 @@ export class GenericStepperComponent implements OnInit {
         return FeatureComponent;
       case 'Roles':
         return RolesComponent;
-      case 'Recap':
+      case 'Skills':
+        return SkillStepperComponent;
+        case 'Recap':
         return RecopProjectComponent;
       default:
         throw new Error(`Invalid component name: ${contentType}`);
@@ -87,6 +90,10 @@ export class GenericStepperComponent implements OnInit {
 
     if (step == 3) {
       this.order= 3
+
+    }
+    if (step == 4) {
+      this.order= 4
 
     }
   }

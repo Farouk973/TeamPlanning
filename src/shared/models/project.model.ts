@@ -4,4 +4,5 @@ export class Project {
   visibility: number;
   features: any[];
   roles: any[];
+  skills:any[];
 }

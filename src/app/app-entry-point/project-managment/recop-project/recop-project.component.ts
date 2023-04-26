@@ -20,7 +20,7 @@ export class RecopProjectComponent implements  OnChanges {
       this.projectService.getProject(id).subscribe((data) => {
         this.project = data;
       })
-
+console.log(this.project)
     }
 
 
