@@ -70,6 +70,20 @@
         <mat-chip *ngFor="let option of project?.roles "   >{{option.title}}</mat-chip>
       </mat-chip-list>
     </mat-expansion-panel>
+    
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Skills
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+      <mat-chip-list >
+        <mat-chip *ngFor="let option of project?.skills "   >{{option.name}}</mat-chip>
+      </mat-chip-list>
+    </mat-expansion-panel>
   </mat-accordion>
 </div>
 

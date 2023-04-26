@@ -2,16 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { domain, endpoints } from 'src/shared/generic/models/bigdomain.model';
+
 @Component({
-  selector: 'app-add-skill-dialog',
-  templateUrl: './add-skill-dialog.component.html',
-  styleUrls: ['./add-skill-dialog.component.css']
+  selector: 'app-stepper-skill-dialog',
+  templateUrl: './stepper-skill-dialog.component.html',
+  styleUrls: ['./stepper-skill-dialog.component.css']
 })
-export class AddSkillDialogComponent implements OnInit {
+export class StepperSkillDialogComponent implements OnInit {
+
   public Endpoints : Observable<any> ;
   selectedchips:any[];
-  constructor(private http: HttpClient,public dialogRef: MatDialogRef<AddSkillDialogComponent>) { }
+  constructor(private http: HttpClient,public dialogRef: MatDialogRef<StepperSkillDialogComponent>) { }
 
   ngOnInit(): void {
     this.Endpoints=this.http.get<any>('assets/categoriesCG.json');

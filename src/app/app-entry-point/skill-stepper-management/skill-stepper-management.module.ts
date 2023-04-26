@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserTabComponent } from './user-tab/user-tab.component';
-import { UserTabManagementRoutingModule } from './user-tab-management-routing.module';
-import {MatTabsModule} from '@angular/material/tabs';
-import { AddSkillDialogComponent } from './add-skill-dialog/add-skill-dialog.component';
+import { SkillStepperComponent } from './skill-stepper/skill-stepper.component';
+import { StepperSkillDialogComponent } from './stepper-skill-dialog/stepper-skill-dialog.component';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ChipsPopUpGCModule } from 'src/shared/generic/chips-pop-up-gc/chips-pop-up-gc.module';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,14 +11,14 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 
+
 @NgModule({
   declarations: [
-    UserTabComponent,
-    AddSkillDialogComponent
+    SkillStepperComponent,
+    StepperSkillDialogComponent
   ],
   imports: [
     CommonModule,
-    UserTabManagementRoutingModule,
     MatTabsModule,
     MatDialogModule,
     ChipsPopUpGCModule,
@@ -27,6 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatCardModule,
     MatChipsModule,
     MatPaginatorModule
-  ]
+  ],
+  exports:[SkillStepperComponent]
 })
-export class UserTabManagementModule { }
+export class SkillStepperManagementModule { }

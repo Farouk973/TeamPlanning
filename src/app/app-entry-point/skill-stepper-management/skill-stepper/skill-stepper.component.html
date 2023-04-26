@@ -1,0 +1,24 @@
+<div class="profile-container">
+    <div class="profile-header">
+      <h2 class="profile-heading">Skills</h2>
+      <button mat-raised-button class="profile-button" (click)="openAddSkillDialog()">Add Skills</button>
+    </div>
+    <p class="profile-text"*ngIf="pagedSkillList?.length !== 0">Here are your project required skills:</p>
+      <div class="profile-text" *ngIf="pagedSkillList?.length === 0">
+        <p>No sKill has been added.</p>
+      </div>
+      <ul class="profile-list">
+        <li *ngFor="let skill of pagedSkillList ; let i = index" class="skill-item">
+          <span class="skill-name">{{ skill.name }}</span>
+          <span class="skill-stars">
+            <mat-icon *ngFor="let star of getSkillValueStars(skill.rate)">star_border</mat-icon>
+          </span>
+          <button mat-icon-button class="delete-button" (click)="deleteSkill(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </li>
+      </ul>
+      <mat-paginator *ngIf="totalSkills > 5" [length]="totalSkills" [pageSize]="pageSize" [pageIndex]="currentPageIndex"
+                     (page)="onPageChange($event)">
+      </mat-paginator>
+  </div>

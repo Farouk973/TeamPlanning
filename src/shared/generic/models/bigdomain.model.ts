@@ -23,7 +23,7 @@ export interface subdomain {
     domain?: domain[];
 }
 export interface domain {
-    
+    id?: number;
     name: string;
     value: number;
 

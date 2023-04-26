@@ -1,0 +1,80 @@
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-heading {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+  }
+  
+  .profile-button {
+    background-color: #00B2D9;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .profile-button:hover {
+    background-color: #00a2c2;
+  }
+  
+  .profile-text {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .profile-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 10px;
+  }
+  
+  .profile-list li {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    margin: 10px 0;
+  }
+  
+  .skill-name {
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  
+  .skill-stars {
+    color: #00B2D9;
+  }
+  
+  .delete-button {
+    color: #f44336; /* Red color */
+    margin-left: 10px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+  }
+  
+  .delete-button:hover {
+    background-color: rgba(244, 67, 54, 0.1); /* Light red background on hover */
+  }
