@@ -6,7 +6,6 @@ import {Location} from "@angular/common";
 import {Observable, toArray} from "rxjs";
 import {Spreadsheets} from "../../models/Spreadsheets.model";
 import {Router} from "@angular/router";
-import {logExperimentalWarnings} from "@angular-devkit/build-angular/src/builders/browser-esbuild/experimental-warnings";
 
 
 @Component({
@@ -28,8 +27,8 @@ export class SpreadsheetsComponent implements  OnChanges {
   editModeStyle : boolean = false;
   rowIndex : any
   titleProject : string;
-
   chiffrage : any = [];
+
   constructor(private http: HttpClient , private spreadsheetsService : SpreadsheetsService , private location : Location , private router : Router) {
 
   }
@@ -71,31 +70,70 @@ export class SpreadsheetsComponent implements  OnChanges {
         }
 
       })
-      console.log('datarr',this.data)
     })
 
 
   }
+
+
   fillMatrixByZero(){
     for (let i = 0; i < this.data.rowHeader.length; i++) {
       let row = [];
       for (let j = 0; j < this.data.columnHeader.length; j++) {
-        row.push('0');
+        row.push(0);
       }
       this.data.reportData.push(row);
     }
   }
+
+
   toggleEditMode(rowIndex: number) {
     this.editModeStyle = ! this.editModeStyle
     if(!this.editModeStyle){
       if (!this.editMode[rowIndex]) {
         this.editMode[rowIndex] = new Array(this.data.columnHeader.length).fill(false);
         this.editMode[rowIndex].fill(!this.editMode[rowIndex][0]);
-        console.log("data",this.data.reportData)
       }
+      this.Total_day();
+      this.Costing();
+      this.Total_Costing()
+      this.Convert_MatrixToObject()
 
     }
-    if(!this.editModeStyle){
+
+    }
+
+    Total_day()
+    {
+      for (let i = 2; i < this.data.reportData.length -1; i++) {
+        let daySum = 0;
+        for (let j = 0; j < this.data.reportData[i].length - 2; j++) {
+          daySum += this.data.reportData[i][j];
+        }
+        this.data.reportData[i][this.data.reportData[i].length - 2] = daySum;
+      }
+    }
+
+    Costing(){
+      for (let i = 2; i < this.data.reportData.length -1; i++) {
+        let costingSum = 0;
+        for (let j = 0; j < this.data.reportData[i].length - 2; j++) {
+          costingSum += this.data.reportData[i][j] * this.data.reportData[0][j] ;
+        }
+        this.data.reportData[i][this.data.reportData[i].length - 1] = costingSum;
+      }
+    }
+
+
+    Total_Costing(){
+      let sumLastColumn = 0;
+      for (let i = 2; i < this.data.reportData.length -1; i++) {
+        sumLastColumn += this.data.reportData[i][this.data.reportData[i].length - 1];
+      }
+        this.data.reportData[this.data.reportData.length-1][this.data.reportData[this.data.reportData.length-1].length - 1] = sumLastColumn ;
+    }
+
+    Convert_MatrixToObject(){
       const url = this.location.path();
       let id = url.substring(url.lastIndexOf('/') + 1);
       this.chiffrage = []
@@ -106,26 +144,12 @@ export class SpreadsheetsComponent implements  OnChanges {
         }
         this.chiffrage.push(obj);
       }
-      for (let i = 2; i < this.data.reportData.length -1; i++) {
-        let sum = 0;
-        for (let j = 0; j < this.data.reportData[j].length - 2; j++) {
-          sum += this.data.reportData[i][j];
-        }
-       // data.reportData[i][data.reportData[i].length - 2] = sum;
-        console.log("sum", sum)
-      }
 
       this.spreadsheetsService.addCosting('/api/Project/addCostingToProject' , id , this.chiffrage ).subscribe( (response)=>
         console.log(response))
 
 
-
-      }
-
-
-
     }
-
 
   dispalyProjects() {
     this.router.navigate(['projects/list-projects'])
