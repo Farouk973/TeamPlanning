@@ -52,7 +52,7 @@ mat-card-content{
   order: 0;
   flex-grow: 0;
 }
-p{
+strong{
   width: 55px;
   height: 16px;
 
@@ -171,7 +171,7 @@ h2{
   height: 38px;
   background-color: #00b2d9;
 }
-strong{
+p{
   color : #E9EBF0;
 }
 
