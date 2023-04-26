@@ -10,12 +10,16 @@ import { Observable,} from "rxjs";
 import {FeatureComponent} from "../../../../app/app-entry-point/feature-managment/feature/feature.component";
 import {RolesComponent} from "../../../../app/app-entry-point/roles-management/roles/roles.component";
 import {RecopProjectComponent} from "../../../../app/app-entry-point/project-managment/recop-project/recop-project.component";
-import {HttpClient} from "@angular/common/http";
-import {CookieService} from "ngx-cookie-service";
 import {IoEventContextToken} from "ng-dynamic-component";
 import {GenericStepperService} from "../generic.stepper.service";
 import {Location} from "@angular/common";
 import {Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
+import {SkillStepperComponent } from 'src/app/app-entry-point/skill-stepper-management/skill-stepper/skill-stepper.component';
+
+import {MatDialog} from "@angular/material/dialog";
+import {SpreadsheetsProjectComponent} from "../../../../app/app-entry-point/spreadsheets-management/spreadsheets-project/spreadsheets-project.component";
+
 
 
 @Component({
@@ -36,7 +40,8 @@ export class GenericStepperComponent implements OnInit {
   actionType: string;
   order : number;
   idResponse : string ='';
-  constructor(public http: HttpClient, private genericStepperService : GenericStepperService , private location : Location , private router : Router) {
+  chiff: boolean = false
+  constructor(public http: HttpClient, private genericStepperService : GenericStepperService , private location : Location , private router : Router , public dialog: MatDialog) {
 
   }
 
@@ -45,7 +50,6 @@ export class GenericStepperComponent implements OnInit {
       this.stepper = stepperData;
     });
   }
-
 
   reload() {
     window.location.reload()
@@ -59,7 +63,9 @@ export class GenericStepperComponent implements OnInit {
         return FeatureComponent;
       case 'Roles':
         return RolesComponent;
-      case 'Recap':
+      case 'Skills':
+        return SkillStepperComponent;
+        case 'Recap':
         return RecopProjectComponent;
       default:
         throw new Error(`Invalid component name: ${contentType}`);
@@ -89,6 +95,14 @@ export class GenericStepperComponent implements OnInit {
       this.order= 3
 
     }
+    if (step == 4) {
+      this.order= 4
+
+    }
+    if (step == 4) {
+      this.order= 4
+
+    }
   }
 
   deleteItem(){
@@ -97,7 +111,9 @@ export class GenericStepperComponent implements OnInit {
     })
     this.router.navigate(['/']);
   }
+
   validateItem() {
-    this.router.navigate(['/']);
+    this.chiff = true
+    this.router.navigate(['/costing/cost-project/', this.idResponse])
   }
 }

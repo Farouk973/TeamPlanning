@@ -1,0 +1,9 @@
+<div *ngIf="Endpoints | async">
+    <app-domain-chips-gc [Endpoints]="Endpoints" (listoutput)="handlechipsResult($event)"></app-domain-chips-gc>
+    <div class="buttons-container">
+      <div class="buttons">
+        <button mat-button class="cancel" (click)=" onCancelClick()" >Cancel</button>
+        <button mat-raised-button class="save" (click)="onSaveClick()" >Save</button>
+      </div>
+    </div>
+  </div>

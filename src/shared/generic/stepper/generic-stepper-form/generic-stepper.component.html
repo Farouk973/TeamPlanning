@@ -6,18 +6,18 @@
       <ng-template  matStepLabel>{{ step.title }}</ng-template>
       <div>
         <ndc-dynamic [ngComponentOutlet]="getComponent(step.contentType)"
-                     [ndcDynamicInputs]="{'formData' : step.content , 'submitType': actionType ,'order' :order  }"
+                     [ndcDynamicInputs]="{'formData' : step.content , 'submitType': actionType ,'order' :order , 'chiffrage' :chiff}"
                      [ndcDynamicOutputs]="{ myEvent : formResponse }">
 
         </ndc-dynamic>
       </div>
 
       <div class="button-container">
-        <button mat-button matStepperPrevious  class="mat-raised-button" *ngIf="i !== 0" style="{{stepper.next.style}}" >{{stepper.back.label}}</button>
-        <button mat-button matStepperPrevious  class="mat-raised-button" *ngIf="i == 0 && idResponse.length>0" style="{{stepper.next.style}}" >{{stepper.back.label}}</button>
-        <button mat-button matStepperNext class="mat-raised-button" *ngIf="!last"  style="{{stepper.next.style}}" (click)="onFormSubmit(step.order)"   >{{stepper.next.label}}</button>
-        <button mat-button matStepperNext class="mat-raised-button" *ngIf="last "  style="{{stepper.next.style}}" (click)="validateItem()" >{{stepper.validate.label}}</button>
-        <button mat-button matStepperNext class="mat-raised-button" *ngIf="last "  style="{{stepper.next.style}}" (click)="deleteItem()" >{{stepper.delete.label}}</button>
+        <button mat-button matStepperPrevious  class="mat-raised-button" *ngIf="i !== 0" style="{{stepper.next.style}}" ><p>{{stepper.back.label}}</p></button>
+        <button mat-button matStepperPrevious  class="mat-raised-button" *ngIf="i == 0 && idResponse.length>0" style="{{stepper.next.style}}" ><p>{{stepper.back.label}}</p></button>
+        <button mat-button matStepperNext class="mat-raised-button" *ngIf="!last"  style="{{stepper.next.style}}" (click)="onFormSubmit(step.order)"><p>{{stepper.next.label}}</p></button>
+        <button mat-button matStepperNext class="mat-raised-button" *ngIf="last "  style="{{stepper.next.style}}" (click)="validateItem()" ><p>{{stepper.validate.label}}</p></button>
+        <button mat-button matStepperNext class="mat-raised-button" *ngIf="last "  style="{{stepper.next.style}}" (click)="deleteItem()" ><p>{{stepper.delete.label}}</p></button>
       </div>
     </mat-step>
   </mat-stepper>

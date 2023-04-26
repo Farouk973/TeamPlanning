@@ -24,13 +24,13 @@ export class CardViewComponent implements OnInit {
   // mapping metadata response into columnMetadata
   metadatas: ColumnMetadata[] = [];
   ngOnInit() {
-   // this.getGridData();
+    this.getGridData();
 
-   // this.gridviewService
-   //   .getMetadata(this.cardView.metadata)
-   //   .subscribe((data) => {
-   //     this.metadatas = data;
-   //   });
+    this.gridviewService
+      .getMetadata(this.cardView.metadata)
+      .subscribe((data) => {
+        this.metadatas = data;
+      });
   }
 
   sortColumn: string = '';

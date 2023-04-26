@@ -2,22 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
-import { Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
+import { Actionpanel, ActionPannelItem } from 'src/shared/generic/models/ActionPanel.model';
 import { Calendar } from 'src/shared/generic/models/Calendar.model';
 import { Container } from 'src/shared/generic/models/Container.model';
 import { Form } from 'src/shared/generic/models/Form.model';
-import { GridView } from 'src/shared/generic/models/GridView.model';
+import { GridAction, GridView } from 'src/shared/generic/models/GridView.model';
 import { SelectOrder } from 'src/shared/generic/models/SelectOrder.model';
 import { DialogComponent } from 'src/shared/generic/nxm-dialog/dialog/dialog.component';
 import { Permission } from 'src/shared/models/permission.model';
 import { PermissionService } from 'src/shared/services/permission.service';
 import { OrderDialogComponent } from './order-dialog/order-dialog.component';
-export interface PeriodicElement {
-  name: string;
-  title: number;
-  weight: number;
-  symbol: string;
-}
+import { ItemComponent } from './item/item.component';
+
 
 
 @Component({
@@ -49,19 +45,34 @@ export class PermissionsComponent implements OnInit {
       },
     })
   }
-  action: Actionpanel = {
-    endpoint: `${environment.baseUrl}/api/Permission`,
-    formEditData: `${environment.baseUrl}/meta/UpdatePermissionCommand`,
-  };
 
-  grid: GridView = {
-    endpoint: `${environment.baseUrl}/api/Permission`,
-    formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
-    metadata: `${environment.baseUrl}/meta/GetPermissionListVm`,
-    allowedSortColumns: ['title'],
-    actionPanel: this.action,
-  };
+  newItem : ActionPannelItem = {
+  actionTitle : `New Item` ,
+  endpoint : `${environment.baseUrl}/api/Permission/add-item-permession`,
+  formEditData : `${environment.baseUrl}/meta/AddPermessionsItemCommand` ,
+
+}
+action: Actionpanel = {
+  endpoint: `${environment.baseUrl}/api/Permission`,
+  formEditData: `${environment.baseUrl}/meta/UpdatePermissionCommand`,
+  items : [this.newItem],
+};
+
   
+actions : GridAction = {
+  actionThtitle : "Items",
+  actionButtonTitle : "View Items" ,
+  Compoment : ItemComponent,
+}
+
+grid: GridView = {
+  endpoint: `${environment.baseUrl}/api/Permission`,
+  formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
+  metadata: `${environment.baseUrl}/meta/GetPermissionListVm`,
+  allowedSortColumns: ['title'],
+  actionPanel: this.action,
+  actions : [this.actions]
+};
 
   select : SelectOrder = {
     endpointData : 'https://localhost:44312/api/Permission',

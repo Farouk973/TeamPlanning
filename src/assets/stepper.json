@@ -32,8 +32,18 @@
       "input" : false
     },
     {
-      "title": "Recap",
+      "title": "Skills",
       "order": 4,
+      "contentType": "Skills",
+      "content":
+      { "endpoint": "",
+        "metaData": ""
+      },
+      "input" : false
+    },
+    {
+      "title": "Recap",
+      "order": 5,
       "contentType": "Recap",
       "content":
       { "endpoint": "",
@@ -41,7 +51,6 @@
       },
       "input" : false
     }
-
 
   ],
   "next": {

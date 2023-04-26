@@ -6,7 +6,9 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ColumnMetadata } from '../models/ColumnMetadata.model';
 import { GridView } from '../models/GridView.model';
+import { ActiondialogComponent } from '../nxm-dialog/actiondialog/actiondialog.component';
 import { ConfirmationComponent } from '../nxm-dialog/confirmation/confirmation.component';
+import { DialogComponent } from '../nxm-dialog/dialog/dialog.component';
 import { SharedServices } from '../SharedServices.service';
 
 @Component({
@@ -107,4 +109,18 @@ export class GridViewComponent implements OnInit {
       }
     });
   }
+
+
+  openDialogaction(data:any , id : any): void {
+    const dialogRef = this.dialog.open(ActiondialogComponent, {
+      width: '1067px',
+      height: '519px',
+      data: {data , id},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${Object.keys(result)}`);
+     }) 
+    }
+
+  
 }

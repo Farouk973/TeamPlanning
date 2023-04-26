@@ -1,0 +1,8 @@
+{
+  "columnHeaderEndpoint": "/api/Project/get-project",
+  "rowHeaderEndpoint": "/api/Project/get-project",
+  "mappingNameColumnHeader": "title",
+  "mappingNameRowHeader": "description",
+  "nameCaseIntersection": "Features/Roles",
+  "inputType":"number"
+}

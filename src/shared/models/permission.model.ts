@@ -14,4 +14,5 @@ export class Permission {
 
 export class PermissionItems {
     name!: string;
+    path!: string;
 }

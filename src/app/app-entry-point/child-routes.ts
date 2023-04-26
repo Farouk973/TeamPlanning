@@ -36,9 +36,24 @@ export const childRoutes = [
     loadChildren: () => import('./roles-management/roles-management.module').then(m => m.RolesManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
+  {
+    path: 'costing',
+    loadChildren: () => import('./spreadsheets-management/spreadsheets-management.module').then(m => m.SpreadsheetsManagementModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
+  },
 
 
+  {
+    path: 'usertab',
+    loadChildren: () => import('./user-tab-management/user-tab-management.module').then(m => m.UserTabManagementModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
+  },
 
+  {
+    path: 'projects',
+    loadChildren: () => import('./list-projects-management/list-projects-management.module').then(m => m.ListProjectsManagementModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
+  }
 
   // {
   //   path: 'profile',

@@ -9,9 +9,13 @@ import {Observable} from "rxjs";
 })
 export class StepperProjectComponent implements OnInit {
   public stepper$ : Observable<Stepper> ;
+
+  chiff : boolean;
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.stepper$=this.http.get<Stepper>('/assets/stepper.json');
   }
+
+
 }

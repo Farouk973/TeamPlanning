@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output,} from '@angular/core';
 import {AutoComplete} from "../../models/AutoComplete.model";
 import {Observable} from "rxjs";
 import {FormControl} from "@angular/forms";
@@ -22,7 +22,6 @@ export class DynamicAutoCompleteComponent implements OnInit  {
   myControl = new FormControl();
   options: string[];
   data: string[]
- // idItem: string ="642ecc35fa31cfb9eeef6648";
   selectedValue;
   filteredOptions: Observable<string[]>;
   optionLength: Observable<number>;
@@ -67,7 +66,6 @@ export class DynamicAutoCompleteComponent implements OnInit  {
     const controlValue = this.myControl.value;
     if(this.isTrue) {
       const data = {description: controlValue }
-      console.log(data)
       this.autoCompleteService.addToBase(this.autoComplete.sourceSaveItemEndpoint , data).subscribe((data)=>{
         this.autoCompleteService.getDataOptions(this.autoComplete?.optionsDataEndpoint).subscribe((data)=>{
           this.options=data.map((m)=>m[this.autoComplete.nameAttributeForSearch] )
@@ -81,7 +79,7 @@ export class DynamicAutoCompleteComponent implements OnInit  {
       this.options.push(controlValue);
       setTimeout(
         () => {
-          this.myControl.setValue(controlValue);
+          this.myControl.setValue('');
           this.writeValue(controlValue);
         }
       );
@@ -114,7 +112,6 @@ export class DynamicAutoCompleteComponent implements OnInit  {
     let id = url.substring(url.lastIndexOf('/') + 1);
     let idAdded=option.split("=*>")[0]
     this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint , id ,idAdded).subscribe((assignItem)=>{
-      console.log(assignItem)
       this.autoComplete$.subscribe((autoCompleteData)=> {
         this.autoComplete = autoCompleteData;
         this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, id).subscribe((data) => {
@@ -130,7 +127,6 @@ export class DynamicAutoCompleteComponent implements OnInit  {
     let idUnassigned= option['id']
     this.autoCompleteService.deleteOptionAfterAssignToItem(this.autoComplete.sourceUnassignOptionAfterAssignToItemEndpoint,id, idUnassigned).
     subscribe((unassignItem)=> {
-        console.log(unassignItem)
       this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, id).subscribe((data) => {
         this.chipsOptions = data[this.autoComplete?.nameListOfChips]
       });
@@ -138,5 +134,8 @@ export class DynamicAutoCompleteComponent implements OnInit  {
     );
   }
 
+  clearInput() {
+    this.myControl.setValue('');
+  }
 }
 

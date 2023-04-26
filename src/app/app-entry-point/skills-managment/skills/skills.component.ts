@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { endpoints } from 'src/shared/generic/models/domain.model';
+import { endpoints } from 'src/shared/generic/models/bigdomain.model';
 import {Observable} from "rxjs";
 import { HttpClient } from '@angular/common/http';
 
@@ -15,7 +15,7 @@ export class SkillsComponent implements OnInit {
 
   ngOnInit(): void {
     this.Endpoints=this.http.get<endpoints>('assets/categoriesCG.json');
-    console.log(this.Endpoints)
+    
   }
 
 }

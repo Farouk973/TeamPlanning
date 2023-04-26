@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PermissionsComponent } from './permissions/permissions.component';
 import { RoleComponent } from './role/role.component';
 import { UserPermessionsComponent } from './user-permessions/user-permessions.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,11 @@ const routes: Routes = [
   {
     path: 'role',
     component: RoleComponent,
+  }
+  ,
+  {
+    path: 'users',
+    component: UsersComponent,
   }
 ];
 @NgModule({

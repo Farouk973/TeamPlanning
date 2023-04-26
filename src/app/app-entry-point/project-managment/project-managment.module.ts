@@ -7,6 +7,8 @@ import { RecopProjectComponent } from './recop-project/recop-project.component';
 import {CdkAccordionModule} from "@angular/cdk/accordion";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatChipsModule} from "@angular/material/chips";
+import {SpreadsheetsManagementModule} from "../spreadsheets-management/spreadsheets-management.module";
+
 
 
 
@@ -15,14 +17,16 @@ import {MatChipsModule} from "@angular/material/chips";
     StepperProjectComponent,
     RecopProjectComponent
   ],
-  imports: [
-    CommonModule,
-    StepperModule,
-    ProjectManagmentRoutingModule,
-    CdkAccordionModule,
-    MatExpansionModule,
-    MatChipsModule
-  ]
+    imports: [
+        CommonModule,
+        StepperModule,
+        ProjectManagmentRoutingModule,
+        CdkAccordionModule,
+        MatExpansionModule,
+        MatChipsModule,
+        SpreadsheetsManagementModule
+
+    ]
 
 })
 export class ProjectManagmentModule { }

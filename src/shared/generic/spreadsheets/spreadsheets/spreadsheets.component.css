@@ -1,0 +1,59 @@
+
+mat-grid-tile  {
+  background: rgba(19, 19, 19, 0.05);;
+}
+
+span:hover {
+  color: #00b2d9;
+}
+input {
+  width: 10%;
+  font-size: 16px;
+  padding: 5px ;
+
+  box-sizing: border-box;
+}
+input:hover {
+  color: #00b2d9;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 8px 12px;
+}
+.mat-raised-button {
+
+  border-radius: 12px;
+  max-width: 150px;
+  width: 100px;
+  height: 38px;
+  background-color: #00b2d9;
+  margin-right: 10px;
+}
+p{
+  color: #E9EBF0;
+}
+.title{
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 26px;
+  text-transform: capitalize;
+  color: #001E50;
+  padding-top: 30px
+}
+
+.const {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.reportData{
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+}
