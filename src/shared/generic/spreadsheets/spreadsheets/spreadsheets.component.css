@@ -7,9 +7,10 @@ span:hover {
   color: #00b2d9;
 }
 input {
-  width: 30%;
+  width: 10%;
   font-size: 16px;
-  padding: 10px;
+  padding: 5px ;
+
   box-sizing: border-box;
 }
 input:hover {
