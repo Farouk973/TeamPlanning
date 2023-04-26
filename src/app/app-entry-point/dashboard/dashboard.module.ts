@@ -14,6 +14,9 @@ import {FormModule} from "../../../shared/generic/form/form.module";
 import {NXMDialogModule} from "../../../shared/generic/nxm-dialog/nxm-dialog.module";
 import {GridViewModule} from "../../../shared/generic/grid-view/grid-view.module";
 import {NXMGContainerModule} from "../../../shared/generic/nxm-g-container/nxm-g-container.module";
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -35,6 +38,10 @@ import {NXMGContainerModule} from "../../../shared/generic/nxm-g-container/nxm-g
     NXMDialogModule,
     GridViewModule,
     NXMGContainerModule,
+    MatGridListModule,
+    MatTabsModule,
+    MatMenuModule
+    
     
  ]
 })
