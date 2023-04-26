@@ -48,7 +48,7 @@ export class FormComponent implements OnInit {
   valueControl = new FormControl();
 
   ngOnInit(): void {
-
+console.log("data :"  , this.formData.Object)
     this.formService.getMetadata(this.formData.metaData).subscribe((data) => {
       this.fields = data;
       this.fields.forEach((element) => {

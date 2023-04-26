@@ -1,62 +1,170 @@
-mat-card {
-  border: 2px solid #00B2D9;
-  background-color: #F7F7F7;
-  height:500px;
-  width: 300px;
-  margin: 50px auto;
+/* profile.component.css */
+
+.profile-card {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.cover-photo {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.cover-photo img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.profile-photo {
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 5px solid #4CB6CD80 ;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-button
+{
+  position: absolute;
+  top: 380px;
+  left: 96%;
+  transform: translateX(-50%);
+ 
+}
+
+.profile-photo img {
+  width: 100%;
+  height: auto;
+}
+
+
+.profile-name {
+  margin-top: 16px;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.example-small-box, .example-large-box {
+  display: flex;
+ 
+  margin: 14px;
+  padding: 14px;
+  border-radius: 2px;
+}
+
+.example-small-box {
+  height: 300px;
+  width: 30%;
+  border-radius: 20%;
 
 }
-.avatar-container {
+
+.example-large-box {
+  height: auto;
+  border-radius: 15px;
+}
+
+
+
+.info-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  position: relative;
-  max-width: 200px; /* ajuster la largeur maximale ici */
+  margin-top: 20px;
+}
+
+.info-item {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-.avatar-container img {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
-  border-radius: 50%; /* ajouter un rayon de bordure pour créer le cercle */
-  border: 2px solid #fff; /* ajouter une bordure blanche pour la distinction */
-  box-sizing: border-box; /* inclure la bordure dans la taille de l'image */
-  max-height: 200px; /* ajuster la hauteur maximale ici */
+.info-icon {
+  margin-right: 10px;
+  font-size: 24px;
 }
 
-
-.file-input {
-  position: relative;
-  display: inline-block;
-
+.info-label {
+  margin-right: 10px;
+  font-weight: bold;
 }
 
-.file-input input[type="file"] {
+.info-value {
+  font-size: 16px;
+}
+
+.profile-photo:hover:before {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1;
+  border-radius: 20%;
+}
+
+.profile-photo:hover .edit-icon {
+  display: block;
+}
+
+.edit-icon {
+  position: absolute;
+  top: 80%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  display: none;
+  z-index: 2;
+}
+
+.edit-icon button {
+  background-color: #4CB6CD;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
   cursor: pointer;
 }
 
-.file-input label {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #f2f2f2;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
+.edit-icon button:hover {
+  background-color: #4696AA;
 }
+/* .button {
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 248px;
+  gap: 10px;
 
- mat-icon {
-  font-size: 24px;
-  color: #00b2d9;
-  cursor: pointer;
+  background: #4CB6CD;
+  } */
+  
+.edit-button-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  
+
+}
+.edit-button1{background: #4CB6CD;
+  border-radius: 12px;
+  height: 25px;  width: 80; color: white;
 }

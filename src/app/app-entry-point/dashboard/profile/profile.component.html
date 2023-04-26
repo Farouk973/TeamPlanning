@@ -1,53 +1,138 @@
-<div *ngIf="oidcSecurityService.userData$ | async as user">
-  <div class="row align-items-center profile-header">
-    <div class="col-md text-center text-md-left">
-      <h1><b>Welcome</b> {{user?.userData?.name }}</h1>
+
+
+<mat-card class="profile-card">
+  <div class="cover-photo">
+    <img src="https://static.vecteezy.com/system/resources/previews/003/559/339/original/abstract-gradient-blue-and-pink-wave-background-free-vector.jpg" alt="Cover Photo">
+    <button class="edit-button" mat-icon-button>
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+  
+  <div class="profile-photo" *ngIf="currentUser.avatar.content">
+    <img [src]=" content || currentUser.avatar.content || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'" alt="Profile Photo">
+    <div class="edit-icon">
+      <div class="edit-icon">
+        <button (click)="fileInput.click()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <input #fileInput type="file" (change)="onFileSelected($event)" style="display:none;">
+      </div>
+    
     </div>
+
 
   </div>
-
-  <mat-card>
-    <mat-card-header>
-      <div class="avatar-container">
-        <img src="{{currentUser?.avatar?.content}}" alt="User Avatar">
+  <div class="profile-photo" *ngIf="currentUser.avatar.content === ''">
+    <img [src]=" content || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'" alt="Profile Photo">
+    <div class="edit-icon">
+      <div class="edit-icon">
+        <button (click)="fileInput.click()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <input #fileInput type="file" (change)="onFileSelected($event)" style="display:none;">
       </div>
-
-    </mat-card-header>
-
-    <div class="file-input">
-      <input  type="file" (change)="onFileSelected($event)">  <mat-icon mat-list-icon>camera</mat-icon>
+    
     </div>
-    <button style="color: #00b2d9"  mat-button (click)="uploadFile()">change image</button>
-    <mat-card-content>
-      <mat-list>
-        <mat-list-item>
-          <mat-icon mat-list-icon>account_circle</mat-icon>
-          <h3 mat-line>Nom</h3>
-          <p mat-line>Raed Jaidi</p>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <mat-icon mat-list-icon>email</mat-icon>
-          <h3 mat-line>Email</h3>
-          <p mat-line>raed@gmail.com</p>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>
-          <mat-icon mat-list-icon>phone</mat-icon>
-          <h3 mat-line>Phone</h3>
-          <p mat-line>99999999</p>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item >
-          <mat-icon mat-list-icon>location_on</mat-icon>
-          <h3 mat-line>Adresse</h3>
-          <p mat-line>tunis</p>
-        </mat-list-item>
 
-      </mat-list>
 
-    </mat-card-content>
-  </mat-card>
+  </div>
+  <div >
+    <button style="    border: none; border-radius: 40%; background-color: white;" class="profile-button" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>more_horiz</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="showeditdiv()">
+        <mat-icon >dialpad</mat-icon>
+        <span>Edit Profile</span>
+      </button>
+      <button mat-menu-item mat-menu-item (click)="showeditdivPassword()">
+        <mat-icon >dialpad</mat-icon>
+        <span>Update Password</span>
+      </button>
+    </mat-menu>
+ </div>
+<br>
+<br><br>
+<button *ngIf="content" class="button" style="background-color: #00b2d9; color: white; border-radius: 15px;"  mat-button (click)="uploadFile()">Save change</button>
+<h2 class="profile-name">{{currentUser.firstName}} {{currentUser.lastName}} </h2>
+
+<mat-tab-group dynamicHeight>
+  <mat-tab label="User Informations">
+    <div class="example-large-box mat-elevation-z4" *ngIf="!DivEditshow">
+
+ 
+  <mat-card-content class="card-info ">
+    <!-- <div class="edit-button-container">
+      <button class="edit-button1" (click)="showeditdiv()">Editer</button>
+    </div> -->
+    <div class="info-container">
+      <div class="info-item">
+        <mat-icon class="info-icon">person</mat-icon>
+        <span class="info-label">Prénom:</span>
+        <span class="info-value">{{currentUser.firstName}}</span>
+      </div>
+      <div class="info-item">
+        <mat-icon class="info-icon">person</mat-icon>
+        <span class="info-label">Nom de famille:</span>
+        <span class="info-value">{{currentUser.lastName}}</span>
+      </div>
+      <div class="info-item">
+        <mat-icon class="info-icon">email</mat-icon>
+        <span class="info-label">Email:</span>
+        <span class="info-value">{{currentUser.email}}</span>
+      </div>
+      <div class="info-item">
+        <mat-icon class="info-icon">phone</mat-icon>
+        <span class="info-label">Téléphone:</span>
+        <span class="info-value">+216 94464323</span>
+      </div>
+      <div class="info-item">
+        <mat-icon class="info-icon">assignment_ind</mat-icon>
+        <span class="info-label">Rôle:</span>
+        <span class="info-value">Adminestrateur</span>
+      </div>
+    </div>
+  </mat-card-content>
+</div>
+<div class="example-large-box mat-elevation-z4" *ngIf="DivEditshow">
+  <app-form (myEvent)="afterSubmitResponse($event)" [formData]="forms"></app-form>
+
+<mat-card-actions style="margin-top: auto;">
+  <div style="  margin-left: auto;
+                margin-right: auto;  ">
+
+  <button mat-button (click)="onFormSubmit()"  style="border-radius: 10px; height: 44px;  width: 221px; color: white; background-color: #4CB6CD
+  ;">Save</button>
+  <button mat-button mat-dialog-close style="margin-top: 1%; border-radius: 10px; height: 44px;  width: 221px; color: #768DA9 ; background-color: #BFD1E3
+  ;" (click)="showeditdiv()">Cancel</button>
+  </div>
+
+</mat-card-actions>
 </div>
 
+<div class="example-large-box mat-elevation-z4" *ngIf="DivEditPassword">
+  <app-form (myEvent)="afterSubmitResponse($event)" [formData]="formsPassword"></app-form>
 
+<mat-card-actions style="margin-top: auto;">
+  <div style="  margin-left: auto;
+                margin-right: auto;  ">
+
+  <button mat-button (click)="onFormSubmit()"  style="border-radius: 10px; height: 44px;  width: 221px; color: white; background-color: #4CB6CD
+  ;">Save</button>
+  <button mat-button mat-dialog-close style="margin-top: 1%; border-radius: 10px; height: 44px;  width: 221px; color: #768DA9 ; background-color: #BFD1E3
+  ;" (click)="showeditdivPassword()">Cancel</button>
+  </div>
+
+</mat-card-actions>
+</div>
+</mat-tab>
+
+<mat-tab label="Works Details">
+<div class="example-large-box mat-elevation-z4">
+  Large content
+</div>
+</mat-tab>
+
+
+</mat-tab-group>
+</mat-card>
