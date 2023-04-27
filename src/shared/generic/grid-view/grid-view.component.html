@@ -63,6 +63,12 @@
           <div *ngIf="field.type === 'string' && field.format === 'uuid'">
             {{ i + 1 }}
           </div>
+          <div *ngIf="field.type === 'integer' && field.format === 'int32'">
+            {{
+              row[field.name] 
+            }}
+            
+          </div>
           <div *ngIf="field.type === null && field.format === null">
             <mat-select>
               <mat-option

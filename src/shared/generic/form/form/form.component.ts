@@ -201,6 +201,7 @@ console.log("data :"  , this.formData.Object)
   submitForm() {
     this.submitAsync().then((isValid) => {
       if (isValid) {
+        console.log(this.form.value)
         if (this.formData.Object) {
           this.formService
             .updateRow(this.formData.endpoint, this.form.value)
