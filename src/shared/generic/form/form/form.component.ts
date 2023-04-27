@@ -52,20 +52,20 @@ console.log("data :"  , this.formData.Object)
     this.formService.getMetadata(this.formData.metaData).subscribe((data) => {
       this.fields = data;
       this.fields.forEach((element) => {
-   
+
         if (element.type === 'array') {
                this.ReferenceExistances(element.name);
         }
         if (element.type === null && element.format === null && element.description !== null &&!element.references[0]) {
           console.log(element.name)
           this.inputName=element.name
-          this.searchDataCtrl.setValue(this.formData.Object[this.inputName].title)    
+          this.searchDataCtrl.setValue(this.formData.Object[this.inputName].title)
 
         }
         this.createForm();
       });
     });
-   
+
     this.searchDataCtrl.valueChanges
     .pipe(
       filter(res => {
@@ -136,13 +136,13 @@ console.log("data :"  , this.formData.Object)
         control.setValidators(Validators.compose(validators));
       }
       if (
-        this.formData.Object && 
+        this.formData.Object &&
         this.formData.Object.hasOwnProperty(field.name)
       ) {
         control.setValue(this.formData.Object[field.name]); // set the initial value from the data object
       }
       if(field.type === 'array'){
-             
+
         const ids: string[] = this.formData.Object[field.name].map((object) => object.id);
        control.setValue(ids); // set the initial value from the data object
       }
@@ -247,5 +247,5 @@ console.log("data :"  , this.formData.Object)
   }
 
 
-  
+
 }
