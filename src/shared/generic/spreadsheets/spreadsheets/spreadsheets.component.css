@@ -4,7 +4,21 @@ mat-grid-tile  {
 }
 
 span {
-  margin: 15px;
+  max-width: 302px;
+  height: 23px;
+  margin: 10px;
+
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+
+  color: #000000;
+
+
+
 }
 input {
   width: 40%;

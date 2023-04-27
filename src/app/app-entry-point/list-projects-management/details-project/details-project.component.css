@@ -1,5 +1,6 @@
 mat-dialog-content {
-  max-width: 1000px;
+  max-width: 700px;
+  min-width: 700px;
 }
 mat-chip {
   background-color: #768DA9;
@@ -10,6 +11,7 @@ mat-chip {
   width: 100px;
   height: 38px;
   background-color: #00b2d9;
+  margin: 5px;
 }
 p{
   color: #E9EBF0;
