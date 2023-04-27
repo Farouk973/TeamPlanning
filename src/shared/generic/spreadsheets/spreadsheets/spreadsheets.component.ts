@@ -41,8 +41,8 @@ export class SpreadsheetsComponent implements  OnChanges {
 
       const url = this.location.path();
       let id = url.substring(url.lastIndexOf('/') + 1);
-      let totlaJ_Cout = ["TOTAL DAY" , "COSTING"]
-      let TJM_DAY = ['TJM £' , 'NUMBER OF DAY']
+      let totlaJ_Cout = ["TOTAL_DAY" , "COST"]
+      let TJM_DAY = ['TJM £' , 'NUMBER_OF_DAY']
       let TOTAL = ['TOTAL']
 
 
@@ -68,7 +68,6 @@ export class SpreadsheetsComponent implements  OnChanges {
           this.data.reportData = data.costing.map((obj) => Object.values(obj))
 
         }
-
       })
     })
 
@@ -94,11 +93,12 @@ export class SpreadsheetsComponent implements  OnChanges {
         this.editMode[rowIndex] = new Array(this.data.columnHeader.length).fill(false);
         this.editMode[rowIndex].fill(!this.editMode[rowIndex][0]);
       }
+
       this.Total_day();
       this.Costing();
       this.Total_Costing()
       this.Convert_MatrixToObject()
-
+      console.log('data',this.data.reportData)
     }
 
     }
@@ -110,7 +110,7 @@ export class SpreadsheetsComponent implements  OnChanges {
         for (let j = 0; j < this.data.reportData[i].length - 2; j++) {
           daySum += this.data.reportData[i][j];
         }
-        this.data.reportData[i][this.data.reportData[i].length - 2] = daySum;
+        this.data.reportData[i][this.data.reportData[i].length - 2] = Number(daySum.toFixed(2));
       }
     }
 
@@ -120,7 +120,7 @@ export class SpreadsheetsComponent implements  OnChanges {
         for (let j = 0; j < this.data.reportData[i].length - 2; j++) {
           costingSum += this.data.reportData[i][j] * this.data.reportData[0][j] ;
         }
-        this.data.reportData[i][this.data.reportData[i].length - 1] = costingSum;
+        this.data.reportData[i][this.data.reportData[i].length - 1] = Number(costingSum.toFixed(2));
       }
     }
 
@@ -130,7 +130,7 @@ export class SpreadsheetsComponent implements  OnChanges {
       for (let i = 2; i < this.data.reportData.length -1; i++) {
         sumLastColumn += this.data.reportData[i][this.data.reportData[i].length - 1];
       }
-        this.data.reportData[this.data.reportData.length-1][this.data.reportData[this.data.reportData.length-1].length - 1] = sumLastColumn ;
+        this.data.reportData[this.data.reportData.length-1][this.data.reportData[this.data.reportData.length-1].length - 1] = Number(sumLastColumn.toFixed(2)) ;
     }
 
     Convert_MatrixToObject(){
