@@ -4,6 +4,7 @@ import { PermissionsComponent } from './permissions/permissions.component';
 import { RoleComponent } from './role/role.component';
 import { UserPermessionsComponent } from './user-permessions/user-permessions.component';
 import { UsersComponent } from './users/users.component';
+import { MenuGuard } from 'src/guards/menu.guard';
 
 const routes: Routes = [
   {
@@ -12,16 +13,16 @@ const routes: Routes = [
   },
   {
     path: 'userPermessions',
-    component: UserPermessionsComponent,
+    component: UserPermessionsComponent,canActivate: [MenuGuard]
   },
   {
     path: 'role',
-    component: RoleComponent,
+    component: RoleComponent,canActivate: [MenuGuard]
   }
   ,
   {
     path: 'users',
-    component: UsersComponent,
+    component: UsersComponent,canActivate: [MenuGuard]
   }
 ];
 @NgModule({

@@ -36,6 +36,7 @@ export class GridViewComponent implements OnInit {
       .getMetadata(this.GridView.metadata)
       .subscribe((data) => {
         this.metadatas = data;
+        console.log("data" ,data)
       });
   }
 
@@ -73,6 +74,8 @@ export class GridViewComponent implements OnInit {
       .getData(this.GridView.endpoint)
       .subscribe((data) => {
         this.rows = data;
+        console.log("data" ,data)
+
       });
   }
   getObjectKeys(obj: any) {

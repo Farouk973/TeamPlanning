@@ -1,3 +1,4 @@
+import { Permission } from "./permission.model";
 import {Picture} from "./picture.model";
 
 export class User {
@@ -6,4 +7,5 @@ export class User {
   firstName: string;
   lastName: string;
   email: string;
+  permission!:Permission[]
 }

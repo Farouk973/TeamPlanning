@@ -156,7 +156,7 @@
           <!-- [formControl]="searchDataCtrl" -->
           <input matInput [matAutocomplete]="auto"
           [formControl]="searchDataCtrl"   [formControlName]="field.name" (focus)="onselectData(field.name)" >
-
+          <mat-select    [formControl]="searchDataCtrl"  [formControlName]="field.name">
           <mat-autocomplete [displayWith]="displayDataTitle" [panelWidth]="400" #auto="matAutocomplete" >            
             <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
             <ng-container *ngIf="!isLoading">
@@ -165,6 +165,7 @@
               </mat-option>
             </ng-container>
           </mat-autocomplete>
+          </mat-select>
         </mat-form-field>
 
           <mat-select-trigger appearance="outline" *ngIf=" field.type === 'array'">
