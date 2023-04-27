@@ -75,7 +75,7 @@
   }
   
   .delete-button {
-    color: #f44336; /* Red color */
+    color: #cdcdcd; /* Red color */
     margin-left: 10px;
     cursor: pointer;
     background: none;
@@ -84,7 +84,7 @@
   }
   
   .delete-button:hover {
-    background-color: rgba(244, 67, 54, 0.1); /* Light red background on hover */
+    background-color: #ebebeb89; /* Light red background on hover */
   }
 
 .card-container {
