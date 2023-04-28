@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import {Component, OnInit, Input, SimpleChanges} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CardGridView } from '../../models/CardView.model';
 import { ColumnMetadata } from '../../models/ColumnMetadata.model';
@@ -18,6 +18,7 @@ export class CardViewComponent implements OnInit {
   ) {}
   // GridView Input
   @Input() cardView: CardGridView;
+  @Input() search: string
   // Expression to detect images
   reg: string = '.(jpg|png|jpeg|gif|bmp)';
   // gridview rows retrieved
@@ -32,6 +33,10 @@ export class CardViewComponent implements OnInit {
       .subscribe((data) => {
         this.metadatas = data;
       });
+  }
+
+  ngOnChanges() {
+
   }
 
   sortColumn: string = '';
