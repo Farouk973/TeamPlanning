@@ -4,7 +4,7 @@ import { servicechipsservice } from '../servicechips.service';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Metadata, bigdomain, domain, endpoints, subdomain } from '../../models/bigdomain.model';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { SkillRatingDialogComponent } from '../skill-rating-dialog/skill-rating-dialog.component';
@@ -34,6 +34,7 @@ export class DomainChipsGCComponent implements OnInit {
   @Output() listoutput = new EventEmitter<any>();
   addedchips: domain[] = [];
   @Input() Endpoints!: Observable<endpoints>;
+  @Input() chipListalreadyadded!: BehaviorSubject<any[]>;
   namesubdomain
   namedomain
   metadatastring
@@ -85,7 +86,7 @@ export class DomainChipsGCComponent implements OnInit {
       this.openDialog(this.domainselected);
       console.log('Received data:', this.domainselected.name);
     });
-
+    console.log(this.chipListalreadyadded.value)
   }
   async subscribeToEndpoints() {
     return new Promise<void>((resolve, reject) => {
@@ -100,6 +101,7 @@ export class DomainChipsGCComponent implements OnInit {
         reject(error);
       });
     });
+    
   }
   private _transformer = (node: bigdomain, level: number) => {
     return {
@@ -162,39 +164,43 @@ export class DomainChipsGCComponent implements OnInit {
     return undefined;
   }
   openDialog(chips: domain) {
-    const dialogRef = this.dialog.open(SkillRatingDialogComponent, {
-      data: chips,
-      
-    });
-    
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        let isAlreadyAdded = this.addedchips.find(item => item.name === result.name);
-        if (!isAlreadyAdded) {
-          this.addedchips.push(result);
-          this.cdr.detectChanges();
-        }
-        else if (isAlreadyAdded && isAlreadyAdded.value !== result.value) {
-          const index = this.addedchips.findIndex(item => item.name === result.name);
-          if (index !== -1) {
-            this.addedchips.splice(index, 1); // remove existing item from array
-          }
-          this.addedchips.push(result);
-          this.cdr.detectChanges();
-        }
-        else {
-          this.snackBar.open('this skills is already added', 'Close', {
+    if (!this.isChipDisabled(chips.name)) {
+        const dialogRef = this.dialog.open(SkillRatingDialogComponent, {
+            data: chips,
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                let isAlreadyAdded = this.addedchips.find(item => item.name === result.name);
+                if (!isAlreadyAdded) {
+                    this.addedchips.push(result);
+                    this.cdr.detectChanges();
+                } else if (isAlreadyAdded && isAlreadyAdded.value !== result.value) {
+                    const index = this.addedchips.findIndex(item => item.name === result.name);
+                    if (index !== -1) {
+                        this.addedchips.splice(index, 1); // remove existing item from array
+                    }
+                    this.addedchips.push(result);
+                    this.cdr.detectChanges();
+                } else {
+                    this.snackBar.open('This skill is already added', 'Close', {
+                        duration: 3000,
+                        horizontalPosition: 'center',
+                        verticalPosition: 'bottom'
+                    });
+                }
+                console.log(this.addedchips);
+                this.listoutput.emit(this.addedchips);
+            }
+        });
+    } else {
+        this.snackBar.open('This skill is already added', 'Close', {
             duration: 3000,
             horizontalPosition: 'center',
             verticalPosition: 'bottom'
-          });
-        }
-        console.log(this.addedchips);
-        this.listoutput.emit(this.addedchips);
-      }
-    });
-
-  }
+        });
+    }
+}
   handleDialogResult(result: any) {
     console.log('Dialog result:', result);
     
@@ -232,6 +238,13 @@ export class DomainChipsGCComponent implements OnInit {
     }
     console.log(this.addedchips);
     this.listoutput.emit(this.addedchips);
+  }
+  isChipDisabled(chipName: string): boolean {
+    if (!this.chipListalreadyadded) {
+      return false; // if the chipListToDisable is null, return false to enable all chips
+    }
+    const chipList = this.chipListalreadyadded.getValue(); // get the current value of the BehaviorSubject
+    return chipList.some(chip => chip.name === chipName); // check if the chipName is in the array of disabled chips
   }
  
 
