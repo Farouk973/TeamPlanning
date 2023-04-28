@@ -31,20 +31,31 @@
     </div>
     <div class="content">
         <div class="skill-container">
-            <h1 *ngIf="selectedNode && selectedNode.trim() !== ''">
-                {{this.namedomain}} of "{{ selectedNode }}"
-            </h1>
-            <h1 *ngIf="!(selectedNode && selectedNode.trim() !== '')">
-                No {{this.namesubdomain}} has been selected
-            </h1>
-            <mat-chip-list class="mat-chip-list__container">
-                <mat-chip *ngFor="let chip of selectedchips" class="mat-chip__item" 
-                [ngClass]="{'selected': isChipSelected(chip.name)}" 
-                         (click)="openDialog(chip)">
-                  {{ chip.name }}
-                  <mat-icon class="cancel-icon" *ngIf="isChipSelected(chip.name)" (click)="removeChip(chip);$event.stopPropagation()">clear</mat-icon>
-                </mat-chip>
-              </mat-chip-list>
+          <h1 *ngIf="selectedNode && selectedNode.trim() !== ''">
+            {{this.namedomain}} of "{{ selectedNode }}"
+          </h1>
+          <h1 *ngIf="!(selectedNode && selectedNode.trim() !== '')">
+            No {{this.namesubdomain}} has been selected
+          </h1>
+          <mat-chip-list class="mat-chip-list__container">
+            <mat-chip
+              *ngFor="let chip of selectedchips"
+              class="mat-chip__item"
+              [ngClass]="{'selected': isChipSelected(chip.name)}"
+              [disabled]="isChipDisabled(chip.name)"
+              (click)="openDialog(chip)"
+              style="background-color: rgba(0, 178, 217, 0.1)"
+            >
+              {{ chip.name }}
+              <mat-icon
+                class="cancel-icon"
+                *ngIf="isChipSelected(chip.name)"
+                (click)="removeChip(chip);$event.stopPropagation()"
+              >
+                clear
+              </mat-icon>
+            </mat-chip>
+          </mat-chip-list>
         </div>
-    </div>
+      </div>
 </div>
