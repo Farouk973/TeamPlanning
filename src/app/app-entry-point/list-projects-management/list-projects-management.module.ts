@@ -21,7 +21,7 @@ import { CardViewModule } from 'src/shared/generic/card-view/card-view.module';
   imports: [
     CommonModule,
     ListProjectsManagementRoutingModule,
-   MatCardModule,
+    MatCardModule,
     MatIconModule,
     FlexLayoutModule,
     MatDialogModule,

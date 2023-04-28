@@ -19,9 +19,6 @@ import { environment } from 'src/environments/environment';
 export class ListProjectsComponent implements OnInit {
   projects: Project[]
   inputSearch: string='';
-  myControl = new FormControl();
-  searchForm: FormGroup;
-  filteredOptions: Observable<string[]>;
   constructor(public projectService : ProjectService , public dialog: MatDialog , private router : Router ) { }
 
   ngOnInit(): void {

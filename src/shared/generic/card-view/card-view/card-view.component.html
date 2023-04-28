@@ -1,7 +1,7 @@
 <div fxLayout="row wrap" fxLayoutGap="40px" style="padding-left: 50px; padding-top: 50px;">
   <div *ngFor="let row of sortedRows; let i = index" style="margin: 10px;">
     <mat-card style="margin-bottom: 10px ; "
-              *ngIf="row[cardView.cardtitle].toLowerCase().indexOf(search.toLowerCase()) !== -1">
+              *ngIf="row[cardView.cardtitle].toLowerCase().indexOf(search?.toLowerCase()) !== -1">
       <div class="card">
         <mat-card-content class="card-content">
           <strong>{{ row[cardView.cardInfo]}}</strong>

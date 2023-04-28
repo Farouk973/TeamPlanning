@@ -12,13 +12,13 @@ import { DialogComponent } from 'src/shared/generic/nxm-dialog/dialog/dialog.com
   styleUrls: ['./role.component.css']
 })
 export class RoleComponent implements OnInit {
-
+  inputSearch: string ='';
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  
+
   newItem : ActionPannelItem = {
     actionTitle : `Show More` ,
     endpoint : `${environment.baseUrl}/api/Permission/add-item-permession`,
@@ -32,7 +32,7 @@ export class RoleComponent implements OnInit {
 
   forms: Form = {
              endpoint: `${environment.baseUrl}/api/Role`,
-             
+
              metaData: `${environment.baseUrl}/meta/CreateRoleCommand`, };
 
   card: CardGridView = {
@@ -52,7 +52,7 @@ export class RoleComponent implements OnInit {
       width: '1067px',
       height: '519px',
       data: { metaData, isUpdate, endpoint },
-      
+
 
     });
     dialogRef.afterClosed().subscribe((result) => {
