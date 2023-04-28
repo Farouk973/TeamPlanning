@@ -3,7 +3,7 @@
         <div   *ngFor="let row of sortedRows; let i = index" style="margin: 10px;">
                   <mat-card style="margin-bottom: 10px ; " >
                     <div class="card">
-                      <mat-card-content class="card-content">
+                      <mat-card-content class="card-content" >
                         <strong>{{ row[cardView.cardInfo]}}</strong>
                       </mat-card-content>
                       <mat-icon class="more-icon" [matMenuTriggerFor]="menu">more_vert</mat-icon>

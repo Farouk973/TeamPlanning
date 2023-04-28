@@ -27,6 +27,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatCardModule,
     MatChipsModule,
     MatPaginatorModule
+  ],
+  exports: [
+    UserTabComponent,
   ]
 })
 export class UserTabManagementModule { }
