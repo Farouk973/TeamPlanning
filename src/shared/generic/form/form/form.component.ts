@@ -207,12 +207,20 @@ console.log("data :"  , this.formData.Object)
             .updateRow(this.formData.endpoint, this.form.value)
             .subscribe(
               (response) => {
+                console.log(response)
+
                 if (response.status === 200) {
+
                   this.myEvent.emit({
                     formValue: this.form.value,
                     response: response,
                   });
+
+                } if (response === true) {
+                  window.location.reload()
+                  console.log("tttttttttttttttttttttttttttttttt")
                 }
+
               },
               (error) => {
                 this.myEvent.emit({error: error})
@@ -228,7 +236,11 @@ console.log("data :"  , this.formData.Object)
                   formValue: this.form.value,
                   response: response,
                 });
+                if (response === true) {
+                  window.location.reload()
+                }
               },
+
               (error) => {
               }
             );
