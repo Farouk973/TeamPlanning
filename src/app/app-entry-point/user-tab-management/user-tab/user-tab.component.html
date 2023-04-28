@@ -35,7 +35,7 @@
           </button>
         </li>
       </ul>
-      <mat-paginator *ngIf="totalSkills > 5" [length]="totalSkills" [pageSize]="pageSize" [pageIndex]="currentPageIndex"
+      <mat-paginator *ngIf="totalSkills" [length]="totalSkills" [pageSize]="pageSize" [pageIndex]="currentPageIndex"
                      (page)="onPageChange($event)">
       </mat-paginator>
     </div>

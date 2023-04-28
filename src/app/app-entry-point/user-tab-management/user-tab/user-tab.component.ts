@@ -104,7 +104,7 @@ export class UserTabComponent implements OnInit {
   }
   deleteSkill(index: number): void {
     // Get the skill at the specified index
-    const skill = this.skillList.getValue()[index];
+    const skill = this.skillList.getValue()[index+(this.currentPageIndex*this.pageSize)];
   
     // Call the delete skill endpoint
     const url = `https://localhost:44312/api/Skills/removeskillToUser`;
@@ -112,8 +112,8 @@ export class UserTabComponent implements OnInit {
     this.http.post(url,body).subscribe(
       () => {
         // If the skill is deleted successfully, remove it from the skill list
-        const updatedList = this.skillList.getValue().filter((s, i) => i !== index);
-        this.skillList.next(updatedList);
+        const updatedList = this.skillList.getValue().filter((s, i) => i !== index+(this.currentPageIndex*this.pageSize));
+        //this.skillList.next(updatedList);
         this.fetchDatauserprofile();
       },
       (error) => {

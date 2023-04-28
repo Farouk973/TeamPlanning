@@ -87,7 +87,7 @@ export class SkillStepperComponent implements OnInit {
   }
   deleteSkill(index: number): void {
     // Get the skill at the specified index
-    const skill = this.skillList.getValue()[index];
+    const skill = this.skillList.getValue()[index+(this.currentPageIndex*this.pageSize)];
     const urlstepper = this.location.path();
     let projectid = urlstepper.substring(urlstepper.lastIndexOf('/') + 1);
     // Call the delete skill endpoint
@@ -96,8 +96,8 @@ export class SkillStepperComponent implements OnInit {
     this.http.post(url,body).subscribe(
       () => {
         // If the skill is deleted successfully, remove it from the skill list
-        const updatedList = this.skillList.getValue().filter((s, i) => i !== index);
-        this.skillList.next(updatedList);
+        const updatedList = this.skillList.getValue().filter((s, i) => i !== index+(this.currentPageIndex*this.pageSize));
+        //this.skillList.next(updatedList);
         this.fetchDataprojectskill();
       },
       (error) => {
