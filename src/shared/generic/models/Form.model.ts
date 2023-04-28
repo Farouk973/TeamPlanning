@@ -4,4 +4,5 @@ export class Form implements NXMGenericComponent {
   metaData : string;
   endpoint : string ;
   Object? : any;
+  title?:string;
 }

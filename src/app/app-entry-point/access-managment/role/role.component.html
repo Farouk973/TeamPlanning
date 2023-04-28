@@ -12,11 +12,10 @@
       
       
       
-          <mat-form-field class="search" appearance="outline">
-            <mat-label>Search</mat-label>
-            <input matInput placeholder="Placeholder" >
-          </mat-form-field>
-      
+          <div  class="search-bar" style="margin-right: 2%;">
+            <mat-icon class="search-icon">search</mat-icon>
+            <input type="text" placeholder="Search" name="search"  >
+          </div>
       
       
           <button
@@ -33,7 +32,7 @@
       
           </button>
         </div>
-        
+      
         
         <div class="grid-view">
         <app-card-view [cardView]=card></app-card-view>

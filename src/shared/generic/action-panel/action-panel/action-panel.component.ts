@@ -33,11 +33,11 @@ export class ActionPanelComponent implements OnInit {
     this.delete.emit(this.objId.id);
     
   }
-  openDialog(metaData: any,isUpdate: boolean,endpoint:any,object= this.objId): void {
+  openDialog(metaData: any,isUpdate: boolean,endpoint:any,object= this.objId,title=this.actionPanel.title): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '1067px',
       height: '519px',
-      data: {metaData, isUpdate,endpoint,object},
+      data: {metaData, isUpdate,endpoint,object,title},
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${Object.keys(result)}`);

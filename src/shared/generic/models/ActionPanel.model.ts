@@ -3,7 +3,9 @@ import {NXMGenericComponent} from "./NXMGenericComponent.model";
 export interface Actionpanel extends NXMGenericComponent {
  endpoint : string;
  formEditData : string ;
- items? : ActionPannelItem[]
+ items? : ActionPannelItem[];
+title? :string
+
  
 }
 
@@ -12,4 +14,6 @@ export interface ActionPannelItem {
  endpoint : string;
  formEditData : string ;
 }
+
+
 

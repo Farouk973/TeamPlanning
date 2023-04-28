@@ -7,7 +7,8 @@
           *ngIf="
             field.type === 'string' &&
             field.format === null &&
-            field.description === null
+            field.description === null &&
+            field.name !== 'id'
           "
         >
           <mat-label>{{ field.name }}</mat-label>
@@ -36,7 +37,39 @@
         </mat-form-field>
         <!-- aaaaaaaaaaaaaaaaaa -->
 
+        <mat-form-field style="display: none;"
+        appearance="outline"
+        *ngIf="
+          field.type === 'string' &&
+          field.name === 'id' &&
+          field.description === null
+        "
+      >
+        <mat-label>{{ field.name }}</mat-label>
+        
+        <input matInput [formControlName]="field.name" />
+        <mat-error
+          *ngIf="
+            form.get(field.name).invalid ||
+            form.get(field.name).dirty ||
+            form.get(field.name).touched
+          "
+          >
+          <span *ngIf="form.get(field.name).errors?.['minlength']"
+            >This field must have at least
+            {{ field.minLength }} characters.</span
+          >
 
+          <span *ngIf="form.get(field.name).errors?.['required']"
+            >This field is required.</span
+          >
+
+          <span *ngIf="form.get(field.name).errors?.['maxlength']"
+            >This field must have at most
+            {{ field.maxLength }} characters.</span
+          >
+        </mat-error>
+      </mat-form-field>
         <mat-form-field
           appearance="outline"
           *ngIf="field.type === 'string' && field.format === 'email'"

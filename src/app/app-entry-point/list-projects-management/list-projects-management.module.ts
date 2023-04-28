@@ -11,6 +11,7 @@ import { DetailsProjectComponent } from './details-project/details-project.compo
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatChipsModule} from "@angular/material/chips";
 import {FormsModule} from "@angular/forms";
+import { CardViewModule } from 'src/shared/generic/card-view/card-view.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import {FormsModule} from "@angular/forms";
     FlexLayoutModule,
     MatDialogModule,
     MatChipsModule,
-    FormsModule
+    FormsModule,
+    CardViewModule
+
   ]
 })
 export class ListProjectsManagementModule { }

@@ -7,6 +7,9 @@ import {Observable} from "rxjs";
 import {FormControl, FormGroup} from "@angular/forms";
 import {map, startWith} from "rxjs/operators";
 import {Router} from "@angular/router";
+import { Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
+import { CardGridView } from 'src/shared/generic/models/CardView.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-list-projects',
@@ -51,4 +54,26 @@ export class ListProjectsComponent implements OnInit {
   toStepper() {
     this.router.navigate(['stepper/project'])
   }
+
+
+
+  action: Actionpanel = {
+    endpoint: `${environment.baseUrl}/api/Project`,
+    formEditData: `${environment.baseUrl}/meta/UpdateProjectCommand`,
+    title:"Project"
+  };
+
+
+  card: CardGridView = {
+    endpoint: `${environment.baseUrl}/api/Project`,
+    formdata: `${environment.baseUrl}/meta/CreateRoleCommand`,
+    metadata: `${environment.baseUrl}/meta/GetProjectsDetailViewModel`,
+    cardtitle: "name",
+    carddescription: "description",
+    cardDate:"created",
+    cardInfo:"visibility",
+    width: 300,
+    height: 150,
+    actionPanel: this.action,
+  };
 }
