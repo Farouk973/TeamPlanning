@@ -25,19 +25,10 @@ export class ListProjectsComponent implements OnInit {
   constructor(public projectService : ProjectService , public dialog: MatDialog , private router : Router ) { }
 
   ngOnInit(): void {
-    this.projectService.getProjects().subscribe((data)=>{
-      this.projects=data
-      console.log(this.projects)
-    })
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
+
+
   }
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.projects.map(n=>n.name).filter(option => option.toLowerCase().includes(filterValue));
-  }
+
 
 
   openDialog( p ) {
