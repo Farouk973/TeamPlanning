@@ -39,6 +39,7 @@ export class UserPermessionsComponent implements OnInit {
   action: Actionpanel = {
     endpoint: `${environment.baseUrl}/api/Users/RoleEtpermessions`,
     formEditData: `${environment.baseUrl}/meta/UpdateUserRoleEtPermessionsCommand`,
+    title : "Roles & Permissions"
   };
 
   grid: GridView = {
