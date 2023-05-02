@@ -1,0 +1,23 @@
+<div class="header">
+    <span class="titleService">Request Management</span>
+    <form (ngSubmit)="search()" [formGroup]="searchForm" class="search-bar">
+      <mat-icon class="search-icon">search</mat-icon>
+      <input type="text" placeholder="Search" name="search" formControlName="searchTerm">
+  </form>
+  <button (click)="openDialogue()" class="service-request" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'" mat-button>Add New Request </button>
+  <button (click)="openDialogue()" class="service-request" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'" mat-button>Upload Template</button>
+  </div>
+  <app-generic-table [data]="mockDataTableGenericData"></app-generic-table>
+ 
+
+<ng-template #dialogTemplate let-dialogRef="dialogRef">
+    <h2 mat-dialog-title>Add New Request</h2>
+    <mat-dialog-content>
+      <p>Add from below services to create your requests</p>
+    
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button (click)="dialogRef.close()">Close</button>
+    </mat-dialog-actions>
+  </ng-template>
+  

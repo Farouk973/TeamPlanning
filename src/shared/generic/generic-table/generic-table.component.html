@@ -1,0 +1,68 @@
+<div class="container ">
+ <table class="custom-table" [style.width]="data.width">
+  <thead [style.height]="data.headerHeight">
+    <tr >
+      <th *ngFor="let column of data.columns" class="custom-header"  [style.color]="data.primaryColorTh"
+  [style.fontFamily]="data.fontFamilyTh"
+  [style.fontStyle]="data.fontStyleTh"
+  [style.fontWeight]="data.fontWeightTh"
+  [style.fontSize]="data.fontSizeTh"
+  [style.lineHeight]="data.lineHeightTh"
+  [style.zIndex]="data.zIndexTh" >
+        {{ column.header }}
+       
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of currentPage$ | async " (click)="onSelectedRowsChange(row)">
+      <td *ngFor="let column of data.columns"  [style.backgroundColor]="data.backgroundTdColor" [style.fontFamily]="data.fontFamilyTh"
+       [style.color]="data.primaryColorTd"
+  [style.fontStyle]="data.fontStyleTh"
+  [style.fontWeight]="data.fontWeightTh"
+  [style.fontSize]="data.fontSizeTh"
+  [style.lineHeight]="data.lineHeightTh" >
+        <ng-container *ngIf="!column.component">{{ column.cel(row) }}</ng-container>
+        <ng-container *ngIf="column.component">
+         <ndc-dynamic
+    [ndcDynamicComponent]="column.component"
+    [ndcDynamicInputs]="{ element: row, selectedRows: selectedRows, dataSource: dataSource$ }"
+    [ndcDynamicOutputs]="{ selectedRowsChange: data.outputMethod }">
+  </ndc-dynamic>
+        </ng-container>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="container">
+ 
+<div class="pagination">
+  <ng-container *ngIf="(currentPageNumber$ | async) as currentPageNumber; else loading">
+    <button class="prev" [disabled]="currentPageNumber === 1" (click)="onPageNumberChange(currentPageNumber - 1)">
+      &lt; 
+    </button>
+    <ng-container *ngFor="let page of pages$ | async">
+      <ng-container *ngIf="(currentPageNumber - 3) < page && page < (currentPageNumber + 3)">
+        <button [disabled]="currentPageNumber === page" (click)="onPageNumberChange(page)">{{page}}</button>
+      </ng-container>
+      <ng-container *ngIf="(currentPageNumber - 3) === page || page === (currentPageNumber + 3)">
+        <span class="pagination-ellipsis">&hellip;</span>
+      </ng-container>
+    </ng-container>
+    <button class="next" [disabled]="currentPageNumber === (totalPages$ | async)" (click)="onPageNumberChange(currentPageNumber + 1)">
+       &gt;
+    </button>
+  </ng-container>
+  <select (change)="onPageSizeChange($event)">
+    <option value="2" selected>4</option>
+    <option value="20">20</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+  </select>
+  <ng-template #loading>Loading...</ng-template>
+</div>
+
+
+
+</div>

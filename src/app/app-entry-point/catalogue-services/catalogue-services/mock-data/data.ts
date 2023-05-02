@@ -2,6 +2,7 @@ import { BehaviorSubject } from "rxjs";
 import { CustomCellComponent } from "src/shared/generic/data-table-server-side/data-table-generic/custom-cell/custom-cell.component";
 import { DataTableGenericInput } from "src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.component";
 import { CardData } from "src/shared/generic/list-card/Models/cardModel";
+import { Injector } from '@angular/core';
 
 
 export const mockCardData: CardData={
@@ -25,6 +26,7 @@ export const mockCardData: CardData={
     editing: false
   
   };
+
   export const mockDataTableData: DataTableGenericInput={
     columns: [
       { 
@@ -52,7 +54,7 @@ export const mockCardData: CardData={
         columnDef: 'Add',
         header: 'Add',
         component: CustomCellComponent,
-        
+       
       }
     ],
   columnDefs:['bodyTitle', 'category', 'nbhours', 'nbresources','Add'],
@@ -69,8 +71,8 @@ export const mockCardData: CardData={
   cancelButtonClass:"cancel-button",
   submitButtonLabel:"submit bundle request",
   cancelButtonLabel:"cancel",
-  updateEndpoint:"https://localhost:5001/service-bundle"
-  
+  updateEndpoint:"https://localhost:5001/service-bundle",
+  marginRightValue:"22rem",
   };
   export const CommonCssBehaviours={
     primaryColor: '#00b2d91a',
@@ -122,3 +124,5 @@ export const mockCardData: CardData={
    }
    
   ];
+
+

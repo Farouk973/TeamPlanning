@@ -1,0 +1,11 @@
+table, th, td {
+ border-color:transparent;
+  border-collapse: separate;
+  border-spacing: 0;
+
+}
+.container{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}

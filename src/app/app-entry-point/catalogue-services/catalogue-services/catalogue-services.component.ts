@@ -24,10 +24,11 @@ export class CatalogueServicesComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    
     this.searchForm = this.formBuilder.group({
       searchTerm: ['']
     });
-
+   
     this.searchForm.get('searchTerm').valueChanges.pipe(
       debounceTime(500)
     ).subscribe(() => {

@@ -62,6 +62,8 @@ import { ChipsPopUpGCModule } from 'src/shared/generic/chips-pop-up-gc/chips-pop
 import { SkillsManagmentModule } from './skills-managment/skills-managment.module';
 import { CatalogueServicesModule } from './catalogue-services/catalogue-services/catalogue-services.module';
 import { UserTabManagementModule } from './user-tab-management/user-tab-management.module';
+import { WorkFlowComponent } from './workFlow-Management/work-flow/work-flow.component';
+import { DataTableGenericModule } from "src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.module";
 
 
 @NgModule({
@@ -69,7 +71,7 @@ import { UserTabManagementModule } from './user-tab-management/user-tab-manageme
         LayoutComponent,
         SideNavComponent,
         TopNavComponent,
-
+      
     ],
     imports: [
         CommonModule,
@@ -134,9 +136,8 @@ import { UserTabManagementModule } from './user-tab-management/user-tab-manageme
         DialogModule,
         SkillsManagmentModule,
         CatalogueServicesModule,
-
-        UserTabManagementModule
-
+        UserTabManagementModule,
+        DataTableGenericModule
     ]
 })
 export class AppEntryPointModule { }

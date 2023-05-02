@@ -1,0 +1,61 @@
+<div class="menu-wrapper">
+            <button mat-icon-button [matMenuTriggerFor]="appMenu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #appMenu="matMenu">
+              <button mat-menu-item (click)="openDialogue()">Edit</button>
+              <button mat-menu-item (click)="openDialogue()">Delete</button>
+            </mat-menu>
+          </div>
+<ng-template #dialogTemplate let-dialogRef="dialogRef">
+    <h2 mat-dialog-title>Edit Requests</h2>
+    <mat-dialog-content>
+<div class="container">
+  <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+    <label>
+      Name:
+      <input type="text" formControlName="Name">
+    </label>
+
+    <label>
+      Description:
+      <input type="text" formControlName="description">
+    </label>
+
+    <label>
+      Skills:
+      <input type="text" formControlName="skills">
+    </label>
+
+   
+    <label>
+      Start Date:
+      <input type="date" formControlName="startDate">
+    </label>
+
+    <label>
+      End Date:
+      <input type="date" formControlName="endDate">
+    </label>
+
+    <label>
+      Tasks:
+      <select formControlName="tasks">
+        <option value="">Select a status</option>
+        <option value="Pending">Pending</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Complete">Complete</option>
+      </select>
+    </label>
+
+    <button type="submit" [disabled]="!requestForm.valid">Save</button>
+  </form>
+</div>
+
+
+    
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button (click)="dialogRef.close()">Close</button>
+    </mat-dialog-actions>
+  </ng-template>

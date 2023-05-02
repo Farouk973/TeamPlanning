@@ -9,13 +9,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { CustomCellComponent } from './custom-cell/custom-cell.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { DynamicComponent, DynamicIoDirective } from 'ng-dynamic-component';
+import { CustomStylesDirective } from './custom-styles.directive';
+
 
 
 
 @NgModule({
   declarations: [
     DataTableGenericComponent,
-    CustomCellComponent
+    CustomCellComponent,
+    CustomStylesDirective,
+  
   ],
   imports: [
     CommonModule,
@@ -26,11 +31,16 @@ import { MatOptionModule } from '@angular/material/core';
     NgComponentOutlet,
     MatSelectModule,
     MatOptionModule,
+    DynamicIoDirective,
+    DynamicComponent,
+
     
   ],
 
   exports:[
-    DataTableGenericComponent
+    DataTableGenericComponent,
+    CustomCellComponent,
+    
   ]
 })
 export class DataTableGenericModule { }

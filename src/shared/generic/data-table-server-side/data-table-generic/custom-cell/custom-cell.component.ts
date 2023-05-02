@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CustomCellStateService } from './custom-cell-state.service';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-custom-cell',
@@ -9,12 +8,12 @@ import { Router } from '@angular/router';
 })
 export class CustomCellComponent   {
  
-  @Input() element: any;
-  @Output() selectedRowsChange: EventEmitter<any[]> = new EventEmitter<any[]>();
-  @Input() dataSource:any ;
+  @Input() element?: any;
+  @Output() selectedRowsChange?: EventEmitter<any[]> = new EventEmitter<any[]>();
+  @Input() dataSource?:any ;
   countVisible = false;
   count = 0;
-  @Input() selectedRows: any[];
+  @Input() selectedRows?: any[];
   constructor() { }
 
   incrementCount(element) {
@@ -45,6 +44,7 @@ export class CustomCellComponent   {
       // Otherwise, add it to the array
       this.selectedRows.push(element);
     }
-    this.selectedRowsChange.emit(this.selectedRows);
+    console.log(this.selectedRows)
+ 
   }
 }
