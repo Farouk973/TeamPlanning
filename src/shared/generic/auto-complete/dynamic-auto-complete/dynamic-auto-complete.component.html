@@ -23,7 +23,7 @@
 </div>
 <div>
     <mat-chip-list >
-      <mat-chip *ngFor="let option of chipsOptions "   (removed)="removeOptionAfterAssign(option)">{{option[autoComplete.nameAttributeForSearch]}}   <button matChipRemove >
+      <mat-chip *ngFor="let option of chipsOptions " style="background-color: rgba(0, 178, 217, 0.1)"   (removed)="removeOptionAfterAssign(option)">{{option[autoComplete.nameAttributeForSearch]}}   <button matChipRemove >
         <mat-icon>cancel</mat-icon>
       </button></mat-chip>
     </mat-chip-list>

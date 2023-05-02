@@ -1,9 +1,10 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import {Component, OnInit, Input, SimpleChanges} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CardGridView } from '../../models/CardView.model';
 import { ColumnMetadata } from '../../models/ColumnMetadata.model';
 import { ConfirmationComponent } from '../../nxm-dialog/confirmation/confirmation.component';
 import { SharedServices } from '../../SharedServices.service';
+import { DetailsProjectComponent } from 'src/app/app-entry-point/list-projects-management/details-project/details-project.component';
 
 @Component({
   selector: 'app-card-view',
@@ -17,6 +18,7 @@ export class CardViewComponent implements OnInit {
   ) {}
   // GridView Input
   @Input() cardView: CardGridView;
+  @Input() search: string
   // Expression to detect images
   reg: string = '.(jpg|png|jpeg|gif|bmp)';
   // gridview rows retrieved
@@ -31,6 +33,10 @@ export class CardViewComponent implements OnInit {
       .subscribe((data) => {
         this.metadatas = data;
       });
+  }
+
+  ngOnChanges() {
+
   }
 
   sortColumn: string = '';
@@ -94,4 +100,17 @@ export class CardViewComponent implements OnInit {
       }
     });
   }
+
+  openDialog( p ) {
+    console.log("open")
+    const dialogRef = this.dialog.open(DetailsProjectComponent , {
+      data: {p}
+
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 }

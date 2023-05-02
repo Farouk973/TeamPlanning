@@ -1,4 +1,5 @@
 export class Permission {
+    id!:any
     title!: string;
 
     description!: string;
@@ -13,6 +14,7 @@ export class Permission {
 }
 
 export class PermissionItems {
+    
     name!: string;
     path!: string;
 }

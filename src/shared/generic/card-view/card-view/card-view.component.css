@@ -1,12 +1,173 @@
-.example-card {
-    min-width: 300px;
-    min-height: 200px;
-    max-width: 300px;
-    max-height: 200px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-    margin-right: 12px;
-    border-radius: 15px;
-  }
+* {
+  display: flex;
+  flex-wrap: wrap;
+}
+mat-card{
+  box-sizing: border-box;
+
+  /* Auto layout */
+   width:350px ;
+    height: 283px ;
+  background: #FEFEFF;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+.card {
+  display: flex;
+  align-items: center;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.more-icon {
+  margin-left: auto;
+  border-radius: 10px;
+}
 
 
+.detail {
+  margin-left: auto;
+  border-radius: 10px;
+}
+
+.more-icon:hover{
+  background-color: rgba(0, 178, 217, 0.1);
+}
+mat-card-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 12px;
+  gap: 10px;
+
+  max-width: 83px;
+  height: 26px;
+
+  background: rgba(0, 178, 217, 0.1);
+  border-radius: 6px;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+strong{
+  width: 55px;
+  height: 16px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  /* identical to box height, or 133% */
+
+  display: flex;
+  align-items: center;
+
+  color: #00B2D9;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+h1{
+  max-width: 302px;
+  height: 23px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  /* identical to box height, or 115% */
+
+
+  color: #000000;
+
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+h3{
+  max-width: 300px;
+  height: 120px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  /* Accent/$Accent_Black */
+
+  color: #080C3E;
+
+  opacity: 0.6;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+h2{
+  max-width: 302px;
+  height: 23px;
+
+
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+
+  color: #000000;
+
+
+  /* Inside auto layout */
+  min-width: 315px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.titleService {
+  margin-right: 20px;
+  padding-top: 0px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 20px;
+  font-weight:700 ;
+}
+
+
+
+
+.span {
+  padding: 100px;
+
+}

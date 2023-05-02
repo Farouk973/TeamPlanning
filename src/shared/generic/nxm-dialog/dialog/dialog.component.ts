@@ -34,6 +34,7 @@ export class DialogComponent {
     endpoint: this.data.endpoint,
     Object: this.data.object,
     metaData: this.data.metaData,
+    title: this.data.title
   };
 }
 

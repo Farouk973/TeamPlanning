@@ -6,7 +6,7 @@
   </div>
   <button  class="mat-raised-button" (click)="toStepper()" mat-button><p>Add new project</p></button>
 </div>
-<div fxLayout="row wrap" fxLayoutGap="40px"      style="padding-left: 50px; padding-top: 50px;" >
+<!-- <div fxLayout="row wrap" fxLayoutGap="40px"      style="padding-left: 50px; padding-top: 50px;" >
   <div *ngFor="let p of projects; let i=index;" [hidden]="p.name.toLowerCase().indexOf(inputSearch.toLowerCase()) === -1"  >
     <mat-card style="margin-bottom: 40px" >
       <div class="card">
@@ -20,5 +20,7 @@
       <h2>Created at: {{p.created | date:'yyyy-MM-dd HH:mm'}}</h2>
     </mat-card>
   </div>
-</div>
+</div> -->
+<app-card-view [cardView]=card [search]="inputSearch"></app-card-view>
+
 

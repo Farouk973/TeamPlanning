@@ -17,6 +17,7 @@ import {NXMGContainerModule} from "../../../shared/generic/nxm-g-container/nxm-g
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
+import { UserTabManagementModule } from '../user-tab-management/user-tab-management.module';
 
 
 
@@ -40,7 +41,8 @@ import { MatMenuModule } from '@angular/material/menu';
     NXMGContainerModule,
     MatGridListModule,
     MatTabsModule,
-    MatMenuModule
+    MatMenuModule,
+    UserTabManagementModule
     
     
  ]

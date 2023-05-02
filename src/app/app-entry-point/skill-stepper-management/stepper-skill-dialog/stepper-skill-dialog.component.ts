@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-stepper-skill-dialog',
@@ -12,7 +12,7 @@ export class StepperSkillDialogComponent implements OnInit {
 
   public Endpoints : Observable<any> ;
   selectedchips:any[];
-  constructor(private http: HttpClient,public dialogRef: MatDialogRef<StepperSkillDialogComponent>) { }
+  constructor(private http: HttpClient,public dialogRef: MatDialogRef<StepperSkillDialogComponent>,@Inject(MAT_DIALOG_DATA) public data: { skillList: BehaviorSubject<any[]> }) { }
 
   ngOnInit(): void {
     this.Endpoints=this.http.get<any>('assets/categoriesCG.json');

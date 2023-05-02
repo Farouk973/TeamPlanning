@@ -13,6 +13,7 @@ import { Permission } from 'src/shared/models/permission.model';
 import { PermissionService } from 'src/shared/services/permission.service';
 import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 import { ItemComponent } from './item/item.component';
+import { CardGridView } from 'src/shared/generic/models/CardView.model';
 
 
 
@@ -56,6 +57,7 @@ action: Actionpanel = {
   endpoint: `${environment.baseUrl}/api/Permission`,
   formEditData: `${environment.baseUrl}/meta/UpdatePermissionCommand`,
   items : [this.newItem],
+  title : "Permession"
 };
 
   
@@ -92,17 +94,19 @@ grid: GridView = {
     allowedSortColumns: ['title'],
   };
 
-  openDialog(metaData: any, isUpdate: boolean, endpoint: any): void {
+  openDialog(metaData: any, isUpdate: boolean, endpoint: any , title=this.action.title): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '1067px',
       height: '519px',
-      data: { metaData, isUpdate, endpoint },
+      data: { metaData, isUpdate, endpoint,title},
       
 
     });
     dialogRef.afterClosed().subscribe((result) => {
     });
   }
+
+
 
 }
 

@@ -108,8 +108,10 @@ export class GenericStepperComponent implements OnInit {
   deleteItem(){
     this.genericStepperService.deleteItem(this.stepper.delete.endpoint, this.idResponse ).subscribe((response)=>{
       console.log(response)
+      this.router.navigate(['/projects/list-projects']);
     })
-    this.router.navigate(['/']);
+//
+   
   }
 
   validateItem() {

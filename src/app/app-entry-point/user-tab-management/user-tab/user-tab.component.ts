@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddSkillDialogComponent } from '../add-skill-dialog/add-skill-dialog.component';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, flatMap } from 'rxjs';
 import { domain } from 'src/shared/generic/models/bigdomain.model';
 import { HttpClient } from '@angular/common/http';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
@@ -29,25 +29,21 @@ export class UserTabComponent implements OnInit {
     });
    }
   ngOnInit(): void {
-    // Fetch initial data
     this.fetchDatauserprofile();
     this.fetchDatauserproject();
     this.fetchDatauserfeature();
-    // Set up polling to fetch updated data every 3 seconds
-    setInterval(() => {
-      this.fetchDatauserprofile();
-    }, 1000);
   }
   fetchDatauserprofile(): void {
-    this.http.get<any[]>("https://localhost:44312/api/Skills/user-Skills/"+this.userId).subscribe(
-      (data: any[]) => {
-        this.skillList.next(data);
-      }
-    );
-    this.totalSkills = this.skillList.value.length;
-
-    // Update the pagedSkillList
-    this.updatePagedSkillList();
+    this.http.get<any[]>("https://localhost:44312/api/Skills/user-Skills/"+this.userId)
+      .pipe(
+        flatMap((data: any[]) => {
+          this.skillList.next(data);
+          this.totalSkills = this.skillList.value.length;
+          this.updatePagedSkillList();
+          return this.skillList;
+        })
+      )
+      .subscribe();
   }
   updatePagedSkillList(): void {
     // Calculate the starting and ending index for the current page
@@ -82,8 +78,9 @@ export class UserTabComponent implements OnInit {
     }
   openAddSkillDialog(): void {
     const dialogRef = this.dialog.open(AddSkillDialogComponent, {
-      maxWidth: '1000px',
-      minWidth:'800px'
+      maxWidth: '800px',
+      minWidth:'800px',
+      data: { skillList: this.skillList }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -93,6 +90,7 @@ export class UserTabComponent implements OnInit {
             const url = 'https://localhost:44312/api/Skills/addskillToUser';
             this.http.post(url, body).subscribe(response => {
                 console.log(response);
+                this.fetchDatauserprofile();
                 // Handle the response from the server as needed
             }, error => {
                 console.error(error);
@@ -101,11 +99,12 @@ export class UserTabComponent implements OnInit {
             console.log(result[i]);
         }
     }
+    
     });
   }
   deleteSkill(index: number): void {
     // Get the skill at the specified index
-    const skill = this.skillList.getValue()[index];
+    const skill = this.skillList.getValue()[index+(this.currentPageIndex*this.pageSize)];
   
     // Call the delete skill endpoint
     const url = `https://localhost:44312/api/Skills/removeskillToUser`;
@@ -113,14 +112,16 @@ export class UserTabComponent implements OnInit {
     this.http.post(url,body).subscribe(
       () => {
         // If the skill is deleted successfully, remove it from the skill list
-        const updatedList = this.skillList.getValue().filter((s, i) => i !== index);
-        this.skillList.next(updatedList);
+        const updatedList = this.skillList.getValue().filter((s, i) => i !== index+(this.currentPageIndex*this.pageSize));
+        //this.skillList.next(updatedList);
+        this.fetchDatauserprofile();
       },
       (error) => {
         // Handle any errors that occur during the HTTP request
         console.error(error);
       }
     );
+    
   }
   getSkillValueStars(value: number): string[] {
     const stars = [];
