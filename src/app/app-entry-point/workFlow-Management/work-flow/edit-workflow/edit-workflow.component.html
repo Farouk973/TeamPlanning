@@ -38,15 +38,7 @@
       <input type="date" formControlName="endDate">
     </label>
 
-    <label>
-      Tasks:
-      <select formControlName="tasks">
-        <option value="">Select a status</option>
-        <option value="Pending">Pending</option>
-        <option value="In Progress">In Progress</option>
-        <option value="Complete">Complete</option>
-      </select>
-    </label>
+ 
 
     <button type="submit" [disabled]="!requestForm.valid">Save</button>
   </form>

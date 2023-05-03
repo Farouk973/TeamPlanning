@@ -12,7 +12,7 @@ import { EditWorkflowComponent } from "../edit-workflow/edit-workflow.component"
     columns: [
       { 
         columnDef: 'name',
-        header: 'Name',
+        header: 'name',
         cel: (element: any) => `${element.name}`
       },
       {
@@ -22,7 +22,7 @@ import { EditWorkflowComponent } from "../edit-workflow/edit-workflow.component"
       },
       {
         columnDef: 'skills',
-        header: 'Skills',
+        header: 'skills',
          cel: (element: any) => {
     return element.skillsList.map((skill: any) => {
       return `${skill.name} `;
@@ -82,8 +82,9 @@ fontWeightTh:"500",
   zIndexTh:"1",
   primaryColorTd:"#001E50",
   backgroundTdColor:"white",
-  headerHeight:"40px"
-  
+  headerHeight:"40px",
+  sortDirection: 'desc'  ,
+  trPaddingLeft:'10'
   };
     export const mockDataTableTask: DataTableGenericInput={
     columns: [

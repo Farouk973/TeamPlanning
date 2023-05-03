@@ -62,9 +62,7 @@ retrieveData(): void {
 
  }
 onEdit(cardId: string) {
-  const cardIndex = this.cardDataList.findIndex(card => card.id === cardId);
-  
-    this.cardDataList[cardIndex].editing = true;
+
    
   
 }

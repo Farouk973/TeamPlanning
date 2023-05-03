@@ -39,10 +39,10 @@ export class WorkFlowComponent implements OnInit {
    
   if (!searchTerm) {
     // if search term is null or empty, reset to initial endpoint
-    this.mockDataTableGenericData.endpoint.next("https://localhost:5001/api/service");
+    this.mockDataTableGenericData.endpoint.next("https://localhost:5001/api/RequestManagement");
   } else {
     // if search term is not empty, set endpoint with search term
-    this.mockDataTableGenericData.endpoint.next(`https://localhost:5001/api/service/search?SearchedWord=${searchTerm}`);
+    this.mockDataTableGenericData.endpoint.next(`https://localhost:5001/api/RequestManagement/search?SearchedWord=${searchTerm}`);
   }
   }
   openDialogue(){

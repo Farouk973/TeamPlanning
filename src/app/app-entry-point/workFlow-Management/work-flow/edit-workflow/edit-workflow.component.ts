@@ -37,9 +37,9 @@ openDialogue(){
       description: [this.element.description, Validators.required],
       skills: ['', Validators.required],
       
-      startDate: [this.element.startDate, Validators.required],
+      startDate: [, Validators.required],
       endDate: ['', Validators.required],
-      tasks: ['', Validators.required],
+    
     });
   }
 }

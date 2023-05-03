@@ -1,13 +1,13 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Component,ViewEncapsulation,HostBinding , ComponentRef, ElementRef,ChangeDetectionStrategy, Input, OnInit,AfterViewInit, Renderer2, ViewChild, ViewContainerRef } from '@angular/core';
+import { HttpClient} from '@angular/common/http';
+import { Component,ViewEncapsulation, ElementRef,ChangeDetectionStrategy, Input, OnInit,AfterViewInit, Renderer2, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, MatSortHeaderIntl } from '@angular/material/sort';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { SharedServices } from '../../SharedServices.service';
 import { NumberInput } from '@angular/cdk/coercion';
-import { DataService } from './data.service';
 import { OutputExpression } from 'ng-dynamic-component';
+import { DataTableGenericInput } from '../../models/dataTable.model';
 
 
 @Component({
@@ -38,7 +38,7 @@ export class DataTableGenericComponent implements OnInit,AfterViewInit  {
 
   private destroy$: Subject<void> = new Subject<void>();
   
-  constructor(private httpClient: HttpClient, public listCardService: SharedServices,private dataService: DataService,private elementRef: ElementRef) {}
+  constructor(private httpClient: HttpClient, public listCardService: SharedServices,private elementRef: ElementRef) {}
   
   ngOnInit() {
     this.getData();
@@ -104,51 +104,3 @@ export class DataTableGenericComponent implements OnInit,AfterViewInit  {
   
 }
 
-export interface TableColumn {
-
-  columnDef: string;
-  header: string;
-  cel?: (element: any) => any;
-  component?: any ;
-  componentInput?:any;
-  injector?: any;
-}
-
-
-export interface DataTableGenericInput {
-  columns?: TableColumn[];
-  columnDefs?: string[];
-  sortActive?: string;
-  sortDirection?: 'asc' | 'desc';
-  sortDisableClear?: boolean;
-  width?: string;
-  params?:number ;
-  endpoint?:BehaviorSubject<string>;
-  updateEndpoint?:string;
-  totalItemEndpoint?:string;
-  tableFor?:string;
-  pageSize?:NumberInput | any;
-  pageIndex?:NumberInput;
-  length?:NumberInput;
-  showRenderButton?:boolean;
-  submitButtonClass?:string;
-  cancelButtonClass?:string;
-  submitButtonLabel?:string;
-  cancelButtonLabel?:string;
-  PAGE_SIZE?:number;
-  marginRightValue?:string;
-  outputMethod?:OutputExpression;
-  readData?:any;
-  paddingRightRange?:string;
-  allowedSortColumns?:any;
- primaryColorTh?:string;
-fontFamilyTh?:string;
-fontStyleTh?:string;
-fontWeightTh?:string;
-  fontSizeTh?:string;
-  lineHeightTh?:string;
-  zIndexTh?:string;
-  primaryColorTd?:string;
-  backgroundTdColor?:string;
-  headerHeight?:string;
-}
