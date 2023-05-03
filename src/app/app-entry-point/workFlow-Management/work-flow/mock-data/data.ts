@@ -1,6 +1,6 @@
 import { BehaviorSubject } from "rxjs";
 import { environment } from "src/environments/environment";
-import { CustomCellComponent } from "src/shared/generic/data-table-server-side/data-table-generic/custom-cell/custom-cell.component";
+
 
 import { EditRequestComponent } from "../edit-request/edit-request.component";
 import { BigNumberService } from "src/shared/services/big-number.service"
