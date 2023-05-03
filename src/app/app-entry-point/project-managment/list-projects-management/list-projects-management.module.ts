@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ListProjectsManagementRoutingModule } from './list-projects-management-routing.module';
 import { ListProjectsComponent } from './list-projects/list-projects.component';
-import {ListCardModule} from "../../../shared/generic/list-card/list-card.module";
+import {ListCardModule} from "../../../../shared/generic/list-card/list-card.module";
 import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import { FlexLayoutModule } from '@angular/flex-layout';

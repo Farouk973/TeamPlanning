@@ -7,8 +7,8 @@ import {
 import {FormComponent} from "../../form/form/form.component";
 import {Stepper} from "../../models/stepper.model";
 import { Observable,} from "rxjs";
-import {FeatureComponent} from "../../../../app/app-entry-point/feature-managment/feature/feature.component";
-import {RolesComponent} from "../../../../app/app-entry-point/roles-management/roles/roles.component";
+import {FeatureComponent} from "../../../../app/app-entry-point/project-managment/feature-managment/feature/feature.component";
+import {RolesComponent} from "../../../../app/app-entry-point/project-managment/roles-management/roles/roles.component";
 import {RecopProjectComponent} from "../../../../app/app-entry-point/project-managment/recop-project/recop-project.component";
 import {IoEventContextToken} from "ng-dynamic-component";
 import {GenericStepperService} from "../generic.stepper.service";
@@ -18,7 +18,7 @@ import {HttpClient} from "@angular/common/http";
 import {SkillStepperComponent } from 'src/app/app-entry-point/skill-stepper-management/skill-stepper/skill-stepper.component';
 
 import {MatDialog} from "@angular/material/dialog";
-import {SpreadsheetsProjectComponent} from "../../../../app/app-entry-point/spreadsheets-management/spreadsheets-project/spreadsheets-project.component";
+import {SpreadsheetsProjectComponent} from "../../../../app/app-entry-point/project-managment/spreadsheets-management/spreadsheets-project/spreadsheets-project.component";
 
 
 
@@ -111,7 +111,7 @@ export class GenericStepperComponent implements OnInit {
       this.router.navigate(['/projects/list-projects']);
     })
 //
-   
+
   }
 
   validateItem() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ProjectService} from "../../../../shared/services/project.service";
-import {Project} from "../../../../shared/models/project.model";
+import {ProjectService} from "../../../../../shared/services/project.service";
+import {Project} from "../../../../../shared/models/project.model";
 import {MatDialog} from "@angular/material/dialog";
 import {DetailsProjectComponent} from "../details-project/details-project.component";
 import {Observable} from "rxjs";

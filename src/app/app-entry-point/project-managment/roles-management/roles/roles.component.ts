@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs";
-import {AutoComplete} from "../../../../shared/generic/models/AutoComplete.model";
+import {AutoComplete} from "../../../../../shared/generic/models/AutoComplete.model";
 import {HttpClient} from "@angular/common/http";
 
 @Component({

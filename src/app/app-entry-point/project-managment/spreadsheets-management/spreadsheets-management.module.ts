@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SpreadsheetsManagementRoutingModule } from './spreadsheets-management-routing.module';
 import { SpreadsheetsProjectComponent } from './spreadsheets-project/spreadsheets-project.component';
-import {SpreadsheetsModule} from "../../../shared/generic/spreadsheets/spreadsheets.module";
+import {SpreadsheetsModule} from "../../../../shared/generic/spreadsheets/spreadsheets.module";
 
 
 
