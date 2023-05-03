@@ -1,12 +1,11 @@
 import { BehaviorSubject } from "rxjs";
 import { environment } from "src/environments/environment";
 import { CustomCellComponent } from "src/shared/generic/data-table-server-side/data-table-generic/custom-cell/custom-cell.component";
-import { DataTableGenericInput } from "src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.component";
-import { CardData } from "src/shared/generic/list-card/Models/cardModel";
-import { GridView } from "src/shared/generic/models/GridView.model";
+
 import { EditRequestComponent } from "../edit-request/edit-request.component";
 import { BigNumberService } from "src/shared/services/big-number.service"
 import { EditWorkflowComponent } from "../edit-workflow/edit-workflow.component";
+import { DataTableGenericInput } from "src/shared/generic/models/dataTable.model";
 
   export const mockDataTableData: DataTableGenericInput={
     columns: [
@@ -64,13 +63,13 @@ import { EditWorkflowComponent } from "../edit-workflow/edit-workflow.component"
  
   width: "100%",
   params:1 ,
-  endpoint:new BehaviorSubject<string>("https://localhost:5001/api/RequestManagement"),
+  endpoint:new BehaviorSubject<string>(`${environment.baseUrl}/api/RequestManagement`),
   tableFor:"services",
   pageSize:3,
   pageIndex:1,
   length:100,
   showRenderButton:false,
-  updateEndpoint:"https://localhost:5001/service-bundle",
+  updateEndpoint:`${environment.baseUrl}/service-bundle`,
   marginRightValue:"46rem",
   allowedSortColumns: ['skills'],
   primaryColorTh:"#667280",

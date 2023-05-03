@@ -1,10 +1,11 @@
 import { Component, OnInit, TemplateRef,ChangeDetectionStrategy, ViewChild ,Input} from '@angular/core';
-import { DataTableGenericInput } from 'src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.component';
+
 import { mockDataTableData } from './mock-data/data';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { combineLatest, BehaviorSubject, Observable } from 'rxjs';
+import { DataTableGenericInput } from 'src/shared/generic/models/dataTable.model';
 @Component({
   selector: 'app-work-flow',
   templateUrl: './work-flow.component.html',

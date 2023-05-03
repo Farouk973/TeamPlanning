@@ -1,8 +1,9 @@
 import { BehaviorSubject } from "rxjs";
 import { CustomCellComponent } from "src/shared/generic/data-table-server-side/data-table-generic/custom-cell/custom-cell.component";
-import { DataTableGenericInput } from "src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.component";
+
 import { CardData } from "src/shared/generic/list-card/Models/cardModel";
 import { Injector } from '@angular/core';
+import { DataTableGenericInput } from "src/shared/generic/models/dataTable.model";
 
 
 export const mockCardData: CardData={

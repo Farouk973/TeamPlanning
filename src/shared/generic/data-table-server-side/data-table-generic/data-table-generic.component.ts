@@ -5,8 +5,6 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, MatSortHeaderIntl } from '@angular/material/sort';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
 import { SharedServices } from '../../SharedServices.service';
-import { NumberInput } from '@angular/cdk/coercion';
-import { OutputExpression } from 'ng-dynamic-component';
 import { DataTableGenericInput } from '../../models/dataTable.model';
 
 
