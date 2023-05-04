@@ -60,6 +60,7 @@ import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { AuthConfigModule } from './auth/auth-config.module';
 import { NXMGContainerModule } from '../shared/generic/nxm-g-container/nxm-g-container.module';
 import { CommonModule } from '@angular/common';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 
 
@@ -78,6 +79,7 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTableModule,
+    NgxUiLoaderModule
 
   ],
 
@@ -133,7 +135,6 @@ import { CommonModule } from '@angular/common';
     DialogModule,
     HighlightModule,
     AuthConfigModule,
-  
   ],
 
   providers: [

@@ -194,7 +194,7 @@
             <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
             <ng-container *ngIf="!isLoading">
               <mat-option *ngFor="let data of filteredData" [value]="data">
-                <span><b>{{data.title}}</b> ({{data.title}})</span>
+                <span><b>{{data[formData.Options.get(field.name)]}}</b> ({{data[formData.Options.get(field.name)]}})</span>
               </mat-option>
             </ng-container>
           </mat-autocomplete>
