@@ -18,4 +18,8 @@ export class DetailsProjectComponent implements OnInit {
   displayCoting(id) {
     this.router.navigate(['/costing/cost-project/', id])
   }
+
+  displayPlanning(id) {
+    this.router.navigate(['/project/planning/', id])
+  }
 }

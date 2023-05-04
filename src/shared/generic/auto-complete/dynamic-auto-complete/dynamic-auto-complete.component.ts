@@ -17,7 +17,7 @@ export class DynamicAutoCompleteComponent implements OnInit  {
 
   @Input() autoComplete$!:Observable<AutoComplete> ;
   autoComplete = new AutoComplete();
-
+  @Input() idGeneric : string;
   @Output() added = new EventEmitter();
   myControl = new FormControl();
   options: string[];
@@ -56,6 +56,7 @@ export class DynamicAutoCompleteComponent implements OnInit  {
 
     });
   }
+  ngOnChange(){}
 
     private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -111,11 +112,13 @@ export class DynamicAutoCompleteComponent implements OnInit  {
     const url = this.location.path();
     let id = url.substring(url.lastIndexOf('/') + 1);
     let idAdded=option.split("=*>")[0]
-    this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint , id ,idAdded).subscribe((assignItem)=>{
+    console.log("id",idAdded)
+    this.autoCompleteService.assignToItem(this.autoComplete.sourceAssignItemEndpoint , this.idGeneric === undefined ? id : this.idGeneric ,idAdded).subscribe((assignItem)=>{
       this.autoComplete$.subscribe((autoCompleteData)=> {
         this.autoComplete = autoCompleteData;
-        this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, id).subscribe((data) => {
+        this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, this.idGeneric === undefined ? id : this.idGeneric).subscribe((data) => {
           this.chipsOptions = data[this.autoComplete?.nameListOfChips]
+
         });
       });
     });
@@ -125,9 +128,9 @@ export class DynamicAutoCompleteComponent implements OnInit  {
     const url = this.location.path();
     let id = url.substring(url.lastIndexOf('/') + 1);
     let idUnassigned= option['id']
-    this.autoCompleteService.deleteOptionAfterAssignToItem(this.autoComplete.sourceUnassignOptionAfterAssignToItemEndpoint,id, idUnassigned).
+    this.autoCompleteService.deleteOptionAfterAssignToItem(this.autoComplete.sourceUnassignOptionAfterAssignToItemEndpoint,this.idGeneric === undefined ? id : this.idGeneric, idUnassigned).
     subscribe((unassignItem)=> {
-      this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, id).subscribe((data) => {
+      this.autoCompleteService.getItem(this.autoComplete?.getItemEndpoint, this.idGeneric === undefined ? id : this.idGeneric).subscribe((data) => {
         this.chipsOptions = data[this.autoComplete?.nameListOfChips]
       });
     }

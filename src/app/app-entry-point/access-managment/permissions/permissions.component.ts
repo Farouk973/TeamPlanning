@@ -25,9 +25,9 @@ import { CardGridView } from 'src/shared/generic/models/CardView.model';
 
 export class PermissionsComponent implements OnInit {
   menu!: Permission[];
- 
+
   constructor(private permissionService: PermissionService,private fb: FormBuilder,public dialog: MatDialog
-     ) 
+     )
           { }
 
   ngOnInit() {
@@ -36,7 +36,7 @@ export class PermissionsComponent implements OnInit {
 
    openOrderDialog() {
     this.dialog.open(OrderDialogComponent, {
-      
+
     });
   }
   getMenu() {
@@ -60,7 +60,7 @@ action: Actionpanel = {
   title : "Permession"
 };
 
-  
+
 actions : GridAction = {
   actionThtitle : "Items",
   actionButtonTitle : "View Items" ,
@@ -99,7 +99,7 @@ grid: GridView = {
       width: '1067px',
       height: '519px',
       data: { metaData, isUpdate, endpoint,title},
-      
+
 
     });
     dialogRef.afterClosed().subscribe((result) => {
@@ -110,4 +110,3 @@ grid: GridView = {
 
 }
 
-  

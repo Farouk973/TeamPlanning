@@ -15,6 +15,7 @@
   </mat-chip-list>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
+  <button class="mat-raised-button" mat-button (click)="displayPlanning(data.p.id)" [mat-dialog-close]="true" ><p>Planning</p></button>
   <button class="mat-raised-button" mat-button (click)="displayCoting(data.p.id)" [mat-dialog-close]="true" ><p>Show cost</p></button>
 
   <button class="mat-raised-button" mat-button [mat-dialog-close]="true" cdkFocusInitial><p>Cancel</p></button>
