@@ -7,9 +7,10 @@ import {Observable} from "rxjs";
 import {FormControl, FormGroup} from "@angular/forms";
 import {map, startWith} from "rxjs/operators";
 import {Router} from "@angular/router";
-import { Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
+import {Actionpanel, GridAction} from 'src/shared/generic/models/ActionPanel.model';
 import { CardGridView } from 'src/shared/generic/models/CardView.model';
 import { environment } from 'src/environments/environment';
+import {AssignProjectUserComponent} from "../assign-project-user/assign-project-user.component";
 
 @Component({
   selector: 'app-list-projects',
@@ -43,12 +44,16 @@ export class ListProjectsComponent implements OnInit {
     this.router.navigate(['stepper/project'])
   }
 
-
+  actionAffect:GridAction = {
+    actionThtitle :"Assign to employee",
+    Compoment : AssignProjectUserComponent
+  }
 
   action: Actionpanel = {
     endpoint: `${environment.baseUrl}/api/Project`,
     formEditData: `${environment.baseUrl}/meta/UpdateProjectCommand`,
-    title:"Project"
+    title:"Project",
+    actions:[this.actionAffect]
   };
 
 

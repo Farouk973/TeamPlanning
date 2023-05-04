@@ -82,21 +82,20 @@ export class GenericStepperComponent implements OnInit {
     this.idResponse= event.response.projectId
     const url = this.location.path().split('?')[0] + '/' + event.response.projectId;
     this.location.replaceState(url);
-    if(event.response.projectId){
+/*    if(event.response.projectId){
       this.st.next();
-    }
+    }*/
   }
 
 
   onFormSubmit(step : number ): void {
 
-    if(this.idResponse){
-      this.st.next()
-    }
+
 
    if (step == 1) {
      this.actionType = 'CREATE'
      this.order= 1
+     this.st.next();
     }
     if (step == 2) {
      this.order= 2
@@ -113,8 +112,8 @@ export class GenericStepperComponent implements OnInit {
       this.st.next();
 
     }
-    if (step == 4) {
-      this.order= 4
+    if (step == 5) {
+      this.order= 5
       this.st.next();
 
     }
@@ -122,7 +121,9 @@ export class GenericStepperComponent implements OnInit {
   }
 
   deleteItem(){
-    this.genericStepperService.deleteItem(this.stepper.delete.endpoint, this.idResponse ).subscribe((response)=>{
+    const url = this.location.path();
+    let id = url.substring(url.lastIndexOf('/') + 1);
+    this.genericStepperService.deleteItem(this.stepper.delete.endpoint, id ).subscribe((response)=>{
       console.log(response)
       this.router.navigate(['/projects/list-projects']);
     })

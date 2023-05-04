@@ -19,6 +19,12 @@
         <mat-card-subtitle >Pellentesque vivamus nulla est, tempor, sem </mat-card-subtitle>
       </mat-card-header >
     </mat-card>
+    <mat-card  *ngFor="let action of actionPanel.actions" class="example-card" (click)="openDialogaction(action.Compoment,objId.id)">
+      <mat-card-header>
+        <mat-card-title>{{action.actionThtitle}}</mat-card-title>
+        <mat-card-subtitle >Pellentesque vivamus nulla est, tempor, sem </mat-card-subtitle>
+      </mat-card-header >
+    </mat-card>
   </div>
 
-  
+

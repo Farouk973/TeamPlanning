@@ -8,6 +8,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { Actionpanel } from '../../models/ActionPanel.model';
 import { DialogComponent } from '../../nxm-dialog/dialog/dialog.component';
+import {ActiondialogComponent} from "../../nxm-dialog/actiondialog/actiondialog.component";
 
 
 @Component({
@@ -26,12 +27,12 @@ export class ActionPanelComponent implements OnInit {
 
   onEdit() {
     this.edit.emit(this.objId);
-    
+
   }
 
   onDelete() {
     this.delete.emit(this.objId.id);
-    
+
   }
   openDialog(metaData: any,isUpdate: boolean,endpoint:any,object= this.objId,title=this.actionPanel.title): void {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -41,10 +42,19 @@ export class ActionPanelComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${Object.keys(result)}`);
-     }) 
+     })
 
 console.log(this.actionPanel.formEditData)    }
-
+  openDialogaction(data:any , id : any): void {
+    const dialogRef = this.dialog.open(ActiondialogComponent, {
+      width: '1067px',
+      height: '519px',
+      data: {data , id},
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${Object.keys(result)}`);
+    })
+  }
 openDialogaffecte(metaData: any,isUpdate: boolean,endpoint:any,object= this.objId): void {
   const dialogRef = this.dialog.open(DialogComponent, {
     width: '1067px',
@@ -53,7 +63,7 @@ openDialogaffecte(metaData: any,isUpdate: boolean,endpoint:any,object= this.objI
   });
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog result: ${Object.keys(result)}`);
-   }) 
+   })
 
 console.log(this.actionPanel.formEditData)    }
 
