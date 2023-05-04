@@ -10,7 +10,7 @@ export interface TableColumn {
     component?: any ;
     componentInput?:any;
     injector?: any;
-  }
+  };
   
   
   export interface DataTableGenericInput {

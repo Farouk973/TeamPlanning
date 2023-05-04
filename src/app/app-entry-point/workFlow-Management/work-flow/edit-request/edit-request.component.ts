@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild,ChangeDetectionStrategy, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DataTableGenericInput } from "src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.component";
+import { DataTableGenericInput } from 'src/shared/generic/models/dataTable.model';
 import { mockDataTableTask } from "../mock-data/data"
 @Component({
   selector: 'app-edit-request',

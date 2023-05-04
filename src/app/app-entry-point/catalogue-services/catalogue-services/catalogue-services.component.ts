@@ -5,7 +5,7 @@ import { categoryData, mockCardData, mockDataTableData } from './mock-data/data'
 import { debounceTime } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DataTableGenericInput } from 'src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.component';
+import { DataTableGenericInput } from 'src/shared/generic/models/dataTable.model';
 @Component({
   selector: 'app-catalogue-services',
   templateUrl: './catalogue-services.component.html',

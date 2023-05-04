@@ -22,10 +22,21 @@
       <input type="text" formControlName="description">
     </label>
 
-    <label>
-      Skills:
-      <input type="text" formControlName="skills">
-    </label>
+  <label>
+  Skills:
+   <input type="text" placeholder="Type skill and select from the list" [matAutocomplete]="auto"  [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true" matSuffix>
+ <mat-chip-list #chipList formControlName="skills">
+        
+       
+        <mat-chip *ngFor="let skill of selectedSkills" [selectable]="true" [removable]="true" (removed)="removeSkill(skill)">
+          {{skill}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectSkill($event)">
+        <mat-option *ngFor="let skill of skillSuggestions" [value]="skill.name">{{skill.name}}</mat-option>
+      </mat-autocomplete>
+</label>
 
    
     <label>

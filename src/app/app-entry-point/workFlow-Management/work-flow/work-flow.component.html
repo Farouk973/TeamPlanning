@@ -4,7 +4,7 @@
       <mat-icon class="search-icon">search</mat-icon>
       <input type="text" placeholder="Search" name="search" formControlName="searchTerm">
   </form>
-  <button (click)="openDialogue()" class="service-request" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'" mat-button>Add New Request </button>
+ 
   <button (click)="openDialogue()" class="service-request" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'" mat-button>Upload Template</button>
   </div>
   <app-generic-table [data]="mockDataTableGenericData"></app-generic-table>
@@ -13,7 +13,51 @@
 <ng-template #dialogTemplate let-dialogRef="dialogRef">
     <h2 mat-dialog-title>Add New Request</h2>
     <mat-dialog-content>
-      <p>Add from below services to create your requests</p>
+    <div class="container">
+  <form [formGroup]="addRequestForm" (ngSubmit)="onSubmit()">
+    <label>
+      Name:
+      <input type="text" formControlName="Name">
+    </label>
+
+    <label>
+      Description:
+      <input type="text" formControlName="description">
+    </label>
+
+  <label>
+  Skills:
+   <input type="text"   placeholder="Type skill and select from the list" [matAutocomplete]="auto"  [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true" matSuffix>
+ <mat-chip-list #chipList formControlName="skills">
+        
+       
+        <mat-chip *ngFor="let skill of selectedSkills" [selectable]="true" [removable]="true" (removed)="removeSkill(skill)">
+          {{skill}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectSkill($event)">
+        <mat-option *ngFor="let skill of skillSuggestions" [value]="skill.name">{{skill.name}}</mat-option>
+      </mat-autocomplete>
+</label>
+
+   
+    <label>
+      Start Date:
+      <input type="date" formControlName="startDate">
+    </label>
+
+    <label>
+      End Date:
+      <input type="date" formControlName="endDate">
+    </label>
+
+ 
+
+    <button type="submit" [disabled]="!addRequestForm.valid">Save</button>
+  </form>
+</div>
+
     
     </mat-dialog-content>
     <mat-dialog-actions>

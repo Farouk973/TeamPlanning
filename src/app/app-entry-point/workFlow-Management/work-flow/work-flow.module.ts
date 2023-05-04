@@ -13,13 +13,15 @@ import { EditRequestComponent } from './edit-request/edit-request.component';
 import { EditWorkflowComponent } from './edit-workflow/edit-workflow.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { GenericTableModule } from 'src/shared/generic/generic-table/generic-table.module';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
     declarations: [WorkFlowComponent, EditRequestComponent,EditWorkflowComponent],
     imports: [
         CommonModule,
         DataTableGenericModule,
-        
+        MatAutocompleteModule,
         WorkFlowRoutingModule,
         GridViewModule,
         MatIconModule,
@@ -28,7 +30,10 @@ import { GenericTableModule } from 'src/shared/generic/generic-table/generic-tab
         ReactiveFormsModule,
         MatButtonModule,
         MatMenuModule,
-        GenericTableModule
+        GenericTableModule,
+        MatChipsModule
+
+
     ]
 })
 export class WorkFlowModule { }
