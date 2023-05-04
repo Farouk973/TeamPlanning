@@ -1,3 +1,19 @@
-<div *ngIf="Endpoints | async">
-<app-domain-chips-gc [Endpoints]="Endpoints"></app-domain-chips-gc>
-</div>
+<div class="container">
+    <div class="header">
+   
+    </div>
+     
+      <div class="cont-info" > 
+      
+      <h1 class="title">Skills</h1>
+      <button  class="mat-raised-button" mat-button><p>Add new Skill</p></button>
+      <span class="example-spacer"></span>
+    </div>
+  <div class="grid-view">
+      <app-grid-view
+      [GridView]=grid
+      ></app-grid-view>
+    </div>
+
+
+    <!-- <app-form [formData]="form"></app-form> -->

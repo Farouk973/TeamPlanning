@@ -1,18 +1,6 @@
-<mat-tab-group mat-align-tabs="center" class="my-tab-group">
+<mat-tab-group mat-align-tabs="center" >
   <mat-tab label="Projects">
-    <div class="card-container">
-      <mat-card *ngFor="let project of projectList|async" class="project-card">
-        <mat-card-header>
-          <mat-card-title class="project-name">{{ project.name }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p class="project-description">{{ project.description }}</p>
-          <mat-chip-list class="project-languages">
-            <mat-chip *ngFor="let skill of project.skills" class="project-language">{{ skill.name }}</mat-chip>
-          </mat-chip-list>
-        </mat-card-content>
-      </mat-card>
-    </div>
+    <app-card-view [cardView]=card [search]="inputSearch"></app-card-view>
   </mat-tab>
   <mat-tab label="Profile">
     <div class="profile-container">
