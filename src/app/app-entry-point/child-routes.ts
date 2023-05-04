@@ -28,17 +28,17 @@ export const childRoutes = [
   },
   {
     path: 'feature',
-    loadChildren: () => import('./feature-managment/feature-managment.module').then(m => m.FeatureManagmentModule),
+    loadChildren: () => import('./project-managment/feature-managment/feature-managment.module').then(m => m.FeatureManagmentModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
   {
     path: 'roles',
-    loadChildren: () => import('./roles-management/roles-management.module').then(m => m.RolesManagementModule),
+    loadChildren: () => import('./project-managment/roles-management/roles-management.module').then(m => m.RolesManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
   {
     path: 'costing',
-    loadChildren: () => import('./spreadsheets-management/spreadsheets-management.module').then(m => m.SpreadsheetsManagementModule),
+    loadChildren: () => import('./project-managment/spreadsheets-management/spreadsheets-management.module').then(m => m.SpreadsheetsManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
 
@@ -51,7 +51,7 @@ export const childRoutes = [
 
   {
     path: 'projects',
-    loadChildren: () => import('./list-projects-management/list-projects-management.module').then(m => m.ListProjectsManagementModule),
+    loadChildren: () => import('./project-managment/list-projects-management/list-projects-management.module').then(m => m.ListProjectsManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   }
 

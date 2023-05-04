@@ -51,7 +51,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {CdkMenuModule} from '@angular/cdk/menu';
 import {DialogModule} from '@angular/cdk/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NXMGContainerModule} from "../../../shared/generic/nxm-g-container/nxm-g-container.module";
 import { UserPermessionsComponent } from './user-permessions/user-permessions.component';
 import { GridViewModule } from 'src/shared/generic/grid-view/grid-view.module';
@@ -134,7 +134,8 @@ import { UsersComponent } from './users/users.component';
     MatChipsModule,
     CardViewModule,
     OrderSelectModule,
-    KanbanModule
+    KanbanModule,
+    FormsModule,
 
 
 

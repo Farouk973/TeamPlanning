@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ProjectService} from "../../../../shared/services/project.service";
-import {Project} from "../../../../shared/models/project.model";
+import {ProjectService} from "../../../../../shared/services/project.service";
+import {Project} from "../../../../../shared/models/project.model";
 import {MatDialog} from "@angular/material/dialog";
 import {DetailsProjectComponent} from "../details-project/details-project.component";
 import {Observable} from "rxjs";
@@ -19,9 +19,6 @@ import { environment } from 'src/environments/environment';
 export class ListProjectsComponent implements OnInit {
   projects: Project[]
   inputSearch: string='';
-  myControl = new FormControl();
-  searchForm: FormGroup;
-  filteredOptions: Observable<string[]>;
   constructor(public projectService : ProjectService , public dialog: MatDialog , private router : Router ) { }
 
   ngOnInit(): void {

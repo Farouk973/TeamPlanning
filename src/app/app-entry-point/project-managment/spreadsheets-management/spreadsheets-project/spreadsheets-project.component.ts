@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {Spreadsheets} from "../../../../shared/generic/models/Spreadsheets.model";
+import {Spreadsheets} from "../../../../../shared/generic/models/Spreadsheets.model";
 
 @Component({
   selector: 'app-spreadsheets-project',

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { RolesManagementRoutingModule } from './roles-management-routing.module';
 import { RolesComponent } from './roles/roles.component';
-import {AutoCompleteModule} from "../../../shared/generic/auto-complete/auto-complete.module";
+import {AutoCompleteModule} from "../../../../shared/generic/auto-complete/auto-complete.module";
 
 
 @NgModule({
