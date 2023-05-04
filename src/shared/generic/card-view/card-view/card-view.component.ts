@@ -4,7 +4,7 @@ import { CardGridView } from '../../models/CardView.model';
 import { ColumnMetadata } from '../../models/ColumnMetadata.model';
 import { ConfirmationComponent } from '../../nxm-dialog/confirmation/confirmation.component';
 import { SharedServices } from '../../SharedServices.service';
-import { DetailsProjectComponent } from 'src/app/app-entry-point/list-projects-management/details-project/details-project.component';
+import { DetailsProjectComponent } from 'src/app/app-entry-point/project-managment/list-projects-management/details-project/details-project.component';
 
 @Component({
   selector: 'app-card-view',

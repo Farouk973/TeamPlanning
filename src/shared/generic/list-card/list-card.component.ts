@@ -45,7 +45,7 @@ retrieveData(): void {
   });
 }
 
-
+// this is not the best way , I should make the component smaller and focused on one task @A.M
  
  private mapCardDataList(cardData: CardData[]): CardData[] {
   return cardData.map((dataCard: CardData) => {
@@ -56,13 +56,13 @@ retrieveData(): void {
       
     };
   });
-} onAction(){
+}
+
+ onAction(){
 
  }
 onEdit(cardId: string) {
-  const cardIndex = this.cardDataList.findIndex(card => card.id === cardId);
-  
-    this.cardDataList[cardIndex].editing = true;
+
    
   
 }
@@ -83,7 +83,9 @@ saveCard(cardId: string) {
   this.saveToServer();
 
 }
-
+trackByCardId(index: number, card: CardData): string {
+  return card.id;
+}
 private saveToServer(){
     this.listCardService.updateRow(this.data.updateEndpoint, this.editingCard).subscribe(
     response => {

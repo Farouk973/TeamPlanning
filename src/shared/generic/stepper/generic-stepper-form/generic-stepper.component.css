@@ -19,3 +19,13 @@ mat-stepper {
 p{
   color : #E9EBF0;
 }
+::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+
+}
+::ng-deep .mat-step-header .mat-step-icon-selected  {
+  background-color: #00b2d9;
+}
+::ng-deep .mat-step-header .mat-step-icon-state-edit  {
+  background-color: #00b2d9;
+}

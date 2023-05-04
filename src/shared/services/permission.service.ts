@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpRepositoryService } from 'src/core/httpRepository.service';
 
@@ -9,6 +10,11 @@ export class PermissionService {
   private BASE_URI = 'api/Permission';
 
   constructor(private httpRepositoryService: HttpRepositoryService) { }
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   getMenu() {
     return this.httpRepositoryService.get<any>(`${this.BASE_URI}`);
 }

@@ -1,62 +1,52 @@
 <div class="card-list" style="display: flex; flex-wrap: wrap;">
-  <div *ngFor="let card of cardDataList" class="col-md-3 stretch spacer">
-    <mat-card>
-      <ng-content></ng-content>
-      <div *ngIf="!card.editing">
-      <div *ngIf="card?.primaryLabelName" class="primary-label" [style.backgroundColor]="card?.primaryColor" [style.Color]="card?.labelColor"> {{ card?.[card.primaryLabelName]}}</div>
-      <div class="menu-wrapper">
-        <button mat-icon-button [matMenuTriggerFor]="appMenu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #appMenu="matMenu">
-          <button mat-menu-item (click)="onEdit(card.id)">Edit</button>
-          <button mat-menu-item (click)="onDelete(card.id)">Delete</button>
-        </mat-menu>
-      </div>
-      <mat-card-header>
-        <ng-container *ngIf="!card.editing && card?.showEditButton">
-          <button mat-icon-button (click)="onEdit(card.id)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <mat-card-actions *ngIf="card?.showIconAction">
-            <button mat-icon-button (click)="onAction()">
-              <mat-icon></mat-icon>
+  <div *ngFor="let card of cardDataList; trackBy: trackByCardId" class="col-md-3 stretch spacer">
+    <ng-container [ngSwitch]="card.editing">
+      <ng-container *ngSwitchCase="false">
+        <mat-card>
+          <ng-content></ng-content>
+          <div *ngIf="card?.primaryLabelName" class="primary-label" [style.backgroundColor]="card?.primaryColor" [style.Color]="card?.labelColor">
+            {{ card?.[card.primaryLabelName]}}
+          </div>
+          <div class="menu-wrapper">
+            <button mat-icon-button [matMenuTriggerFor]="appMenu">
+              <mat-icon>more_vert</mat-icon>
             </button>
-          </mat-card-actions>
-        </ng-container>
-      </mat-card-header>
-      <mat-card-content *ngIf="!card.editing" [style.min-height]="card.minHeight" [style.max-height]="card.maxHeight">
-        <div class="my-component-body" contenteditable="true">
-          {{ card?.[card.textbodyName]}}
-        </div>
-      </mat-card-content>
-    </div>
-      <mat-card-content *ngIf="card.editing" [style.min-height]="'210px'" [style.max-height]="'210px'">
-        <div class="form-field-group">
-          <mat-label>{{card.bodyTitleName}}</mat-label>
-          <input matInput [(ngModel)]="card[card.bodyTitleName]" name="title" style="border-radius: 10px; border: 2px solid #00b2d91a;">
-        </div>
-        <div class="form-field-group">
-          <mat-label>{{card.textbodyName}}</mat-label>
-          <textarea matInput [(ngModel)]="card[card.textbodyName]" name="textbody" style="border-radius: 10px; border: 2px solid #00b2d91a; height: 70px;"></textarea>
-        </div>
-        <div class="form-field-group">
-          <mat-label>{{card.primaryLabelName}}</mat-label>
-          <input matInput [(ngModel)]="card[card.primaryLabelName]" name="primaryLabel" style="border-radius: 10px; border: 2px solid #00b2d91a;">
-        </div>
-        <button mat-button color="primary" (click)="saveCard(card.id)">Save</button>
-        <button mat-button (click)="card.editing = false">Cancel</button>
-      </mat-card-content>
+            <mat-menu #appMenu="matMenu">
+              <button mat-menu-item (click)="onEdit(card.id)">Edit</button>
+              <button mat-menu-item (click)="onDelete(card.id)">Delete</button>
+            </mat-menu>
+          </div>
+          <mat-card-header>
+            <ng-container *ngIf="card?.showEditButton">
+              <button mat-icon-button (click)="onEdit(card.id)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <mat-card-actions *ngIf="card?.showIconAction">
+                <button mat-icon-button (click)="onAction()">
+                  <mat-icon></mat-icon>
+                </button>
+              </mat-card-actions>
+            </ng-container>
+          </mat-card-header>
+          <mat-card-content [style.min-height]="card.minHeight" [style.max-height]="card.maxHeight">
+            <div class="my-component-body" contenteditable="true">
+              {{ card?.[card.textbodyName]}}
+            </div>
+             <ng-container *ngIf="!card.editing && card?.component" [ngComponentOutlet]="card?.component"></ng-container>
+          </mat-card-content>
+        </mat-card>
+      </ng-container>
+     
+    </ng-container>
       
-      
-      
-      <ng-container *ngIf="!card.editing && card?.component" [ngComponentOutlet]="card?.component"></ng-container>
+     
+     
       <mat-card-actions *ngIf="!card.editing && card?.showIconAction">
         <button mat-icon-button (click)="onAction()">
           <mat-icon></mat-icon>
         </button>
       </mat-card-actions>
-    </mat-card>
+
   </div>
 
    

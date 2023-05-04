@@ -5,7 +5,7 @@ import { categoryData, mockCardData, mockDataTableData } from './mock-data/data'
 import { debounceTime } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DataTableGenericInput } from 'src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.component';
+import { DataTableGenericInput } from 'src/shared/generic/models/dataTable.model';
 @Component({
   selector: 'app-catalogue-services',
   templateUrl: './catalogue-services.component.html',
@@ -24,10 +24,11 @@ export class CatalogueServicesComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    
     this.searchForm = this.formBuilder.group({
       searchTerm: ['']
     });
-
+   
     this.searchForm.get('searchTerm').valueChanges.pipe(
       debounceTime(500)
     ).subscribe(() => {

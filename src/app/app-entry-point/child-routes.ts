@@ -27,18 +27,23 @@ export const childRoutes = [
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
   {
+    path: 'workflow',
+    loadChildren: () => import('./workFlow-Management/work-flow/work-flow.module').then(m => m.WorkFlowModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'WorkFlow', show: true }
+  },
+  {
     path: 'feature',
-    loadChildren: () => import('./feature-managment/feature-managment.module').then(m => m.FeatureManagmentModule),
+    loadChildren: () => import('./project-managment/feature-managment/feature-managment.module').then(m => m.FeatureManagmentModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
   {
     path: 'roles',
-    loadChildren: () => import('./roles-management/roles-management.module').then(m => m.RolesManagementModule),
+    loadChildren: () => import('./project-managment/roles-management/roles-management.module').then(m => m.RolesManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
   {
     path: 'costing',
-    loadChildren: () => import('./spreadsheets-management/spreadsheets-management.module').then(m => m.SpreadsheetsManagementModule),
+    loadChildren: () => import('./project-managment/spreadsheets-management/spreadsheets-management.module').then(m => m.SpreadsheetsManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
 
@@ -51,7 +56,13 @@ export const childRoutes = [
 
   {
     path: 'projects',
-    loadChildren: () => import('./list-projects-management/list-projects-management.module').then(m => m.ListProjectsManagementModule),
+    loadChildren: () => import('./project-managment/list-projects-management/list-projects-management.module').then(m => m.ListProjectsManagementModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
+  },
+
+  {
+    path: 'project/planning',
+    loadChildren: () => import('./project-managment/planning-management/planning-management.module').then(m => m.PlanningManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   }
 

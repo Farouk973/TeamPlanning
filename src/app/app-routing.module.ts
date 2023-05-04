@@ -4,7 +4,6 @@ import { AuthentificateComponent } from "./authentificate/authentificate.compone
 import { ProfileComponent } from 'src/app/app-entry-point/dashboard/profile/profile.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dasboard', pathMatch: 'full' },
   {
     path: '',
     loadChildren: () => import('./app-entry-point/app-entry-point.module').then(m => m.AppEntryPointModule),
