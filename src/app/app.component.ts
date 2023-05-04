@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { AccountService } from 'src/shared/services/account.service';
 // import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
@@ -10,7 +11,9 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 export class AppComponent {
   title = 'team-planning';
   isAuthenticated = false;
-  constructor(public oidcSecurityService: OidcSecurityService) {
+  constructor(public oidcSecurityService: OidcSecurityService,
+              public accountSerivice: AccountService,
+    ) {
      this.oidcSecurityService.checkAuth()
      .subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
        if (!isAuthenticated) {
@@ -18,6 +21,8 @@ export class AppComponent {
        } else {
          console.log('current user:', userData);
          this.isAuthenticated = true;
+         this.accountSerivice.connectedUser.next(userData);
+
        }
      });
     this.isAuthenticated = true;
