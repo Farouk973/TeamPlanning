@@ -1,0 +1,16 @@
+{    "label": "Add features to project:",
+     "input": {
+                 "type": "text",
+                  "placeholder": "Enter here..."
+                },
+       "labelChips": "Features of project:",
+       "saveInputInBase": false,
+       "getIdLastItemEndpoint": "/api/Skills/get-skills",
+       "optionsDataEndpoint" : "/api/Skills/get-skills",
+        "nameAttributeForSearch": "skills",
+       "sourceSaveItemEndpoint":"/api/Feature/add-feature",
+       "sourceAssignItemEndpoint":"/api/Project/addFeatureToProject",
+        "getItemEndpoint":"/api/Skills/Skills_GetSkills",
+         "nameListOfChips": "features",
+        "sourceUnassignOptionAfterAssignToItemEndpoint": "/api/Project/unassignFeatureFromProject"
+}

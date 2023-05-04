@@ -27,6 +27,11 @@ export const childRoutes = [
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
   {
+    path: 'workflow',
+    loadChildren: () => import('./workFlow-Management/work-flow/work-flow.module').then(m => m.WorkFlowModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'WorkFlow', show: true }
+  },
+  {
     path: 'feature',
     loadChildren: () => import('./project-managment/feature-managment/feature-managment.module').then(m => m.FeatureManagmentModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }

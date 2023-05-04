@@ -1,0 +1,34 @@
+table, th, td {
+ border-color:transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+}
+tr {
+  border-bottom: 0.5px solid rgba(0, 30, 80, 0.1);
+}
+.container-pagination{
+  background-color: white;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding:10px;
+}
+select {
+background-color: white;
+border-color:  #E2E2EA;
+}
+.pagination button{
+  background-color: #FFFFFF;
+ border:none;
+  margin : 2px;
+  color:#7D8DA7;
+  font-family: Inter;
+} 
+ .rotate {
+    transition: transform 0.5s;
+  }
+  
+  .rotate.rotate-180 {
+    transform: rotate(180deg);
+  }
