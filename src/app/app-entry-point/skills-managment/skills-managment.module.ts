@@ -9,11 +9,14 @@ import { GridViewModule } from 'src/shared/generic/grid-view/grid-view.module';
 import { FormModule } from 'src/shared/generic/form/form.module';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AddSkillComponent } from './add-skill/add-skill.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [
-    SkillsComponent
+    SkillsComponent,
+    AddSkillComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +26,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     GridViewModule,
     FormModule,
     FormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule
     
   ]
 })

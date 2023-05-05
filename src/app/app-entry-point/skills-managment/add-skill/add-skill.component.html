@@ -1,0 +1,21 @@
+<h1 class="title">
+    Add Skill
+  </h1>
+  
+  
+  <div mat-dialog-content>
+    <app-form (myEvent)="afterSubmitResponse($event)" [formData]="forms"></app-form>
+  </div>
+  
+  <mat-dialog-actions style="margin-top: auto;">
+    <div style="  margin-left: auto;
+                  margin-right: auto;  ">
+  
+    <button mat-button (click)="onFormSubmit()"  style=" height: 44px;  width: 286px; color: white; background-color: #4CB6CD
+    ;">Save</button>
+    <button mat-button mat-dialog-close style=" height: 44px;  width: 221px; color: #768DA9 ; background-color: #BFD1E3
+    ;">Cancel</button>
+    </div>
+  </mat-dialog-actions>
+    
+  

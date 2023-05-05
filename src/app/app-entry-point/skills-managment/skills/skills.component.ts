@@ -9,6 +9,7 @@ import { CardGridView } from 'src/shared/generic/models/CardView.model';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from 'src/shared/generic/nxm-dialog/dialog/dialog.component';
 import { Form } from 'src/shared/generic/models/Form.model';
+import { AddSkillComponent } from '../add-skill/add-skill.component';
 
 
 @Component({
@@ -21,11 +22,10 @@ export class SkillsComponent implements OnInit {
   ngOnInit(): void {
   }
   action: Actionpanel = {
-    endpoint: `${environment.baseUrl}/api/`,
+    endpoint: `${environment.baseUrl}/api/Skills/get-Gridskills`,
     formEditData: `${environment.baseUrl}/meta/Update`,
-    title : "Roles & Permissions"
+    title : "Skill"
   };
-
   grid: GridView = {
     endpoint: `${environment.baseUrl}/api/Skills/get-Gridskills`,
     formdata: `${environment.baseUrl}/meta/CreateSkillCommand`,
@@ -33,26 +33,17 @@ export class SkillsComponent implements OnInit {
     allowedSortColumns: ['title'],
     actionPanel: this.action,
   };
-
-
-
-
-
-
-// form:Form={
-
-//   endpoint: `${environment.baseUrl}/api/Skills/add-skill-form/`,
-//   Object: null,
-//   metaData: `${environment.baseUrl}/meta/CreateSkillFormCommand`,
-// }
-//   openDialog(metaData: any, isUpdate: boolean, endpoint: any): void {
-//     const dialogRef = this.dialog.open(DialogComponent, {
-//       width: '1067px',
-//       height: '519px',
-//       data: { metaData, isUpdate, endpoint },
-      
-//     });
-//     dialogRef.afterClosed().subscribe((result) => {
-//     });
-//   }
+config = {
+  endpoint: `${environment.baseUrl}/api/Skills/add-skill-form/`,
+  metaData: `${environment.baseUrl}/meta/CreateSkillFormCommand`,
+};
+openDialog(metaData: any, isUpdate: boolean, endpoint: any): void {
+  const dialogRef = this.dialog.open(AddSkillComponent, {
+    width: '1067px',
+    height: '519px',
+    data: { metaData, isUpdate, endpoint},
+  });
+  dialogRef.afterClosed().subscribe((result) => {
+  });
+}
 }
