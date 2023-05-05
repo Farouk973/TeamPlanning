@@ -25,17 +25,7 @@ export class UserPermessionsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  config = {
-    endpoint: `${environment.baseUrl}/api/Users`,
-    metadata: `${environment.baseUrl}/meta/GetUsersPermessionsVm`,
-    formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
-    formeditdata: `${environment.baseUrl}/meta/UpdateUserRoleEtPermessionsCommand`,
-    pageSize: 2,
-    title: 'Permessions Management',
-    icon: 'https://img.freepik.com/premium-vector/vector-creative-project-icon-flat-style_106427-199.jpg?w=2000',
-    allowedSortColumns: ['title'],
-  };
-
+  
   action: Actionpanel = {
     endpoint: `${environment.baseUrl}/api/Users/RoleEtpermessions`,
     formEditData: `${environment.baseUrl}/meta/UpdateUserRoleEtPermessionsCommand`,
@@ -50,14 +40,4 @@ export class UserPermessionsComponent implements OnInit {
     actionPanel: this.action,
   };
 
-  card: CardGridView = {
-    endpoint: `${environment.baseUrl}/api/Role`,
-    formdata: `${environment.baseUrl}/meta/CreateRoleCommand`,
-    metadata: `${environment.baseUrl}/meta/GetRoleListVm`,
-    cardtitle: "title",
-    carddescription: "description",
-    width: 300,
-    height: 150,
-    actionPanel: this.action,
-  };
 }

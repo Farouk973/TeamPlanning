@@ -47,7 +47,7 @@ export class ActionPanelComponent implements OnInit {
 console.log(this.actionPanel.formEditData)    }
   openDialogaction(data:any , id : any): void {
     const dialogRef = this.dialog.open(ActiondialogComponent, {
-      width: '1067px',
+      width: '600px',
       height: '519px',
       data: {data , id},
     });
@@ -57,7 +57,7 @@ console.log(this.actionPanel.formEditData)    }
   }
 openDialogaffecte(metaData: any,isUpdate: boolean,endpoint:any,object= this.objId): void {
   const dialogRef = this.dialog.open(DialogComponent, {
-    width: '1067px',
+    width: '600px',
     height: '519px',
     data: {metaData, isUpdate,endpoint,object},
   });
