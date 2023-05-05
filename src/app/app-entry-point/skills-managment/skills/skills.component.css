@@ -1,0 +1,89 @@
+.container {
+    max-width: auto;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .header {
+    display: flex;
+  justify-content: flex-end; /* Add this to move the button to the right */
+  align-items: center;
+    margin-bottom: 1%;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  .mat-raised-button{
+    margin-left: 30px;
+    border-radius: 12px ;
+    width: 150px;
+    height: 38px;
+    background-color: #00b2d9;
+    order: 2;
+    flex-grow: 0;
+  }
+  p{
+    color : #E9EBF0;
+  }
+  
+  .buttonText{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 29px;
+  
+    
+    color: #FFFFFF;
+    
+  
+  }
+  .search{
+    width: 410px;
+    margin-top: 1%;
+    margin-right: 3%;
+  }
+  
+  
+  .mat-toolbar {
+    background: none;
+  }
+  
+  .title{
+  
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 26px;
+  text-transform: capitalize;
+  color: #001E50;
+  margin-top: auto;
+  margin-bottom: auto;
+  }
+  
+  .cont-info {
+  display: flex;
+  margin-bottom: 2%;
+  align-items: center;
+  }
+  
+  
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+  border: 0.5px solid #D7DCFF;
+  border-radius: 54px;
+  }
+  
+  
+  .mat-form-field-appearance-outline .mat-form-field-flex {
+  padding: 0 0.75em 0 0.75em;
+  margin-top: 0;
+  position: relative;
+  }
+  
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgb(255 255 255 / 12%);
+  border: 0.5px solid #D7DCFF;
+  border-radius: 54px;
+  }

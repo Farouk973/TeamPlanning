@@ -5,6 +5,9 @@ import { BehaviorSubject, Subject, flatMap } from 'rxjs';
 import { domain } from 'src/shared/generic/models/bigdomain.model';
 import { HttpClient } from '@angular/common/http';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
+import { environment } from 'src/environments/environment';
+import { CardGridView } from 'src/shared/generic/models/CardView.model';
+import { Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
 
 @Component({
   selector: 'app-user-tab',
@@ -14,27 +17,48 @@ import { OidcSecurityService } from 'angular-auth-oidc-client';
 export class UserTabComponent implements OnInit {
  // skillsChanged = new BehaviorSubject<domain[]>([]);
   skillList= new BehaviorSubject<any[]>([]);
-  projectList= new BehaviorSubject<any[]>([]);
+  //projectList= new BehaviorSubject<any[]>([]);
   featureList= new BehaviorSubject<any[]>([]);
   totalSkills = 0;
   pageSize = 5;
   currentPageIndex = 0;
   pagedSkillList: any[] = [];
   userId:string ;
+  inputSearch: string='';
+  card: CardGridView;
   constructor(public dialog: MatDialog,private http: HttpClient,public oidcSecurityService: OidcSecurityService) {
     this.oidcSecurityService.checkAuth()
-    .subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
+    .subscribe(({userData,  }) => {
      this.userId = userData.sub;
-     
+     this.card ={
+      endpoint: `${environment.baseUrl}/api/Project/user-projects/${this.userId}`,
+      formdata: `${environment.baseUrl}/meta/CreateRoleCommand`,
+      metadata: `${environment.baseUrl}/meta/GetProjectsDetailViewModel`,
+      cardtitle: "name",
+      carddescription: "description",
+      cardDate:"created",
+      cardInfo:"visibility",
+      width: 300,
+      height: 150,
+      actionPanel: this.action,
+    };
     });
    }
   ngOnInit(): void {
     this.fetchDatauserprofile();
-    this.fetchDatauserproject();
+    //this.fetchDatauserproject();
     this.fetchDatauserfeature();
   }
+  action: Actionpanel = {
+    endpoint: `${environment.baseUrl}/api/Project`,
+    formEditData: `${environment.baseUrl}/meta/UpdateProjectCommand`,
+    title:"Project"
+  };
+  
+
+
   fetchDatauserprofile(): void {
-    this.http.get<any[]>("https://localhost:44312/api/Skills/user-Skills/"+this.userId)
+    this.http.get<any[]>(`${environment.baseUrl}/api/Skills/user-Skills/`+this.userId)
       .pipe(
         flatMap((data: any[]) => {
           this.skillList.next(data);
@@ -60,17 +84,18 @@ export class UserTabComponent implements OnInit {
     // Update the pagedSkillList to display the skills for the new page
     this.updatePagedSkillList();
   }
+  
+  
 
-
-  fetchDatauserproject(): void {
-    this.http.get<any[]>("https://localhost:44312/api/Project/user-projects/"+this.userId).subscribe(
-      (data: any[]) => {
-        this.projectList.next(data);
-      }
-    );
-  }
+  // fetchDatauserproject(): void {
+  //   this.http.get<any[]>("https://localhost:44312/api/Project/user-projects/"+this.userId).subscribe(
+  //     (data: any[]) => {
+  //       this.projectList.next(data);
+  //     }
+  //   );
+  // }
   fetchDatauserfeature(): void {
-    this.http.get<any[]>("https://localhost:44312/api/Feature/user-features/"+this.userId).subscribe(
+    this.http.get<any[]>(`${environment.baseUrl}/api/Feature/user-features/`+this.userId).subscribe(
       (data: any[]) => {
         this.featureList.next(data);
       }
@@ -87,7 +112,7 @@ export class UserTabComponent implements OnInit {
       if (result && result.length > 0) {
         for (let i = 0; i < result.length; i++) {
             const body = { userId: this.userId, skillId: result[i].id, rate: result[i].value };
-            const url = 'https://localhost:44312/api/Skills/addskillToUser';
+            const url = `${environment.baseUrl}/api/Skills/addskillToUser`;
             this.http.post(url, body).subscribe(response => {
                 console.log(response);
                 this.fetchDatauserprofile();
@@ -107,7 +132,7 @@ export class UserTabComponent implements OnInit {
     const skill = this.skillList.getValue()[index+(this.currentPageIndex*this.pageSize)];
   
     // Call the delete skill endpoint
-    const url = `https://localhost:44312/api/Skills/removeskillToUser`;
+    const url = `${environment.baseUrl}/api/Skills/removeskillToUser`;
     const body = { userId: this.userId, skillId: skill.id };
     this.http.post(url,body).subscribe(
       () => {
