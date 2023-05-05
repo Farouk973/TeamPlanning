@@ -1,24 +1,23 @@
-import { Component, Inject, Input, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormComponent } from '../../form/form/form.component';
-import { Form } from '../../models/Form.model';
-
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormComponent } from 'src/shared/generic/form/form/form.component';
+import { Form } from 'src/shared/generic/models/Form.model';
 
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss'],
+  selector: 'app-add-skill',
+  templateUrl: './add-skill.component.html',
+  styleUrls: ['./add-skill.component.css']
 })
-export class DialogComponent {
+export class AddSkillComponent implements OnInit {
   constructor(
-    public dialogRef: MatDialogRef<DialogComponent>,
+    public dialogRef: MatDialogRef<AddSkillComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
   @ViewChild(FormComponent) childComponent: FormComponent;
   afterSubmitValue : any ;
   ngOnInit(): void {
     console.log("thusdata",this.data)
-    this.map.set("Role","title")
+    this.map.set("category","name")
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -32,16 +31,16 @@ export class DialogComponent {
   }
 
   map : Map<string,string> = new Map([
-    ["role", "title"],
+    ["category", "name"],
 ]);
 
   
   forms: Form = {
     endpoint: this.data.endpoint,
-    Object: this.data.object,
+    
     metaData: this.data.metaData,
-    title: this.data.title,
+    
     Options : this.map
    };
-}
 
+}
