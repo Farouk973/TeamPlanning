@@ -22,12 +22,12 @@ export class SkillsComponent implements OnInit {
   ngOnInit(): void {
   }
   action: Actionpanel = {
-    endpoint: `${environment.baseUrl}/api/Skills/get-Gridskills`,
-    formEditData: `${environment.baseUrl}/meta/Update`,
+    endpoint: `${environment.baseUrl}/api/Skills`,
+    formEditData: `${environment.baseUrl}/meta/UpdateSkillCommand`,
     title : "Skill"
   };
   grid: GridView = {
-    endpoint: `${environment.baseUrl}/api/Skills/get-Gridskills`,
+    endpoint: `${environment.baseUrl}/api/Skills`,
     formdata: `${environment.baseUrl}/meta/CreateSkillCommand`,
     metadata: `${environment.baseUrl}/meta/GetSkillsGridVm`,
     allowedSortColumns: ['title'],

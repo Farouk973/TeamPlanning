@@ -32,7 +32,7 @@ export class DialogComponent {
   }
 
   map : Map<string,string> = new Map([
-    ["role", "title"],
+    ["role", "title"],["category", "name"]
 ]);
 
   
