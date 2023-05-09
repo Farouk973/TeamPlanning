@@ -133,6 +133,8 @@ export class GenericStepperComponent implements OnInit {
 
   validateItem() {
     this.chiff = true
+
     this.router.navigate(['/costing/cost-project/', this.idResponse])
+
   }
 }

@@ -5,7 +5,7 @@ import {MenuGuard} from "../../../../guards/menu.guard";
 
 const routes: Routes = [
   {
-    path :'list-projects', component: ListProjectsComponent,canActivate: [MenuGuard]
+    path :'list-projects', component: ListProjectsComponent
   }
 ];
 
