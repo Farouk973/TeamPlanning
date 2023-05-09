@@ -58,3 +58,9 @@ p{
   font-style: normal;
 
 }
+
+.spinner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

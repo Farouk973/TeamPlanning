@@ -1,15 +1,15 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
-import {ID} from "../../../../../shared/generic/nxm-dialog/actiondialog/actiondialog.component";
 import {Observable} from "rxjs";
 import {AutoComplete} from "../../../../../shared/generic/models/AutoComplete.model";
+import {ID} from "../../../../../shared/generic/nxm-dialog/actiondialog/actiondialog.component";
 import {HttpClient} from "@angular/common/http";
 
 @Component({
-  selector: 'app-assign-project-user',
-  templateUrl: './assign-project-user.component.html',
-  styleUrls: ['./assign-project-user.component.css']
+  selector: 'app-assign-unaasign-project',
+  templateUrl: './assign-unaasign-project.component.html',
+  styleUrls: ['./assign-unaasign-project.component.css']
 })
-export class AssignProjectUserComponent implements OnInit {
+export class AssignUnaasignProjectComponent implements OnInit {
   public role$!: Observable<AutoComplete> ;
   public feature$!: Observable<AutoComplete> ;
   @Input() id ;

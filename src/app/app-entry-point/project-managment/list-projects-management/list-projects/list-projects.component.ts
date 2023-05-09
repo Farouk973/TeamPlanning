@@ -11,6 +11,7 @@ import {Actionpanel, GridAction} from 'src/shared/generic/models/ActionPanel.mod
 import { CardGridView } from 'src/shared/generic/models/CardView.model';
 import { environment } from 'src/environments/environment';
 import {AssignProjectUserComponent} from "../assign-project-user/assign-project-user.component";
+import {AssignUnaasignProjectComponent} from "../assign-unaasign-project/assign-unaasign-project.component";
 
 @Component({
   selector: 'app-list-projects',
@@ -45,8 +46,8 @@ export class ListProjectsComponent implements OnInit {
   }
 
   actionAffect:GridAction = {
-    actionThtitle :"Assign to employee",
-    Compoment : AssignProjectUserComponent
+    actionThtitle :"Assign to project",
+    Compoment : AssignUnaasignProjectComponent
   }
 
   action: Actionpanel = {

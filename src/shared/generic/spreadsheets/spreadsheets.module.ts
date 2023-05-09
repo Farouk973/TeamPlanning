@@ -8,6 +8,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatIconModule} from "@angular/material/icon";
 import {MatGridListModule} from '@angular/material/grid-list';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 
@@ -28,6 +29,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MatIconModule,
     MatGridListModule,
     FlexLayoutModule,
+    MatProgressSpinnerModule
 
   ]
 })

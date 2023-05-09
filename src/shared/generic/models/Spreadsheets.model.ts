@@ -8,6 +8,7 @@ export class Spreadsheets implements NXMGenericComponent{
   mappingNameColumnHeader: string;
   mappingNameRowHeader: string;
   nameCaseIntersection: string;
+  postEndpoint: string
   inputType:string;
 
 }

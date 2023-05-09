@@ -4,5 +4,6 @@
   "mappingNameColumnHeader": "title",
   "mappingNameRowHeader": "description",
   "nameCaseIntersection": "Features/Roles",
+  "postEndpoint": "/api/Project/addCostingToProject",
   "inputType":"number"
 }
