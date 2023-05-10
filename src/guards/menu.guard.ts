@@ -46,10 +46,7 @@ export class MenuGuard implements CanActivate  {
             .pipe(
                 map(({ isAuthenticated, userData, accessToken, idToken }) => {
                     let path = next.data;
-                    console.log(state)
                     const found = this.listePath?.find(m => m == state['url']);
-                    console.log(state['url'])
-                    console.log(found)
                     if (found == undefined) {
                         this.router.navigateByUrl('/');
                         return false;

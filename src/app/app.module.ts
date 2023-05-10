@@ -58,8 +58,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from 'angular-auth-oidc-client';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { AuthConfigModule } from './auth/auth-config.module';
-import { NXMGContainerModule } from '../shared/generic/nxm-g-container/nxm-g-container.module';
-import { CommonModule } from '@angular/common';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 
