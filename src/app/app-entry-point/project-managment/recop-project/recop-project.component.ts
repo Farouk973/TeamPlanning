@@ -12,15 +12,16 @@ export class RecopProjectComponent implements  OnChanges {
   panelOpenState = false;
   project! : Project;
    @Input() order ;
+  constructor( public projectService : ProjectService , private location : Location) {
 
-  constructor( public projectService : ProjectService , private location : Location) { }
+  }
   ngOnChanges(changes: SimpleChanges) {
     const url = this.location.path();
     let id = url.substring(url.lastIndexOf('/') + 1);
       this.projectService.getProject(id).subscribe((data) => {
         this.project = data;
       })
-console.log(this.project)
+
     }
 
 

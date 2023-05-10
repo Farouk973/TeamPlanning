@@ -64,7 +64,7 @@
     "style": "background-color: #00b2d9;"
   },
   "validate": {
-    "label": "Validate",
+    "label": "Costing",
     "endpoint": "",
     "style": "background-color: #00b2d9;"
   },

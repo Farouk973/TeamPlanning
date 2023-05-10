@@ -41,8 +41,7 @@
 
   </mat-accordion>
 
-  <mat-accordion >
-
+  <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false">
 
@@ -50,13 +49,16 @@
         <mat-panel-title>
           Features
         </mat-panel-title>
-
       </mat-expansion-panel-header>
       <mat-chip-list >
         <mat-chip *ngFor="let option of project?.features "   >{{option.description}}</mat-chip>
       </mat-chip-list>
     </mat-expansion-panel>
 
+  </mat-accordion>
+
+
+    <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false">
 
@@ -70,7 +72,11 @@
         <mat-chip *ngFor="let option of project?.roles "   >{{option.title}}</mat-chip>
       </mat-chip-list>
     </mat-expansion-panel>
-    
+
+  </mat-accordion>
+
+
+  <mat-accordion>
     <mat-expansion-panel (opened)="panelOpenState = true"
                          (closed)="panelOpenState = false">
 
@@ -85,5 +91,7 @@
       </mat-chip-list>
     </mat-expansion-panel>
   </mat-accordion>
+
+
 </div>
 
