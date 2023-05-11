@@ -1,1 +1,13 @@
-<button (click)="render()">ttt</button>
+
+<button (click)="openDialogue()" class="mat-raised-button"  mat-button><p>View Tasks</p></button>
+
+
+<ng-template #dialogTemplate let-dialogRef="dialogRef">
+  <h2 mat-dialog-title>Tasks</h2>
+  <mat-dialog-content>
+  <app-generic-table [data]="task"></app-generic-table>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="dialogRef.close()">Close</button>
+  </mat-dialog-actions>
+</ng-template>

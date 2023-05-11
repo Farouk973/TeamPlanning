@@ -1,29 +1,11 @@
-.addButton  {
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 12px;
-  gap: 10px;
-  height: 45px;
-  background: #00B2D9;
-  border-radius: 12px;
-  flex: none;
-  order: 2;
-  flex-grow: 0;
-  width : 100px;
+.mat-raised-button{
+  border-radius: 12px ;
+
+  width: 100px;
+  height: 34px;
+  background-color: #00b2d9;
+  margin: 5px;
 }
-
-.buttonText{
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 29px;
-
-
-  color: #FFFFFF;
-
-
+p{
+  color: #E9EBF0;
 }

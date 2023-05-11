@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {mockDataTableRequest} from "../request.task.data";
+import {mockDataTableRequestData} from "../request.task.data";
 
 @Component({
   selector: 'app-request',
@@ -7,7 +7,7 @@ import {mockDataTableRequest} from "../request.task.data";
   styleUrls: ['./request.component.css']
 })
 export class RequestComponent implements OnInit {
-request =  mockDataTableRequest;
+request =  mockDataTableRequestData;
   constructor() { }
 
   ngOnInit(): void {

@@ -6,7 +6,8 @@ import { BigNumberService } from "src/shared/services/big-number.service"
 import { DataTableGenericInput } from "src/shared/generic/models/dataTable.model";
 import {TaskComponent} from "./task/task.component";
 
-export const mockDataTableRequest: DataTableGenericInput={
+
+export const mockDataTableRequestData: DataTableGenericInput={
   columns: [
     {
       columnDef: 'name',
@@ -45,7 +46,7 @@ export const mockDataTableRequest: DataTableGenericInput={
     {
       columnDef: 'Tasks',
       header: 'Tasks',
-     component : TaskComponent
+      component : TaskComponent
 
     },
   ],
@@ -75,7 +76,7 @@ export const mockDataTableRequest: DataTableGenericInput={
   sortDirection: 'desc'  ,
   trPaddingLeft:'10'
 };
-export const mockDataTableTask: DataTableGenericInput={
+export const mockDataTableTaskData: DataTableGenericInput={
   columns: [
     {
       columnDef: 'Task',
@@ -89,7 +90,7 @@ export const mockDataTableTask: DataTableGenericInput={
     },
     {
       columnDef: 'Skill',
-      header: 'Skill',
+      header: 'Skills',
       cel: (element: any) =>`${element.skill}`
     },
     {
@@ -101,15 +102,7 @@ export const mockDataTableTask: DataTableGenericInput={
       }
 
     },
-    {
-      columnDef: 'Resources',
-      header: 'Resources',
-      cel: (element: any) => {
-        const resources = BigNumberService.transform(element.nbresources);
-        return resources ;
-      }
 
-    },
     {
       columnDef: 'startDate',
       header: 'StartDate',
@@ -130,12 +123,16 @@ export const mockDataTableTask: DataTableGenericInput={
 
     },
     {
-      columnDef: 'Status',
-      header: 'Status',
-      cel: (element: any) => `${element.status}`
-    }
+      columnDef: 'Resources',
+      header: 'Resources',
+      cel: (element: any) => {
+        const resources = BigNumberService.transform(element.nbresources);
+        return resources ;
+      }
+
+    },
   ],
-  columnDefs:['Task', 'Category', 'Skill','Estimated Time','Resources','startDate','endDate','Status'],
+  columnDefs:['Task', 'Category', 'Skills','Estimated Time','StartDate','EndDate','Resources'],
 
   width: "700px",
 
