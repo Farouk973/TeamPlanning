@@ -1,3 +1,6 @@
 mat-icon:hover{
   color: #00b2d9;
 }
+.mat-dialog-container {
+  flex-direction: row-reverse;
+}

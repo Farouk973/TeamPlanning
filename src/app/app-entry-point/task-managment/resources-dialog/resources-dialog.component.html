@@ -1,9 +1,30 @@
-<mat-dialog-content class="mat-typography">
-{{data.id}}
-</mat-dialog-content>
-<mat-dialog-actions align="center">
+
+<div class="dialog">
+  <mat-dialog-content class="mat-typography">
+    <table class="custom-table">
+      <tr>
+        <th>Status</th>
+        <th>Estimated_Time</th>
+        <th>Skill_level</th>
+        <th>Resources_needed</th>
+        <th>start date</th>
+        <th>End date</th>
+      </tr>
+      <tr>
+        <td>{{task?.status}}</td>
+        <td>{{task?.estimatedTime | date:'yyyy-MM-dd '}}</td>
+        <td>{{task?.skill_level }}</td>
+        <td>{{task?.nbresources}}</td>
+        <td>{{task?.startDate | date:'yyyy-MM-dd '}}</td>
+        <td>{{task?.endDate | date:'yyyy-MM-dd '}}</td>
+      </tr>
+
+    </table>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+    <button class="mat-raised-button" mat-button [mat-dialog-close]="true" cdkFocusInitial><p>Cancel</p></button>
+  </mat-dialog-actions>
+</div>
 
 
-  <button class="mat-raised-button" mat-button [mat-dialog-close]="true" cdkFocusInitial><p>Cancel</p></button>
-</mat-dialog-actions>
 

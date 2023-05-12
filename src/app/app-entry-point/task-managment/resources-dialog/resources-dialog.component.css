@@ -1,23 +1,18 @@
-:host {
-  display: block;
-  background: #fff;
-  border-radius: 8px;
-  padding: 16px;
-  max-width: 500px;
-  animation: custom-dialog-enter 1s ease;
-}
-
-@keyframes custom-dialog-enter {
-  from {
-    transform: translateX(100%);
+@media (max-width: 768px) {
+  .custom-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
   }
-
-  to {
-    transform: translateX(0);
+  .custom-table th,
+  .custom-table td {
+    display: inline-block;
   }
 }
-
-
+.custom-table th,
+.custom-table td {
+  padding: 10px; /* Ajoutez ici l'espacement souhaité entre les cellules */
+}
 mat-dialog-content {
   max-width: 700px;
   min-width: 700px;
