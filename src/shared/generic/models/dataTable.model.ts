@@ -11,8 +11,8 @@ export interface TableColumn {
     componentInput?:any;
     injector?: any;
   };
-  
-  
+
+
   export interface DataTableGenericInput {
     columns?: TableColumn[];
     columnDefs?: string[];
@@ -51,4 +51,3 @@ export interface TableColumn {
     headerHeight?:string;
     trPaddingLeft?:string;
   }
-  

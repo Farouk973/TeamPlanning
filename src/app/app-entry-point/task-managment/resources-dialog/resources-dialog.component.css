@@ -1,0 +1,38 @@
+:host {
+  display: block;
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 500px;
+  animation: custom-dialog-enter 1s ease;
+}
+
+@keyframes custom-dialog-enter {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+mat-dialog-content {
+  max-width: 700px;
+  min-width: 700px;
+}
+.custom-dialog {
+  animation: custom-dialog-enter 0.5s;
+}
+.mat-raised-button{
+  border-radius: 12px ;
+
+  width: 100px;
+  height: 38px;
+  background-color: #00b2d9;
+  margin: 5px;
+}
+p{
+  color: #E9EBF0;
+}

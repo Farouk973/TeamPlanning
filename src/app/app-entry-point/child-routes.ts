@@ -43,7 +43,7 @@ export const childRoutes = [
   },
   {
     path: 'costing',
-    loadChildren: () => import('./project-managment/spreadsheets-management/spreadsheets-management.module').then(m => m.SpreadsheetsManagementModule),
+    loadChildren: () => import('./task-managment/task-managment.module').then(m => m.TaskManagmentModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
 
@@ -64,7 +64,13 @@ export const childRoutes = [
     path: 'project/planning',
     loadChildren: () => import('./project-managment/planning-management/planning-management.module').then(m => m.PlanningManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
-  }
+  },
+
+  {
+    path: 'task',
+    loadChildren: () => import('./task-managment/task-managment.module').then(m => m.TaskManagmentModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
+  },
 
   // {
   //   path: 'profile',
