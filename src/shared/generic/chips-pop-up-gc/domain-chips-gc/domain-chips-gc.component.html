@@ -1,61 +1,79 @@
 <div class="header">
-    <h2>Add {{this.namedomain}}</h2>
-    <div class="search-container">
-        <app-search-bar-cg [Treedata]="this.treedata"  (dialogResult)="handleDialogResult($event)"></app-search-bar-cg>
-    </div>
+  <h2 *ngIf="!editmode">Add {{this.namedomain}}</h2>
+  <div *ngIf="!editmode" class="search-container">
+    <app-search-bar-cg [Treedata]="this.treedata" (dialogResult)="handleDialogResult($event)"></app-search-bar-cg>
+  </div>
 </div>
 
 <div class="container">
-    <div class="sidebar">
-        <h2>{{this.namesubdomain}}</h2>
-        <div class="search-bar">
+  <div class="sidebar">
+    <h2>{{this.namesubdomain}}</h2>
+    <div class="search-bar">
 
-            <input type="text" [(ngModel)]="searchValue" (input)="filterTreeData()" name="input"
-                placeholder="Search ...">
-            <mat-icon class="search-icon">search</mat-icon>
-        </div>
-        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="mat-tree">
-            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onNodeClicked(node)"
-                class="mat-tree-node">
-                <span class="mat-tree-node__label">{{node.name}}</span>
-            </mat-tree-node>
-            <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding class="mat-tree-node">
-                <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name"
-                    class="mat-tree-node-toggle">
-                    <mat-icon class="mat-icon__toggle">{{treeControl.isExpanded(node) ? 'expand_more' :
-                        'chevron_right'}}</mat-icon>
-                    <span class="mat-tree-node__label">{{node.name}}</span>
-                </button>
-            </mat-tree-node>
-        </mat-tree>
+      <input type="text" [(ngModel)]="searchValue" (input)="filterTreeData()" name="input" placeholder="Search ...">
+      <mat-icon class="search-icon">search</mat-icon>
     </div>
-    <div class="content">
-        <div class="skill-container">
-          <h1 *ngIf="selectedNode && selectedNode.trim() !== ''">
-            {{this.namedomain}} of "{{ selectedNode }}"
-          </h1>
-          <h1 *ngIf="!(selectedNode && selectedNode.trim() !== '')">
-            No {{this.namesubdomain}} has been selected
-          </h1>
-          <mat-chip-list class="mat-chip-list__container">
-            <mat-chip
-              *ngFor="let chip of selectedchips"
-              class="mat-chip__item"
-              [ngClass]="{'selected': isChipSelected(chip.name)}"
-              [disabled]="isChipDisabled(chip.name)"
-              (click)="openDialog(chip)"
-              style="background-color: rgba(0, 178, 217, 0.1)"
-            >
-              {{ chip.name }}
-              <mat-icon
-                class="cancel-icon"
-                *ngIf="isChipSelected(chip.name)"
-                (click)="removeChip(chip);$event.stopPropagation()"
-              >
-                clear
-              </mat-icon>
-            </mat-chip>
-          </mat-chip-list>
+    <div *ngIf="editmode" class="add-big-category" >
+      <button mat-icon-button (click)="toggleInput()">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+      <input type="text" [(ngModel)]="newBigCategoryName" placeholder="Add Bigcategory"
+        (keydown.enter)="onAddBigCategory()" [hidden]="!showInput">
+    </div>
+
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="mat-tree">
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding (click)="onNodeClicked(node)" class="mat-tree-node">
+        <span class="mat-tree-node__label">{{node.name}}</span>
+        <mat-icon *ngIf="editmode" class="more-icon" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <app-action-panel [actionPanel]="this.actioncategory" [objId]="this.node" (delete)="onDeleteItem1(this.node.id)">
+          </app-action-panel>
+        </mat-menu>
+      </mat-tree-node>
+      <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding class="mat-tree-node">
+        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name"
+          class="mat-tree-node-toggle">
+          <mat-icon class="mat-icon__toggle">{{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'
+            }}</mat-icon>
+          <span class="mat-tree-node__label">{{ node.name }}</span>
+        </button>
+        <div *ngIf="editmode" mat-icon-button class="mat-tree-node-add">
+          <mat-icon class="mat-icon__add" (click)="addsubdomainDialog(node)">add_circle</mat-icon>
+          <mat-icon class="more-icon" [matMenuTriggerFor]="menu">more_vert</mat-icon>
         </div>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <app-action-panel [actionPanel]="this.actionbigcategory" [objId]="this.node" (delete)="onDeleteItem(this.node.id)">
+          </app-action-panel>
+        </mat-menu>
+      </mat-tree-node>
+
+    </mat-tree>
+  </div>
+  <div class="content">
+    <div class="skill-container">
+      <div *ngIf="editmode" class="search-container">
+        <app-search-bar-cg [Treedata]="this.treedata" (dialogResult)="handleDialogResult($event)"></app-search-bar-cg>
       </div>
+      <h1 *ngIf="selectedNode && selectedNode.trim() !== ''" style="display: inline-block;">
+        {{this.namedomain}} of "{{ selectedNode }}"
+      </h1>
+      <h1 *ngIf="!(selectedNode && selectedNode.trim() !== '')" style="display: inline-block;">
+        No {{this.namesubdomain}} has been selected
+      </h1>
+      <mat-chip-list class="mat-chip-list__container">
+        <mat-chip *ngFor="let chip of selectedchips" class="mat-chip__item"
+          [ngClass]="{'selected': isChipSelected(chip.name)}" [disabled]="isChipDisabled(chip.name)"
+          (click)="!editmode && openDialog(chip)" style="background-color: rgba(0, 178, 217, 0.1)">
+          {{ chip.name }}
+          <mat-icon class="cancel-icon" *ngIf="isChipSelected(chip.name)"
+            (click)="removeChip(chip);$event.stopPropagation()">
+            clear
+          </mat-icon>
+          <mat-icon *ngIf="editmode" class="cancel-icon" (click)="onDeleteDomain(chip.id.toString())">
+            delete
+          </mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
 </div>

@@ -11,12 +11,14 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AddSkillComponent } from './add-skill/add-skill.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SkillsManagementComponent } from './skills-management/skills-management.component';
 
 
 @NgModule({
   declarations: [
     SkillsComponent,
-    AddSkillComponent
+    AddSkillComponent,
+    SkillsManagementComponent
   ],
   imports: [
     CommonModule,
