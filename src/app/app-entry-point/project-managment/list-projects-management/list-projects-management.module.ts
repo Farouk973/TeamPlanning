@@ -12,23 +12,29 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatChipsModule} from "@angular/material/chips";
 import {FormsModule} from "@angular/forms";
 import { CardViewModule } from 'src/shared/generic/card-view/card-view.module';
+import { AssignProjectUserComponent } from './assign-project-user/assign-project-user.component';
+import {AutoCompleteModule} from "../../../../shared/generic/auto-complete/auto-complete.module";
+import { AssignUnaasignProjectComponent } from './assign-unaasign-project/assign-unaasign-project.component';
 
 @NgModule({
   declarations: [
     ListProjectsComponent,
-    DetailsProjectComponent
+    DetailsProjectComponent,
+    AssignProjectUserComponent,
+    AssignUnaasignProjectComponent
   ],
-  imports: [
-    CommonModule,
-    ListProjectsManagementRoutingModule,
-    MatCardModule,
-    MatIconModule,
-    FlexLayoutModule,
-    MatDialogModule,
-    MatChipsModule,
-    FormsModule,
-    CardViewModule
+    imports: [
+        CommonModule,
+        ListProjectsManagementRoutingModule,
+        MatCardModule,
+        MatIconModule,
+        FlexLayoutModule,
+        MatDialogModule,
+        MatChipsModule,
+        FormsModule,
+        CardViewModule,
+        AutoCompleteModule
 
-  ]
+    ]
 })
 export class ListProjectsManagementModule { }

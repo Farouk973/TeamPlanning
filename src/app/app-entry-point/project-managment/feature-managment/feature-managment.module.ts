@@ -9,9 +9,12 @@ import {AutoCompleteModule} from "../../../../shared/generic/auto-complete/auto-
 
 
 @NgModule({
-  declarations: [
-    FeatureComponent
-  ],
+    declarations: [
+        FeatureComponent
+    ],
+    exports: [
+        FeatureComponent
+    ],
     imports: [
         CommonModule,
         FeatureManagmentRoutingModule,

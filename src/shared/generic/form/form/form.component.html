@@ -11,7 +11,7 @@
             field.name !== 'id'
           "
         >
-          <mat-label>{{ field.name }}</mat-label>
+          <mat-label>{{ field.name.charAt(0).toUpperCase() + field.name.slice(1) }}</mat-label>
           <input matInput [formControlName]="field.name" />
           <mat-error
             *ngIf="
@@ -45,7 +45,7 @@
           field.description === null
         "
       >
-        <mat-label>{{ field.name }}</mat-label>
+        <mat-label>{{ field.name.charAt(0).toUpperCase() + field.name.slice(1) }}</mat-label>
         
         <input matInput [formControlName]="field.name" />
         <mat-error
@@ -74,7 +74,7 @@
           appearance="outline"
           *ngIf="field.type === 'string' && field.format === 'email'"
         >
-          <mat-label>{{ field.name }}</mat-label>
+          <mat-label>{{ field.name.charAt(0).toUpperCase() + field.name.slice(1) }}</mat-label>
           <input type="email" matInput [formControlName]="field.name" />
           <mat-error
             *ngIf="
@@ -106,7 +106,7 @@
             field.description === null
           "
         >
-          <mat-label>{{ field.name }}</mat-label>
+          <mat-label>{{ field.name.charAt(0).toUpperCase() + field.name.slice(1) }}</mat-label>
           <input matInput [formControlName]="field.name" />
         </mat-form-field>
 
@@ -114,7 +114,7 @@
           appearance="outline"
           *ngIf="field.type === 'number' || field.format === 'int32'"
         >
-          <mat-label>{{ field.name }}</mat-label>
+          <mat-label>{{ field.name.charAt(0).toUpperCase() + field.name.slice(1) }}</mat-label>
           <input matInput type="number" [formControlName]="field.name" />
           <mat-error
             *ngIf="
@@ -138,7 +138,7 @@
           appearance="outline"
           *ngIf="field.format === 'date-time' && field.type === 'string'"
         >
-          <mat-label>{{ field.name }}</mat-label>
+          <mat-label>{{ field.name.charAt(0).toUpperCase() + field.name.slice(1) }}</mat-label>
           <input
             matInput
             [formControlName]="field.name"
@@ -169,7 +169,7 @@
         >
 
        <mat-form-field *ngIf="field.type === null && field.format === null && field.references[0] " appearance="outline">
-          <mat-label>{{ field.name }}</mat-label>
+          <mat-label>{{ field.name.charAt(0).toUpperCase() + field.name.slice(1) }}</mat-label>
           <mat-select [formControlName]="field.name">
             <mat-option *ngFor="let ref of field.references" [value]="ref">{{
               ref
@@ -185,23 +185,23 @@
 
          <mat-form-field *ngIf="field.type === null && field.format === null && field.description !== null && !field.references[0] "
           class="example-full-width" appearance="outline">
-          <mat-label >{{field.name}}</mat-label>
+          <mat-label >{{field.name.charAt(0).toUpperCase() + field.name.slice(1)}}</mat-label>
           <!-- [formControl]="searchDataCtrl" -->
           <input matInput [matAutocomplete]="auto"
           [formControl]="searchDataCtrl"   [formControlName]="field.name" (focus)="onselectData(field.name)" >
-          <mat-select    [formControl]="searchDataCtrl"  [formControlName]="field.name">
+          <mat-select  style="display: none;"  [formControl]="searchDataCtrl"  [formControlName]="field.name">
           <mat-autocomplete [displayWith]="displayDataTitle" [panelWidth]="400" #auto="matAutocomplete" >            
             <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
             <ng-container *ngIf="!isLoading">
               <mat-option *ngFor="let data of filteredData" [value]="data">
-                <span><b>{{data.title}}</b> ({{data.title}})</span>
+                <span><b>{{data[formData.Options.get(field.name)]}}</b> ({{data[formData.Options.get(field.name)]}})</span>
               </mat-option>
             </ng-container>
           </mat-autocomplete>
           </mat-select>
         </mat-form-field>
 
-          <mat-select-trigger appearance="outline" *ngIf=" field.type === 'array'">
+          <!-- <mat-select-trigger appearance="outline" *ngIf=" field.type === 'array'">
             <mat-chip-list>
               <mat-chip disableRipple *ngFor="let selected of valueControl.value" [selectable]="true" [removable]="true"
              >
@@ -209,9 +209,9 @@
                 <i class="multiselect-chip-remove" matChipRemove matRipple></i>
               </mat-chip>
             </mat-chip-list>
-          </mat-select-trigger>
+          </mat-select-trigger> -->
           <mat-form-field appearance="outline" *ngIf=" field.type === 'array'">
-            <mat-label>{{ field.name }}</mat-label>
+            <mat-label>{{ field.name.charAt(0).toUpperCase() + field.name.slice(1) }}</mat-label>
             <mat-select [formControlName]="field.name"  multiple>      
               <mat-option  *ngFor="let option of map.get(field.name)" [value]="option.id">
                 {{ option.title }}

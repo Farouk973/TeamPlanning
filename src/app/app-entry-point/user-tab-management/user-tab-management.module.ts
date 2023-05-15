@@ -10,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { CardViewModule } from 'src/shared/generic/card-view/card-view.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatIconModule,
     MatCardModule,
     MatChipsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    CardViewModule
   ],
   exports: [
     UserTabComponent,

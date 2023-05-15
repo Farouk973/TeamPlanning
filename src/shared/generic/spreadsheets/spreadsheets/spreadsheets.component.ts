@@ -1,12 +1,11 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 
 import {HttpClient} from "@angular/common/http";
 import {SpreadsheetsService} from "../spreadsheets.service";
 import {Location} from "@angular/common";
-import {Observable, toArray} from "rxjs";
+import {Observable} from "rxjs";
 import {Spreadsheets} from "../../models/Spreadsheets.model";
 import {Router} from "@angular/router";
-
 
 @Component({
   selector: 'app-spreadsheets',
@@ -16,6 +15,7 @@ import {Router} from "@angular/router";
 export class SpreadsheetsComponent implements  OnChanges {
 
   @Input() spreadsheets$!:Observable<Spreadsheets> ;
+  loading : boolean = true;
   spreadsheets = new Spreadsheets()
   data = {
     columnHeader: [],
@@ -41,35 +41,35 @@ export class SpreadsheetsComponent implements  OnChanges {
 
       const url = this.location.path();
       let id = url.substring(url.lastIndexOf('/') + 1);
-      let totlaJ_Cout = ["TOTAL_DAY" , "COST"]
-      let TJM_DAY = ['TJM £' , 'NUMBER_OF_DAY']
-      let TOTAL = ['TOTAL']
-
-
+      let totlaJ_Cout = ["DAYS" , "COST $"]
+      let TJM_DAY = ['TJM $' , 'DAY']
+      let TOTAL = ['TOTAL $']
 
       this.spreadsheetsService.getItem(this.spreadsheets.columnHeaderEndpoint,id).subscribe((data)=>{
         this.data.columnHeader=data.roles.map((t)=>t[this.spreadsheets.mappingNameColumnHeader]).concat(totlaJ_Cout)
-
-
         this.titleProject=data.name
-        console.log(this.data.columnHeader)
 
       })
 
 
       this.spreadsheetsService.getItem(this.spreadsheets.rowHeaderEndpoint,id).subscribe((data)=>{
         this.data.rowHeader= TJM_DAY.concat(data.features.map((d)=>d[this.spreadsheets.mappingNameRowHeader]).concat(TOTAL))
-        this.fillMatrixByZero()
-      })
+       this.fillMatrixByZero()
 
-
-      this.spreadsheetsService.getItem(this.spreadsheets.rowHeaderEndpoint,id).subscribe((data)=>{
-        if( data.costing.map((obj) => Object.values(obj)).length != 0){
+        if( data.costing.map((obj) => Object.values(obj)).length != 0
+          && data.costing.map((obj) => Object.values(obj))[0].length ===this.data.columnHeader.length
+        && data.costing.map((obj) => Object.values(obj)).length === this.data.rowHeader.length
+        ){
           this.data.reportData = data.costing.map((obj) => Object.values(obj))
 
         }
+        if(this.data.reportData[0].length !==0)
+        this.loading=false
       })
+
+
     })
+
 
 
   }
@@ -110,7 +110,7 @@ export class SpreadsheetsComponent implements  OnChanges {
         for (let j = 0; j < this.data.reportData[i].length - 2; j++) {
           daySum += this.data.reportData[i][j];
         }
-        this.data.reportData[i][this.data.reportData[i].length - 2] = Number(daySum.toFixed(2));
+        this.data.reportData[i][this.data.reportData[i].length - 2] = Number(daySum.toFixed(2)) ;
       }
     }
 
@@ -145,7 +145,7 @@ export class SpreadsheetsComponent implements  OnChanges {
         this.chiffrage.push(obj);
       }
 
-      this.spreadsheetsService.addCosting('/api/Project/addCostingToProject' , id , this.chiffrage ).subscribe( (response)=>
+      this.spreadsheetsService.addCosting( this.spreadsheets.postEndpoint, id , this.chiffrage ).subscribe( (response)=>
         console.log(response))
 
 
@@ -154,4 +154,6 @@ export class SpreadsheetsComponent implements  OnChanges {
   dispalyProjects() {
     this.router.navigate(['projects/list-projects'])
   }
+
+
 }

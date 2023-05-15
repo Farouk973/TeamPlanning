@@ -5,4 +5,5 @@ export class Form implements NXMGenericComponent {
   endpoint : string ;
   Object? : any;
   title?:string;
+  Options?: Map<string,string>;
 }

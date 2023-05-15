@@ -49,5 +49,5 @@ export class UsersComponent implements OnInit {
     title: 'Project Management',
     icon: 'https://img.freepik.com/premium-vector/vector-creative-project-icon-flat-style_106427-199.jpg?w=2000',
     allowedSortColumns: ['title'],
-  };
+  }
 }

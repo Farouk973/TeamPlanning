@@ -18,6 +18,7 @@ export class DialogComponent {
   afterSubmitValue : any ;
   ngOnInit(): void {
     console.log("thusdata",this.data)
+    this.map.set("Role","title")
   }
   onNoClick(): void {
     this.dialogRef.close();
@@ -30,11 +31,17 @@ export class DialogComponent {
     this.afterSubmitValue = returnedValue;
   }
 
+  map : Map<string,string> = new Map([
+    ["role", "title"],["category", "name"]
+]);
+
+  
   forms: Form = {
     endpoint: this.data.endpoint,
     Object: this.data.object,
     metaData: this.data.metaData,
-    title: this.data.title
-  };
+    title: this.data.title,
+    Options : this.map
+   };
 }
 

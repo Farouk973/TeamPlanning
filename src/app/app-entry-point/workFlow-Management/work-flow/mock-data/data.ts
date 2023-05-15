@@ -9,7 +9,7 @@ import { DataTableGenericInput } from "src/shared/generic/models/dataTable.model
 
   export const mockDataTableData: DataTableGenericInput={
     columns: [
-      { 
+      {
         columnDef: 'name',
         header: 'name',
         cel: (element: any) => `${element.name}`
@@ -35,7 +35,7 @@ import { DataTableGenericInput } from "src/shared/generic/models/dataTable.model
     const startDate = new Date(element.startDate);
     return startDate.toLocaleDateString('en-GB').replace(/\//g, '-');
   }
-    
+
       },
       {
         columnDef: 'endDate',
@@ -44,23 +44,23 @@ import { DataTableGenericInput } from "src/shared/generic/models/dataTable.model
     const endDate = new Date(element.endDate);
     return endDate.toLocaleDateString('en-GB').replace(/\//g, '-');
   }
-        
+
       },
       {
         columnDef: 'Tasks',
         header: 'Tasks',
-        
+
         component:EditRequestComponent
       },
        {
         columnDef: 'Edit',
         header: 'Edit',
-        
+
         component:EditWorkflowComponent
       }
     ],
   columnDefs:['name', 'description', 'skills', 'startDate','endDate','Tasks','Edit'],
- 
+
   width: "100%",
   params:1 ,
   endpoint:new BehaviorSubject<string>(`${environment.baseUrl}/api/RequestManagement`),
@@ -87,7 +87,7 @@ fontWeightTh:"500",
   };
     export const mockDataTableTask: DataTableGenericInput={
     columns: [
-      { 
+      {
         columnDef: 'Task',
         header: 'Task',
         cel: (element: any) => `${element.name}`
@@ -109,7 +109,7 @@ fontWeightTh:"500",
     const nbhours = BigNumberService.transform(element.nbHours);
     return nbhours;
   }
-    
+
       },
       {
         columnDef: 'Resources',
@@ -118,7 +118,7 @@ fontWeightTh:"500",
     const resources = BigNumberService.transform(element.nbresources);
     return resources ;
   }
-        
+
       },
       {
         columnDef: 'startDate',
@@ -127,17 +127,17 @@ fontWeightTh:"500",
     const startDate = new Date(element.startDate);
     return startDate.toLocaleDateString();
   }
-    
+
       },
       {
         columnDef: 'endDate',
         header: 'EndDate',
         cel: (element: any) => {
     const endDate = new Date(element.endDate);
-       
+
     return endDate.toLocaleDateString();
   }
-        
+
       },
       {
         columnDef: 'Status',
@@ -146,7 +146,7 @@ fontWeightTh:"500",
       }
     ],
   columnDefs:['Task', 'Category', 'Skill','Estimated Time','Resources','startDate','endDate','Status'],
- 
+
   width: "700px",
 
 

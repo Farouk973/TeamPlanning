@@ -16,7 +16,7 @@ export class ForumSearchComponent implements OnInit {
   treeData: bigdomain[];
   selectedBigDomain:bigdomain
   selectedSubDomain
-  constructor(private fb: FormBuilder,public dialogRef: MatDialogRef<SearchBarCgComponent>,@Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private fb: FormBuilder,public dialogRef: MatDialogRef<ForumSearchComponent>,@Inject(MAT_DIALOG_DATA) public data: any) {
     this.i = data.i;
     this.treeData = data.treeData;
     this.selectedBigDomain = null;

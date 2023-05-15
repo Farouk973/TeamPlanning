@@ -1,0 +1,14 @@
+
+
+<div *ngIf="role$ | async">
+  <app-dynamic-auto-complete
+    [autoComplete$]="role$" [idGeneric]="idinjected">
+  </app-dynamic-auto-complete>
+</div>
+
+
+<div *ngIf="feature$ | async">
+  <app-dynamic-auto-complete
+    [autoComplete$]="feature$" [idGeneric]="idinjected">
+  </app-dynamic-auto-complete>
+</div>

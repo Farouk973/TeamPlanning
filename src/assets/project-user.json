@@ -1,0 +1,17 @@
+{
+  "label": "Add developers to project:",
+  "input": {
+    "type": "text",
+    "placeholder": "Search..."
+  },
+  "labelChips": "Roles of project:",
+  "saveInputInBase": false,
+  "getIdLastItemEndpoint": "/api/Users",
+  "optionsDataEndpoint" : "/api/Users",
+  "nameAttributeForSearch": "email",
+  "sourceSaveItemEndpoint":"/api/Users",
+  "sourceAssignItemEndpoint":"",
+  "getItemEndpoint":"/api/Project/get-project",
+  "nameListOfChips": "users",
+  "sourceUnassignOptionAfterAssignToItemEndpoint": ""
+}

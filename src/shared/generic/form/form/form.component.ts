@@ -48,7 +48,7 @@ export class FormComponent implements OnInit {
   valueControl = new FormControl();
 
   ngOnInit(): void {
-console.log("data :"  , this.formData.Object)
+console.log("data :"  , this.formData.Options)
     this.formService.getMetadata(this.formData.metaData).subscribe((data) => {
       this.fields = data;
       this.fields.forEach((element) => {
@@ -259,6 +259,8 @@ console.log("data :"  , this.formData.Object)
   })
   }
 
-
+   capitalizeFirstLetter(str: string): string {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
 }
