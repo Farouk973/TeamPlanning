@@ -11,6 +11,8 @@ import { ResourcesAllotedComponent } from './resources-alloted/resources-alloted
 import {MatIconModule} from "@angular/material/icon";
 import { ResourcesDialogComponent } from './resources-dialog/resources-dialog.component';
 import {MatTableModule} from "@angular/material/table";
+import {MatCardModule} from "@angular/material/card";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 
 
@@ -28,7 +30,10 @@ import {MatTableModule} from "@angular/material/table";
     GridViewModule,
     MatDialogModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatCardModule,
+    FlexLayoutModule,
+
 
   ]
 })

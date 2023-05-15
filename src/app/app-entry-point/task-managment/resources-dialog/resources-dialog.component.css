@@ -1,3 +1,6 @@
+.dialog{
+  width: 700px;
+}
 @media (max-width: 768px) {
   .custom-table {
     display: block;
@@ -34,4 +37,45 @@ p{
 
 span{
   font-size: large;
+}
+.custom-card-container {
+  display: flex;
+
+}
+
+mat-card {
+  width: 30%;
+  height: 45px;
+  margin: 20px;
+  background-color: #F6F6F6;
+}
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 16px;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.container {
+  display: flex;
+}
+
+.container div {
+  margin-right: 10px; /* Ajoutez une marge entre les div si nécessaire */
+}
+.names{
+  font-weight: bold;
+
+}
+.vertical-bar {
+  width: 4px; /* Ajustez la largeur de la barre verticale selon vos besoins */
+  height: 50px;
+  background-color: #00b2d9; /* Couleur de la barre verticale */
+  margin-right: 10px; /* Espace entre la barre et le contenu suivant */
 }

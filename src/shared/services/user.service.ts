@@ -17,7 +17,9 @@ export class UserService {
   updateImage(userId: string,imageData :any) {
     return this.httpRepositoryService.patch<any>(`${this.BASE_URI}/${userId}`,imageData)
   }
-  getProject(userId: string) {
-    return this.httpRepositoryService.get<any>(`${this.BASE_URI}/${userId}`);
+  getUsersByLevelSkill(skillLevel: string) {
+    return this.httpRepositoryService.get<any>(`${this.BASE_URI}/getUsersBySkillLevel/${skillLevel}`);
   }
+
+
 }

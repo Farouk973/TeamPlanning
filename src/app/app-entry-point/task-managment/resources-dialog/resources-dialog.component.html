@@ -1,5 +1,13 @@
 
 <div class="dialog">
+  <div class="container">
+    <div class="vertical-bar"></div>
+    <div>
+      <div class="names">{{task?.name}}</div>
+      <div>{{task?.category}}</div>
+    </div>
+  </div>
+
   <mat-dialog-content class="mat-typography">
     <table class="custom-table responsive-table">
       <tr>
@@ -12,9 +20,9 @@
       </tr>
       <tr>
         <td>{{task?.status}}</td>
-        <td>{{task?.estimatedTime | date:'yyyy-MM-dd '}}</td>
+        <td>{{task?.estimatedTime | date:'HH' }} hrs</td>
         <td>{{task?.skill_level }}</td>
-        <td>{{task?.nbresources}}</td>
+        <td>{{task?.nbresources }}</td>
         <td>{{task?.startDate | date:'yyyy-MM-dd '}}</td>
         <td>{{task?.endDate | date:'yyyy-MM-dd '}}</td>
       </tr>
@@ -23,12 +31,30 @@
 
   <mat-dialog-content class="mat-typography">
     <span mat-dialog-title>Ressources alloted</span>
+    <div fxLayout="row wrap" >
+      <mat-card *ngFor="let card of users" >
+        <div class="container">
+          <div class="avatar">
+            <img [src]="card.avatar.content" alt="Avatar">
+          </div>
+          <div>
+            <div class="names">{{card.firstName}} {{card.lastName}}</div>
+            <div>{{card.skillLevel}}</div>
+          </div>
+
+        </div>
+
+
+
+      </mat-card>
+    </div>
 
   </mat-dialog-content>
   <mat-dialog-actions align="center">
-    <button class="mat-raised-button" mat-button [mat-dialog-close]="true" cdkFocusInitial><p>Cancel</p></button>
+    <button class="mat-raised-button" mat-button [mat-dialog-close]="true" cdkFocusInitial><p>OK</p></button>
   </mat-dialog-actions>
 </div>
+
 
 
 
