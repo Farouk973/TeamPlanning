@@ -43,7 +43,7 @@ export const childRoutes = [
   },
   {
     path: 'costing',
-    loadChildren: () => import('./task-managment/task-managment.module').then(m => m.TaskManagmentModule),
+    loadChildren: () => import('./project-managment/spreadsheets-management/spreadsheets-management.module').then(m => m.SpreadsheetsManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
 

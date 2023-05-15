@@ -10,6 +10,9 @@ import {MatDialogModule} from "@angular/material/dialog";
 import { ResourcesAllotedComponent } from './resources-alloted/resources-alloted.component';
 import {MatIconModule} from "@angular/material/icon";
 import { ResourcesDialogComponent } from './resources-dialog/resources-dialog.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatCardModule} from "@angular/material/card";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 
 
@@ -26,7 +29,11 @@ import { ResourcesDialogComponent } from './resources-dialog/resources-dialog.co
     GenericTableModule,
     GridViewModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule,
+    MatCardModule,
+    FlexLayoutModule,
+
 
   ]
 })

@@ -54,7 +54,7 @@ export const mockDataTableRequestData: DataTableGenericInput={
 
   width: "100%",
   params:1 ,
-  endpoint:new BehaviorSubject<string>(`${environment.baseUrl}/api/RequestManagement`),
+  endpoint:new BehaviorSubject<string>(`${environment.baseUrl}/api/RequestManagement?parameterValue=1`),
   tableFor:"services",
   pageSize:3,
   pageIndex:1,

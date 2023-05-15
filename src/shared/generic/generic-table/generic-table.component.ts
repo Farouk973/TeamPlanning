@@ -25,10 +25,10 @@ export class GenericTableComponent implements OnInit {
   sortDirection: 'asc' | 'desc' = 'asc';
   selectedRows: any[] = [];
   private destroy$: Subject<void> = new Subject<void>();
- 
+
     constructor(public listCardService: SharedServices, public sortService:DataTableService) {}
   ngOnInit() {
-    this.getData(); 
+    this.getData();
   }
 
 sortData(column: string) {
@@ -44,7 +44,12 @@ sortData(column: string) {
     const startIndex = (pageNumber - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     
+
     return data?.slice(startIndex, endIndex);
+
+
+    return data.slice(startIndex, endIndex);
+
   })
 );
 
@@ -54,7 +59,7 @@ getData() {
         .pipe(takeUntil(this.destroy$))
         .subscribe((endpointValue) => {
           this.listCardService
-            .getParametrizedData(endpointValue, this.data.params)
+            .getData(endpointValue)
             .subscribe((data) => {
               this.dataSource$.next(data[this.data.tableFor] || data);
               this.totalItems = this.dataSource$.value.length;
@@ -72,20 +77,20 @@ getData() {
      onSelectedRowsChange(rows: any[]) {
       this.selectedRows = rows;
     }
-  
+
     onPageNumberChange(pageNumber: number) {
     this.currentPageNumber$.next(pageNumber);
-   
+
   }
   onPageSizeChange(event) {
     const pageSize = Number(event.target.value);
-   
+
     this.pageSize$.next(pageSize);
-  
+
     const totalItems = this.dataSource$.value.length; // use the length of the updated dataSource$ BehaviorSubject
     this.pages$ = of(this.calculateTotalPages(totalItems, this.pageSize$.value));
     this.currentPageNumber$.next(1);
-   
+
   }
 
 // Make the component more reusable:
@@ -105,6 +110,6 @@ getData() {
 // to make it more mobile-friendly.
 
 
- 
+
 
 }

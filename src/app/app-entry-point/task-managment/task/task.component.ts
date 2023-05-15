@@ -6,6 +6,9 @@ import {mockDataTableTaskData} from "../request.task.data";
 import {DataTableGenericInput} from "../../../../shared/generic/models/dataTable.model";
 import {BigNumberService} from "../../../../shared/services/big-number.service";
 import {ResourcesAllotedComponent} from "../resources-alloted/resources-alloted.component";
+import {BehaviorSubject} from "rxjs";
+import {environment} from "../../../../environments/environment";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 
 
@@ -22,14 +25,17 @@ export class TaskComponent implements OnInit {
   @Input() dataSource?:any ;
 
   @Input() selectedRows?: any[];
-  constructor(public dialog: MatDialog , private router : Router) { }
 
+    tasks : Task
+  idRequest! : string;
+
+  constructor(public dialog: MatDialog , private router : Router , private http : HttpClient) { }
   ngOnInit(): void {
 
   }
 
   openDialogue(){
-    console.log(this.element.id)
+    this.task.endpoint.next(`${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/${this.element?.id}`)
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '500px';
 
@@ -37,7 +43,8 @@ export class TaskComponent implements OnInit {
     this.task.readData = this.element.tasksList;
 
   }
-task: DataTableGenericInput={
+
+  task:  DataTableGenericInput={
     columns: [
       {
         columnDef: 'Task',
@@ -58,7 +65,7 @@ task: DataTableGenericInput={
         columnDef: 'Estimated Time',
         header: 'Estimated Time',
         cel: (element: any) =>{
-          const nbhours = BigNumberService.transform(element.nbHours);
+          const nbhours = BigNumberService.transform(element.estimatedTime);
           return nbhours;
         }
 
@@ -92,15 +99,29 @@ task: DataTableGenericInput={
     ],
     columnDefs:['Task', 'Category', 'Skills','Estimated Time','StartDate','EndDate','Resources'],
 
-    width: "700px",
-
-
-    tableFor:"Tasks",
+    width: "100%",
+    params:1 ,
+    endpoint:new BehaviorSubject<string>(`${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/${this.element?.id}`),
+    tableFor:"services",
     pageSize:3,
     pageIndex:1,
     length:100,
     showRenderButton:false,
-    paddingRightRange:"60rem",
-    readData:[{}]
+    updateEndpoint:`${environment.baseUrl}/service-bundle`,
+    marginRightValue:"46rem",
+    allowedSortColumns: ['skills'],
+    primaryColorTh:"#667280",
+    fontFamilyTh:"Inter",
+    fontStyleTh:"normal",
+    fontWeightTh:"500",
+    fontSizeTh:"12px",
+    lineHeightTh:" 15px",
+    zIndexTh:"1",
+    primaryColorTd:"#001E50",
+    backgroundTdColor:"white",
+    headerHeight:"40px",
+    sortDirection: 'desc'  ,
+    trPaddingLeft:'10'
   };
+
 }
