@@ -5,15 +5,17 @@
       <input type="text" placeholder="Search" name="search" formControlName="searchTerm">
   </form>
  
-  <button (click)="openDialogue()" class="service-request" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'" mat-button>Upload Template</button>
+  <button (click)="openDialogue()" class="service-request" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'" mat-button>Add Request</button>
   </div>
   <app-generic-table [data]="mockDataTableGenericData"></app-generic-table>
  
 
-<ng-template #dialogTemplate let-dialogRef="dialogRef">
-    <h2 mat-dialog-title>Add New Request</h2>
-    <mat-dialog-content>
-    <div class="container">
+<ng-template #dialogTemplate let-dialogRef="dialogRef" >
+   
+    <mat-dialog-content >
+      
+    <div class="container" *ngIf="!submited"  >
+       <h2 mat-dialog-title>Add New Request</h2>
   <form [formGroup]="addRequestForm" (ngSubmit)="onSubmit()">
     <label>
       Name:
@@ -53,15 +55,22 @@
     </label>
 
  
-
-    <button type="submit" [disabled]="!addRequestForm.valid">Save</button>
-  </form>
+<div class="submit-container" *ngIf="submitting">
+  <div class="spinner"></div>
 </div>
 
+<button type="submit" class="service-request" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'" [disabled]="!addRequestForm.valid || submitting">
+  <span *ngIf="!submitting">Save</span>
+</button>
+  </form>
+</div>
+  
+    <div *ngIf="submited" class="success-message">
+  <h2>Success!</h2>
+  <p>Your request has been submitted.</p>
+</div>
     
     </mat-dialog-content>
-    <mat-dialog-actions>
-      <button mat-button (click)="dialogRef.close()">Close</button>
-    </mat-dialog-actions>
+  
   </ng-template>
   

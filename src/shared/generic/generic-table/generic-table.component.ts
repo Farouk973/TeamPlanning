@@ -19,7 +19,7 @@ export class GenericTableComponent implements OnInit {
   totalItems:number=100;
   isRotated = false;
   totalPages$:BehaviorSubject<number> = new BehaviorSubject(20);
-  itemsPerPage:any= [5, 10, 25, 50];
+  itemsPerPage:any= [5, 12, 25, 50];
   pages$ = new Observable<any>();
   sortColumn: string = '';
   sortDirection: 'asc' | 'desc' = 'asc';
@@ -44,7 +44,7 @@ sortData(column: string) {
     const startIndex = (pageNumber - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     
-    return data.slice(startIndex, endIndex);
+    return data?.slice(startIndex, endIndex);
   })
 );
 

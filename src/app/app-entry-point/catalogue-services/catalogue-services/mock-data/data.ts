@@ -4,7 +4,8 @@ import { CustomCellComponent } from "src/shared/generic/data-table-server-side/d
 import { CardData } from "src/shared/generic/list-card/Models/cardModel";
 import { Injector } from '@angular/core';
 import { DataTableGenericInput } from "src/shared/generic/models/dataTable.model";
-
+import { EditDeleteCatalogueComponent} from "../edit-delete-catalogue/edit-delete-catalogue.component";
+import { ActionCatalogueComponent} from "../action-catalogue/action-catalogue.component";
 
 export const mockCardData: CardData={
     endpoint: new BehaviorSubject<string>("https://localhost:5001/api/service"),
@@ -12,8 +13,8 @@ export const mockCardData: CardData={
     deleteEndpoint: "https://localhost:5001/api/service",
     primaryColor: '#00b2d91a',
     labelColor: '#00B2D9',
-    minHeight:"130px",
-    maxHeight:"130px",
+    minHeight:"160px",
+    maxHeight:"160px",
     bodyTitleName: "bodyTitle",
     textbodyName:"textbody",
     primaryLabelName:"category",
@@ -24,7 +25,9 @@ export const mockCardData: CardData={
     showCardActions: false,
     showFooter: false,
     showIconAction: false,
-    editing: false
+    editing: false,
+    componentAction : EditDeleteCatalogueComponent ,
+    componentContent: ActionCatalogueComponent
   
   };
 

@@ -66,6 +66,48 @@ display: flex;
   width: 100%;
   margin-bottom: 10px;
 }
+.spinner {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #00B2D9;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.success-message {
+
+  padding: 30px;
+  background-color: #667280;
+  color: white;
+  
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.success-message h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.success-message p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
 
 .container input[type="text"],
 select,
