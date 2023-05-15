@@ -1,0 +1,27 @@
+
+    <div class="container">
+        <div class="header">
+       
+        </div>
+         
+          <div class="cont-info" > 
+          
+          <h1 class="title">Skills Management</h1>
+          <button
+          
+            class="mat-raised-button" >
+            
+            Skills</button>
+            <button
+          
+            class="mat-raised-button" >
+            
+            categories</button>
+            
+          <span class="example-spacer"></span>
+        </div>
+        <div *ngIf="Endpoints | async">
+            <app-domain-chips-gc [Endpoints]="Endpoints"></app-domain-chips-gc>
+            </div>
+      
+    

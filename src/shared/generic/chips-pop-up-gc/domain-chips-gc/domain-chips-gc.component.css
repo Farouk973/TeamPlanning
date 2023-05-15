@@ -17,7 +17,6 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    border-bottom: 1px solid #ccc;
   }
   
   .container {
@@ -84,6 +83,8 @@
     align-items: center;
     height: 40px;
     background: #f8f8f8;
+    justify-content: space-between;
+    padding-right: 10px;
   }
   
   .mat-tree-node button {
@@ -92,9 +93,7 @@
     cursor: pointer;
     font-weight: bold;
     color: #000;
-    padding-left: 0;
   }
-  
   .mat-tree-node button:focus {
     outline: #2196F3;
   }
@@ -102,14 +101,43 @@
   .mat-tree-node button:hover {
     color: #2196F3;
   }
-  
-  .mat-icon__toggle {
-    margin-right: 5px;
-    
+  .mat-tree-node mat-icon:hover {
+    color: #2196F3;
+  }
+  .add-big-category mat-icon:hover {
+    color: #2196F3;
   }
   .mat-tree-node {
     cursor: pointer;
   }
+  .add-big-category {
+    display: flex;
+    align-items: center;
+  border-radius: 4px;
+  }
+  .add-big-category button {
+    border: none;
+    background-color: #f8f8f8;
+    cursor: pointer;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .add-big-category input {
+    border: none;
+    outline: none;
+    background-color: #f8f8f8;
+    flex-grow: 1;
+    font-size: 16px;
+    padding: 4px;
+  }
+  
+  .add-big-category input::placeholder {
+    color: #aaa;
+  }
+  
+ 
+  
   @media only screen and (max-width: 1024px) {
     .container {
       flex-direction: column;
@@ -128,6 +156,7 @@
       margin-top: 20px;
     }
   }
+  
   
   @media only screen and (max-width: 767px) {
     .header {
