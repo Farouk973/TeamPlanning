@@ -61,28 +61,7 @@ retrieveData(): void {
  onAction(){
 
  }
-onEdit(cardId: string) {
 
-   
-  
-}
-saveCard(cardId: string) {
-  const cardIndex = this.cardDataList.findIndex(card => card.id === cardId);
-
-  if (cardIndex >= 0) {
-    this.cardDataList[cardIndex].editing = true;
-    this.editingCardIndex = cardIndex;
-
-    const { id, bodyTitleName, textbodyName, primaryLabelName } = this.cardDataList[cardIndex];
-    const editingCard = { id, [bodyTitleName]: this.cardDataList[cardIndex][bodyTitleName], [textbodyName]: this.cardDataList[cardIndex][textbodyName], [primaryLabelName]: this.cardDataList[cardIndex][primaryLabelName] };
-    
-    this.editingCard = editingCard;
-  
-    
-  }
-  this.saveToServer();
-
-}
 trackByCardId(index: number, card: CardData): string {
   return card.id;
 }
@@ -98,34 +77,7 @@ private saveToServer(){
     }
   );
 }
-onPrev(): void {
-  if (this.params > 1) {
-    this.params--;
-    this.retrieveData();
-  }
-}
 
-onNext(): void {
-  if (this.cardDataList.length > 0) {
-    this.params++;
-    this.retrieveData();
-  }
-}
 
- onDelete(cardId: string) {
-  
-  const cardIndex = this.cardDataList.findIndex(card => card.id === cardId);
-  if (cardIndex >= 0) {
-    // Make API call to delete the card from the server
-    this.listCardService.deleteCard(this.data.deleteEndpoint, cardId)
-      .subscribe(response => {
-        // If the delete was successful, remove the card from the list
-        this.cardDataList.splice(cardIndex, 1);
-      }, error => {
-        // If there was an error, log it and do not remove the card from the list
-        console.error('Error deleting card:', error);
-      });
-  }
-}
 
 }

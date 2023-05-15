@@ -1,0 +1,56 @@
+        <button mat-icon-button [matMenuTriggerFor]="appMenu">
+              <mat-icon>more_vert</mat-icon>
+           </button>
+          <mat-menu #appMenu="matMenu">
+              <button mat-menu-item (click)="openDialogue()">Edit</button>
+             <button mat-menu-item (click)="onDelete(element.id)">Delete</button>
+            </mat-menu>
+          
+<ng-template #dialogTemplate let-dialogRef="dialogRef">
+    <h2 mat-dialog-title>Edit Requests</h2>
+    <mat-dialog-content>
+<div class="container" *ngIf="!submited">
+  <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+    <label>
+      Category:
+      <input type="text" formControlName="category">
+    </label>
+
+    <label>
+      Description:
+      <textarea formControlName="textbody" rows="5" cols="50"></textarea>
+    </label>
+
+  <label>
+  Title:
+   <input type="text" placeholder="Title" formControlName="bodyTitle" >
+
+</label>
+
+   
+    <label>
+      Number Of Hours:
+      <input type="text" formControlName="nbhours">
+    </label>
+
+    <label>
+      Number Of Resources:
+      <input type="text" formControlName="nbresources">
+    </label>
+
+ 
+<div class="submit-container" *ngIf="submitting">
+  <div class="spinner"></div>
+</div>
+    <button type="submit" [disabled]="!requestForm.valid " class="service-request" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'">  <span *ngIf="!submitting">Save</span></button>
+  </form>
+</div>
+
+ <div *ngIf="submited" class="success-message">
+  <h2>Success!</h2>
+  <p>Your request has been submitted.</p>
+</div>
+    
+    </mat-dialog-content>
+
+  </ng-template>

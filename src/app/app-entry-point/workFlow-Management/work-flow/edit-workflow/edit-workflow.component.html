@@ -4,13 +4,13 @@
             </button>
             <mat-menu #appMenu="matMenu">
               <button mat-menu-item (click)="openDialogue()">Edit</button>
-              <button mat-menu-item (click)="openDialogue()">Delete</button>
+              <button mat-menu-item (click)="onDelete()">Delete</button>
             </mat-menu>
           </div>
 <ng-template #dialogTemplate let-dialogRef="dialogRef">
     <h2 mat-dialog-title>Edit Requests</h2>
     <mat-dialog-content>
-<div class="container">
+<div class="container" *ngIf="!submited">
   <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
     <label>
       Name:
@@ -50,15 +50,146 @@
     </label>
 
  
-
-    <button type="submit" [disabled]="!requestForm.valid">Save</button>
+<div class="submit-container" *ngIf="submitting">
+  <div class="spinner"></div>
+</div>
+    <button type="submit" [disabled]="!requestForm.valid " class="service-request" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'">  <span *ngIf="!submitting">Save</span></button>
   </form>
 </div>
 
-
+ <div *ngIf="submited" class="success-message">
+  <h2>Success!</h2>
+  <p>Your request has been submitted.</p>
+</div>
     
     </mat-dialog-content>
-    <mat-dialog-actions>
-      <button mat-button (click)="dialogRef.close()">Close</button>
-    </mat-dialog-actions>
+
+  </ng-template>
+  <ng-template #dialogTemplate let-dialogRef="dialogRef">
+    <h2 mat-dialog-title>Edit Requests</h2>
+    <mat-dialog-content>
+<div class="container" *ngIf="!submited">
+  <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+    <label>
+      Name:
+      <input type="text" formControlName="Name">
+    </label>
+
+    <label>
+      Description:
+      <input type="text" formControlName="description">
+    </label>
+
+  <label>
+  Skills:
+   <input type="text" placeholder="Type skill and select from the list" [matAutocomplete]="auto"  [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true" matSuffix>
+ <mat-chip-list #chipList formControlName="skills">
+        
+       
+        <mat-chip *ngFor="let skill of selectedSkills" [selectable]="true" [removable]="true" (removed)="removeSkill(skill)">
+          {{skill}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectSkill($event)">
+        <mat-option *ngFor="let skill of skillSuggestions" [value]="skill.name">{{skill.name}}</mat-option>
+      </mat-autocomplete>
+</label>
+
+   
+    <label>
+      Start Date:
+      <input type="date" formControlName="startDate">
+    </label>
+
+    <label>
+      End Date:
+      <input type="date" formControlName="endDate">
+    </label>
+
+ 
+<div class="submit-container" *ngIf="submitting">
+  <div class="spinner"></div>
+</div>
+    <button type="submit" [disabled]="!requestForm.valid " class="service-request" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'">  <span *ngIf="!submitting">Save</span></button>
+  </form>
+</div>
+
+ <div *ngIf="submited" class="success-message">
+  <h2>Success!</h2>
+  <p>Your request has been submitted.</p>
+</div>
+    
+    </mat-dialog-content>
+
+  </ng-template>
+  <ng-template #dialogTemplate let-dialogRef="dialogRef">
+    <h2 mat-dialog-title>Edit Requests</h2>
+    <mat-dialog-content>
+<div class="container" *ngIf="!submited">
+  <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+    <label>
+      Name:
+      <input type="text" formControlName="Name">
+    </label>
+
+    <label>
+      Description:
+      <input type="text" formControlName="description">
+    </label>
+
+  <label>
+  Skills:
+   <input type="text" placeholder="Type skill and select from the list" [matAutocomplete]="auto"  [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true" matSuffix>
+ <mat-chip-list #chipList formControlName="skills">
+        
+       
+        <mat-chip *ngFor="let skill of selectedSkills" [selectable]="true" [removable]="true" (removed)="removeSkill(skill)">
+          {{skill}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selectSkill($event)">
+        <mat-option *ngFor="let skill of skillSuggestions" [value]="skill.name">{{skill.name}}</mat-option>
+      </mat-autocomplete>
+</label>
+
+   
+    <label>
+      Start Date:
+      <input type="date" formControlName="startDate">
+    </label>
+
+    <label>
+      End Date:
+      <input type="date" formControlName="endDate">
+    </label>
+
+ 
+<div class="submit-container" *ngIf="submitting">
+  <div class="spinner"></div>
+</div>
+    <button type="submit" [disabled]="!requestForm.valid " class="service-request" [style.backgroundColor]="'#00b2d91a'" [style.Color]="'#00B2D9'">  <span *ngIf="!submitting">Save</span></button>
+  </form>
+</div>
+
+ <div *ngIf="submited" class="success-message">
+  <h2>Success!</h2>
+  <p>Your request has been submitted.</p>
+</div>
+    
+    </mat-dialog-content>
+
+  </ng-template>
+  <ng-template #dialogTemplateDelete let-dialogRef="dialogRef" *ngIf="Deleted">
+   
+    <mat-dialog-content>
+
+ <div *ngIf="submited" class="success-message">
+  <h2>Success!</h2>
+  <p>Your request has been Deleted.</p>
+</div>
+    
+    </mat-dialog-content>
+
   </ng-template>

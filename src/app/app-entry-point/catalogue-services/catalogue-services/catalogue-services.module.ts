@@ -13,6 +13,8 @@ import { SearchBarModule } from "../../../../shared/generic/search-bar/search-ba
 import { ListCardModule } from 'src/shared/generic/list-card/list-card.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DataTableGenericModule } from "src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.module";
+import { EditDeleteCatalogueComponent } from './edit-delete-catalogue/edit-delete-catalogue.component';
+import { ActionCatalogueComponent } from './action-catalogue/action-catalogue.component';
 
 
 
@@ -20,7 +22,7 @@ import { DataTableGenericModule } from "src/shared/generic/data-table-server-sid
 
 
 @NgModule({
-    declarations: [CatalogueServicesComponent],
+    declarations: [CatalogueServicesComponent, EditDeleteCatalogueComponent, ActionCatalogueComponent],
     imports: [
         CommonModule,
         CatalogueServicesRoutingModule,
