@@ -31,3 +31,7 @@ mat-dialog-content {
 p{
   color: #E9EBF0;
 }
+
+span{
+  font-size: large;
+}
