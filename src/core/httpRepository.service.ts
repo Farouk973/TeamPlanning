@@ -36,4 +36,7 @@ export class HttpRepositoryService {
   patch<T>(url: string, data: T): Observable<T> {
     return this.http.patch<T>(`${this.baseUrl}/${url}`, data, this.httpOptions);
   }
+  options(url: string): Observable<any> {
+    return this.http.options(`${this.baseUrl}/${url}`, this.httpOptions);
+  }
 }

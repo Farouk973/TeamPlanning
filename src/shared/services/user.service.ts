@@ -21,5 +21,11 @@ export class UserService {
     return this.httpRepositoryService.get<any>(`${this.BASE_URI}/getUsersBySkillLevel/${skillLevel}`);
   }
 
+  assignTaskToUser(idUser: string , idTask: string) {
+    return this.httpRepositoryService.options(`${this.BASE_URI}/assignTaskToUser/${idUser}/${idTask}`);
+  }
 
+  unAssignTaskFromUser(idUser: string , idTask: string) {
+    return this.httpRepositoryService.options(`${this.BASE_URI}/unAssignTaskFromUser/${idUser}/${idTask}`);
+  }
 }

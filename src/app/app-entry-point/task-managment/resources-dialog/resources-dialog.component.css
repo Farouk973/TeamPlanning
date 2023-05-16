@@ -79,3 +79,14 @@ mat-card {
   background-color: #00b2d9; /* Couleur de la barre verticale */
   margin-right: 10px; /* Espace entre la barre et le contenu suivant */
 }
+.my-button-container {
+  position: absolute;
+  top: 7px;
+  right: 0;
+}
+.my-button{
+  color: #cbc7c7;
+}
+.my-button:hover {
+  color: #27D8FF;
+}
