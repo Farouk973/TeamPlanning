@@ -13,6 +13,7 @@ import { ResourcesDialogComponent } from './resources-dialog/resources-dialog.co
 import {MatTableModule} from "@angular/material/table";
 import {MatCardModule} from "@angular/material/card";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 
@@ -33,6 +34,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     MatTableModule,
     MatCardModule,
     FlexLayoutModule,
+    MatSnackBarModule
 
 
   ]
