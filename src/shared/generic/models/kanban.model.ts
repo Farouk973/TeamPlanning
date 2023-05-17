@@ -6,3 +6,13 @@ export interface Kanban extends NXMGenericComponent {
   desiredEnum: string;
   updateEndpoint: string;
 }
+
+
+export interface Kanbanbord extends NXMGenericComponent {
+  endpoint : string,
+  displaycollumn : string,
+  descriptioncollumn : string,
+  endpointList?: string,
+  displayListcollumn ?: string,
+  descriptionListcollumn ?: string,
+}

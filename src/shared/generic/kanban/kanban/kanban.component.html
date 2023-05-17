@@ -1,1 +1,31 @@
-<p>kanban works!</p>
+
+<div class="board-wrapper" >
+  <div class="board" cdkDropListGroup>
+    <div
+      class="board-column"
+      *ngFor="let column of columns; let i = index"
+      cdkDropList
+      (cdkDropListDropped)="onCardDrop($event, column)"
+    >
+      <h2 class="column-heading" [ngStyle]="{ 'border-bottom-color': color[i] }">
+        <span class="dot" [ngStyle]="{ 'background-color': color[i] }"></span>
+        {{ column }}
+        <span class="number">{{ getCardsCount(column) }}</span>
+      </h2>
+      <div class="board-column-cards">
+        <div class="board-card" *ngFor="let card of cards">
+          <ng-container *ngIf="card[kanban.desiredEnum] === column"
+            ><app-cards
+              class="cdk-drag-preview"
+              [cdkDragData]="card"
+              cdkDrag
+              [item]="card['name']"
+            ></app-cards
+          ></ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- [ngStyle]="{'border-bottom-color':  getRandomColor(),'border-bottom': 'solid'}" -->
+<!-- [ngStyle]="{'background-color': getRandomColor()}" -->

@@ -1,0 +1,37 @@
+.kanban-card {
+  display: flex;
+  align-items: center;
+  /* Centre verticalement */
+  box-shadow: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  min-width: 235px;
+  min-height: 58px;
+  max-width: 235px;
+  max-height: 58px;
+  border: 1px solid #E9EBF0;
+  margin-bottom: 5%;
+  border-radius: 6px;
+  padding-left: 5%;
+
+  overflow: hidden;
+
+}
+
+.kanban-card:hover {
+  background-color: #e0e0e051;
+  /* added hover effect */
+  //border: 1px solid #ddd;
+}
+
+.itemtitle {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 800;
+  font-size: 17;
+  line-height: 18px;
+
+
+  /* dark/d/1 */
+
+  color: #323338;
+}

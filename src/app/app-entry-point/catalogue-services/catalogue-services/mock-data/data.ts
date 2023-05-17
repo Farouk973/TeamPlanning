@@ -26,8 +26,8 @@ export const mockCardData: CardData={
     showFooter: false,
     showIconAction: false,
     editing: false,
-    componentAction : EditDeleteCatalogueComponent ,
-    componentContent: ActionCatalogueComponent
+ //   componentAction : EditDeleteCatalogueComponent ,
+ //   componentContent: ActionCatalogueComponent
   
   };
 

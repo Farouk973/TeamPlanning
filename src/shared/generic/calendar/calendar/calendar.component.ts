@@ -1,30 +1,150 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { CalendarOptions } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import { Calendar } from '../../models/Calendar.model';
+import { CalanderService } from '../calander.service';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
-export class CalendarComponent {
-  events: CalendarEvent[] = [
-    { title: 'Event 1', date: new Date('2023-03-01') },
-    { title: 'Event 2', date: new Date('2023-03-05') },
-    { title: 'Event 3', date: new Date('2023-03-10') }
-  ];
+export class CalendarComponent implements OnInit {
+  cal : CalendarOptions ;
+  @Input() calendar! : Calendar  ;
+  @Output() date!: any ;
 
-  selectedDate: Date;
+  events: any[] = [];
+  constructor(private http : HttpClient , private calanderService : CalanderService) {
+ }
+ ngOnInit(): void {
+  this.CalendarEvents(
+    this.calendar.startDateCollumn,
+    this.calendar.displaycollumn,
+    this.calendar.endpoint,
+    this.calendar.endDateCollumn,
+    this.calendar.eventColors,
+    this.calendar.editable
+    )
 
-  addEvent(): void {
-    this.events.push({ title: 'New Event', date: this.selectedDate });
-    this.selectedDate = null;
-  }
+    }
 
-  dateClass(date: Date): string {
-    const event = this.events.find(e => e.date.toDateString() === date.toDateString());
-    return event ? 'has-events' : '';
+
+  calendarOptions: CalendarOptions = {
+    navLinks: true,
+
+    plugins: [dayGridPlugin,interactionPlugin],
+    eventDrop: (info) => {
+
+      // This function is called when an event is dropped on a new date
+      info.event.setExtendedProp(this.calendar.startDateCollumn,info.event.start);
+      info.event.setExtendedProp(this.calendar.endDateCollumn,info.event.end);
+      this.http.put<any[]>(this.calendar.endpoint,info.event.extendedProps).subscribe(resp => console.log(resp))
+      this.calanderService.lancerAction(null);
+
+
+    },
+    eventResize: (info) => {
+      this.calanderService.lancerAction(null);
+
+      info.event.setExtendedProp(this.calendar.startDateCollumn,info.event.start);
+      info.event.setExtendedProp(this.calendar.endDateCollumn,info.event.end);
+      this.http.put<any[]>(this.calendar.endpoint,info.event.extendedProps).subscribe(resp => console.log(resp))
+
+    },
+    dateClick: (info) => {
+      this.calanderService.lancerAction(info.dateStr);
+     console.log("calanda: ",info.dateStr)
+    },
+    select: function(info) {
+
+        },
+
+    headerToolbar: {
+
+      left: '',
+      center: 'prev,title,next',
+      right: '',
+
+
+    },
+    buttonIcons: {
+      next: 'c-icon cal-next-arrow',
+      prev: 'c-icon cal-prev-arrow',
+    },
+    initialView: 'dayGridMonth',
+    weekends: true,
+    dayMaxEvents: true,
+
+
+  };
+
+
+  CalendarEvents(startDate : string,fieldToDisplay:string,endpoint:string, endDate?:string,eventColors?: string,editable?: boolean) {
+    this.http.get<any[]>(endpoint).subscribe((data) => {
+      this.events = data.map((event) => (
+        {
+        extendedProps : event ,
+        title: event[fieldToDisplay],
+        start: event[startDate],
+        end: event[endDate]
+        }
+
+      ));
+      this.calendarOptions.events = this.events
+
+    });
+    if(editable){
+
+      this.calendarOptions.editable = true;
+      this.calendarOptions.eventDurationEditable = true;
+      this.calendarOptions.selectable = true;
+      this.calendarOptions.selectMirror = true;
+    }
+    else {
+      this.calendarOptions.editable = false;
+      this.calendarOptions.eventDurationEditable = false;
+      this.calendarOptions.selectable = false;
+      this.calendarOptions.selectMirror = false;
+    }
+    this.calendarOptions.eventColor = eventColors;
+    this.calendarOptions.eventBackgroundColor = eventColors;
+    this.calendarOptions.eventBorderColor = eventColors;
+    this.calendarOptions.eventTextColor = darkenColor(this.calendar.eventColors,0.2);
+    this.cal = this.calendarOptions ;
   }
 }
-export interface CalendarEvent {
-  title: string;
-  date: Date;
+
+
+function darkenColor(color, amount) {
+  let r, g, b;
+
+  // Check if the color is in hex or RGB format
+  if (color.startsWith("#")) {
+    // Parse the hex code into RGB values
+    r = parseInt(color.slice(1, 3), 16);
+    g = parseInt(color.slice(3, 5), 16);
+    b = parseInt(color.slice(5, 7), 16);
+  } else if (color.startsWith("rgb")) {
+    // Parse the RGB values from the string
+    const rgbValues = color.substring(color.indexOf('(') + 1, color.lastIndexOf(')')).split(', ');
+    r = parseInt(rgbValues[0]);
+    g = parseInt(rgbValues[1]);
+    b = parseInt(rgbValues[2]);
+  } else {
+    // Invalid color format
+    return color;
+  }
+
+  // Darken the color by the specified amount
+  r = Math.round(r * (50 - amount));
+  g = Math.round(g * (1 - amount));
+  b = Math.round(b * (1 - amount));
+
+  // Convert the RGB values back to hex format
+  const hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+
+  return hex;
 }

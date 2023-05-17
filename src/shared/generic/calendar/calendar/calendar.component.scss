@@ -1,0 +1,254 @@
+.c-icon{
+  mask-repeat:no-repeat;
+  mask-position:center;
+}
+.cal-next-arrow {
+  width: 24px;
+  height: 24px;
+  background: #292d32;
+  mask-image: url("../../../../assets/icons/cal-next-arrow.svg");
+}
+.cal-prev-arrow {
+  width: 24px;
+  height: 24px;
+  background: #292d32;
+  mask-image: url("../../../../assets/icons/cal-prev-arrow.svg");
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+  
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(76, 182, 205, 0.5);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00b2d9;
+  }
+  .calendar-container {
+    height: 85vh;
+    padding-top: 10px;
+    width: 100%;
+    min-width: 110vh;
+  
+    ::ng-deep .fc-scrollgrid {
+      border: transparent !important;
+    }
+  ::ng-deep .fc-event-main {
+    height: 3vh;
+    display: flex;
+  align-items: center;
+  //justify-content: center;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
+  
+  }
+  ::ng-deep  .fc-daygrid-day {
+    border-right: none;
+    border-left: none;
+    border-bottom:1px solid rgba(0, 0, 0, 0.2);
+    height: 11vh;
+  }
+  ::ng-deep .fc-event-main i {
+    justify-content: center;
+  }
+    ::ng-deep .fc-toolbar-chunk div {
+      display: flex;
+      align-items: center;
+    }
+    ::ng-deep .fc-toolbar-chunk div button {
+      background: transparent;
+      border: none;
+    }
+    ::ng-deep .fc-toolbar-chunk div button:active {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+    ::ng-deep .fc-toolbar-chunk div button:focus {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+    ::ng-deep .fc-toolbar-chunk div h2 {
+      padding-top: 5px;
+      text-align: center;
+      font-family: Inter;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 20px;
+      letter-spacing: 0px;
+      text-align: left;
+      color: #323338;
+    }
+    ::ng-deep .fc-col-header .fc-col-header-cell {
+      height: 40px;
+      background: rgba(19, 19, 19, 0.05);
+      text-align: start;
+      vertical-align: middle;
+      border-right: 4px solid #fff;
+    }
+    ::ng-deep .fc-col-header .fc-col-header-cell div {
+      text-align: start;
+      padding-left: 10%;
+      text-transform: uppercase;
+    }
+    ::ng-deep .fc-day-today {
+      background: transparent;
+      border-bottom: 2px solid #000000 !important;
+      a {
+        font-family: Inter;
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 20px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #000000;
+      }
+    }
+  }
+  .day-title-container {
+    height: 55px;
+    min-width: 100px;
+    margin-top: 24px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+  
+    .day-label {
+      font-family: Poppins;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 20px;
+      letter-spacing: 0px;
+      text-align: left;
+      color: #323338;
+  
+    }
+    .day-value {
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      letter-spacing: 0px;
+      text-align: left;
+      color: #32333899;
+  
+    }
+  }
+  
+  .request-container {
+    width: 100%;
+  }
+  .request-panel {
+    border-bottom: none !important;
+    width: 100%;
+    ::ng-deep .mat-expansion-panel-content {
+      background: #edf5f966;
+      border-radius: 10px;
+    }
+    .request-header {
+      height: 70px !important;
+      padding: 0px !important;
+      border: none !important;
+      ::ng-deep .mat-content {
+        display: block !important;
+      }
+      .request-name-value {
+        font-family: Poppins;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 32px;
+        letter-spacing: 0px;
+        text-align: left;
+        color: #000000;
+  
+      }
+      .request-status-container span:first-child {
+        font-family: Poppins;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 32px;
+        letter-spacing: 0px;
+        text-align: left;
+        color: #000000;
+      }
+      .request-status-container span:last-child {
+        font-family: Poppins;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 32px;
+        letter-spacing: 0px;
+        text-align: left;
+        color: #000000;
+      }
+    }
+    .request-name {
+      font-family: Poppins;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 21px;
+      letter-spacing: 0px;
+      text-align: left;
+      color: #001e50;
+    }
+    .request-description {
+      font-family: Inter;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 19px;
+      letter-spacing: 0px;
+      text-align: justified;
+      color: #001e50;
+    }
+    .request-skills-label {
+      font-family: Poppins;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0px;
+      text-align: left;
+      color: #001e50;
+    }
+    .request-skills-value {
+      font-family: Inter;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 15px;
+      letter-spacing: 0px;
+      text-align: left;
+      color: #001e50;
+    }
+    .request-date-key {
+      font-family: Poppins;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 30px;
+      letter-spacing: 0px;
+      text-align: left;
+      color: #001e50;
+    }
+    .request-date-value {
+      font-family: Inter;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 15px;
+      letter-spacing: 0px;
+      text-align: left;
+      color: #001e50;
+    }
+    .tasks-btn {
+      justify-content: center;
+      align-items: center;
+      width: max-content;
+      height: 37px;
+      background: #00b2d9;
+      border-radius: 12px;
+    }
+  }
+  
