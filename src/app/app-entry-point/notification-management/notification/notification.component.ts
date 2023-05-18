@@ -3,6 +3,8 @@ import {Observable} from "rxjs";
 import {NotificationService} from "../../../../shared/services/notification.service";
 import {NgForm} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
+import {OidcSecurityService} from "angular-auth-oidc-client";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-notification',
@@ -15,7 +17,8 @@ export class NotificationComponent implements OnInit {
   notifications : string;
 
   users:any [];
-  constructor(private notificationService : NotificationService , private http : HttpClient) { }
+  userId: string;
+  constructor(private notificationService : NotificationService ,public oidcSecurityService: OidcSecurityService) { }
 
   ngOnInit(): void {
 
@@ -23,12 +26,18 @@ export class NotificationComponent implements OnInit {
    // this.notifications.push(notification)
     this.notifications = notification
     })
+    this.oidcSecurityService.checkAuth()
+      .subscribe(({userData,  }) => {
+        this.userId = userData.sub;
+        console.log(this.userId)
+
+      });
 
   }
 
   On( i : string) {
    // const { notification} = this.form.value;
     console.log('hhhh', i)
-    this.notificationService.sendNotification(i)
+    this.notificationService.sendNotification(i , this.userId)
   }
 }

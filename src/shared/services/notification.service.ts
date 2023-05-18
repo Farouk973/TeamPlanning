@@ -10,8 +10,8 @@ export class NotificationService {
 
   constructor(private socket : Socket) {}
 
-  sendNotification(notification: string): void {
-    this.socket.emit('sendNotification',notification);
+  sendNotification(notification: string , userId: string): void {
+    this.socket.emit('sendNotification',{ notification, userId });
   }
   getNewNotification(): Observable<string> {
     return this.socket.fromEvent<string>('newNotification');
