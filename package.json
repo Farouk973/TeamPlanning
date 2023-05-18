@@ -31,6 +31,7 @@
     "ng-dynamic-component": "^10.7.0",
     "ngx-cookie-service": "^14.0.0",
     "ngx-highlightjs": "^4.1.4",
+    "ngx-socket-io": "^4.3.0",
     "ngx-ui-loader": "^13.0.0",
     "primeflex": "^3.3.0",
     "rxjs": "~7.5.0",
