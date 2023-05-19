@@ -24,7 +24,7 @@ export class TaskCalanderComponent implements OnInit {
 
   ngOnInit(): void {
     this.calendar.endpoint = `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/`+this.id
-
+    this.calendarDetails.endpoint = `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/`+this.id
   }
 
   calendar: Calendar = {
