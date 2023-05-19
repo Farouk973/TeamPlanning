@@ -8,6 +8,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { SkillRatingDialogComponent } from '../skill-rating-dialog/skill-rating-dialog.component';
+import { AddsubdomaindialogComponent } from '../addsubdomaindialog/addsubdomaindialog.component';
+import { environment } from 'src/environments/environment';
+import { Actionpanel } from '../../models/ActionPanel.model';
+import { ConfirmationComponent } from '../../nxm-dialog/confirmation/confirmation.component';
 
 
 interface ExampleFlatNode {
@@ -25,6 +29,7 @@ export class DomainChipsGCComponent implements OnInit {
   
 
   constructor(private dialog: MatDialog, private servicechipsservice: servicechipsservice, private http: HttpClient, private snackBar: MatSnackBar, private cdr: ChangeDetectorRef) { }
+  editmode:boolean
   apiResponse = {};
   transformedResponse={};
   treedata: bigdomain[] = [];
@@ -43,6 +48,7 @@ export class DomainChipsGCComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     //map keys from the endpoints and metdata
     await this.subscribeToEndpoints();
+    console.log(this.editmode)
     const response = await this.http.get<Metadata[]>(this.metadatastring).toPromise();
     const metadata = response['Metadata'];
     for (const metadataItem of metadata) {
@@ -76,7 +82,7 @@ export class DomainChipsGCComponent implements OnInit {
             .map((d) => ({ name: d.name, value: d.value,id:d.id }));
           return { id: sd.id, bigdomain_id: sd.bigdomain_id, name: sd.name, domain: domains };
         });
-      this.treedata.push({ name: bd.name, subdomain: subdomains });
+      this.treedata.push({id: bd.id ,name: bd.name, subdomain: subdomains });
     });
     //console.log(this.treedata);
     this.dataSource.data = this.treedata;
@@ -96,6 +102,7 @@ export class DomainChipsGCComponent implements OnInit {
         this.metadatastring = enpointData.Metadata;
         this.endpointsavedomain=enpointData.endpointsavedomain;
         this.mappingsaveendpoint=enpointData.mappingsaveendpoint;
+        this.editmode=enpointData.editmode;
         resolve();
       }, (error: any) => {
         reject(error);
@@ -105,8 +112,9 @@ export class DomainChipsGCComponent implements OnInit {
   }
   private _transformer = (node: bigdomain, level: number) => {
     return {
-      expandable: !!node.subdomain && node.subdomain.length > 0,
+      expandable: !!node.subdomain ,
       name: node.name,
+      id:node.id,
       level: level,
     };
   };
@@ -246,6 +254,97 @@ export class DomainChipsGCComponent implements OnInit {
     const chipList = this.chipListalreadyadded.getValue(); // get the current value of the BehaviorSubject
     return chipList.some(chip => chip.name === chipName); // check if the chipName is in the array of disabled chips
   }
+  //////////////////////////////////////////////////////////edit mode functions/////////////////////////////////
+ addsubdomainDialog(node :any): void {
+    const dialogRef = this.dialog.open(AddsubdomaindialogComponent, {
+      data:node,
+      minHeight:300,
+      minWidth:300
+    });
+  
+    // Add any logic to handle dialog events or data here
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle the dialog result
+      console.log('Dialog result:', result);
+    });
+  }
+  newBigCategoryName: string = '';
+  showInput: boolean = false;
+  toggleInput() {
+    this.showInput = !this.showInput;
+    if (!this.showInput) {
+      this.newBigCategoryName = ''; 
+    }
+  }
+  onAddBigCategory() {
+    if (this.newBigCategoryName.trim() !== '') {
+      const apiUrl = `${environment.baseUrl}/api/Skills/add-bigcategory`;
+  const data = { name: this.newBigCategoryName };
+  this.http.post(apiUrl, data).subscribe(
+    response => {
+      console.log(response);
+      window.location.reload();
+    })
+      this.newBigCategoryName = '';
+      this.showInput = false;
+    }
+  }
+  actionbigcategory: Actionpanel = {
+    endpoint: `${environment.baseUrl}/api/Bigcategories`,
+    formEditData: `${environment.baseUrl}/meta/UpdateBigcategoryCommand`,
+    title : "Bigcategory"
+  };
+  actioncategory: Actionpanel = {
+    endpoint: `${environment.baseUrl}/api/categories`,
+    formEditData: `${environment.baseUrl}/meta/UpdateCategoryCommand`,
+    title : "Category"
+  };
+  onDeleteItem(itemId: string) {
+    const apiUrl = `${environment.baseUrl}/api/Bigcategories`;
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      width: '300px',
+      height: '220px',
+      data: { message: 'Are you sure you want to delete this item?' },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.http.delete(apiUrl+ '/' + itemId).subscribe((resp) => {
+          window.location.reload();
+        });
+      }
+    });
+  }
+  onDeleteItem1(itemId: string) {
+    const apiUrl = `${environment.baseUrl}/api/Categories`;
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      width: '300px',
+      height: '220px',
+      data: { message: 'Are you sure you want to delete this item?' },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.http.delete(apiUrl+ '/' + itemId).subscribe((resp) => {
+          window.location.reload();
+        });
+      }
+    });
+  }
+  onDeleteDomain(itemId: string) {
+    const apiUrl = `${environment.baseUrl}/api/skills`;
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      width: '300px',
+      height: '220px',
+      data: { message: 'Are you sure you want to delete this item?' },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.http.delete(apiUrl+ '/' + itemId).subscribe((resp) => {
+          window.location.reload();
+        });
+      }
+    });
+  }
+  
  
 
 }

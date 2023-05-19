@@ -12,7 +12,7 @@ export interface Apiresponse {
     bigdomain: bigdomain[];
 }
 export interface bigdomain {
-    
+    id: number;
     name: string;
     subdomain?: subdomain[];
 }
@@ -33,5 +33,6 @@ export interface endpoints{
     endpointsavedomain:string;
     subdomainname:string;
     domainname:string;
+    editmode:boolean;
     mappingsaveendpoint:{};
 }

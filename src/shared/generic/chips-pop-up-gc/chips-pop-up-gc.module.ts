@@ -11,6 +11,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { SearchBarCGModule } from '../search-bar-cg/search-bar-cg.module';
 import {MatBadgeModule} from '@angular/material/badge';
 import { DomainChipsGCComponent } from './domain-chips-gc/domain-chips-gc.component';
+import { AddsubdomaindialogComponent } from './addsubdomaindialog/addsubdomaindialog.component';
+import { ActionPanelModule } from '../action-panel/action-panel.module';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -18,7 +21,8 @@ import { DomainChipsGCComponent } from './domain-chips-gc/domain-chips-gc.compon
 @NgModule({
   declarations: [
     SkillRatingDialogComponent,
-    DomainChipsGCComponent
+    DomainChipsGCComponent,
+    AddsubdomaindialogComponent
   ],
   imports: [
     FormsModule,
@@ -31,7 +35,9 @@ import { DomainChipsGCComponent } from './domain-chips-gc/domain-chips-gc.compon
     MatInputModule,
     MatAutocompleteModule,
     SearchBarCGModule,
-    MatBadgeModule
+    MatBadgeModule,
+    ActionPanelModule,
+    MatMenuModule
     
   ],
   exports:[
