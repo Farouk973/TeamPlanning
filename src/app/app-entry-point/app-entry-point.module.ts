@@ -64,14 +64,16 @@ import { CatalogueServicesModule } from './catalogue-services/catalogue-services
 import { UserTabManagementModule } from './user-tab-management/user-tab-management.module';
 import { WorkFlowComponent } from './workFlow-Management/work-flow/work-flow.component';
 import { DataTableGenericModule } from "src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.module";
-
+import {SocketIoConfig, SocketIoModule} from "ngx-socket-io";
+import {NotificationService} from "../../shared/services/notification.service";
+const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 
 @NgModule({
     declarations: [
         LayoutComponent,
         SideNavComponent,
         TopNavComponent,
-      
+
     ],
     imports: [
         CommonModule,
@@ -137,7 +139,12 @@ import { DataTableGenericModule } from "src/shared/generic/data-table-server-sid
         SkillsManagmentModule,
         CatalogueServicesModule,
         UserTabManagementModule,
-        DataTableGenericModule
-    ]
+        DataTableGenericModule,
+      SocketIoModule.forRoot(config)
+    ],
+  providers: [
+    NotificationService,
+
+  ],
 })
 export class AppEntryPointModule { }
