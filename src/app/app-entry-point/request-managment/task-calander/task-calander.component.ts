@@ -21,7 +21,8 @@ export class TaskCalanderComponent implements OnInit {
     displaycollumn: 'name',
     endDateCollumn: 'endDate',
     endpoint:
-    `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/64544370b173c33ba85c9522`,
+    `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/645cebb1342c595e78bbf21a`,
+    updateendpoint : `${environment.baseUrl}/api/Task`,
     startDateCollumn: 'startDate',
     eventColors: '#d5ecb4',
     editable: true,
@@ -42,7 +43,7 @@ export class TaskCalanderComponent implements OnInit {
     title : "Task list ",
     displaycollumn: 'name',
     endpoint:
-    `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/64544370b173c33ba85c9522`,
+    `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/645cebb1342c595e78bbf21a`,
       statusColum : "description",
       styleCard : 2 ,
       addForm : this.formtask,

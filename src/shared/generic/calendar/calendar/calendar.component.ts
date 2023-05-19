@@ -41,7 +41,7 @@ export class CalendarComponent implements OnInit {
       // This function is called when an event is dropped on a new date
       info.event.setExtendedProp(this.calendar.startDateCollumn,info.event.start);
       info.event.setExtendedProp(this.calendar.endDateCollumn,info.event.end);
-      this.http.put<any[]>(this.calendar.endpoint,info.event.extendedProps).subscribe(resp => console.log(resp))
+      this.http.put<any[]>(this.calendar.updateendpoint,info.event.extendedProps).subscribe(resp => console.log(resp))
       this.calanderService.lancerAction(null);
 
 
@@ -51,7 +51,7 @@ export class CalendarComponent implements OnInit {
 
       info.event.setExtendedProp(this.calendar.startDateCollumn,info.event.start);
       info.event.setExtendedProp(this.calendar.endDateCollumn,info.event.end);
-      this.http.put<any[]>(this.calendar.endpoint,info.event.extendedProps).subscribe(resp => console.log(resp))
+      this.http.put<any[]>(this.calendar.updateendpoint,info.event.extendedProps).subscribe(resp => console.log(resp))
 
     },
     dateClick: (info) => {
