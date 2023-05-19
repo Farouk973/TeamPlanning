@@ -8,13 +8,19 @@
       Naxxum
   </div>
   <span class="nav-spacer"></span>
-  <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+  <button mat-button [matMenuTriggerFor]="userMenu1">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">notifications_active</mat-icon>
+    </div>
+  </button>
   <button mat-button [matMenuTriggerFor]="userMenu">
     <div fxLayout="row" fxLayoutAlign="center center">
       <h5 class="mr-4">{{ user?.userData?.name }}</h5>
       <mat-icon>keyboard_arrow_down</mat-icon>
     </div>
   </button>
+
+
 
   <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
     <button mat-menu-item (click)="onReddirectProfile()">
@@ -25,6 +31,10 @@
       <mat-icon>exit_to_app</mat-icon>
       <span>Déconnexion</span>
     </button>
+  </mat-menu>
+
+  <mat-menu #userMenu1="matMenu" [overlapTrigger]="false">
+    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
   </mat-menu>
 
 </mat-toolbar>
