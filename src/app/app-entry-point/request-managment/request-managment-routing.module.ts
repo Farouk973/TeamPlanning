@@ -14,7 +14,7 @@ const routes: Routes = [
     component: TaskKanbanComponent,
   },
   {
-    path: 'task-calandar',
+    path: 'task-calandar/:id',
     component: TaskCalanderComponent,
   },
 

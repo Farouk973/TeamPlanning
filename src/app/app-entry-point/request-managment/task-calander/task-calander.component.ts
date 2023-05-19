@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
 import { Calendar, CalendarDetails } from 'src/shared/generic/models/Calendar.model';
@@ -11,17 +13,25 @@ import { Form } from 'src/shared/generic/models/Form.model';
   styleUrls: ['./task-calander.component.css']
 })
 export class TaskCalanderComponent implements OnInit {
+  id : string = ""
+  routeSub: Subscription;
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.routeSub = this.activatedRoute.params.subscribe((params: Params) => {
+      this.id = params['id'];
 
-  constructor() { }
+    });
+   }
 
   ngOnInit(): void {
+    this.calendar.endpoint = `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/`+this.id
+
   }
 
   calendar: Calendar = {
     displaycollumn: 'name',
     endDateCollumn: 'endDate',
     endpoint:
-    `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/645cebb1342c595e78bbf21a`,
+    `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/`+this.id,
     updateendpoint : `${environment.baseUrl}/api/Task`,
     startDateCollumn: 'startDate',
     eventColors: '#d5ecb4',
@@ -43,7 +53,7 @@ export class TaskCalanderComponent implements OnInit {
     title : "Task list ",
     displaycollumn: 'name',
     endpoint:
-    `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/645cebb1342c595e78bbf21a`,
+    `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/`+this.id,
       statusColum : "description",
       styleCard : 2 ,
       addForm : this.formtask,
