@@ -13,6 +13,7 @@ import { debounceTime, tap, switchMap, finalize, distinctUntilChanged, filter } 
 import { Form } from '../../models/Form.model';
 import { SharedServices } from '../../SharedServices.service';
 import { ColumnMetadata } from '../form.service';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -78,7 +79,7 @@ console.log("data :"  , this.formData.Options)
         this.filteredData = [];
         this.isLoading = true;
       }),
-      switchMap(value => this.http.get('https://localhost:44312/api/'+this.inputName+'/' + value)
+      switchMap(value => this.http.get(`${environment.baseUrl}`+this.inputName+'/' + value)
         .pipe(
           finalize(() => {
             this.isLoading = false

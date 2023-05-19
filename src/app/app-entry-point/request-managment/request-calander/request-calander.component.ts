@@ -20,6 +20,7 @@ export class RequestCalanderComponent implements OnInit {
     endDateCollumn: 'endDate',
     endpoint:
     `${environment.baseUrl}/api/RequestManagement?parameterValue=1`,
+    updateendpoint :`${environment.baseUrl}/api/RequestManagement`,
     startDateCollumn: 'startDate',
     eventColors: 'rgba(1, 150, 27, 0.1)',
     editable: true,

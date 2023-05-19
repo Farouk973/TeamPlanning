@@ -81,6 +81,7 @@ export class NXMContainerComponent implements OnInit {
     endDateCollumn: 'dateTime1',
     endpoint:
       'https://requestly.dev/api/mockv2/proj?rq_uid=CtzEtdGYaWOFBXtVgWIzHwrNf8h2',
+      updateendpoint: 'https://requestly.dev/api/mockv2/proj?rq_uid=CtzEtdGYaWOFBXtVgWIzHwrNf8h2',
     startDateCollumn: 'dateTime',
     eventColors: 'rgba(1, 150, 27, 0.1)',
     editable: true,

@@ -29,10 +29,16 @@
         <td class="table-data" *ngFor="let field of metadatas">
           <div *ngIf="field.type == 'array'">
             <div *ngIf="row[field.name]">
-              <span *ngFor="let aa of row[field.name]">
-               {{aa.name}},
-              </span>...
-            
+              <!-- <mat-label>{{row[field.name][0]['title']}}</mat-label> -->
+
+              <mat-select >
+                <mat-option
+                *ngFor="let aa of row[field.name]"
+
+                >
+                {{aa['title']}}
+              </mat-option>
+              </mat-select>
             </div>
            
           </div>
@@ -69,7 +75,7 @@
             }}
             
           </div>
-          <div *ngIf="field.type === null && field.format === null">
+          <!-- <div *ngIf="field.type === null && field.format === null">
             <mat-select>
               <mat-option
                 *ngFor="let key of getObjectKeys(row[field.name])"
@@ -78,6 +84,11 @@
                 {{ row[field.name][key] }}
               </mat-option>
             </mat-select>
+          </div> -->
+          <div *ngIf="field.type === null && field.format === null">
+              <p              >
+                {{ row[field.name] }}
+          </p>
           </div>
           <div *ngIf="field.type === 'string' && field.format === 'date-time'">
             {{ row[field.name] | date }}
