@@ -6,11 +6,11 @@ import { SkillsManagementComponent } from './skills-management/skills-management
 const routes: Routes = [
   {
     path: '',
-    component: SkillsComponent,
+    component: SkillsManagementComponent,
   },
   {
     path: 'skillmanagement',
-    component: SkillsManagementComponent,
+    component: SkillsComponent,
   }
 
 ];

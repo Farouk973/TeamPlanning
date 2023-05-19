@@ -135,6 +135,9 @@
   .add-big-category input::placeholder {
     color: #aaa;
   }
+  .cancel-icon{
+    cursor: pointer;
+  }
   
  
   

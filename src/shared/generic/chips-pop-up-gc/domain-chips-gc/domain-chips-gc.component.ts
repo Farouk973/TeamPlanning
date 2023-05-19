@@ -254,7 +254,7 @@ export class DomainChipsGCComponent implements OnInit {
     const chipList = this.chipListalreadyadded.getValue(); // get the current value of the BehaviorSubject
     return chipList.some(chip => chip.name === chipName); // check if the chipName is in the array of disabled chips
   }
-  //////////////////////////////////////////////////////////edit mode functions
+  //////////////////////////////////////////////////////////edit mode functions/////////////////////////////////
  addsubdomainDialog(node :any): void {
     const dialogRef = this.dialog.open(AddsubdomaindialogComponent, {
       data:node,

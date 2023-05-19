@@ -71,6 +71,12 @@ export const childRoutes = [
     loadChildren: () => import('./task-managment/task-managment.module').then(m => m.TaskManagmentModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
+  {
+    path: 'schedule',
+    loadChildren: () => import('./scheduling-management/scheduling-management.module').then(m => m.SchedulingManagementModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
+  },
+
 
   // {
   //   path: 'profile',
