@@ -14,17 +14,21 @@ import {environment} from "../../../../environments/environment";
 export class NotificationComponent implements OnInit {
   //@ViewChild('form') form: NgForm;
   newNotification$: Observable<string>;
-  notifications : string;
-
-  users:any [];
+  notification : string;
+  connectedUserId : string;
   userId: string;
+  users:any [];
+
   constructor(private notificationService : NotificationService ,public oidcSecurityService: OidcSecurityService) { }
 
   ngOnInit(): void {
 
    this.notificationService.getNewNotification().subscribe((notification : string)=>{
    // this.notifications.push(notification)
-    this.notifications = notification
+     const indice =notification.indexOf("auth0|");
+    this.notification = notification.substring(0, indice);
+    this.connectedUserId = notification.substring(indice);
+     console.log('connected',this.connectedUserId)
     })
     this.oidcSecurityService.checkAuth()
       .subscribe(({userData,  }) => {
@@ -38,6 +42,6 @@ export class NotificationComponent implements OnInit {
   On( i : string) {
    // const { notification} = this.form.value;
     console.log('hhhh', i)
-    this.notificationService.sendNotification(i , this.userId)
+    this.notificationService.sendNotification(i , 'auth0|6453d3821a82c05eefde6382')
   }
 }

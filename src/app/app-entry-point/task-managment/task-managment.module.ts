@@ -14,7 +14,9 @@ import {MatTableModule} from "@angular/material/table";
 import {MatCardModule} from "@angular/material/card";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-
+import {SocketIoConfig, SocketIoModule} from "ngx-socket-io";
+import {NotificationService} from "../../../shared/services/notification.service";
+const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 
 
 
@@ -35,9 +37,14 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatTableModule,
     MatCardModule,
     FlexLayoutModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    SocketIoModule.forRoot(config)
 
 
-  ]
+  ],
+  providers: [
+    NotificationService,
+
+  ],
 })
 export class TaskManagmentModule { }

@@ -9,5 +9,6 @@ export class User {
   email: string;
   permission!:Permission[]
   skillLevel: string;
-  tasks:string[]
+  tasks:string[];
+  userId: string;
 }
