@@ -81,6 +81,12 @@ export const childRoutes = [
     loadChildren: () => import('./notification-management/notification-management.module').then(m => m.NotificationManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
+  {
+    path: 'schedule',
+    loadChildren: () => import('./scheduling-management/scheduling-management.module').then(m => m.SchedulingManagementModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
+  },
+
 
   // {
   //   path: 'profile',

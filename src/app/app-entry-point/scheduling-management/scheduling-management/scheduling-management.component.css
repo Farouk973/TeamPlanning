@@ -1,0 +1,273 @@
+.icon-back {
+  background-color: #001E50;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.header-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #001E50;
+  margin: 0;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  padding: 20px;
+  background: #FFFFFF;
+  border-radius: 10px;
+}
+
+.title-line {
+  display: flex;
+  align-items: flex-start;
+  border-left: 4px solid #0085FF;
+  padding-left: 10px;
+}
+
+.title-group {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0px;
+}
+
+.sub-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: rgba(50, 51, 56, 0.6);
+  margin: 0px;
+}
+
+.mat-raised-button {
+  border-radius: 12px;
+  cursor: pointer;
+  height: 34px;
+  background-color: #00b2d9;
+  margin: 5px;
+  min-width: 160px;
+}
+
+p {
+  color: #E9EBF0;
+}
+
+.description {
+  padding: 10px;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: justify;
+  color: #001E50;
+}
+
+.info-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+  margin-left: 10px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #001E50;
+}
+
+.info-value {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  color: #001E50;
+}
+
+.container-wrapper h4 {
+  font-family: 'Inter';
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #323338;
+}
+
+.container-wrapper {
+  display: flex;
+}
+
+.usercontainer {
+  flex: 1;
+  max-width: 280px;
+  margin-right: 20px;
+  margin-top: 20px;
+  padding: 20px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: auto;
+  max-height: 400px;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.search-container input {
+  flex: 1;
+  height: 100%;
+  padding: 8px;
+  border: none;
+  background-color: transparent;
+  color: #333;
+  outline: none;
+}
+
+.search-container input::placeholder {
+  color: #aaa;
+}
+
+.search-container .search-icon {
+  position: absolute;
+  right: 8px;
+  font-size: 20px;
+  color: #ccc;
+  pointer-events: none;
+}
+
+.usercontainer .mat-card {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  background-color: #F7F7F7;
+  border-radius: 6px;
+  height: 30px;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 16px;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.names {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.taskcontainer {
+  flex: 1;
+  max-width: 665px;
+  padding: 20px;
+  margin-top: 20px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: auto;
+  max-height: 400px;
+}
+
+.taskcontainer .title-line {
+  border-left: 4px solid #00b2d9;
+}
+
+.taskcontainer .title {
+  font-size: 14px;
+}
+
+.taskcontainer .sub-title {
+  font-size: 12px;
+}
+
+.taskcontainer .mat-cards {
+  width: 200px;
+  min-height: 350px;
+  margin: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.taskcards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+mat-card-header {
+  padding: 16px;
+}
+
+mat-card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+mat-card-content {
+  font-size: 11px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+mat-card-content span {
+  font-weight: 600;
+font-size: 13px;
+}
+.matcard{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  background-color: #F7F7F7;
+  border-radius: 6px;
+  height: 15px;
+  
+
+}
+.name{
+  font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 20px;
+align-items: center;
+text-align: center;
+}
