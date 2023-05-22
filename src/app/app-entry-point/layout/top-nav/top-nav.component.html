@@ -11,7 +11,9 @@
   <button mat-button [matMenuTriggerFor]="userMenu1">
     <div fxLayout="row" fxLayoutAlign="center center">
       <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">notifications_active</mat-icon>
+
     </div>
+
   </button>
   <button mat-button [matMenuTriggerFor]="userMenu">
     <div fxLayout="row" fxLayoutAlign="center center">
@@ -33,8 +35,28 @@
     </button>
   </mat-menu>
 
-  <mat-menu #userMenu1="matMenu" [overlapTrigger]="false">
+  <mat-menu class="notif" #userMenu1="matMenu" [overlapTrigger]="false">
     <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
+
+
+
+
+
+
+
+
   </mat-menu>
 
 </mat-toolbar>

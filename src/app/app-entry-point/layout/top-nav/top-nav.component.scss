@@ -59,3 +59,35 @@
   .nav-brand:hover {
     color: rgb(10, 223, 223);
   }
+
+  .icon{
+    color: rgb(10, 223, 223);
+    animation: vibration 0.2s linear infinite;
+
+  }
+
+@keyframes vibration {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-2px);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  60% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+p{
+  color: #1ab1d2;
+}
+

@@ -19,6 +19,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   private readonly mediaWatcher: Subscription;
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
   constructor(private _snackBar: MatSnackBar ,media: MediaObserver ,   public oidcSecurityService: OidcSecurityService ,private notificationService : NotificationService
   ) {
     this.mediaWatcher = media.asObservable().subscribe((changes) => {
@@ -39,6 +40,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
         }
       });
     });
+
   }
   ngOnInit() {
     this.notificationService.getNewNotification().subscribe((notification : string)=>{
@@ -57,9 +59,11 @@ export class LayoutComponent implements OnInit, OnDestroy {
       });
 
   }
+
   openSnackBar(notif : any , userId : any) {
     if(this.userId == userId){
-    this._snackBar.open(notif, 'close', {
+    this._snackBar.open(notif,'',  {
+      duration: 3000,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });}
