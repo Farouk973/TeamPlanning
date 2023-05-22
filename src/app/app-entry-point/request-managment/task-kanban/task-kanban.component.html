@@ -1,0 +1,26 @@
+<div class="container" >
+
+    <div class="cont-info">
+
+        <h1 class="title">Request management</h1>
+
+        <span class="example-spacer"></span>
+
+
+
+        <div class="search-bar" style="margin-right: 2%;">
+            <mat-icon class="search-icon">search</mat-icon>
+            <input type="text" placeholder="Search" name="search">
+        </div>
+     
+
+    </div>
+    <div style="display: flex;">
+        <div style=" margin-right: 1%; ">
+            <app-kanban-items [kanbanbord]="kanbanbord" ></app-kanban-items>
+        </div>
+        <div class="" style="flex: 1;">
+            <app-kanban [kanban]="kanban" ></app-kanban>
+        </div>
+    </div>
+</div>

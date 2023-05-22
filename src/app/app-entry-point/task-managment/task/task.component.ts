@@ -44,6 +44,9 @@ export class TaskComponent implements OnInit {
 
   }
 
+  openCalander(){
+    this.router.navigate(['request/task-calandar',this.element.id ] )  }
+
   task:  DataTableGenericInput={
     columns: [
       {

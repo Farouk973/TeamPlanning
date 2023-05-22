@@ -1,0 +1,97 @@
+.CardTitle {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    /* identical to box height, or 143% */
+    display: flex;
+    align-items: center;
+}
+
+.search-bar {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    background-color: transparent;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px #D7DCFF;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    padding: 10px;
+    width: 95%;
+}
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    color: #D7DCFF;
+    font-size: 20px;
+}
+
+input[type="text"] {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #D7DCFF;
+    width: 100%;
+    background-color: transparent;
+    height: 20px;
+
+}
+
+input[type="text"]::placeholder {
+    color: #D7DCFF;
+}
+
+.items {
+    width: 240px;
+    height: 113px;
+    background: #FAFAFA;
+    border-radius: 4px;
+    display: flex;
+    margin-top: 4%;
+    padding: 3%;
+    cursor: pointer;
+
+}
+
+
+.titreCard {
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    /* identical to box height, or 229% */
+
+    font-size: 16px;
+    color: #323338;
+
+}
+
+.itemsList {
+
+    box-sizing: border-box;
+    margin-top: 5%;
+    padding-left: 7%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background: #FFFFFF;
+    border: 1px solid #E9EBF0;
+    border-radius: 0px 6px 6px 0px;
+    border-left: 4px solid #E92C2C;
+
+}
+
+.retour {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.retour:hover {
+    color: #1ab1d2;
+}
+
+.items:hover {
+    background-color: #F4FDFF;
+}

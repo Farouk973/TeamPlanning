@@ -1,0 +1,80 @@
+<div class="header">
+    <mat-icon class="icon-back" (click)="goBack()">chevron_left</mat-icon>
+    <h1 class="header-title">Request Details</h1>
+</div>
+<div class="container">
+  <div class="title-line">
+    <div class="title-group">
+      <h2 class="title">{{element.name}}</h2>
+      <h3 class="sub-title">Requested by: Daniel Frank</h3>
+    </div>
+    <button class="mat-raised-button"  mat-button ><p>View Tasks</p></button>
+  </div>
+    <p class="description">{{element.description||'none'}}</p>
+  <div class="info-line">
+    <div class="info-item">
+      <span class="info-label">Status:</span>
+      <span class="info-value">{{element.status||'none'}}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Skills required:</span>
+      <span class="info-value">{{element.skills||'none'}}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Start date:</span>
+      <span class="info-value">{{element.startDate| date:'dd-MM-yyyy'||'none'}}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">End date:</span>
+      <span class="info-value">{{element.endDate| date:'dd-MM-yyyy'||'none'}}</span>
+    </div>
+  </div>
+</div>
+<div class="container-wrapper" cdkDropListGroup>
+    <div class="usercontainer"cdkDropList (cdkDropListDropped)="drop($event , 'aaaa')">
+        <h4>Available resources</h4>
+        
+        <div class="search-container" >
+          <input type="text" [(ngModel)]="searchTerm" (input)="filterUsers()" placeholder="Search">
+          <mat-icon class="search-icon">search</mat-icon>
+        </div>
+      
+        <mat-card class="mat-card" *ngFor="let card of filteredUsers"  cdkDrag [cdkDragData]="card">
+          <div class="avatar">
+            <img [src]="card.avatar.content" alt="Avatar">
+          </div>
+          <div>
+            <div class="names">{{ card.firstName }} {{ card.lastName }}</div>
+            <div>{{ card.skillLevel }}</div>
+          </div>
+        </mat-card>
+      </div>
+      <div class="taskcontainer">
+        <h4>Tasks</h4>
+        <div class="taskcards" >
+          <mat-card class="mat-cards" *ngFor="let task of Tasks"  cdkDropList (cdkDropListDropped)="drop($event , task)">
+            <div class="title-line" >
+              <div class="title-group">
+                <h2 class="title">{{task.name}}</h2>
+                <h3 class="sub-title">Category: {{task.category||'none'}}</h3>
+              </div>
+            </div>
+            <mat-card-content>
+              <div>Skill level: <span>{{ task.skill_level||'none' }}</span></div>
+              <div>Start Date: <span>{{ task.startDate | date:'dd-MM-yyyy' }}</span></div>
+              <div>End Date: <span>{{ task.endDate| date:'dd-MM-yyyy' }}</span></div>
+              <div>Total resources requires: <span>{{ task.nbresources||'none' }}</span></div>
+              <div>time estimated: <span>{{ task.nbHours +'H'||'none' }}</span></div>
+              <!-- <div>time estimated: <span>{{ task.users[0] }}</span></div> -->
+            </mat-card-content>
+            <ng-container *ngFor="let card of getUsersByTaskId(task.id)" >
+            <mat-card class="matcard"  [cdkDragData]="card" cdkDrag>
+              <div >
+                <div class="name" >{{ card.firstName }} {{ card.lastName }}</div>
+              </div>
+            </mat-card>
+          </ng-container>
+          </mat-card>
+        </div>
+      </div>
+</div>

@@ -7,12 +7,17 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { CalandarDetailsComponent } from './calandar-details/calandar-details.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { ActionPanelModule } from '../action-panel/action-panel.module';
 
 
 
 @NgModule({
   declarations: [
-    CalendarComponent
+    CalendarComponent,
+    CalandarDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -22,11 +27,15 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatCardModule,
     MatButtonModule,
+    FullCalendarModule,
+    MatMenuModule,
+    ActionPanelModule
     
 
   ],
   exports: [
-    CalendarComponent
+    CalendarComponent,
+    CalandarDetailsComponent
   ]
 })
 export class CalendarModule { }

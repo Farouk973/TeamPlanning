@@ -1,16 +1,10 @@
-
-<mat-card>
-    <mat-card-header>
-      <mat-card-title>My Calendar</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <mat-datepicker #picker></mat-datepicker>
-      <button mat-raised-button color="primary" (click)="selectedDate ">
-        Select Date
-      </button>
-      <button mat-raised-button color="accent" (click)="addEvent()" [disabled]="!selectedDate">
-        Add Event
-      </button>
-      <mat-calendar [dateClass]="dateClass.bind(this)"></mat-calendar>
-    </mat-card-content>
-  </mat-card>
+<mat-card >
+  <div >
+    <full-calendar class="calendar-container" [options]="cal">
+      <ng-template #eventContent let-arg >
+        <b>{{arg.dateTime}}</b>
+        <i>{{arg.event.title}}</i>
+      </ng-template>
+    </full-calendar>
+  </div>
+</mat-card>

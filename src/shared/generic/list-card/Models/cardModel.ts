@@ -29,8 +29,6 @@ export interface CardData {
   editing?:boolean;
   component?:Type<any>;
   card?:Card;
-  componentAction?:any;
-  componentContent?:any;
  
 }
 export interface Card {

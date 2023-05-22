@@ -1,0 +1,36 @@
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title class="title">{{calendar.title}}</mat-card-title>
+        <mat-card-subtitle>{{datetitle}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <div [ngClass]="{'items': calendar.styleCard === 1, 'items2': calendar.styleCard === 2}"   *ngFor="let event of events">
+        <div class="cardItems" style="flex: 1; " >
+            <mat-card-title class="titreCard" style="font-size: 16px;">{{ truncateString(event[calendar.displaycollumn])}}</mat-card-title>
+            <mat-card-subtitle>{{ event[calendar.statusColum ]}}</mat-card-subtitle>
+        </div>
+        <div class="pannelbutton" *ngIf="calendar.actionPannel">
+            <mat-icon class="more-icon" style="padding-top: 21px;" [matMenuTriggerFor]="menu" >more_vert</mat-icon>
+            
+            <mat-menu #menu="matMenu" xPosition="before" >
+                <app-action-panel
+                  [actionPanel]="calendar.actionPannel"
+                ></app-action-panel>
+              </mat-menu>
+        </div>
+    </div>
+    <div *ngIf="calendar.addForm" [ngClass]="{'items2': true}" class="addButton">
+            <mat-icon class="more-icon" style="padding-top: 21px;     cursor: pointer;
+            " (click)="openDialog()"> add_circle</mat-icon>
+    </div>
+    <!-- <div class=""  style="margin-top: 4%; border-radius: 10px;
+;    background-color: #EDF5F9
+    ;">
+        <h1 class="titreCard" style="font-size: 17px;">request one</h1>
+        <p style="font-size: 12px;">Realization of CAC mission for Distribox for FY21. The team should have enough knowledge about etc...</p>
+        <br>
+        <br>
+        <h1 class="titreCard" style="font-size: 15px;">skills required</h1>
+
+    </div> -->
+</mat-card>

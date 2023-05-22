@@ -9,3 +9,8 @@
 p{
   color: #E9EBF0;
 }
+
+.more-icon:hover{
+  color: #00b2d9;
+  cursor: pointer;
+}

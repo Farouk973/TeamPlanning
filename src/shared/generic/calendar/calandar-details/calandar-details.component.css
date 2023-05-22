@@ -1,0 +1,46 @@
+.items{
+       border-left: 3px solid blue;
+       height: 70px;
+       display: flex; margin-top: 4%;
+  }
+.items2{
+  height: 70px;
+  display: flex; margin-top: 4%;
+  border: 1.8px dashed black;
+  border-radius: 4px;
+}
+.titreCard{
+    font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 32px;
+/* identical to box height, or 200% */
+
+display: flex;
+align-items: center;
+
+color: #000000;
+}
+.cardItems{
+padding-left: 10px;
+}
+.title{
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 600;
+font-size: 20px;
+line-height: 20px;
+color: #323338;
+  }
+
+  .card{
+    width: 300px;
+    height: auto;
+  }
+
+  .addButton{
+    justify-content: center;
+    padding-top: 3%;
+  }
+  

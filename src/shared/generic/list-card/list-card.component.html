@@ -4,36 +4,35 @@
       <ng-container *ngSwitchCase="false">
         <mat-card>
           <ng-content></ng-content>
-          <div >
-             <div *ngIf="card?.primaryLabelName" class="primary-label" [style.backgroundColor]="card?.primaryColor" [style.Color]="card?.labelColor">
+          <div *ngIf="card?.primaryLabelName" class="primary-label" [style.backgroundColor]="card?.primaryColor" [style.Color]="card?.labelColor">
             {{ card?.[card.primaryLabelName]}}
           </div>
-         
-           <ng-container  *ngIf="card.componentAction">
-         <ndc-dynamic
-    [ndcDynamicComponent]="card.componentAction"
-    [ndcDynamicInputs]="{ element: card}">
-  </ndc-dynamic>
-        </ng-container>
-        </div>
+          <div class="menu-wrapper">
+            <button mat-icon-button [matMenuTriggerFor]="appMenu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #appMenu="matMenu">
+              <button mat-menu-item (click)="onEdit(card.id)">Edit</button>
+              <button mat-menu-item (click)="onDelete(card.id)">Delete</button>
+            </mat-menu>
+          </div>
           <mat-card-header>
-
             <ng-container *ngIf="card?.showEditButton">
-           
-             
+              <button mat-icon-button (click)="onEdit(card.id)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <mat-card-actions *ngIf="card?.showIconAction">
+                <button mat-icon-button (click)="onAction()">
+                  <mat-icon></mat-icon>
+                </button>
+              </mat-card-actions>
             </ng-container>
           </mat-card-header>
           <mat-card-content [style.min-height]="card.minHeight" [style.max-height]="card.maxHeight">
-
             <div class="my-component-body" contenteditable="true">
               {{ card?.[card.textbodyName]}}
             </div>
-             <ng-container *ngIf="!card.editing && card?.componentContent" >
-               <ndc-dynamic
-    [ndcDynamicComponent]="card.componentContent"
-    [ndcDynamicInputs]="{ element: card}">
-  </ndc-dynamic>
-             </ng-container>
+             <ng-container *ngIf="!card.editing && card?.component" [ngComponentOutlet]="card?.component"></ng-container>
           </mat-card-content>
         </mat-card>
       </ng-container>
@@ -53,3 +52,7 @@
    
 
 </div>
+ <div class="button-container">
+        <button (click)="onPrev()"><span>Previous</span></button>
+        <button (click)="onNext()"><span>Next</span></button>
+    </div>
