@@ -40,10 +40,11 @@ export class ResourcesDialogComponent implements OnInit {
     })
   }
 
-  unAssignTaskFromUser(id,firstName: string , lastName : string) {
+  unAssignTaskFromUser(id,firstName: string , lastName : string,userId : string) {
 
     this.userService.unAssignTaskFromUser(id,this.task.id).subscribe((response)=>{
       this.openSnackBar("Task unassigned from" +" "+ this.task.name+" "+firstName+" "+ lastName, 3000);
+      this.notificationService.sendNotification("Task"+" "+this.task.name+" "+" unassigned from" +" "+firstName+" "+ lastName, userId);
     })
   }
 
