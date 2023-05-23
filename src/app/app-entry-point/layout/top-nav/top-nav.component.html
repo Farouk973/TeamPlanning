@@ -9,9 +9,9 @@
   </div>
   <span class="nav-spacer"></span>
   <button mat-button [matMenuTriggerFor]="userMenu1">
-    <div fxLayout="row" fxLayoutAlign="center center">
+    <div fxLayout="row" fxLayoutAlign="center center" class="notification-container">
       <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">notifications_active</mat-icon>
-
+      <div class="notification-counter">{{ notifCount }}</div>
     </div>
 
   </button>
@@ -35,28 +35,12 @@
     </button>
   </mat-menu>
 
-  <mat-menu class="notif" #userMenu1="matMenu" [overlapTrigger]="false">
-    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
-    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
-    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
-    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
-    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
-    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
-    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
-    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
-    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
-    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
-    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
-    <p *ngIf="connectedUserId===userId" >{{notification}}</p>    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
-    <p *ngIf="connectedUserId===userId" >{{notification}}</p>
-
-
-
-
-
-
-
-
+  <mat-menu #userMenu1="matMenu" [overlapTrigger]="false">
+    <p *ngFor="let n of notifications" class="notification-item">
+      <span class="description">{{ n.description }} at</span>
+      <span class="created-at"> {{ n.Created | date:'yyyy-MM-dd HH:mm' }}</span>
+    </p>
   </mat-menu>
 
 </mat-toolbar>
+

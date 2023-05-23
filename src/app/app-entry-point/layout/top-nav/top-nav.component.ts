@@ -1,7 +1,18 @@
-import {Component, OnInit, Output, EventEmitter, ElementRef} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  ElementRef,
+  Input,
+  SimpleChanges,
+  OnChanges,
+  ChangeDetectorRef
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import {NotificationService} from "../../../../shared/services/notification.service";
+import {Notification} from "../../../../shared/models/notification";
 
 
 @Component({
@@ -11,13 +22,16 @@ import {NotificationService} from "../../../../shared/services/notification.serv
 })
 export class TopNavComponent implements OnInit {
   @Output() sideNavToggled = new EventEmitter<void>();
-  notification : string;
+   notification : string ;
   connectedUserId : string;
   userId: string;
   audio: HTMLAudioElement;
+  notifications : Notification [];
+  notifCount : number ;
   constructor(
     private router: Router,
-    public oidcSecurityService: OidcSecurityService ,private notificationService : NotificationService ,private elementRef: ElementRef
+    public oidcSecurityService: OidcSecurityService ,private notificationService : NotificationService ,
+    private elementRef: ElementRef ,private cdr: ChangeDetectorRef
     ) {
     this.audio = new Audio();
     this.audio.src = 'assets/sonnerie.wav';
@@ -38,19 +52,21 @@ export class TopNavComponent implements OnInit {
       const iconElement = this.elementRef.nativeElement.querySelector('.example-icon');
       if(this.notification !== undefined && this.connectedUserId === this.userId){
         iconElement.classList.add('icon');
-       // this.playNotificationSound();
         this.audio.play()
+        this.notifCount = this.notifCount +1;
         setTimeout(() => {
           iconElement.classList.remove('icon');
         }, 3000);
       }
     })
 
+    this.notificationService.getNotificationsByUserId(this.userId).subscribe((response : any)=>{
+      this.notifications = response
+      this.notifCount = this.notifications.length;
+    })
 
   }
- playNotificationSound() {
 
-  }
   toggleSidebar() {
     this.sideNavToggled.emit();
   }
