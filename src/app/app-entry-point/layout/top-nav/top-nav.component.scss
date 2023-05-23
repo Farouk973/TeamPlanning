@@ -59,3 +59,69 @@
   .nav-brand:hover {
     color: rgb(10, 223, 223);
   }
+
+  .icon{
+    color: rgb(10, 223, 223);
+    animation: vibration 0.2s linear infinite;
+
+  }
+
+@keyframes vibration {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-2px);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  60% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+p{
+  color: #1ab1d2;
+}
+.notification-item {
+  margin-bottom: 10px;
+}
+
+.description {
+  font-weight: bold;
+}
+
+.created-at {
+  color: gray;
+  font-size: 0.9em;
+}
+::ng-deep.mat-menu-panel {
+  max-width: none !important;
+}
+.notification-container {
+  position: relative;
+  display: inline-block;
+}
+
+.notification-counter {
+  position: absolute;
+  top: -8px;
+  right: -13px;
+  background-color: #1ab1d2;
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

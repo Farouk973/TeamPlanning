@@ -37,13 +37,23 @@ export class ResourcesDialogComponent implements OnInit {
     this.userService.assignTaskToUser(id,this.task.id).subscribe((response)=>{
       this.openSnackBar("Task assigned to" +" "+firstName+" "+ lastName, 3000);
       this.notificationService.sendNotification("Task"+" "+this.task.name+" "+" assigned to" +" "+firstName+" "+ lastName, userId);
+      let data ={ description : "Task"+" "+this.task.name+" "+" assigned to you" , userId : userId }
+      this.notificationService.addNotificationsToUser(data).subscribe((response)=>{
+        console.log(response)
+      });
     })
   }
 
-  unAssignTaskFromUser(id,firstName: string , lastName : string) {
+  unAssignTaskFromUser(id,firstName: string , lastName : string,userId : string) {
 
     this.userService.unAssignTaskFromUser(id,this.task.id).subscribe((response)=>{
       this.openSnackBar("Task unassigned from" +" "+ this.task.name+" "+firstName+" "+ lastName, 3000);
+      this.notificationService.sendNotification("Task"+" "+this.task.name+" "+" unassigned from" +" "+firstName+" "+ lastName, userId);
+      let data ={ description : "Task"+" "+this.task.name+" "+" unassigned from you" , userId : userId }
+      this.notificationService.addNotificationsToUser(data).subscribe((response)=>{
+        console.log(response)
+      });
+
     })
   }
 

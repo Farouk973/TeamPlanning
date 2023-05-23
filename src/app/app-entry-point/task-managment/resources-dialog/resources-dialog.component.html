@@ -36,7 +36,7 @@
         <div class="container">
           <div class="my-button-container">
             <mat-icon mat-icon-button class="my-button" *ngIf="!card.tasks.includes(task.id)" (click)="assignTaskToUser(card.id , card.firstName , card.lastName , card.userId)">add_circle</mat-icon>
-            <mat-icon mat-icon-button class="my-button" *ngIf="card.tasks.includes(task.id)"  (click)="unAssignTaskFromUser(card.id, card.firstName , card.lastName)">remove_circle</mat-icon>
+            <mat-icon mat-icon-button class="my-button" *ngIf="card.tasks.includes(task.id)"  (click)="unAssignTaskFromUser(card.id, card.firstName , card.lastName, card.userId)">remove_circle</mat-icon>
           </div>
           <div class="avatar">
             <img [src]="card.avatar.content" alt="Avatar">
