@@ -78,4 +78,12 @@ export class TopNavComponent implements OnInit {
   }
 
 
+  deleteNotification(id) {
+    this.notificationService.deleteNotification(id).subscribe((response)=>{
+      this.notificationService.getNotificationsByUserId(this.userId).subscribe((response : any)=>{
+        this.notifications = response
+        this.notifCount = this.notifications.length;
+      })
+    })
+  }
 }
