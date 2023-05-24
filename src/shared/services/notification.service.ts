@@ -33,4 +33,8 @@ export class NotificationService {
   getNotificationsByUserId(userId: string) {
     return this.http.get(`${this.baseUrl}/${(this.BASE_URI)}/notifsUser/${userId}`, this.httpOptions)
   }
+
+  deleteNotification(id: string) {
+    return this.http.delete(`${this.baseUrl}/${(this.BASE_URI)}/deleteNotif/${id}`, this.httpOptions)
+  }
 }
