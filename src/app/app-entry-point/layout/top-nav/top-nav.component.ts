@@ -73,27 +73,6 @@ export class TopNavComponent implements OnInit {
     })
 
   }
-
-  toggleSidebar() {
-    this.sideNavToggled.emit();
-  }
-  onLoggedout() {
-    this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
-  }
-  onReddirectProfile(){
-    this.router.navigate(['/dashboard/profile']);
-  }
-
-
-  deleteNotification(id) {
-    this.notificationService.deleteNotification(id).subscribe((response)=>{
-      this.notificationService.getNotificationsByUserId(this.userId).subscribe((response : any)=>{
-        this.notifications = response
-        this.notifCount = this.notifications.length;
-      })
-    })
-  }
-
   calculateDateDifference(date: string): string {
     const currentDate = new Date();
     const dbDate = new Date(date);
@@ -111,17 +90,41 @@ export class TopNavComponent implements OnInit {
     let differenceString = '';
 
     if (differenceMonths > 0) {
-      differenceString = `${differenceMonths} months`;
+      differenceString = `${differenceMonths} months ago`;
     } else if (differenceDays > 0) {
-      differenceString = `${differenceDays} days`;
+      differenceString = `${differenceDays} days ago`;
     } else if (differenceHours > 0) {
-      differenceString = `${differenceHours} hours`;
+      differenceString = `${differenceHours} hours ago`;
     } else if (differenceMinutes > 0) {
-      differenceString = `${differenceMinutes} minutes`;
+      differenceString = `${differenceMinutes} minutes ago`;
     } else {
-      differenceString = `${differenceSeconds} seconds`;
+      differenceString = `${differenceSeconds} seconds ago`;
     }
 
     return differenceString;
   }
+
+  deleteNotification(id) {
+    this.notificationService.deleteNotification(id).subscribe((response)=>{
+      this.notificationService.getNotificationsByUserId(this.userId).subscribe((response : any)=>{
+        this.notifications = response
+        this.notifCount = this.notifications.length;
+      })
+    })
+  }
+
+  toggleSidebar() {
+    this.sideNavToggled.emit();
+  }
+  onLoggedout() {
+    this.oidcSecurityService.logoff().subscribe((result) => console.log(result));
+  }
+  onReddirectProfile(){
+    this.router.navigate(['/dashboard/profile']);
+  }
+
+
+
+
+
 }
