@@ -28,6 +28,11 @@ export class TopNavComponent implements OnInit {
   audio: HTMLAudioElement;
   notifications : Notification [];
   notifCount : number ;
+
+  currentDate: Date;
+  dbDate: Date;
+  dateDifference: string;
+
   constructor(
     private router: Router,
     public oidcSecurityService: OidcSecurityService ,private notificationService : NotificationService ,
@@ -36,6 +41,8 @@ export class TopNavComponent implements OnInit {
     this.audio = new Audio();
     this.audio.src = 'assets/sonnerie.wav';
     this.audio.load();
+    this.currentDate = new Date();
+
   }
 
   ngOnInit() {
@@ -56,7 +63,7 @@ export class TopNavComponent implements OnInit {
         this.notifCount = this.notifCount +1;
         setTimeout(() => {
           iconElement.classList.remove('icon');
-        }, 3000);
+        }, 6000);
       }
     })
 
@@ -85,5 +92,36 @@ export class TopNavComponent implements OnInit {
         this.notifCount = this.notifications.length;
       })
     })
+  }
+
+  calculateDateDifference(date: string): string {
+    const currentDate = new Date();
+    const dbDate = new Date(date);
+
+    const differenceMs = currentDate.getTime() - dbDate.getTime();
+
+    // Calcul de la différence en secondes, minutes, heures, jours et mois
+    const differenceSeconds = Math.floor(differenceMs / 1000);
+    const differenceMinutes = Math.floor(differenceSeconds / 60);
+    const differenceHours = Math.floor(differenceMinutes / 60);
+    const differenceDays = Math.floor(differenceHours / 24);
+    const differenceMonths = Math.floor(differenceDays / 30);
+
+    // Construction de la chaîne de différence
+    let differenceString = '';
+
+    if (differenceMonths > 0) {
+      differenceString = `${differenceMonths} months`;
+    } else if (differenceDays > 0) {
+      differenceString = `${differenceDays} days`;
+    } else if (differenceHours > 0) {
+      differenceString = `${differenceHours} hours`;
+    } else if (differenceMinutes > 0) {
+      differenceString = `${differenceMinutes} minutes`;
+    } else {
+      differenceString = `${differenceSeconds} seconds`;
+    }
+
+    return differenceString;
   }
 }

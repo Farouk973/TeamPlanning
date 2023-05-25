@@ -40,13 +40,21 @@
       <span class="description">{{ n.description }} at</span>
       <span class="created-at"> {{ n.Created | date:'yyyy-MM-dd HH:mm' }}</span>
     </p>-->
+    <mat-chip-list *ngIf="notification">
+
+      <mat-chip   style="background-color: rgba(0, 178, 217, 0.1)"   >
+        <span class="description">{{notification}}  </span>
+        <span class="created-at">:Just now </span>
+      </mat-chip>
+    </mat-chip-list>
 
     <div *ngFor="let n of notifications" >
    <mat-chip-list>
 
        <mat-chip   style="background-color: rgba(0, 178, 217, 0.1)"   >
          <span class="description">{{ n.description }} at: </span>
-         <span class="created-at"> {{ n.Created | date:'yyyy-MM-dd HH:mm' }}</span>
+       <!--  <span class="created-at"> {{ n.Created | date:'yyyy-MM-dd HH:mm' }}</span>-->
+         <span class="created-at"> {{ calculateDateDifference(n.Created)}}</span>
          <button matChipRemove (click)="deleteNotification(n._id)">
            <mat-icon>cancel</mat-icon>
          </button></mat-chip>
