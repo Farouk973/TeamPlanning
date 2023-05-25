@@ -10,7 +10,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
   providedIn: 'root',
 })
 export class NotificationService {
-  private baseUrl = environment.baseUrlMs;
+  private baseUrlMs = environment.baseUrlMs;
     private BASE_URI = 'api/notification';
 
   httpOptions = {
@@ -26,15 +26,15 @@ export class NotificationService {
   }
 
   addNotificationsToUser(data: any) {
-    return this.http.post(`${this.baseUrl}/${(this.BASE_URI)}/addNotif`, data, this.httpOptions)
+    return this.http.post(`${this.baseUrlMs}/${(this.BASE_URI)}/addNotif`, data, this.httpOptions)
   }
 
 
   getNotificationsByUserId(userId: string) {
-    return this.http.get(`${this.baseUrl}/${(this.BASE_URI)}/notifsUser/${userId}`, this.httpOptions)
+    return this.http.get(`${this.baseUrlMs}/${(this.BASE_URI)}/notifsUser/${userId}`, this.httpOptions)
   }
 
   deleteNotification(id: string) {
-    return this.http.delete(`${this.baseUrl}/${(this.BASE_URI)}/deleteNotif/${id}`, this.httpOptions)
+    return this.http.delete(`${this.baseUrlMs}/${(this.BASE_URI)}/deleteNotif/${id}`, this.httpOptions)
   }
 }

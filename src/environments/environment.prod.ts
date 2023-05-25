@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   baseUrl: 'http://20.74.17.113',
+  baseUrlMs: 'http://localhost:5000',
   authConfig: {
     domain: 'dev-jt2h2d8bnouk3jlk.us.auth0.com',
     authority: 'https://dev-jt2h2d8bnouk3jlk.us.auth0.com',
