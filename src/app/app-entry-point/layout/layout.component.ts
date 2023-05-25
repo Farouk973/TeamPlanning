@@ -63,7 +63,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   openSnackBar(notif : any , userId : any) {
     if(this.userId == userId){
     this._snackBar.open(notif,'',  {
-      duration: 3000,
+      duration: 6000,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
     });}
