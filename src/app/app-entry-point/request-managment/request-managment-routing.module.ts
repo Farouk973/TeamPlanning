@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { RequestCalanderComponent } from './request-calander/request-calander.component';
 import { TaskKanbanComponent } from './task-kanban/task-kanban.component';
 import { TaskCalanderComponent } from './task-calander/task-calander.component';
+import { AddRequestComponent } from './add-request/add-request.component';
+import { ScheduligTasksComponent } from './schedulig-tasks/schedulig-tasks.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,14 @@ const routes: Routes = [
   {
     path: 'task-calandar/:id',
     component: TaskCalanderComponent,
+  },
+  {
+    path: 'add',
+    component: AddRequestComponent,
+  },
+  {
+    path: 'schedulig/:id',
+    component: ScheduligTasksComponent,
   },
 
 
