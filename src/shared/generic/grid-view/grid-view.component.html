@@ -30,7 +30,7 @@
           <div *ngIf="field.type == 'array'">
             <div *ngIf="row[field.name]">
               <!-- <mat-label>{{row[field.name][0]['title']}}</mat-label> -->
-
+              <mat-label>List of {{field.name}}</mat-label>
               <mat-select >
                 <mat-option
                 *ngFor="let aa of row[field.name]"

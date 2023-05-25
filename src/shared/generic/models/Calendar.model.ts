@@ -23,3 +23,10 @@ export interface CalendarDetails extends NXMGenericComponent {
   actionPannel? : Actionpanel,
   addForm? : Form,
 }
+
+export interface TimeLine extends NXMGenericComponent {
+  endpoint : string,
+  startDateCollumn : string,
+  endDateCollumn : string,
+  displaycollumn : string,
+}

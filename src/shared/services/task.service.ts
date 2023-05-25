@@ -15,4 +15,8 @@ export class TaskService {
     return this.httpRepositoryService.get<any>(`${this.BASE_URI}/get-task/${id}`);
   }
 
+  getRequest(id: string) {
+    return this.httpRepositoryService.get<any>(`api/RequestManagement/${id}`);
+  }
+
 }

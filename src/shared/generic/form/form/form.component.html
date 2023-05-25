@@ -214,7 +214,7 @@
             <mat-label>{{ field.name.charAt(0).toUpperCase() + field.name.slice(1) }}</mat-label>
             <mat-select [formControlName]="field.name"  multiple>      
               <mat-option  *ngFor="let option of map.get(field.name)" [value]="option.id">
-                {{ option.title }}
+                {{ option[formData.Options.get(field.name)] }}
               </mat-option>
             </mat-select>
           </mat-form-field>  

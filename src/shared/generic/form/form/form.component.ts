@@ -47,9 +47,11 @@ export class FormComponent implements OnInit {
   public isAllSelected: boolean;
 
   valueControl = new FormControl();
-
+  map2 : Map<string,string> = new Map([
+    ["role", "title"],["category", "name"],["skills", "skillName"],["permission", "title"],
+]);
   ngOnInit(): void {
-console.log("data :"  , this.formData.Options)
+ this.formData.Options = this.map2
     this.formService.getMetadata(this.formData.metaData).subscribe((data) => {
       this.fields = data;
       this.fields.forEach((element) => {
@@ -79,7 +81,7 @@ console.log("data :"  , this.formData.Options)
         this.filteredData = [];
         this.isLoading = true;
       }),
-      switchMap(value => this.http.get(`${environment.baseUrl}`+this.inputName+'/' + value)
+      switchMap(value => this.http.get(`${environment.baseUrl}`+'/api/'+this.inputName+'/' + value)
         .pipe(
           finalize(() => {
             this.isLoading = false
@@ -142,7 +144,7 @@ console.log("data :"  , this.formData.Options)
       ) {
         control.setValue(this.formData.Object[field.name]); // set the initial value from the data object
       }
-      if(field.type === 'array'){
+      if(field.type === 'array' && this.formData.Object){
 
         const ids: string[] = this.formData.Object[field.name].map((object) => object.id);
        control.setValue(ids); // set the initial value from the data object
@@ -160,7 +162,6 @@ console.log("data :"  , this.formData.Options)
 
   submitByType(type: string) {
     this.submitAsync().then((isValid) => {
-      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
       console.log(this.form.value);
       console.log(type);
       if (isValid) {
@@ -219,7 +220,6 @@ console.log("data :"  , this.formData.Options)
 
                 } if (response === true) {
                   window.location.reload()
-                  console.log("tttttttttttttttttttttttttttttttt")
                 }
 
               },
@@ -251,7 +251,7 @@ console.log("data :"  , this.formData.Options)
   }
   ReferenceExistances(desc :string) :any
   {
-  this.formService.getData("https://localhost:44312/api/"+desc)
+  this.formService.getData(`${environment.baseUrl}`+"/api/"+desc)
   .subscribe({
     next: (data) => {
       this.map.set(desc,data);
