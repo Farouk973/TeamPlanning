@@ -1,0 +1,53 @@
+<mat-card class="info-card">
+    <div class="cont-info">
+        <div class="cardItems" style="flex: 1; ">
+            <h1 class="title">{{request.name}}</h1>
+            <h3 class="soustitle">Requested by: Daniel Frank</h3>
+
+        </div>
+        <div class="pannelbutton">
+            <mat-icon class="more-icon" [matMenuTriggerFor]="menu" >more_vert</mat-icon>
+            
+            <mat-menu #menu="matMenu" xPosition="before" >
+                <app-action-panel
+                [objId]="request"
+                  [actionPanel]="action"
+                  (edit)="onEditItem($event)"
+                  (delete)="onDeleteItem($event)"
+                ></app-action-panel>
+              </mat-menu>
+        </div>
+
+    </div>
+    <div class="descriptionCard">
+        {{request.description}} </div>
+    <div class="descriptionCard container">
+
+        <div class="column">
+            Status
+            <br>
+            {{request.status}}
+        </div>
+        <div class="column">
+            Skills required
+            <br>
+            <span *ngFor="let r of request.skills">
+                {{r.name}},
+            </span>
+        </div>
+        <div class="column">
+            Start date
+            <br>
+            {{request.startDate}}
+        </div>
+        <div class="column">
+            End date
+            <br>
+            {{request.endDate}}
+        </div>
+    </div>
+
+</mat-card>
+<mat-card style="padding-left: 0%;">
+    <app-time-line [Timeline]="timeline"></app-time-line>
+</mat-card>

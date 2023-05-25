@@ -11,13 +11,19 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { CalandarDetailsComponent } from './calandar-details/calandar-details.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActionPanelModule } from '../action-panel/action-panel.module';
+import { TimeLineComponent } from './time-line/time-line.component';
+import ApexCharts from 'apexcharts';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { TimeLineDialogComponent } from './time-line/time-line-dialog/time-line-dialog.component';
 
 
 
 @NgModule({
   declarations: [
     CalendarComponent,
-    CalandarDetailsComponent
+    CalandarDetailsComponent,
+    TimeLineComponent,
+    TimeLineDialogComponent
   ],
   imports: [
     CommonModule,
@@ -29,13 +35,14 @@ import { ActionPanelModule } from '../action-panel/action-panel.module';
     MatButtonModule,
     FullCalendarModule,
     MatMenuModule,
-    ActionPanelModule
+    ActionPanelModule,
+    NgApexchartsModule
     
 
   ],
   exports: [
     CalendarComponent,
-    CalandarDetailsComponent
+    CalandarDetailsComponent,TimeLineComponent
   ]
 })
 export class CalendarModule { }

@@ -44,7 +44,7 @@ export class TaskCalanderComponent implements OnInit {
   };
   
   action: Actionpanel = {
-    endpoint: `${environment.baseUrl}/api/Permission`,
+    endpoint: `${environment.baseUrl}/api/RequestManagement`,
     formEditData: `${environment.baseUrl}/meta/UpdatePermissionCommand`,
     title : "Task",
 

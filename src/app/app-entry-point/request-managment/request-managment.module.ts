@@ -9,13 +9,21 @@ import { MatCardModule } from '@angular/material/card';
 import { TaskKanbanComponent } from './task-kanban/task-kanban.component';
 import { KanbanModule } from 'src/shared/generic/kanban/kanban.module';
 import { TaskCalanderComponent } from './task-calander/task-calander.component';
+import { AddRequestComponent } from './add-request/add-request.component';
+import { StepperModule } from 'src/shared/generic/stepper/stepper.module';
+import { ScheduligTasksComponent } from './schedulig-tasks/schedulig-tasks.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatMenuModule } from '@angular/material/menu';
+import { ActionPanelModule } from 'src/shared/generic/action-panel/action-panel.module';
 
 
 @NgModule({
   declarations: [
     RequestCalanderComponent,
     TaskKanbanComponent,
-    TaskCalanderComponent 
+    TaskCalanderComponent,
+    AddRequestComponent,
+    ScheduligTasksComponent 
   ],
   imports: [
     CommonModule,
@@ -23,7 +31,11 @@ import { TaskCalanderComponent } from './task-calander/task-calander.component';
     CalendarModule,
     MatIconModule,
     MatCardModule,
-    KanbanModule
+    KanbanModule,
+    StepperModule,
+    MatGridListModule,
+    MatMenuModule,
+    ActionPanelModule
   ]
 })
 export class RequestManagmentModule { }
