@@ -15,6 +15,7 @@ import {Router} from "@angular/router";
 export class SpreadsheetsComponent implements  OnChanges {
 
   @Input() spreadsheets$!:Observable<Spreadsheets> ;
+  loading : boolean = true;
   spreadsheets = new Spreadsheets()
   data = {
     columnHeader: [],
@@ -52,15 +53,20 @@ export class SpreadsheetsComponent implements  OnChanges {
 
       this.spreadsheetsService.getItem(this.spreadsheets.rowHeaderEndpoint,id).subscribe((data)=>{
         this.data.rowHeader= TJM_DAY.concat(data.features.map((d)=>d[this.spreadsheets.mappingNameRowHeader]).concat(TOTAL))
-        if(data.costing.map((obj) => Object.values(obj)).length === 0){
-          this.fillMatrixByZero()
-        }
-         else{
-          this.Convert_ObjectToMatrix(data);
-        }
+       this.fillMatrixByZero()
 
+        if( data.costing.map((obj) => Object.values(obj)).length != 0
+          && data.costing.map((obj) => Object.values(obj))[0].length ===this.data.columnHeader.length
+        && data.costing.map((obj) => Object.values(obj)).length === this.data.rowHeader.length
+        ){
+          this.data.reportData = data.costing.map((obj) => Object.values(obj))
+
+        }
+        if(this.data.reportData[0].length !==0)
+          this.loading=false
+         else
+          window.location.reload();
       })
-
 
     })
 
@@ -69,13 +75,13 @@ export class SpreadsheetsComponent implements  OnChanges {
   }
 
 
- async fillMatrixByZero(){
+  fillMatrixByZero(){
     for (let i = 0; i < this.data.rowHeader.length; i++) {
       let row = [];
       for (let j = 0; j < this.data.columnHeader.length; j++) {
-      row.push(0);
+        row.push(0);
       }
-      await   this.data.reportData.push(row);
+      this.data.reportData.push(row);
     }
   }
 
@@ -92,6 +98,7 @@ export class SpreadsheetsComponent implements  OnChanges {
       this.Costing();
       this.Total_Costing()
       this.Convert_MatrixToObject()
+      console.log('data',this.data.reportData)
     }
 
     }
@@ -144,15 +151,7 @@ export class SpreadsheetsComponent implements  OnChanges {
 
     }
 
-async  Convert_ObjectToMatrix(data : any){
-    if( data.costing.map((obj) => Object.values(obj)).length != 0
-      && data.costing.map((obj) => Object.values(obj))[0].length ===this.data.columnHeader.length
-      && data.costing.map((obj) => Object.values(obj)).length === this.data.rowHeader.length
-    ){
-      this.data.reportData = await data.costing.map((obj) => Object.values(obj))
 
-    }
-  }
 
   dispalyProjects() {
     this.router.navigate(['projects/list-projects'])
