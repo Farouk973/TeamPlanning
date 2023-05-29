@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 
 import {HttpClient} from "@angular/common/http";
 import {SpreadsheetsService} from "../spreadsheets.service";
@@ -15,7 +15,6 @@ import {Router} from "@angular/router";
 export class SpreadsheetsComponent implements  OnChanges {
 
   @Input() spreadsheets$!:Observable<Spreadsheets> ;
-  loading : boolean = true;
   spreadsheets = new Spreadsheets()
   data = {
     columnHeader: [],
@@ -28,7 +27,6 @@ export class SpreadsheetsComponent implements  OnChanges {
   rowIndex : any
   titleProject : string;
   chiffrage : any = [];
-
   constructor(private http: HttpClient , private spreadsheetsService : SpreadsheetsService , private location : Location , private router : Router) {
 
   }
@@ -54,17 +52,13 @@ export class SpreadsheetsComponent implements  OnChanges {
 
       this.spreadsheetsService.getItem(this.spreadsheets.rowHeaderEndpoint,id).subscribe((data)=>{
         this.data.rowHeader= TJM_DAY.concat(data.features.map((d)=>d[this.spreadsheets.mappingNameRowHeader]).concat(TOTAL))
-       this.fillMatrixByZero()
-
-        if( data.costing.map((obj) => Object.values(obj)).length != 0
-          && data.costing.map((obj) => Object.values(obj))[0].length ===this.data.columnHeader.length
-        && data.costing.map((obj) => Object.values(obj)).length === this.data.rowHeader.length
-        ){
-          this.data.reportData = data.costing.map((obj) => Object.values(obj))
-
+        if(data.costing.map((obj) => Object.values(obj)).length === 0){
+          this.fillMatrixByZero()
         }
-        if(this.data.reportData[0].length !==0)
-        this.loading=false
+         else{
+          this.Convert_ObjectToMatrix(data);
+        }
+
       })
 
 
@@ -75,13 +69,13 @@ export class SpreadsheetsComponent implements  OnChanges {
   }
 
 
-  fillMatrixByZero(){
+ async fillMatrixByZero(){
     for (let i = 0; i < this.data.rowHeader.length; i++) {
       let row = [];
       for (let j = 0; j < this.data.columnHeader.length; j++) {
-        row.push(0);
+      row.push(0);
       }
-      this.data.reportData.push(row);
+      await   this.data.reportData.push(row);
     }
   }
 
@@ -98,7 +92,6 @@ export class SpreadsheetsComponent implements  OnChanges {
       this.Costing();
       this.Total_Costing()
       this.Convert_MatrixToObject()
-      console.log('data',this.data.reportData)
     }
 
     }
@@ -150,6 +143,16 @@ export class SpreadsheetsComponent implements  OnChanges {
 
 
     }
+
+async  Convert_ObjectToMatrix(data : any){
+    if( data.costing.map((obj) => Object.values(obj)).length != 0
+      && data.costing.map((obj) => Object.values(obj))[0].length ===this.data.columnHeader.length
+      && data.costing.map((obj) => Object.values(obj)).length === this.data.rowHeader.length
+    ){
+      this.data.reportData = await data.costing.map((obj) => Object.values(obj))
+
+    }
+  }
 
   dispalyProjects() {
     this.router.navigate(['projects/list-projects'])

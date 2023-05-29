@@ -12,7 +12,7 @@ export class SpreadsheetsService {
 
 
   getItem(endpoint: string,idItem: string ): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}`+ endpoint +`/${idItem}`);
+     return this.http.get<any>(`${this.baseUrl}`+ endpoint +`/${idItem}`);
   }
 
   addCosting(endpoint: string,idItem: string ,  data : any ): Observable<any> {
