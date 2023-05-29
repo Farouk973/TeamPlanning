@@ -1,8 +1,8 @@
-import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Project} from "../../../../shared/models/project.model";
 import {ProjectService} from "../../../../shared/services/project.service";
 import {Location} from "@angular/common";
-import {CookieService} from "ngx-cookie-service";
+
 @Component({
   selector: 'app-recop-project',
   templateUrl: './recop-project.component.html',
