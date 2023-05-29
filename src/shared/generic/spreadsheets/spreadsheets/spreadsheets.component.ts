@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 
 import {HttpClient} from "@angular/common/http";
 import {SpreadsheetsService} from "../spreadsheets.service";
@@ -76,9 +76,9 @@ export class SpreadsheetsComponent implements  OnChanges {
 
 
   fillMatrixByZero(){
-    for (let i = 0; i < this.data.rowHeader.length; i++) {
+    for (const element of this.data.rowHeader) {
       let row = [];
-      for (let j = 0; j < this.data.columnHeader.length; j++) {
+      for (const element of this.data.columnHeader) {
         row.push(0);
       }
       this.data.reportData.push(row);
