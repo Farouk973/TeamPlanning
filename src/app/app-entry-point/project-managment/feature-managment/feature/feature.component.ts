@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {AutoComplete} from "../../../../../shared/generic/models/AutoComplete.model";
 import {Observable} from "rxjs";
@@ -9,6 +9,10 @@ import {Observable} from "rxjs";
 })
 export class FeatureComponent implements OnInit {
 
+   @Input() formData;
+  @Input() order;
+  @Input() chiffrage;
+  @Input() submitType;
   public autoComplete$!: Observable<AutoComplete> ;
 
   constructor(private http: HttpClient) {}

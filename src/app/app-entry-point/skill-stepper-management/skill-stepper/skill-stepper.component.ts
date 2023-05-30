@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StepperSkillDialogComponent } from '../stepper-skill-dialog/stepper-skill-dialog.component';
 import {Location} from "@angular/common";
@@ -15,6 +15,11 @@ export class SkillStepperComponent implements OnInit {
   pageSize = 5;
   currentPageIndex = 0;
   pagedSkillList: any[] = [];
+
+  @Input() order ;
+  @Input() formData;
+  @Input() chiffrage;
+  @Input() submitType;
   constructor(public dialog: MatDialog,private http: HttpClient,private location : Location) {}
   ngOnInit(): void {
     this.fetchDataprojectskill();
@@ -26,15 +31,15 @@ export class SkillStepperComponent implements OnInit {
     const url = this.location.path();
     let projectid = url.substring(url.lastIndexOf('/') + 1);
     console.log(projectid);
-  
+
     this.http.get<any[]>("https://localhost:44312/api/Skills/project-Skills/" + projectid)
       .pipe(
         tap(data => this.skillList.next(data)),
-        
+
       )
       .subscribe(() => {
         this.totalSkills = this.skillList.value.length;
-  
+
         // Update the pagedSkillList
         this.updatePagedSkillList();
       });
@@ -60,7 +65,7 @@ export class SkillStepperComponent implements OnInit {
       minWidth: '800px',
       data: { skillList: this.skillList }
     });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       const url = this.location.path();
       let projectid = url.substring(url.lastIndexOf('/') + 1);
@@ -82,7 +87,7 @@ export class SkillStepperComponent implements OnInit {
           // Handle any errors that occurred during the HTTP requests
         });
       }
-  
+
     });
   }
   deleteSkill(index: number): void {

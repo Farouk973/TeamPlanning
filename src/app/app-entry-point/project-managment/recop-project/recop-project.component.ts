@@ -12,6 +12,9 @@ export class RecopProjectComponent implements  OnChanges {
   panelOpenState = false;
   project! : Project;
    @Input() order ;
+  @Input() formData;
+  @Input() chiffrage;
+  @Input() submitType;
   constructor( public projectService : ProjectService , private location : Location) {
 
   }

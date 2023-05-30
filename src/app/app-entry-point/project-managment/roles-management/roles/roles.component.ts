@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {AutoComplete} from "../../../../../shared/generic/models/AutoComplete.model";
 import {HttpClient} from "@angular/common/http";
@@ -9,7 +9,10 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./roles.component.css']
 })
 export class RolesComponent implements OnInit {
-
+  @Input() formData;
+  @Input() order;
+  @Input() chiffrage;
+  @Input() submitType;
   public autoComplete$!: Observable<AutoComplete> ;
 
   constructor(private http: HttpClient) {}
