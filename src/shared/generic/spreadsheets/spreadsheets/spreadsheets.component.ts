@@ -6,7 +6,7 @@ import {Location} from "@angular/common";
 import {Observable} from "rxjs";
 import {Spreadsheets} from "../../models/Spreadsheets.model";
 import {Router} from "@angular/router";
-
+import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-spreadsheets',
   templateUrl: './spreadsheets.component.html',
@@ -150,8 +150,49 @@ export class SpreadsheetsComponent implements  OnChanges {
 
 
     }
+/*  telechargerExcel() {
+    const nomFichier = 'donnees.xlsx';
+    const feuilleDeCalcul = XLSX.utils.json_to_sheet(this.data.reportData);
+    const classeur = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(classeur, feuilleDeCalcul, 'Feuille 1');
+    XLSX.writeFile(classeur, nomFichier);
+  }*/
 
+  telechargerExcel() {
+    const nomFichier = `${this.titleProject}.xlsx`;
 
+    // Décalage de la première ligne d'une colonne
+    this.data.columnHeader.unshift('');
+
+    // Créer une matrice pour stocker les données Excel
+    const donneesExcel = [];
+
+    // Ajouter l'en-tête des colonnes
+    donneesExcel.push(this.data.columnHeader);
+
+    // Ajouter les lignes de données du rapport
+    for (let i = 0; i < this.data.rowHeader.length; i++) {
+      const ligne = [];
+      ligne.push(this.data.rowHeader[i]);
+      for (let j = 0; j < this.data.reportData[i].length; j++) {
+        ligne.push(this.data.reportData[i][j]);
+      }
+      donneesExcel.push(ligne);
+    }
+
+    // Convertir la matrice en une feuille de calcul
+    const feuilleDeCalcul = XLSX.utils.aoa_to_sheet(donneesExcel);
+
+    // Créer un classeur et ajouter la feuille de calcul
+    const classeur = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(classeur, feuilleDeCalcul, 'Feuille 1');
+
+    // Télécharger le fichier Excel
+    XLSX.writeFile(classeur, nomFichier);
+
+    // Restaurer la première ligne à son état initial
+    this.data.columnHeader.shift();
+  }
 
   dispalyProjects() {
     this.router.navigate(['projects/list-projects'])

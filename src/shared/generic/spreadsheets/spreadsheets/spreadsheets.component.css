@@ -64,3 +64,19 @@ p{
   justify-content: center;
   align-items: center;
 }
+
+.download{
+
+}
+.myButton{
+  border-radius: 12px ;
+
+  width: 240px;
+  height: 30px;
+  background-color: #00b2d9;
+  margin: 10px;
+  border-color: #00b2d9;
+}
+p{
+  color: #E9EBF0;
+}
