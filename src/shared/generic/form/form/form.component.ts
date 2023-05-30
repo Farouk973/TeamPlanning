@@ -33,7 +33,8 @@ export class FormComponent implements OnInit {
   @Input() set submitType(type: string) {
     this.submitByType(type);
   }
-
+  @Input() order;
+  @Input() chiffrage;
   fields: ColumnMetadata[];
   map = new Map();
   searchDataCtrl = new FormControl();
@@ -155,7 +156,7 @@ export class FormComponent implements OnInit {
   }
 
   async submitAsync() {
-    this.buttonToSubmit.nativeElement.click();
+    this.buttonToSubmit?.nativeElement.click();
 
     return this.form.valid;
   }

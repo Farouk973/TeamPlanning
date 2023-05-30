@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {mockDataTableRequestData} from "../request.task.data";
 
 @Component({
@@ -6,11 +6,6 @@ import {mockDataTableRequestData} from "../request.task.data";
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css']
 })
-export class RequestComponent implements OnInit {
+export class RequestComponent  {
 request =  mockDataTableRequestData;
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

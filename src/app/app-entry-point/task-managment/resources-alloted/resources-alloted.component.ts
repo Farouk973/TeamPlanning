@@ -1,5 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Dialog} from "@angular/cdk/dialog";
+import {Component, Input} from '@angular/core';
 import {ResourcesDialogComponent} from "../resources-dialog/resources-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 
@@ -8,7 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
   templateUrl: './resources-alloted.component.html',
   styleUrls: ['./resources-alloted.component.css']
 })
-export class ResourcesAllotedComponent implements OnInit {
+export class ResourcesAllotedComponent {
 
   @Input() element?: any;
 
@@ -17,12 +16,9 @@ export class ResourcesAllotedComponent implements OnInit {
   @Input() selectedRows?: any[];
   constructor(public dialog: MatDialog ) { }
 
-  ngOnInit(): void {
-  }
 
   openDialog(id) {
      this.dialog.closeAll();
-   // this.dialog.open<string>(ResourcesDialogComponent);
     const dialogRef = this.dialog.open(ResourcesDialogComponent , {
       data: {id}
     });

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 
 import {HttpClient} from "@angular/common/http";
 import {SpreadsheetsService} from "../spreadsheets.service";
@@ -28,7 +28,6 @@ export class SpreadsheetsComponent implements  OnChanges {
   rowIndex : any
   titleProject : string;
   chiffrage : any = [];
-
   constructor(private http: HttpClient , private spreadsheetsService : SpreadsheetsService , private location : Location , private router : Router) {
 
   }
@@ -64,9 +63,10 @@ export class SpreadsheetsComponent implements  OnChanges {
 
         }
         if(this.data.reportData[0].length !==0)
-        this.loading=false
+          this.loading=false
+         else
+          window.location.reload();
       })
-
 
     })
 
@@ -76,9 +76,9 @@ export class SpreadsheetsComponent implements  OnChanges {
 
 
   fillMatrixByZero(){
-    for (let i = 0; i < this.data.rowHeader.length; i++) {
+    for (const element of this.data.rowHeader) {
       let row = [];
-      for (let j = 0; j < this.data.columnHeader.length; j++) {
+      for (const element of this.data.columnHeader) {
         row.push(0);
       }
       this.data.reportData.push(row);
@@ -150,6 +150,8 @@ export class SpreadsheetsComponent implements  OnChanges {
 
 
     }
+
+
 
   dispalyProjects() {
     this.router.navigate(['projects/list-projects'])

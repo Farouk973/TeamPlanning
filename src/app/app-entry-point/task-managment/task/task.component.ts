@@ -1,14 +1,13 @@
-import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Input, TemplateRef, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 
 import {Router} from "@angular/router";
-import {mockDataTableTaskData} from "../request.task.data";
 import {DataTableGenericInput} from "../../../../shared/generic/models/dataTable.model";
 import {BigNumberService} from "../../../../shared/services/big-number.service";
 import {ResourcesAllotedComponent} from "../resources-alloted/resources-alloted.component";
 import {BehaviorSubject} from "rxjs";
 import {environment} from "../../../../environments/environment";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+
 
 
 
@@ -17,7 +16,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css']
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent {
 
   @ViewChild('dialogTemplate') dialogTemplate: TemplateRef<any>;
 
@@ -29,10 +28,8 @@ export class TaskComponent implements OnInit {
     tasks : Task
   idRequest! : string;
 
-  constructor(public dialog: MatDialog , private router : Router , private http : HttpClient) { }
-  ngOnInit(): void {
+  constructor(public dialog: MatDialog , private router : Router ) { }
 
-  }
 
   openDialogue(){
     this.task.endpoint.next(`${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/${this.element?.id}`)

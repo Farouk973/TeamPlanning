@@ -20,9 +20,9 @@
           && !(rowIndex > data.rowHeader.length - 2  && colIndex !== data.columnHeader.length - 1  )  " class="reportData">
           {{reportData }} {{ rowIndex === 0 || colIndex === data.columnHeader.length - 1 ? '$' : 'day' }}
         </span>
-         <input  matInput type="number"  min="0"  step="0.1"
+         <input  matInput type="number"  min="0" step="0.1" oninput="validity.valid||(value='0');"
                 [(ngModel)]="data.reportData[rowIndex][colIndex]"
-                *ngIf="editModeStyle && colIndex < data.columnHeader.length - 2  && rowIndex < data.rowHeader.length -1" >
+                *ngIf="editModeStyle && colIndex < data.columnHeader.length - 2  && rowIndex < data.rowHeader.length -1">
 
       </mat-grid-tile>
     </ng-container>

@@ -31,8 +31,6 @@ export class ResourcesDialogComponent implements OnInit {
        })
      })
   }
-  ngOnChange(){}
-
   assignTaskToUser(id: string , firstName: string , lastName : string , userId : string) {
     this.userService.assignTaskToUser(id,this.task.id).subscribe((response)=>{
       this.openSnackBar("Task assigned to" +" "+firstName+" "+ lastName, 3000);

@@ -9,6 +9,10 @@ import {Observable} from "rxjs";
 })
 export class FeatureComponent implements OnInit {
 
+   @Input() formData;
+  @Input() order;
+  @Input() chiffrage;
+  @Input() submitType;
   public autoComplete$!: Observable<AutoComplete> ;
 
   constructor(private http: HttpClient) {}

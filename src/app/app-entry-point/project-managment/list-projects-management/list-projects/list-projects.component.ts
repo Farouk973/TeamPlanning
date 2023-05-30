@@ -1,16 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {ProjectService} from "../../../../../shared/services/project.service";
 import {Project} from "../../../../../shared/models/project.model";
 import {MatDialog} from "@angular/material/dialog";
 import {DetailsProjectComponent} from "../details-project/details-project.component";
-import {Observable} from "rxjs";
-import {FormControl, FormGroup} from "@angular/forms";
-import {map, startWith} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {Actionpanel, GridAction} from 'src/shared/generic/models/ActionPanel.model';
 import { CardGridView } from 'src/shared/generic/models/CardView.model';
 import { environment } from 'src/environments/environment';
-import {AssignProjectUserComponent} from "../assign-project-user/assign-project-user.component";
 import {AssignUnaasignProjectComponent} from "../assign-unaasign-project/assign-unaasign-project.component";
 
 @Component({
@@ -18,18 +14,10 @@ import {AssignUnaasignProjectComponent} from "../assign-unaasign-project/assign-
   templateUrl: './list-projects.component.html',
   styleUrls: ['./list-projects.component.css']
 })
-export class ListProjectsComponent implements OnInit {
+export class ListProjectsComponent  {
   projects: Project[]
   inputSearch: string='';
   constructor(public projectService : ProjectService , public dialog: MatDialog , private router : Router ) { }
-
-  ngOnInit(): void {
-
-
-  }
-
-
-
   openDialog( p ) {
     const dialogRef = this.dialog.open(DetailsProjectComponent , {
       data: {p}
