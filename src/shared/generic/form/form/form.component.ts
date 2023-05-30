@@ -33,6 +33,7 @@ export class FormComponent implements OnInit {
   @Input() set submitType(type: string) {
     this.submitByType(type);
   }
+  @Output() isValid = new EventEmitter<boolean>(false) ;
   @Input() order;
   @Input() chiffrage;
   fields: ColumnMetadata[];
@@ -165,6 +166,7 @@ export class FormComponent implements OnInit {
     this.submitAsync().then((isValid) => {
       console.log(this.form.value);
       console.log(type);
+
       if (isValid) {
         if (this.formData.Object && type == "UPDATE") {
           this.formService
@@ -199,6 +201,9 @@ export class FormComponent implements OnInit {
         }
       }
     });
+    if(Object.values(this.form.value).every(value => value === null)){
+      this.isValid.emit(false)
+    }
   }
 
   submitForm() {
