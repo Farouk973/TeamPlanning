@@ -49,7 +49,7 @@ export class TaskComponent {
       {
         columnDef: 'Task',
         header: 'Task',
-        cel: (element: any) => `${element.name}`
+        cel: (element: any) => `${element?.name}`
       },
       {
         columnDef: 'Category',
@@ -64,10 +64,7 @@ export class TaskComponent {
       {
         columnDef: 'Estimated Time',
         header: 'Estimated Time',
-        cel: (element: any) =>{
-          const nbhours = BigNumberService.transform(element.estimatedTime);
-          return nbhours;
-        }
+        cel: (element: any) =>`${element.estimatedTime} hrs`
 
       },
 

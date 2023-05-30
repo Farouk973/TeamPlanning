@@ -30,6 +30,7 @@
     "@fullcalendar/interaction": "^6.1.7",
     "angular-auth-oidc-client": "15.0.2",
     "apexcharts": "^3.40.0",
+    "moment": "2.24.0",
     "ng-apexcharts": "^1.7.6",
     "ng-dynamic-component": "^10.7.0",
     "ngx-cookie-service": "^14.0.0",
@@ -38,8 +39,8 @@
     "ngx-ui-loader": "^13.0.0",
     "primeflex": "^3.3.0",
     "rxjs": "~7.5.0",
-    "moment": "2.24.0",
     "tslib": "^2.3.0",
+    "xlsx": "^0.18.5",
     "yarn": "^1.22.19",
     "zone.js": "~0.11.4"
   },
