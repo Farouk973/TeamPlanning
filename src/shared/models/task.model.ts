@@ -5,7 +5,7 @@ export class Task {
   skill!: string;
   startDate!: string
   endDate!: string;
-  estimatedTime! : string
+  estimatedTime! : number
   skill_level! : string
   status!: string;
   nbHours!: number;

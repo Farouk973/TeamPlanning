@@ -4,12 +4,12 @@
 
 <ng-template #dialogTemplate let-dialogRef="dialogRef">
   <h2 mat-dialog-title>Tasks  <mat-icon class="more-icon" style="margin-left: 400px;" (click)="openCalander()">calendar_month</mat-icon>
-  </h2> 
+  </h2>
   <mat-dialog-content>
   <app-generic-table [data]="task"></app-generic-table>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button (click)="dialogRef.close()">Close</button>
+    <button class="mat-raised-button" mat-button (click)="dialogRef.close()"><p>Close</p></button>
   </mat-dialog-actions>
 
 </ng-template>
