@@ -29,4 +29,10 @@ export interface TimeLine extends NXMGenericComponent {
   startDateCollumn : string,
   endDateCollumn : string,
   displaycollumn : string,
+  dialog? :TimeDialog
 }
+
+export interface TimeDialog extends NXMGenericComponent {
+  endpoint : string,
+  metaData : string,
+} 

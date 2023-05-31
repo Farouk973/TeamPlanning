@@ -73,7 +73,8 @@ grid: GridView = {
   metadata: `${environment.baseUrl}/meta/GetPermissionListVm`,
   allowedSortColumns: ['title'],
   actionPanel: this.action,
-  actions : [this.actions]
+  actions : [this.actions],
+  pagination : true
 };
 
   select : SelectOrder = {
