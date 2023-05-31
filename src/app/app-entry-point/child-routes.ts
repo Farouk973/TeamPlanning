@@ -86,6 +86,11 @@ export const childRoutes = [
     loadChildren: () => import('./scheduling-management/scheduling-management.module').then(m => m.SchedulingManagementModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
   },
+  {
+    path: 'conflict',
+    loadChildren: () => import('./conflict-management/conflict-management.module').then(m => m.ConflictManagementModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Catalogue', show: true }
+  },
 
 
   // {

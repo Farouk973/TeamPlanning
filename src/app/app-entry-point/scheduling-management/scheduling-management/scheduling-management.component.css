@@ -176,6 +176,7 @@ p {
   background-color: #F7F7F7;
   border-radius: 6px;
   height: 30px;
+  box-shadow: none;
 }
 
 .avatar {
@@ -259,7 +260,7 @@ font-size: 13px;
   background-color: #F7F7F7;
   border-radius: 6px;
   height: 15px;
-  
+  box-shadow: none;
 
 }
 .name{
@@ -270,4 +271,19 @@ font-size: 12px;
 line-height: 20px;
 align-items: center;
 text-align: center;
+}
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+.matcard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.warning-icon {
+  margin-left: 10px; 
+  border-radius: 4px;
+  color: #E92C2C;
 }

@@ -67,12 +67,13 @@
               <div>time estimated: <span>{{ task.nbHours +'H'||'none' }}</span></div>
               <!-- <div>time estimated: <span>{{ task.users[0] }}</span></div> -->
             </mat-card-content>
-            <ng-container *ngFor="let card of getUsersByTaskId(task.id)" >
-            <mat-card class="matcard"  [cdkDragData]="card" cdkDrag>
-              <div >
-                <div class="name" >{{ card.firstName }} {{ card.lastName }}</div>
-              </div>
-            </mat-card>
+            <ng-container *ngFor="let card of task.userList" >
+              <mat-card class="matcard">
+                <div class="flex-container">
+                  <div class="name">{{ card.firstName }} {{ card.lastName }}</div>
+                    <mat-icon *ngIf="hasTimeConflict(card.id, task.id)" class="warning-icon" (click)="openConflictPopup(card.id, task.id)">warning</mat-icon>
+                </div>
+              </mat-card>
           </ng-container>
           </mat-card>
         </div>
