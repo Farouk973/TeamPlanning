@@ -10,6 +10,7 @@ import { ActiondialogComponent } from '../nxm-dialog/actiondialog/actiondialog.c
 import { ConfirmationComponent } from '../nxm-dialog/confirmation/confirmation.component';
 import { DialogComponent } from '../nxm-dialog/dialog/dialog.component';
 import { SharedServices } from '../SharedServices.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-grid-view',
@@ -39,7 +40,8 @@ export class GridViewComponent implements OnInit {
         console.log("data" ,data)
       });
   }
-
+  totalItems = 200;
+  pageSizeOptions = [10, 50, 100];
   sortColumn: string = '';
   sortDirection: 'asc' | 'desc' = 'asc';
   get sortedRows(): any[] {
@@ -70,14 +72,34 @@ export class GridViewComponent implements OnInit {
   }
 
   getGridData() {
+    if(this.GridView.pagination == true){
+      this.gridviewService
+      .getData(this.GridView.endpoint+"?take="+this.pageSizeOptions[0]+"&skip="+0)
+      .subscribe((data) => {
+        this.rows = data;
+        console.log("data" ,data)
+  //     this.totalItems = data.length
+      });
+    }
+    else{
     this.gridviewService
       .getData(this.GridView.endpoint)
       .subscribe((data) => {
         this.rows = data;
         console.log("data" ,data)
-
+       this.totalItems = data.length
       });
   }
+}
+getGridDataPagination(take : any , skip : any) {
+  if(this.GridView.pagination == true){
+    this.gridviewService
+    .getData(this.GridView.endpoint+"?take="+take+"&skip="+skip)
+    .subscribe((data) => {
+      this.rows = data;
+    });
+  }
+}
   getObjectKeys(obj: any) {
     const excludeProperties = [
       'created',
@@ -125,5 +147,13 @@ export class GridViewComponent implements OnInit {
      }) 
     }
 
-  
+    handlePageChange(event: PageEvent) {
+      // Récupérer les données correspondantes à la nouvelle page
+      const startIndex = event.pageIndex * event.pageSize;
+      const endIndex = startIndex + event.pageSize;
+   //   const newData = yourDataArray.slice(startIndex, endIndex);
+    console.log(startIndex)
+    console.log(endIndex)
+    this.getGridDataPagination(event.pageSize,startIndex)
+    }
 }

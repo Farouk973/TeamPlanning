@@ -1,0 +1,80 @@
+.container{
+    justify-content: center;
+    align-items: center;
+}
+
+.button{
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+color: aliceblue;
+border-color: none;
+position: absolute;
+background: #00B2D9;
+border-radius: 12px;
+width: 286px;
+height: 44px;
+}
+
+.info-card {
+    margin-bottom: 2%;
+}
+
+.title {
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+    text-transform: capitalize;
+    color: #001E50;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.soustitle{
+    margin-top: 10%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;  
+    text-transform: capitalize;
+    color: #6c7fa0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.cont-info {
+    display: flex;
+    margin-bottom: 2%;
+    align-items: center;
+    border-left: 4px solid #0085FF;
+    padding: 1%;
+
+}
+
+.descriptionCard{
+    padding: 1%;
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 150%;
+/* or 21px */
+
+text-align: justify;
+
+color: #001E50;
+
+}
+.mat-dialog-content {
+    overflow: hidden;
+}
+
+
+.column{
+    margin-right: 4%;
+    display: inline-block;
+    vertical-align: middle}

@@ -8,6 +8,7 @@ export interface GridView extends NXMGenericComponent {
     actionPanel?: Actionpanel;
     allowedSortColumns: string[];
     actions? : GridAction[]
+    pagination? : boolean
   }
 
   export interface GridAction {

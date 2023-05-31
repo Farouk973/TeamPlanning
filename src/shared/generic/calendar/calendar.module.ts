@@ -15,6 +15,7 @@ import { TimeLineComponent } from './time-line/time-line.component';
 import ApexCharts from 'apexcharts';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { TimeLineDialogComponent } from './time-line/time-line-dialog/time-line-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -36,7 +37,8 @@ import { TimeLineDialogComponent } from './time-line/time-line-dialog/time-line-
     FullCalendarModule,
     MatMenuModule,
     ActionPanelModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    MatDialogModule
     
 
   ],

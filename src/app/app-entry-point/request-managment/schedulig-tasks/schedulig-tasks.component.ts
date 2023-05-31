@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
-import { TimeLine } from 'src/shared/generic/models/Calendar.model';
+import { TimeDialog, TimeLine } from 'src/shared/generic/models/Calendar.model';
 import { TaskService } from 'src/shared/services/task.service';
 
 @Component({
@@ -35,13 +35,18 @@ export class ScheduligTasksComponent implements OnInit {
   onDeleteItem($event){
     
   }
+  dialogTime : TimeDialog = {
+    endpoint : `${environment.baseUrl}/api/Task/get-task`,
+    metaData : `${environment.baseUrl}/meta/GetTaskDetailQueryViewModel`
+  }
+
   timeline: TimeLine = {
     displaycollumn: 'name',
     endDateCollumn: 'endDate',
     endpoint:
     `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/`,
     startDateCollumn: 'startDate',
-  
+    dialog : this.dialogTime
   };
   action: Actionpanel = {
     endpoint: `${environment.baseUrl}/api/RequestManagement`,
@@ -49,4 +54,6 @@ export class ScheduligTasksComponent implements OnInit {
     title : "Request",
 
   };
+
+
 }
