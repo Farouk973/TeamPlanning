@@ -47,6 +47,7 @@ export class DomainChipsGCComponent implements OnInit {
   mappingsaveendpoint:{}
   async ngOnInit(): Promise<void> {
     //map keys from the endpoints and metdata
+    this.treedata=[]
     await this.subscribeToEndpoints();
     console.log(this.editmode)
     const response = await this.http.get<Metadata[]>(this.metadatastring).toPromise();
@@ -265,6 +266,7 @@ export class DomainChipsGCComponent implements OnInit {
     // Add any logic to handle dialog events or data here
     dialogRef.afterClosed().subscribe(result => {
       // Handle the dialog result
+      this.ngOnInit()
       console.log('Dialog result:', result);
     });
   }
@@ -283,7 +285,7 @@ export class DomainChipsGCComponent implements OnInit {
   this.http.post(apiUrl, data).subscribe(
     response => {
       console.log(response);
-      window.location.reload();
+      this.ngOnInit()
     })
       this.newBigCategoryName = '';
       this.showInput = false;
@@ -309,7 +311,7 @@ export class DomainChipsGCComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.http.delete(apiUrl+ '/' + itemId).subscribe((resp) => {
-          window.location.reload();
+          this.ngOnInit()
         });
       }
     });
@@ -324,7 +326,7 @@ export class DomainChipsGCComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.http.delete(apiUrl+ '/' + itemId).subscribe((resp) => {
-          window.location.reload();
+          this.ngOnInit()
         });
       }
     });
@@ -339,7 +341,7 @@ export class DomainChipsGCComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.http.delete(apiUrl+ '/' + itemId).subscribe((resp) => {
-          window.location.reload();
+          this.ngOnInit()
         });
       }
     });
