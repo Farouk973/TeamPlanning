@@ -1,1 +1,26 @@
-<p>time-line-dialog works!</p>
+<mat-dialog-content>
+    <div class="info-card">
+        <div class="cont-info">
+            <div class="cardItems" style="flex: 1; ">
+                <h1 class="title">Cutt off</h1>
+                <h3 class="soustitle">Category: General</h3>
+    
+            </div>
+        
+    
+        </div>
+        <div class="descriptionCard container">
+    
+            <div class="column" *ngFor="let col of metadatas">
+                {{col.name}}
+                <br>
+               {{rows[col.name]}}
+            </div>
+
+        </div>
+     <mat-dialog-actions class="container">
+    <button class="button"  mat-dialog-close>Ok</button>
+  </mat-dialog-actions>
+    </div>
+  </mat-dialog-content>
+ 

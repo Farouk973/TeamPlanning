@@ -5,6 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { Calendar } from '../../models/Calendar.model';
 import { CalanderService } from '../calander.service';
+import { months } from 'moment';
 
 @Component({
   selector: 'app-calendar',
@@ -12,36 +13,36 @@ import { CalanderService } from '../calander.service';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
-  cal : CalendarOptions ;
-  @Input() calendar! : Calendar  ;
-  @Output() date!: any ;
+  cal: CalendarOptions;
+  @Input() calendar!: Calendar;
+  @Output() date!: any;
 
   events: any[] = [];
-  constructor(private http : HttpClient , private calanderService : CalanderService) {
- }
- ngOnInit(): void {
-  this.CalendarEvents(
-    this.calendar.startDateCollumn,
-    this.calendar.displaycollumn,
-    this.calendar.endpoint,
-    this.calendar.endDateCollumn,
-    this.calendar.eventColors,
-    this.calendar.editable
+  constructor(private http: HttpClient, private calanderService: CalanderService) {
+  }
+  ngOnInit(): void {
+    this.CalendarEvents(
+      this.calendar.startDateCollumn,
+      this.calendar.displaycollumn,
+      this.calendar.endpoint,
+      this.calendar.endDateCollumn,
+      this.calendar.eventColors,
+      this.calendar.editable
     )
 
-    }
+  }
 
 
   calendarOptions: CalendarOptions = {
     navLinks: true,
 
-    plugins: [dayGridPlugin,interactionPlugin],
+    plugins: [dayGridPlugin, interactionPlugin],
     eventDrop: (info) => {
 
       // This function is called when an event is dropped on a new date
-      info.event.setExtendedProp(this.calendar.startDateCollumn,info.event.start);
-      info.event.setExtendedProp(this.calendar.endDateCollumn,info.event.end);
-      this.http.put<any[]>(this.calendar.updateendpoint,info.event.extendedProps).subscribe(resp => console.log(resp))
+      info.event.setExtendedProp(this.calendar.startDateCollumn, info.event.start);
+      info.event.setExtendedProp(this.calendar.endDateCollumn, info.event.end);
+      this.http.put<any[]>(this.calendar.updateendpoint, info.event.extendedProps).subscribe(resp => console.log(resp))
       this.calanderService.lancerAction(null);
 
 
@@ -49,54 +50,76 @@ export class CalendarComponent implements OnInit {
     eventResize: (info) => {
       this.calanderService.lancerAction(null);
 
-      info.event.setExtendedProp(this.calendar.startDateCollumn,info.event.start);
-      info.event.setExtendedProp(this.calendar.endDateCollumn,info.event.end);
-      this.http.put<any[]>(this.calendar.updateendpoint,info.event.extendedProps).subscribe(resp => console.log(resp))
+      info.event.setExtendedProp(this.calendar.startDateCollumn, info.event.start);
+      info.event.setExtendedProp(this.calendar.endDateCollumn, info.event.end);
+      this.http.put<any[]>(this.calendar.updateendpoint, info.event.extendedProps).subscribe(resp => console.log(resp))
 
     },
     dateClick: (info) => {
       this.calanderService.lancerAction(info.dateStr);
-     console.log("calanda: ",info.dateStr)
     },
-    select: function(info) {
+    select: function (info) {
 
-        },
+    },
+
+    customButtons: {
+      myCustomButton: {
+        text: 'custom!',
+        click: function () {
+
+        }
+      }
+    },
 
     headerToolbar: {
 
-      left: '',
+      left: 'myCustomButton',
       center: 'prev,title,next',
       right: '',
 
 
     },
     buttonIcons: {
-      next: 'c-icon cal-next-arrow',
-      prev: 'c-icon cal-prev-arrow',
+      prev: 'chevron_right',
+      next: 'fa-chevron-right',
     },
     initialView: 'dayGridMonth',
-    weekends: true,
+    weekends: false,
     dayMaxEvents: true,
 
-
   };
+  color = [
 
+    '#5030E5',
+    '#FFA500',
+    '#8BC48A',
+    '#64DD17',
+    '#0277BD',
+    '#8E24AA',
+    '#B39DDB',
+    '#0097A7',
+    '#C5CAE9',
+    '#FF80AB',
+    '#F57F17',
+    '#4DD0E1',
+  ];
 
-  CalendarEvents(startDate : string,fieldToDisplay:string,endpoint:string, endDate?:string,eventColors?: string,editable?: boolean) {
+  CalendarEvents(startDate: string, fieldToDisplay: string, endpoint: string, endDate?: string, eventColors?: string, editable?: boolean) {
     this.http.get<any[]>(endpoint).subscribe((data) => {
-      this.events = data.map((event) => (
+      this.events = data.map((event , i) => (
         {
-        extendedProps : event ,
-        title: event[fieldToDisplay],
-        start: event[startDate],
-        end: event[endDate]
+          extendedProps: event,
+          title: event[fieldToDisplay],
+          start: event[startDate],
+          end: event[endDate],
+
         }
 
       ));
       this.calendarOptions.events = this.events
 
     });
-    if(editable){
+    if (editable) {
 
       this.calendarOptions.editable = true;
       this.calendarOptions.eventDurationEditable = true;
@@ -112,8 +135,8 @@ export class CalendarComponent implements OnInit {
     this.calendarOptions.eventColor = eventColors;
     this.calendarOptions.eventBackgroundColor = eventColors;
     this.calendarOptions.eventBorderColor = eventColors;
-    this.calendarOptions.eventTextColor = darkenColor(this.calendar.eventColors,0.2);
-    this.cal = this.calendarOptions ;
+    this.calendarOptions.eventTextColor = darkenColor(this.calendar.eventColors, 0.2);
+    this.cal = this.calendarOptions;
   }
 }
 
@@ -148,3 +171,4 @@ function darkenColor(color, amount) {
 
   return hex;
 }
+

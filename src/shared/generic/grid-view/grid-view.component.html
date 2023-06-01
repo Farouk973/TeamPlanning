@@ -130,4 +130,7 @@
       </tr>
     </tbody>
   </table>
+  
 </div>
+<mat-paginator *ngIf="GridView.pagination" [length]="totalItems" [pageSizeOptions]="pageSizeOptions" aria-label="Select page" (page)="handlePageChange($event)">
+</mat-paginator>

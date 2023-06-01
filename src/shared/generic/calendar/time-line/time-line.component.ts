@@ -1,5 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
-import {  Input, OnInit, Output } from '@angular/core';
+import { Input, OnInit, Output } from '@angular/core';
 
 import moment from "moment";
 
@@ -37,43 +37,42 @@ export type ChartOptions = {
 })
 export class TimeLineComponent implements OnInit {
 
-  @Input() Timeline! : TimeLine  ;
+  @Input() Timeline!: TimeLine;
   events: any[] = [];
-
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
 
-  constructor(private http : HttpClient ,public dialog: MatDialog) {
+  constructor(private http: HttpClient, public dialog: MatDialog) {
     console.log(this.Timeline)
- 
+
 
 
   }
   ngOnInit(): void {
-     console.log(this.Timeline)
-     this.CalendarEvents(
+    console.log(this.Timeline)
+    this.CalendarEvents(
       this.Timeline.startDateCollumn,
       this.Timeline.displaycollumn,
       this.Timeline.endpoint,
       this.Timeline.endDateCollumn,
-      )
-    
+    )
+
   }
 
-  CalendarEvents(startDate : string,fieldToDisplay:string,endpoint:string, endDate?:string) {
+  CalendarEvents(startDate: string, fieldToDisplay: string, endpoint: string, endDate?: string) {
     this.http.get<any[]>(endpoint).subscribe((data) => {
       console.log(data)
-      this.events = data.map((event , i) => (
+      this.events = data.map((event, i) => (
         {
           id: event.id,
-        x: event[fieldToDisplay],
-        y: [
-              new Date(event[startDate]).getTime(),
-              new Date(event[endDate]).getTime()
-          
-        ],
-        fillColor: this.color[i]
+          x: event[fieldToDisplay],
+          y: [
+            new Date(event[startDate]).getTime(),
+            new Date(event[endDate]).getTime()
+
+          ],
+          fillColor: this.color[i]
         }
 
       ));
@@ -87,12 +86,11 @@ export class TimeLineComponent implements OnInit {
         chart: {
           height: 350,
           type: "rangeBar",
-          events:{
-            click(event,chartContext,config) {
-              console.log(config.config.series[config.seriesIndex].data[config.dataPointIndex])
-               }
-            
-            }
+          events: {
+            click: function (event, chartContext, config) {
+              this.openDialog(config.config.series[config.seriesIndex].data[config.dataPointIndex].id);
+            }.bind(this),
+          }
         },
         plotOptions: {
           bar: {
@@ -102,11 +100,11 @@ export class TimeLineComponent implements OnInit {
               hideOverflowingLabels: false
             }
           }
-         
+
         },
         dataLabels: {
           enabled: true,
-          formatter: function(val, opts) {
+          formatter: function (val, opts) {
             var label = opts.w.globals.labels[opts.dataPointIndex];
             var a = moment(val[0]);
             var b = moment(val[1]);
@@ -123,14 +121,14 @@ export class TimeLineComponent implements OnInit {
         yaxis: {
           show: false
         },
-        
+
         grid: {
           row: {
             colors: ["#f3f4f5", "#fff"],
             opacity: 1
           }
         },
-      
+
       };
 
       console.log(this.chartOptions.series['date'])
@@ -138,13 +136,21 @@ export class TimeLineComponent implements OnInit {
     });
   }
 
- openDialog() {
-    this.dialog.open(TimeLineDialogComponent, {
-      data: {
-        animal: 'panda',
-      },
+  openDialog(data: any): void {
+    if(this.Timeline.dialog){
+    console.log(data)
+    var metadata = this.Timeline.dialog
+    const dialogRef = this.dialog.open(TimeLineDialogComponent, {
+      width: '895px',
+     
+      data: { data , metadata },
+
+
+    });
+    dialogRef.afterClosed().subscribe((result) => {
     });
   }
+}
 
   color = [
 
