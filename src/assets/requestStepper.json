@@ -1,50 +1,47 @@
+
 {
-    "steps": [
-      {
-        "title": "Enter request details",
-        "order": 1,
-        "contentType": "Form",
-        "content":
-         { "endpoint": "https://localhost:44312/api/Project/RequestManagement",
-           "metaData": "https://localhost:44312/meta/CreateRequestCommand"
-         },
-          "input" : true
+  "steps": [
+    {
+      "title": "Project",
+      "order": 1,
+      "contentType": "Form",
+      "content":
+      { "endpoint": "https://localhost:44312/api/RequestManagement",
+        "metaData": "https://localhost:44312/meta/CreateRequestCommand"
       },
-      {
-        "title": "Enter request details",
-        "order": 1,
-        "contentType": "Form",
-        "content":
-         { "endpoint": "https://localhost:44312/api/Project/RequestManagement",
-           "metaData": "https://localhost:44312/meta/CreateRequestCommand"
-         },
-          "input" : true
-      }
-     
-    ],
-    "next": {
-          "label": "Next",
-          "endpoint": "",
-           "style": "background-color: #00b2d9;"
+      "input" : true
     },
-    "back": {
-      "label": "Back",
-      "endpoint": "",
-      "style": "background-color: #00b2d9;"
-    },
-    "validate": {
-      "label": "save",
-      "endpoint": "",
-      "style": "background-color: #00b2d9;"
-    },
-    "delete": {
-      "label": "Delete",
-      "endpoint": "/api/Project",
-      "style": "background-color: #00b2d9;"
-    },
-    "valueDuration": "1000",
-    "orientation": "horizontal"
-  }
-  
-  
-  
+    {
+      "title": "Features",
+      "order": 2,
+      "contentType": "Features",
+      "content":
+      { "endpoint": "",
+        "metaData": ""
+      },
+      "input" : false
+    }
+  ],
+  "next": {
+    "label": "Next",
+    "endpoint": "",
+    "style": "background-color: #00b2d9;"
+  },
+  "back": {
+    "label": "Back",
+    "endpoint": "",
+    "style": "background-color: #00b2d9;"
+  },
+  "validate": {
+    "label": "Costing",
+    "endpoint": "",
+    "style": "background-color: #00b2d9;"
+  },
+  "delete": {
+    "label": "Delete",
+    "endpoint": "/api/Project",
+    "style": "background-color: #00b2d9;"
+  },
+  "valueDuration": "1000",
+  "orientation": "horizontal"
+}
