@@ -43,6 +43,8 @@ export class TaskComponent {
 
   openCalander(){
     this.router.navigate(['request/task-calandar',this.element.id ] )  }
+    openTimeLine(){
+      this.router.navigate(['request/schedulig',this.element.id ] )  }
 
   task:  DataTableGenericInput={
     columns: [

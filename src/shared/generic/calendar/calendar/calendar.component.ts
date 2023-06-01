@@ -60,20 +60,12 @@ export class CalendarComponent implements OnInit {
     },
     select: function (info) {
 
-    },
-
-    customButtons: {
-      myCustomButton: {
-        text: 'custom!',
-        click: function () {
-
-        }
-      }
-    },
+    }
+    ,
 
     headerToolbar: {
 
-      left: 'myCustomButton',
+      left: '',
       center: 'prev,title,next',
       right: '',
 

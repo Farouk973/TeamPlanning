@@ -3,7 +3,9 @@
 
 
 <ng-template #dialogTemplate let-dialogRef="dialogRef">
-  <h2 mat-dialog-title>Tasks  <mat-icon class="more-icon" style="margin-left: 400px;" (click)="openCalander()">calendar_month</mat-icon>
+  <h2 mat-dialog-title>Tasks 
+     <mat-icon class="more-icon" style="margin-left: 700px;" (click)="openCalander()">calendar_month</mat-icon>
+     <mat-icon class="more-icon"(click)="openTimeLine()">view_timeline</mat-icon>
   </h2>
   <mat-dialog-content>
   <app-generic-table [data]="task"></app-generic-table>
