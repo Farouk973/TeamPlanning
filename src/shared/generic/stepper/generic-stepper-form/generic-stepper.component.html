@@ -5,7 +5,7 @@
     <mat-step  *ngFor="let step of stepper?.steps; let i = index ;let last = last;" >
       <ng-template  matStepLabel>{{ step.title }}</ng-template>
       <div>
-        <ndc-dynamic [ngComponentOutlet]="getComponent(step.contentType)"
+        <ndc-dynamic [ngComponentOutlet]="getComponentByContentType(step.contentType)"
                      [ndcDynamicInputs]="{'formData' : step.content , 'submitType': actionType ,'order' :order , 'chiffrage' :chiff}"
                      [ndcDynamicOutputs]="{ myEvent : formResponse , isValid : formIsValid }">
 

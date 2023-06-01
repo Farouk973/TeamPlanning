@@ -37,7 +37,7 @@ import {MatStepper} from "@angular/material/stepper";
 
 export class GenericStepperComponent<T> implements OnInit {
   @Input() stepper$!: Observable<Stepper>;
-  @Input() getCom: (contentType: string) => any;
+  @Input() getComponent: (contentType: string) => any;
   stepper = new Stepper();
   actionType: string;
   order : number;
@@ -57,8 +57,8 @@ export class GenericStepperComponent<T> implements OnInit {
 
   }
 
-  getComponent(contentType: string): any {
-    return this.getCom(contentType);
+  getComponentByContentType(contentType: string): any {
+    return this.getComponent(contentType);
   }
 
 
