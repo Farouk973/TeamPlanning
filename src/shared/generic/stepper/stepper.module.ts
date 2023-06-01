@@ -8,9 +8,11 @@ import {RouterModule} from "@angular/router";
 import {SpreadsheetsModule} from "../spreadsheets/spreadsheets.module";
 import {SpreadsheetsManagementModule} from "../../../app/app-entry-point/project-managment/spreadsheets-management/spreadsheets-management.module";
 import {SkillStepperManagementModule } from 'src/app/app-entry-point/skill-stepper-management/skill-stepper-management.module';
+import {GetComponentDirective} from "./GetComponentDirective";
 @NgModule({
   declarations: [
-    GenericStepperComponent
+    GenericStepperComponent,
+    GetComponentDirective
   ],
   imports: [
     CommonModule,

@@ -21,6 +21,7 @@ import {MatStepper} from "@angular/material/stepper";
 
 
 
+// @ts-ignore
 @Component({
   selector: 'app-generic-stepper',
   templateUrl: './generic-stepper.component.html',
@@ -31,10 +32,12 @@ import {MatStepper} from "@angular/material/stepper";
       useExisting: GenericStepperComponent,
     },
   ],
+
 })
 
-export class GenericStepperComponent implements OnInit {
+export class GenericStepperComponent<T> implements OnInit {
   @Input() stepper$!: Observable<Stepper>;
+  @Input() getCom: (contentType: string) => any;
   stepper = new Stepper();
   actionType: string;
   order : number;
@@ -55,20 +58,7 @@ export class GenericStepperComponent implements OnInit {
   }
 
   getComponent(contentType: string): any {
-    switch (contentType) {
-      case 'Form':
-        return FormComponent;
-      case 'Features':
-        return FeatureComponent;
-      case 'Roles':
-        return RolesComponent;
-      case 'Skills':
-        return SkillStepperComponent;
-        case 'Recap':
-        return RecopProjectComponent;
-      default:
-        throw new Error(`Invalid component name: ${contentType}`);
-    }
+    return this.getCom(contentType);
   }
 
 
