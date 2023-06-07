@@ -7,6 +7,8 @@ import {FeatureComponent} from "../../project-managment/feature-managment/featur
 import {RolesComponent} from "../../project-managment/roles-management/roles/roles.component";
 import {SkillStepperComponent} from "../../skill-stepper-management/skill-stepper/skill-stepper.component";
 import {RecopProjectComponent} from "../../project-managment/recop-project/recop-project.component";
+import { TaskCalanderComponent } from '../task-calander/task-calander.component';
+import { CalendarComponent } from 'src/shared/generic/calendar/calendar/calendar.component';
 
 @Component({
   selector: 'app-add-request',
@@ -28,7 +30,7 @@ export class AddRequestComponent implements OnInit {
       case 'Form':
         return FormComponent;
       case 'Features':
-        return FeatureComponent;
+        return TaskCalanderComponent;
 
       default:
         throw new Error(`Invalid component name: ${contentType}`);
