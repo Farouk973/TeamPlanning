@@ -63,10 +63,10 @@ export class GenericStepperComponent<T> implements OnInit {
 
 
   formResponse(event) {
-    this.idResponse= event.response.projectId
-    const url = this.location.path().split('?')[0] + '/' + event.response.projectId;
+    this.idResponse= event.response.id
+    const url = this.location.path().split('?')[0] + '/' + event.response.id;
     this.location.replaceState(url);
-    if(event.response.projectId){
+    if(event.response.id){
       this.st.next();
     }
   }

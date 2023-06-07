@@ -208,7 +208,7 @@ export class FormComponent implements OnInit {
 
   submitForm() {
     this.submitAsync().then((isValid) => {
-      if (isValid) {
+   //   if (isValid) {
         console.log(this.form.value)
         if (this.formData.Object) {
           this.formService
@@ -235,6 +235,7 @@ export class FormComponent implements OnInit {
             );
         }
         if (!this.formData.Object) {
+          console.log("createeeeeeeeeeeeeee")
           this.formService
             .addRow(this.formData.endpoint, this.form.value)
             .subscribe(
@@ -252,7 +253,7 @@ export class FormComponent implements OnInit {
               }
             );
         }
-      }
+ //     }
     });
   }
   ReferenceExistances(desc :string) :any
