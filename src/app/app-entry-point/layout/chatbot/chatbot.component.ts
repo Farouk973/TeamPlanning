@@ -58,7 +58,7 @@ export class ChatbotComponent implements OnInit {
     const msg1 = { name: 'User', message: text1 };
     this.messages.push(msg1);
 
-    fetch('http://127.0.0.1:5000/chat', {
+    fetch('http://localhost:5000/api/chatbot/message', {
       method: 'POST',
       body: JSON.stringify({ message: text1 }),
       mode: 'cors',
@@ -68,7 +68,8 @@ export class ChatbotComponent implements OnInit {
     })
       .then((r) => r.json())
       .then((r) => {
-        const msg2 = { name: 'Sam', message: r.answer };
+        console.log(r)
+        const msg2 = { name: 'Sam', message: r.message };
         this.messages.push(msg2);
         this.updateChatText(chatbox);
         textField!.value = '';
