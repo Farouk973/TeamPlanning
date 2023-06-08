@@ -2,7 +2,7 @@
     <mat-icon class="icon-back" (click)="goBack()">chevron_left</mat-icon>
     <h1 class="header-title">Request Details</h1>
 </div>
-<div class="container">
+<div class="container-request">
   <div class="title-line">
     <div class="title-group">
       <h2 class="title">{{element.name}}</h2>
@@ -18,7 +18,18 @@
     </div>
     <div class="info-item">
       <span class="info-label">Skills required:</span>
-      <span class="info-value">{{element.skills||'none'}}</span>
+      <span class="info-value">
+        <ng-container *ngIf="element.skills && element.skills.length > 0; else noSkills">
+          <ng-container *ngFor="let skill of element.skills; let i = index">
+            <ng-container *ngIf="i < 2">
+              {{ skill.name }}
+              <span *ngIf="i < 1 && i < element.skills.length - 1">, </span>
+              <span *ngIf="i === 1 && i < element.skills.length - 1">, ...</span>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+        <ng-template #noSkills>none</ng-template>
+      </span>
     </div>
     <div class="info-item">
       <span class="info-label">Start date:</span>

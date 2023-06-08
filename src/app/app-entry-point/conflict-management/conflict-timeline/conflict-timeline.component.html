@@ -1,0 +1,73 @@
+<div class="header">
+  <span class="titleService">Scheduling and planning management</span>
+</div>
+<div class="container" cdkDropListGroup>
+  <div class="usercontainer" cdkDropList (cdkDropListDropped)="drop($event , 'aaaa')">
+    <h4>Available resources</h4>
+
+    <div class="search-container">
+      <input type="text" [(ngModel)]="searchuser" (input)="filterUsers()" placeholder="Search">
+      <mat-icon class="search-icon">search</mat-icon>
+    </div>
+
+    <div class="mat-card" *ngFor="let card of filteredUsers" cdkDrag [cdkDragData]="card">
+      <div class="avatar">
+        <img [src]="card.avatar.content" alt="Avatar">
+      </div>
+      <div>
+        <div class="names">{{ card.firstName }} {{ card.lastName }}</div>
+        <div>{{ card.skillLevel }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="requestcontainer" [class.enable-scroll]="isHovered" (mouseenter)="toggleScroll()" 
+  (mouseleave)="toggleScroll()">
+    <h2>Requests list</h2>
+    <div class="search-container">
+      <input type="text" [(ngModel)]="searchrequest" (input)="filterrequest()" placeholder="Search">
+      <mat-icon class="search-icon">search</mat-icon>
+    </div>
+    
+    <div *ngFor="let request of filteredRequest" (click)="showTimeline(request); showTasks(request)">
+      <mat-card class="mat-card-request">
+        <mat-icon class="dots-icon">more_vert</mat-icon>
+        <h3>{{ request.name }}</h3>
+      </mat-card>
+      <div class="tasks-container" *ngIf="selectedRequest1 === request">
+        <div class="task" *ngFor="let task of tasks" (click)="showUsers(task.id,$event)" cdkDropList (cdkDropListDropped)="drop($event , task)">
+          <mat-card class="taskcard">
+            <div>
+              <div class="names">{{ task.name }}</div>
+              <div class="lvl">{{ task.skill_level }}</div>
+            </div>
+          </mat-card>
+          <div class="userstask" *ngIf="selectedTaskId === task.id">
+            <div class="user" *ngFor="let user of selectedTaskUsers">
+              <mat-card>
+                <div class="user-details">
+                  <div class="names">{{ user.firstName }} {{ user.lastName }}</div>
+                  <div class="lvl">{{ user.skillLevel }}</div>
+                </div>
+                <div class="circled-x" (click)="unassignUserFromTaskOnBackend(user.id,task.id);$event.stopPropagation()">
+                  <span class="icon">&#10006;</span>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-container" *ngIf="selectedRequest">
+    <div *ngIf="showTimelineComponent">
+      <div class="header">
+      <span class="titleService">Request: {{selectedRequest.name}}</span>
+    </div>
+      <mat-card>
+        <app-time-line [Timeline]="timeline"></app-time-line>
+      </mat-card>
+    </div>
+  </div>
+</div>

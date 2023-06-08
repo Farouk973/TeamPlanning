@@ -13,7 +13,7 @@ export class ViewResourcesComponent implements OnInit {
   ngOnInit(): void {
   }
   redirectToComponent(element: any): void {
-    const queryParams = { element: JSON.stringify(element) };
+    const queryParams = { element: JSON.stringify(element.id) };
     const navigationExtras: NavigationExtras = { queryParams };
     this.router.navigate(['/schedule/resources'], navigationExtras);
   }

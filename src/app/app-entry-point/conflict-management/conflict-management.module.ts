@@ -10,6 +10,8 @@ import { GenericTableModule } from 'src/shared/generic/generic-table/generic-tab
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { SolveConflictComponent } from './solve-conflict/solve-conflict.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { ConflictTimelineComponent } from './conflict-timeline/conflict-timeline.component';
+import { CalendarModule } from 'src/shared/generic/calendar/calendar.module';
 
 
 
@@ -17,7 +19,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   declarations: [
     ConflictManagementComponent,
     ViewDetailsComponent,
-    SolveConflictComponent
+    SolveConflictComponent,
+    ConflictTimelineComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FormsModule,
     DragDropModule,
     GenericTableModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    CalendarModule
   ]
 })
 export class ConflictManagementModule { }

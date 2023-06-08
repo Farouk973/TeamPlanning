@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { User } from 'src/shared/models/user.model';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { SolveConflictComponent } from '../../conflict-management/solve-conflict/solve-conflict.component';
@@ -16,6 +16,7 @@ import { SolveConflictComponent } from '../../conflict-management/solve-conflict
 })
 export class SchedulingManagementComponent implements OnInit {
   element: any;
+  requestid
   users: User[] = [];
   filteredUsers: User[] = [];
   searchTerm = '';
@@ -26,16 +27,33 @@ export class SchedulingManagementComponent implements OnInit {
   async ngOnInit() {
     this.route.queryParams.subscribe(params => {
       if (params['element']) {
-        this.element = JSON.parse(params['element']);
+        this.requestid = JSON.parse(params['element']);
       }
     });
   
     try {
-      await this.fetchUsers().toPromise(); // Wait for fetchUsers() to complete
+      console.log(this.requestid)
+      await this.fetchrequest().toPromise();
+      await this.fetchUsers().toPromise();
+       // Wait for fetchUsers() to complete
       this.fetchTasks();
+      
     } catch (error) {
       console.error('Error in ngOnInit:', error);
     }
+  }
+  fetchrequest():Observable<any>{
+   return new Observable<any>(observer=>{
+    this.http.get<any>(`${environment.baseUrl}/api/RequestManagement/${this.requestid}`).subscribe((data)=>{
+      this.element=data
+      observer.next(data); // Emit the received data
+      observer.complete();
+    },
+    (error) => {
+      console.error('Error fetching request:', error);
+      observer.error(error); // Emit the error
+    })
+   })
   }
   fetchUsers(): Observable<User[]> {
     return new Observable<User[]>(observer => {

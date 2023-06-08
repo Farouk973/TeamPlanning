@@ -20,10 +20,9 @@
   margin: 0;
 }
 
-.container {
+.container-request {
   position: relative;
-  width: 100%;
-  max-width: 1000px;
+  width: 95%;
   padding: 20px;
   background: #FFFFFF;
   border-radius: 10px;
@@ -127,7 +126,7 @@ p {
 
 .usercontainer {
   flex: 1;
-  max-width: 280px;
+  max-width: 20%;
   margin-right: 20px;
   margin-top: 20px;
   padding: 20px;
@@ -200,7 +199,7 @@ p {
 
 .taskcontainer {
   flex: 1;
-  max-width: 665px;
+  max-width: 70%;
   padding: 20px;
   margin-top: 20px;
   background: #FFFFFF;

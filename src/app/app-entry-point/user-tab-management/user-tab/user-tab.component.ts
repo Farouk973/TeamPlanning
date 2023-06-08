@@ -103,8 +103,10 @@ export class UserTabComponent implements OnInit {
     }
   openAddSkillDialog(): void {
     const dialogRef = this.dialog.open(AddSkillDialogComponent, {
-      maxWidth: '800px',
-      minWidth:'800px',
+      width: '60%',
+      height: '95%',
+      maxWidth: '100%',
+      maxHeight: '100%',
       data: { skillList: this.skillList }
     });
 
