@@ -42,9 +42,13 @@ export class ChatbotComponent implements OnInit {
 
     // show or hides the box
     if (this.state) {
+      chatbox?.classList.remove('chatbox--active-heigth');
       chatbox?.classList.add('chatbox--active');
+
     } else {
+      chatbox?.classList.add('chatbox--active-heigth');
       chatbox?.classList.remove('chatbox--active');
+
     }
   }
 
