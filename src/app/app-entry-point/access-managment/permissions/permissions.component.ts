@@ -68,7 +68,7 @@ actions : GridAction = {
 }
 
 grid: GridView = {
-  endpoint: `${environment.baseUrl}/api/Permission`,
+  endpoint: `${environment.baseUrl}/api/Permission/paggination`,
   formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
   metadata: `${environment.baseUrl}/meta/GetPermissionListVm`,
   allowedSortColumns: ['title'],
