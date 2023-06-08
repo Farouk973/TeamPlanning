@@ -50,7 +50,7 @@ export class FormComponent implements OnInit {
 
   valueControl = new FormControl();
   map2 : Map<string,string> = new Map([
-    ["role", "title"],["category", "name"],["skills", "skillName"],["permission", "title"],
+    ["role", "title"],["category", "name"],["skills", "skillName"],["permission", "title"],["project", "name"]
 ]);
   ngOnInit(): void {
  this.formData.Options = this.map2

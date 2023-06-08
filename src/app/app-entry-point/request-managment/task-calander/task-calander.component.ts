@@ -32,7 +32,7 @@ export class TaskCalanderComponent implements OnInit , OnChanges{
       let id = url.substring(url.lastIndexOf('/') + 1);
       this.calendar.endpoint = `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/` + id;
       this.calendarDetails.endpoint = `${environment.baseUrl}/api/RequestManagement/get-tasksByRequest/` + id;
-      this.formtask.endpoint = `${environment.baseUrl}/api/Task/request/`+this.id
+      this.formtask.endpoint = `${environment.baseUrl}/api/Task/request/`+id
 
 
       console.log("change",this.order);
@@ -61,7 +61,8 @@ export class TaskCalanderComponent implements OnInit , OnChanges{
   formtask : Form ={
     endpoint : `${environment.baseUrl}/api/Task/request/`+this.id,
     metaData : `${environment.baseUrl}/meta/CreateTaskCommand` ,
-    title : "New Task"
+    title : "New Task",
+    
   };
   
   action: Actionpanel = {
