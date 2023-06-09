@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-chatbot',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chatbot.component.css']
 })
 export class ChatbotComponent implements OnInit {
+  private baseUrl = environment.baseUrlMs;
+
   public args = {
     openButton: document.querySelector('.chatbox__button'),
     chatBox: document.querySelector('.chatbox__support'),
@@ -62,9 +65,9 @@ export class ChatbotComponent implements OnInit {
     const msg1 = { name: 'User', message: text1 };
     this.messages.push(msg1);
 
-    fetch('http://localhost:5000/api/chatbot/message', {
+    fetch(`${this.baseUrl}/api/chatbot/message`, {
       method: 'POST',
-      body: JSON.stringify({ message: text1 }),
+      body: JSON.stringify({question: text1 }),
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
@@ -73,7 +76,7 @@ export class ChatbotComponent implements OnInit {
       .then((r) => r.json())
       .then((r) => {
         console.log(r)
-        const msg2 = { name: 'Sam', message: r.message };
+        const msg2 = { name: 'Sam', message: r.response };
         this.messages.push(msg2);
         this.updateChatText(chatbox);
         textField!.value = '';
