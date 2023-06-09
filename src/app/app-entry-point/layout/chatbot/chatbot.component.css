@@ -43,19 +43,19 @@ body {
   height: 350px;
   z-index: -123456;
   opacity: 0;
-  transition: all .2s ease-in-out;
+  transition: all .5s ease-in-out;
 }
 
 /* CONTENT ISOPEN */
 .chatbox--active {
   transform: translateY(-40px);
-  z-index: 123456;
   opacity: 1;
 
 }
 .chatbox--active-heigth {
-  max-height: 0px;
 
+  max-height: 0px;
+  margin-right: 50px;
 }
 
 /* BUTTON */
@@ -81,13 +81,31 @@ body {
   flex-direction: column-reverse;
 }
 
+.chatbox__messages::-webkit-scrollbar {
+  width: 8px; /* Largeur de la barre de défilement */
+}
+
+.chatbox__messages::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Couleur de fond de la piste de défilement */
+}
+
+.chatbox__messages::-webkit-scrollbar-thumb {
+  background: #d0f4fc; /* Couleur de la poignée de défilement */
+}
+
+.chatbox__messages::-webkit-scrollbar-thumb:hover {
+  background: #88e8fd; /* Couleur de la poignée de défilement au survol */
+}
+
 
 /* FOOTER */
 .chatbox__footer {
   position: sticky;
   bottom: 0;
 }
-
+input:focus {
+  outline: 2px solid #88e8fd; /* Remplacez "blue" par la couleur de votre choix */
+}
 .chatbox__support {
   background: #f9f9f9;
   height: 450px;
