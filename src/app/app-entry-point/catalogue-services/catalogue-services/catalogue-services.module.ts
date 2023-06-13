@@ -15,6 +15,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DataTableGenericModule } from "src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.module";
 import { EditDeleteCatalogueComponent } from './edit-delete-catalogue/edit-delete-catalogue.component';
 import { ActionCatalogueComponent } from './action-catalogue/action-catalogue.component';
+import { ListServiceComponent } from './list-service/list-service.component';
+import { CardViewModule } from 'src/shared/generic/card-view/card-view.module';
 
 
 
@@ -22,7 +24,7 @@ import { ActionCatalogueComponent } from './action-catalogue/action-catalogue.co
 
 
 @NgModule({
-    declarations: [CatalogueServicesComponent, EditDeleteCatalogueComponent, ActionCatalogueComponent],
+    declarations: [CatalogueServicesComponent, EditDeleteCatalogueComponent, ActionCatalogueComponent, ListServiceComponent],
     imports: [
         CommonModule,
         CatalogueServicesRoutingModule,
@@ -35,7 +37,8 @@ import { ActionCatalogueComponent } from './action-catalogue/action-catalogue.co
         SearchBarModule,
         ReactiveFormsModule,
         MatDialogModule,
-        DataTableGenericModule
+        DataTableGenericModule,
+        CardViewModule
     ]
 })
 

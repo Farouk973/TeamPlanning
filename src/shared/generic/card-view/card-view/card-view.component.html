@@ -11,7 +11,7 @@
       <h1>{{ row[cardView.cardtitle]}}</h1>
       <h3>{{ row[cardView.carddescription]}}</h3>
       <div>
-        <h2>Created at: {{row[cardView.cardDate] | date:'yyyy-MM-dd HH:mm'}}
+        <h2><a *ngIf="cardView.cardDate">Created at: {{row[cardView.cardDate] | date:'yyyy-MM-dd HH:mm'}}</a>
           <mat-icon class="more-icon" (click)="openDialog(row)">read_more</mat-icon>
         </h2>
 

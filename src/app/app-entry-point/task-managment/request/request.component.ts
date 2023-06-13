@@ -7,5 +7,10 @@ import {mockDataTableRequestData} from "../request.task.data";
   styleUrls: ['./request.component.css']
 })
 export class RequestComponent  {
-request =  mockDataTableRequestData;
+  add : boolean=false
+request =  mockDataTableRequestData;  
+
+affAdd(){
+  this.add = !this.add
+}
 }

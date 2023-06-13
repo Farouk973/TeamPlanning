@@ -16,6 +16,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {SocketIoConfig, SocketIoModule} from "ngx-socket-io";
 import {NotificationService} from "../../../shared/services/notification.service";
+import { RequestManagmentModule } from '../request-managment/request-managment.module';
 const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 
 
@@ -38,7 +39,8 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     MatCardModule,
     FlexLayoutModule,
     MatSnackBarModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    RequestManagmentModule
 
 
   ],

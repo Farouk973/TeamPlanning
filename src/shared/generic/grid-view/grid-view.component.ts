@@ -143,7 +143,7 @@ getGridDataPagination(take : any , skip : any) {
       data: {data , id},
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${Object.keys(result)}`);
+   //   console.log(`Dialog result: ${Object.keys(result)}`);
      }) 
     }
 
