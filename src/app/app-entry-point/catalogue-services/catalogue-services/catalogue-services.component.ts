@@ -17,7 +17,7 @@ export class CatalogueServicesComponent implements OnInit {
   categories: CardData[] = categoryData;
   mockDataTableGenericData:DataTableGenericInput = mockDataTableData ;
   card: CardData = mockCardData;
-  baseUrl = 'https://localhost:5001/api/Service';
+  baseUrl = 'https://localhost:44312/api/Service';
   selectedCategory = '';
   @ViewChild('dialogTemplate') dialogTemplate: TemplateRef<any>;
   
@@ -43,7 +43,7 @@ export class CatalogueServicesComponent implements OnInit {
    
   if (!searchTerm) {
     // if search term is null or empty, reset to initial endpoint
-    this.card.endpoint.next("https://localhost:5001/api/service");
+    this.card.endpoint.next("https://localhost:44312/api/service");
   } else {
     // if search term is not empty, set endpoint with search term
     this.card.endpoint.next(`${this.baseUrl}/search?SearchedWord=${searchTerm}`);
@@ -51,7 +51,7 @@ export class CatalogueServicesComponent implements OnInit {
   }
    filter(category: string) {
     if (category === "All") {
-      this.card.endpoint.next("https://localhost:5001/api/service");
+      this.card.endpoint.next("https://localhost:44312/api/service");
     }
    else if (category === this.selectedCategory) {
       // if already selected, reset to initial endpoint

@@ -36,6 +36,9 @@ import { ActionPanelModule } from 'src/shared/generic/action-panel/action-panel.
     MatGridListModule,
     MatMenuModule,
     ActionPanelModule
+  ],
+  exports: [
+    AddRequestComponent
   ]
 })
 export class RequestManagmentModule { }
