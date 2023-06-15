@@ -171,3 +171,12 @@ h2{
   padding: 100px;
 
 }
+.change{
+  background-color: #00B2D9;
+  color: white;
+}
+
+.notChange{
+  background-color: #00b2d91a;
+  color: #00B2D9;
+}

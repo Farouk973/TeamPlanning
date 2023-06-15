@@ -19,10 +19,12 @@ export class CardViewComponent implements OnInit {
   // GridView Input
   @Input() cardView: CardGridView;
   @Input() search: string
+  
   // Expression to detect images
   reg: string = '.(jpg|png|jpeg|gif|bmp)';
   // gridview rows retrieved
   rows: any[] = [];
+  filterSelected :any ="";
   // mapping metadata response into columnMetadata
   metadatas: ColumnMetadata[] = [];
   ngOnInit() {
@@ -34,7 +36,9 @@ export class CardViewComponent implements OnInit {
         this.metadatas = data;
       });
   }
-
+  selectefilter(select :any){
+    this.filterSelected = select
+  }
   ngOnChanges() {
 
   }

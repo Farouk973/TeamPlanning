@@ -13,25 +13,22 @@ import { PermissionService } from 'src/shared/services/permission.service';
 export class SideNavComponent implements OnInit {
   showMenu = false;
   menu!: Permission[];
-  userId : any;
   constructor(private permissionService: PermissionService,
               private router: Router,
               public oidcSecurityService: OidcSecurityService) 
   {
-    this.oidcSecurityService.checkAuth()
-    .subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
-     this.userId = userData.sub;
-     console.log(this.userId)
-    });
+    this.permissionService.variableUpdated$.subscribe((value: any) => {
+      this.getMenu(value);    });
   }
 
   ngOnInit() {
-
-    this.getMenu();
-   }
-
-  getMenu() {
-    this.permissionService.getMenuUser(this.userId).subscribe({
+        this.oidcSecurityService.checkAuth()
+    .subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
+      this.getMenu(userData.sub);
+     });
+  }
+  getMenu(value :any) {
+    this.permissionService.getMenuUser(value).subscribe({
       next: (data) => {
         this.menu = data;
         console.log(this.menu)

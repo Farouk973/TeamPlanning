@@ -27,11 +27,12 @@
     <tbody class="table-content">
       <tr class="table-row" *ngFor="let row of sortedRows; let i = index">
         <td class="table-data" *ngFor="let field of metadatas">
+          <div *ngIf="row[field.name] || field.type === 'integer' || field.type == 'boolean'">
           <div *ngIf="field.type == 'array'">
             <div *ngIf="row[field.name]">
               <!-- <mat-label>{{row[field.name][0]['title']}}</mat-label> -->
               <mat-label>List of {{field.name}}</mat-label>
-              <mat-select >
+              <mat-select style="width: 20px;">
                 <mat-option
                 *ngFor="let aa of row[field.name]"
 
@@ -54,6 +55,10 @@
             </div>
           </div>
           <div *ngIf="field.type === 'string' && field.format === null">
+            <div *ngIf="field.name.match('icon')">
+              <mat-icon  class="sidenav-icon" >{{row[field.name]}}</mat-icon> 
+            </div>
+            <div *ngIf="!field.name.match('icon')">
             <img
               *ngIf="row[field.name].match(reg)"
               width="50px"
@@ -66,6 +71,7 @@
               row[field.name]
             }}</ng-container>
           </div>
+        </div>
           <div *ngIf="field.type === 'string' && field.format === 'uuid'">
             {{ i + 1 }}
           </div>
@@ -93,7 +99,10 @@
           <div *ngIf="field.type === 'string' && field.format === 'date-time'">
             {{ row[field.name] | date }}
           </div>
-        
+        </div>
+        <div *ngIf="!row[field.name]">
+          
+        </div>
         </td>
 
         <td *ngFor="let action of GridView.actions">
