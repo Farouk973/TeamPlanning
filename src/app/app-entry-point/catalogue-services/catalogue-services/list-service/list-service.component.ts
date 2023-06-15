@@ -6,6 +6,7 @@ import { DetailsProjectComponent } from 'src/app/app-entry-point/project-managme
 import { environment } from 'src/environments/environment';
 import { Actionpanel, GridAction } from 'src/shared/generic/models/ActionPanel.model';
 import { CardGridView } from 'src/shared/generic/models/CardView.model';
+import { DialogComponent } from 'src/shared/generic/nxm-dialog/dialog/dialog.component';
 import { Project } from 'src/shared/models/project.model';
 import { ProjectService } from 'src/shared/services/project.service';
 
@@ -19,7 +20,6 @@ export class ListServiceComponent implements OnInit {
   inputSearch: string='';
   constructor(public projectService : ProjectService , public dialog: MatDialog , private router : Router ) { }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
   openDialog( p ) {
     const dialogRef = this.dialog.open(DetailsProjectComponent , {
@@ -36,28 +36,50 @@ export class ListServiceComponent implements OnInit {
     this.router.navigate(['stepper/project'])
   }
 
-  actionAffect:GridAction = {
-    actionThtitle :"Assign to project",
-    Compoment : AssignUnaasignProjectComponent
-  }
+  // actionAffect:GridAction = {
+  //   actionThtitle :"Assign to project",
+  //   Compoment : AssignUnaasignProjectComponent
+  // }
 
   action: Actionpanel = {
-    endpoint: `${environment.baseUrl}/api/Service?parameterValue=1`,
-    formEditData: `${environment.baseUrl}/meta/UpdateProjectCommand`,
-    title:"Project",
-    actions:[this.actionAffect]
+    endpoint: `${environment.baseUrl}/api/Service`,
+    formEditData: `${environment.baseUrl}/meta/UpdateServiceCommand`,
+    title:"Services Cataloque",
+//    actions:[this.actionAffect]
   };
 
 
   card: CardGridView = {
-    endpoint: `${environment.baseUrl}/api/Service?parameterValue=1`,
-    formdata: `${environment.baseUrl}/meta/CreateRoleCommand`,
-    metadata: `${environment.baseUrl}/meta/GetProjectsDetailViewModel`,
+    endpoint: `${environment.baseUrl}/api/Service`,
+    formdata: `${environment.baseUrl}/meta/UpdateServiceCommand`,
+    metadata: `${environment.baseUrl}/meta/GetServiceListVm`,
     cardtitle: "bodyTitle",
     carddescription: "textbody",
     cardInfo:"category",
     width: 300,
     height: 150,
     actionPanel: this.action,
+    filterOption :  ["Marketing" , "Operations" , "Sales" , "HR" , "Finance"]
   };
+
+
+  config = {
+    endpoint: `${environment.baseUrl}/api/Service`,
+    metadata: `${environment.baseUrl}/meta/GetServiceListVm`,
+    formdata: `${environment.baseUrl}/meta/CreateServiceCommand `,
+    formeditdata: `${environment.baseUrl}/meta/UpdateServiceCommand`,
+
+  };
+
+  openDialogA(metaData: any, isUpdate: boolean, endpoint: any ): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '1067px',
+      height: '519px',
+      data: { metaData, isUpdate, endpoint,title:'Services catalogue'},
+
+
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+    });
+  }
 }

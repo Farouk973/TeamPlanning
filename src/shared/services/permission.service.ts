@@ -1,5 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { HttpRepositoryService } from 'src/core/httpRepository.service';
 
 @Injectable({
@@ -8,6 +9,13 @@ import { HttpRepositoryService } from 'src/core/httpRepository.service';
 export class PermissionService {
 
   private BASE_URI = 'api/Permission';
+
+  private variableUpdatedSource = new Subject<any>();
+  variableUpdated$ = this.variableUpdatedSource.asObservable();
+
+  updateVariable(value: any) {
+    this.variableUpdatedSource.next(value);
+  }
 
   constructor(private httpRepositoryService: HttpRepositoryService) { }
 

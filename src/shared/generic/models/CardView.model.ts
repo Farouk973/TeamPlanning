@@ -11,7 +11,7 @@ export interface CardGridView {
     cardInfo?:string;
     width: number;
     height: number;
-
+    filterOption? : any[];
     
     
   }

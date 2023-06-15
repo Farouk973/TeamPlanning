@@ -4,7 +4,8 @@
       <mat-icon class="search-icon">search</mat-icon>
       <input type="text" placeholder="Search" name="search"   [(ngModel)]=" inputSearch">
     </div>
-    <button  class="mat-raised-button"  mat-button><p>Request multiple services</p></button>
+    <button  class="mat-raised-button"         (click)="openDialogA(config.formdata, false, config.endpoint)"
+    mat-button><p>Request multiple services</p></button>
   </div>
 <app-card-view [cardView]=card [search]="inputSearch"></app-card-view>
   
