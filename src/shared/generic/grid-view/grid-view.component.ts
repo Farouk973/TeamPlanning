@@ -30,6 +30,12 @@ export class GridViewComponent implements OnInit {
   rows: any[] = [];
   // mapping metadata response into columnMetadata
   metadatas: ColumnMetadata[] = [];
+  totalItems = 200;
+  pageSizeOptions = [10, 50, 100];
+  sortColumn: string = '';
+  sortDirection: 'asc' | 'desc' = 'asc';
+  Index:any = 0;
+page:any=this.pageSizeOptions[0]
   ngOnInit() {
     this.getGridData();
 
@@ -40,10 +46,7 @@ export class GridViewComponent implements OnInit {
         console.log("data" ,data)
       });
   }
-  totalItems = 200;
-  pageSizeOptions = [10, 50, 100];
-  sortColumn: string = '';
-  sortDirection: 'asc' | 'desc' = 'asc';
+
   get sortedRows(): any[] {
     if (!this.sortColumn) {
       return this.rows;
@@ -72,6 +75,8 @@ export class GridViewComponent implements OnInit {
   }
 
   getGridData() {
+    console.log('rrrrrr data');
+    
     if(this.GridView.pagination == true){
       this.gridviewService
       .getData(this.GridView.endpoint+"?take="+this.pageSizeOptions[0]+"&skip="+0)
@@ -110,10 +115,8 @@ getGridDataPagination(take : any , skip : any) {
     ];
     return Object.keys(obj).filter((key) => !excludeProperties.includes(key));
   }
-  onEditItem(itemId: number) {
-
-    const { actionPanel } = this.GridView;
-    this.gridviewService.updateRow(actionPanel.formEditData, itemId);
+  onEditItem() {
+    this.getGridDataPagination(this.page,this.Index)
   }
 
   onDeleteItem(itemId: number) {
@@ -126,10 +129,11 @@ getGridDataPagination(take : any , skip : any) {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.gridviewService.deleteRow(endpoint, itemId).subscribe((resp) => {
+        this.gridviewService.deleteRow(this.GridView.actionPanel.endpoint, itemId).subscribe((resp) => {
           if (resp) {
             this.rows.splice(index, 1);
           }
+          this.getGridData()
         });
       }
     });
@@ -152,8 +156,10 @@ getGridDataPagination(take : any , skip : any) {
       const startIndex = event.pageIndex * event.pageSize;
       const endIndex = startIndex + event.pageSize;
    //   const newData = yourDataArray.slice(startIndex, endIndex);
-    console.log(startIndex)
-    console.log(endIndex)
+  this.Index = startIndex
+this.page=event.pageSize
     this.getGridDataPagination(event.pageSize,startIndex)
     }
+
+
 }

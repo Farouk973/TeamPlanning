@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ActionPannelItem, Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
 import { GridAction, GridView } from 'src/shared/generic/models/GridView.model';
@@ -6,6 +6,7 @@ import { ItemComponent } from '../../access-managment/permissions/item/item.comp
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from 'src/shared/generic/nxm-dialog/dialog/dialog.component';
 import { PhasesComponent } from '../phases/phases.component';
+import { GridViewComponent } from 'src/shared/generic/grid-view/grid-view.component';
 
 @Component({
   selector: 'app-engagments',
@@ -13,6 +14,7 @@ import { PhasesComponent } from '../phases/phases.component';
   styleUrls: ['./engagments.component.css']
 })
 export class EngagmentsComponent implements OnInit {
+  @ViewChild(GridViewComponent) childComponent: GridViewComponent;
 
   constructor(public dialog: MatDialog) { }
 
@@ -27,8 +29,15 @@ export class EngagmentsComponent implements OnInit {
 
     });
     dialogRef.afterClosed().subscribe((result) => {
-    });
-  }
+      // window.location.reload()
+      this.test()
+     });
+   }
+ 
+     test(): void {
+       this.childComponent.onEditItem()
+     }
+ 
   config = {
     endpoint: `${environment.baseUrl}/api/Engagement`,
     metadata: `${environment.baseUrl}/meta/GetPermissionListVm`,

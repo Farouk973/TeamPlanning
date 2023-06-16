@@ -24,16 +24,6 @@ export class ActiondialogComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  action: Actionpanel = {
-    endpoint: `${environment.baseUrl}/api/Permission`,
-    formEditData: `${environment.baseUrl}/meta/UpdatePermissionCommand`,
-  };
-  grid: GridView = {
-    endpoint: `${environment.baseUrl}/api/Permission`,
-    formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
-    metadata: `${environment.baseUrl}/meta/GetPermissionListVm`,
-    allowedSortColumns: ['title'],
-    actionPanel: this.action,
-  };
+
 
 }

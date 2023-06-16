@@ -28,6 +28,8 @@ export class FormComponent implements OnInit {
   form = new FormGroup({});
   @Input() formData: Form;
   @Output() myEvent = new EventEmitter<any>();
+  @Output() myEventEnd = new EventEmitter<any>();
+
   @ViewChild('buttonToSubmit') buttonToSubmit: ElementRef;
 
   @Input() set submitType(type: string) {
@@ -223,9 +225,10 @@ export class FormComponent implements OnInit {
                     formValue: this.form.value,
                     response: response,
                   });
-
+                  this.myEventEnd.emit()
                 } if (response === true) {
-                  window.location.reload()
+                //  window.location.reload()
+                this.myEvent.emit(true);
                 }
 
               },
@@ -245,7 +248,9 @@ export class FormComponent implements OnInit {
                   response: response,
                 });
                 if (response === true) {
-                  window.location.reload()
+                //  window.location.reload()
+                this.myEvent.emit();
+
                 }
               },
 

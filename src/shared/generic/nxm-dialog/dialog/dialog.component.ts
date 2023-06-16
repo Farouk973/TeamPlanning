@@ -10,6 +10,7 @@ import { Form } from '../../models/Form.model';
   styleUrls: ['./dialog.component.scss'],
 })
 export class DialogComponent {
+  
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -30,7 +31,11 @@ export class DialogComponent {
     this.afterSubmitValue = returnedValue;
   }
 
-
+  closeDialog(){
+    console.log('rttrtrtrtr');
+    
+    this.dialogRef.close();
+  }
 
   
   forms: Form = {
