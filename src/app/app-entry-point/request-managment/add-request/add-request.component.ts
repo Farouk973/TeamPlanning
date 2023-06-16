@@ -9,6 +9,7 @@ import {SkillStepperComponent} from "../../skill-stepper-management/skill-steppe
 import {RecopProjectComponent} from "../../project-managment/recop-project/recop-project.component";
 import { TaskCalanderComponent } from '../task-calander/task-calander.component';
 import { CalendarComponent } from 'src/shared/generic/calendar/calendar/calendar.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-request',
@@ -17,13 +18,59 @@ import { CalendarComponent } from 'src/shared/generic/calendar/calendar/calendar
 })
 export class AddRequestComponent implements OnInit {
 
-  public stepper$ : Observable<Stepper> ;
+   stepper$: Stepper = {
+    steps: [
+      {
+        title: "New Request",
+        order: 1,
+        contentType: "Form",
+        content: {
+          endpoint: `${environment.baseUrl}/api/RequestManagement`,
+          metaData: `${environment.baseUrl}/meta/CreateRequestCommand`,
+        },
+        contentforUpdate: null,
+        input: true,
+      },
+      {
+        title: "Features",
+        order: 2,
+        contentType: "Features",
+        content: {
+          endpoint: "",
+          metaData: "",
+        },
+        contentforUpdate: null,
+        input: false,
+      },
+    ],
+    next: {
+      label: "Next",
+      endpoint: "",
+      style: "background-color: #00b2d9;",
+    },
+    back: {
+      label: "Back",
+      endpoint: "",
+      style: "background-color: #00b2d9;",
+    },
+    validate: {
+      label: "Costing",
+      endpoint: "",
+      style: "background-color: #00b2d9;",
+    },
+    delete: {
+      label: "Delete",
+      endpoint: "/api/Project",
+      style: "background-color: #00b2d9;",
+    },
+    valueDuration: 1000,
+    orientation: "horizontal",
+  };
 
   chiff : boolean;
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.stepper$=this.http.get<Stepper>('/assets/requestStepper.json');
   }
   getComponent(contentType: string): any {
     switch (contentType) {

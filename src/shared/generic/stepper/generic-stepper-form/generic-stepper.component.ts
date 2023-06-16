@@ -36,7 +36,7 @@ import {MatStepper} from "@angular/material/stepper";
 })
 
 export class GenericStepperComponent<T> implements OnInit {
-  @Input() stepper$!: Observable<Stepper>;
+  @Input() stepper$!: Stepper;
   @Input() getComponent: (contentType: string) => any;
   stepper = new Stepper();
   actionType: string;
@@ -51,9 +51,7 @@ export class GenericStepperComponent<T> implements OnInit {
   }
 
   ngOnInit(): void {
-    this.stepper$.subscribe((stepperData: any) => {
-      this.stepper = stepperData;
-    });
+      this.stepper = this.stepper$;
 
   }
 
