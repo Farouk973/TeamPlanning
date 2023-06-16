@@ -113,7 +113,7 @@ export class FormComponent implements OnInit {
 
 
   displayDataTitle(data: any): string {
-    return data.title;
+    return data.title || data.name;
   }
   createForm() {
 

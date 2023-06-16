@@ -57,5 +57,7 @@ export class ListProjectsComponent  {
     width: 300,
     height: 150,
     actionPanel: this.action,
+    filterOption :  ["Public" , "Private" ]
+
   };
 }
