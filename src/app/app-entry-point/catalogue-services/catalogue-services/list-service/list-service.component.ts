@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AssignUnaasignProjectComponent } from 'src/app/app-entry-point/project-managment/list-projects-management/assign-unaasign-project/assign-unaasign-project.component';
 import { DetailsProjectComponent } from 'src/app/app-entry-point/project-managment/list-projects-management/details-project/details-project.component';
 import { environment } from 'src/environments/environment';
+import { CardViewComponent } from 'src/shared/generic/card-view/card-view/card-view.component';
+import { GridViewComponent } from 'src/shared/generic/grid-view/grid-view.component';
 import { Actionpanel, GridAction } from 'src/shared/generic/models/ActionPanel.model';
 import { CardGridView } from 'src/shared/generic/models/CardView.model';
 import { DialogComponent } from 'src/shared/generic/nxm-dialog/dialog/dialog.component';
@@ -16,6 +18,8 @@ import { ProjectService } from 'src/shared/services/project.service';
   styleUrls: ['./list-service.component.css']
 })
 export class ListServiceComponent implements OnInit {
+  @ViewChild(CardViewComponent) childComponent: CardViewComponent;
+
   projects: Project[]
   inputSearch: string='';
   constructor(public projectService : ProjectService , public dialog: MatDialog , private router : Router ) { }
@@ -27,10 +31,13 @@ export class ListServiceComponent implements OnInit {
 
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+    dialogRef.afterClosed().subscribe((result) => {
+      // window.location.reload()
+      this.test()
+     });
+   }
+ 
+
 
   toStepper() {
     this.router.navigate(['stepper/project'])
@@ -80,6 +87,13 @@ export class ListServiceComponent implements OnInit {
 
     });
     dialogRef.afterClosed().subscribe((result) => {
-    });
-  }
+      // window.location.reload()
+      this.test()
+     });
+   }
+ 
+     test(): void {
+       this.childComponent.onEditItem()
+     }
+ 
 }

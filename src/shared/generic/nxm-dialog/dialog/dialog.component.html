@@ -7,7 +7,7 @@
 
 
 <div mat-dialog-content>
-  <app-form (myEvent)="afterSubmitResponse($event)" [formData]="forms"></app-form>
+  <app-form (myEvent)="closeDialog()" [formData]="forms"></app-form>
 </div>
 
 <mat-dialog-actions style="margin-top: auto;">

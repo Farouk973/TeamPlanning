@@ -37,7 +37,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressSpinnerModule, MatSpinner} from '@angular/material/progress-spinner';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -58,7 +58,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from 'angular-auth-oidc-client';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { AuthConfigModule } from './auth/auth-config.module';
-import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { ProgressDialogComponent } from './progress-dialog/progress-dialog.component';
+import { LoadingService } from './progress-dialog/loading.service';
+import { LoadingInterceptor } from './progress-dialog/loading.interceptor';
 
 
 
@@ -67,7 +69,7 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
   declarations: [
     AppComponent,
     AuthentificateComponent,
-
+    ProgressDialogComponent
    
 
 
@@ -77,7 +79,7 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTableModule,
-    NgxUiLoaderModule
+    MatProgressSpinnerModule
 
   ],
 
@@ -133,6 +135,8 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
     DialogModule,
     HighlightModule,
     AuthConfigModule,
+    
+    
   ],
 
   providers: [
@@ -141,6 +145,12 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
       useClass: AuthInterceptor,
       multi: true
     },
+    LoadingService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoadingInterceptor,
+    multi: true
+  }
   ],
   bootstrap: [AppComponent]
 })

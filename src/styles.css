@@ -8,3 +8,7 @@
     font-size:0.8rem;
     font-weight: normal;
   }
+  .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #00B2D9
+    ;
+    }

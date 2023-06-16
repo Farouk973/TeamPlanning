@@ -140,6 +140,7 @@ import { UsersComponent } from './users/users.component';
 
 
   ]
-  ,exports:[RoleComponent]
+  ,exports:[RoleComponent],
+  
 })
 export class AccessManagmentModule { }
