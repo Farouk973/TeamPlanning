@@ -66,15 +66,17 @@ import { WorkFlowComponent } from './workFlow-Management/work-flow/work-flow.com
 import { DataTableGenericModule } from "src/shared/generic/data-table-server-side/data-table-generic/data-table-generic.module";
 import {SocketIoConfig, SocketIoModule} from "ngx-socket-io";
 import {NotificationService} from "../../shared/services/notification.service";
+import {ChatbotComponent} from "./layout/chatbot/chatbot.component";
 const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 
 @NgModule({
-    declarations: [
-        LayoutComponent,
-        SideNavComponent,
-        TopNavComponent,
+  declarations: [
+    LayoutComponent,
+    SideNavComponent,
+    TopNavComponent,
+    ChatbotComponent,
 
-    ],
+  ],
     imports: [
         CommonModule,
         AppEntryPointRoutingModule,
