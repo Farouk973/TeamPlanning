@@ -1,6 +1,6 @@
 <div class="chatbox-container">
   <div class="chatbox ">
-    <div class="chatbox__support chatbox--active-heigth" #chatBox>
+    <div class="chatbox__support chatbox--active" *ngIf="chat" #chatBox>
       <div class="chatbox__header">
         <div class="chatbox__image--header">
           <img src="https://img.icons8.com/color/48/000000/robot-2.png" alt="image">
@@ -25,7 +25,7 @@
 
     </div>
     <div class="chatbox__button">
-      <button (click)="toggleState(chatBox)"><img src="../../../../assets/chat.png" style="width: 40px" /></button>
+      <button (click)="showchat()"><img src="../../../../assets/chat.png" style="width: 40px" /></button>
     </div>
   </div>
 </div>

@@ -8,7 +8,7 @@ import {environment} from "../../../../environments/environment";
 })
 export class ChatbotComponent implements OnInit {
   private baseUrl = environment.baseUrlMs;
-
+chat : boolean = false
   public args = {
     openButton: document.querySelector('.chatbox__button'),
     chatBox: document.querySelector('.chatbox__support'),
@@ -55,6 +55,9 @@ export class ChatbotComponent implements OnInit {
     }
   }
 
+  showchat(){
+    this.chat = !this.chat;
+  }
   public onSendButton(chatbox: HTMLElement | null): void {
     const textField = chatbox?.querySelector('input');
     const text1 = textField?.value || '';
