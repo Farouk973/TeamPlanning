@@ -140,6 +140,7 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
         CatalogueServicesModule,
         UserTabManagementModule,
         DataTableGenericModule,
+      MatSlideToggleModule,
       SocketIoModule.forRoot(config)
     ],
   providers: [
