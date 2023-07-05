@@ -10,7 +10,7 @@
         <div class="pannelbutton">
             <mat-icon class="more-icon">drag_indicator</mat-icon>
         </div>
-        <div class="cardItems" style="flex: 1;word-wrap: break-word;">
+        <div class="cardItems" style="flex: 1;word-wrap: break-word; overflow-y: hidden;">
             <mat-card-title class="titreCard" style="font-size: 16px;">{{ event[kanbanbord.displaycollumn ]}}</mat-card-title>
             <span>{{ event[kanbanbord.descriptioncollumn ]}}</span>
         </div>
@@ -18,13 +18,13 @@
     </div>
 
 </mat-card>
-<mat-card style="width: 257px; height: auto;" *ngIf="divDetails">
+<mat-card style="width: 257px; height: auto; " *ngIf="divDetails">
     <a class="retour" (click)="hideDivDetails()"> 
     <mat-card-header>
         <mat-card-title class="CardTitle"><mat-icon class="more-icon">keyboard_backspace</mat-icon>Task list</mat-card-title>
     </mat-card-header>
     </a>
-    <div class="items" >
+    <div class="items"  style="height: auto;">
         <div class="pannelbutton">
             <mat-icon class="more-icon">drag_indicator</mat-icon>
         </div>

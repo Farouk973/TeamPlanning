@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
@@ -14,6 +14,7 @@ import { PermissionService } from 'src/shared/services/permission.service';
 import { OrderDialogComponent } from './order-dialog/order-dialog.component';
 import { ItemComponent } from './item/item.component';
 import { CardGridView } from 'src/shared/generic/models/CardView.model';
+import { GridViewComponent } from 'src/shared/generic/grid-view/grid-view.component';
 
 
 
@@ -68,12 +69,13 @@ actions : GridAction = {
 }
 
 grid: GridView = {
-  endpoint: `${environment.baseUrl}/api/Permission`,
+  endpoint: `${environment.baseUrl}/api/Permission/paggination`,
   formdata: `${environment.baseUrl}/meta/CreatePermissionCommand`,
   metadata: `${environment.baseUrl}/meta/GetPermissionListVm`,
   allowedSortColumns: ['title'],
   actionPanel: this.action,
-  actions : [this.actions]
+  actions : [this.actions],
+  pagination : true
 };
 
   select : SelectOrder = {
@@ -93,6 +95,7 @@ grid: GridView = {
     icon: 'https://img.freepik.com/premium-vector/vector-creative-project-icon-flat-style_106427-199.jpg?w=2000',
     allowedSortColumns: ['title'],
   };
+  @ViewChild(GridViewComponent) childComponent: GridViewComponent;
 
   openDialog(metaData: any, isUpdate: boolean, endpoint: any , title=this.action.title): void {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -103,10 +106,14 @@ grid: GridView = {
 
     });
     dialogRef.afterClosed().subscribe((result) => {
+     // window.location.reload()
+     this.test()
     });
   }
 
-
+    test(): void {
+      this.childComponent.onEditItem()
+    }
 
 }
 

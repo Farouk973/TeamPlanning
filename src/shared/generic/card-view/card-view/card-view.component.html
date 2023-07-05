@@ -1,17 +1,28 @@
-<div fxLayout="row wrap" fxLayoutGap="40px" style="padding-left: 50px; padding-top: 50px;">
+<div style="padding-left: 50px; padding-top: 50px;">
+  <div class="row" *ngIf="cardView.filterOption">
+    <div class="col" style="margin-right: 10px;">
+
+      <button class="" [ngClass]="{ 'change' : filterSelected ==='' , 'notChange' : filterSelected !==''  }"  (click)=" selectefilter('')"  mat-button>All</button>
+    </div>
+    <div class="col" *ngFor="let category of cardView.filterOption" style="margin-right: 10px;">
+      <button class="notChange" [ngClass]="{ 'change' : filterSelected ===category, 'notChange' : filterSelected !==category  }"  (click)=" selectefilter(category)" mat-button>{{category}}</button>
+    </div>
+  </div>
+</div>
+<div fxLayout="row wrap" fxLayoutGap="40px" style="padding-left: 50px; padding-top: 20px;">
   <div *ngFor="let row of sortedRows; let i = index" style="margin: 10px;">
     <mat-card style="margin-bottom: 10px ; "
-              *ngIf="row[cardView.cardtitle].toLowerCase().indexOf(search?.toLowerCase()) !== -1">
+      *ngIf="row[cardView.cardtitle]?.toLowerCase().indexOf(search?.toLowerCase()) !== -1 && row[cardView.cardInfo].toLowerCase().indexOf(filterSelected?.toLowerCase()) !== -1">
       <div class="card">
         <mat-card-content class="card-content">
-          <strong>{{ row[cardView.cardInfo]}}</strong>
+          <strong style="width: auto;">{{ row[cardView.cardInfo]}}</strong>
         </mat-card-content>
         <mat-icon class="more-icon" [matMenuTriggerFor]="menu">more_vert</mat-icon>
       </div>
       <h1>{{ row[cardView.cardtitle]}}</h1>
       <h3>{{ row[cardView.carddescription]}}</h3>
       <div>
-        <h2>Created at: {{row[cardView.cardDate] | date:'yyyy-MM-dd HH:mm'}}
+        <h2><a *ngIf="cardView.cardDate">Created at: {{row[cardView.cardDate] | date:'yyyy-MM-dd HH:mm'}}</a>
           <mat-icon class="more-icon" (click)="openDialog(row)">read_more</mat-icon>
         </h2>
 
@@ -21,18 +32,9 @@
 
 
     <mat-menu #menu="matMenu" xPosition="before">
-      <app-action-panel
-        *ngIf="cardView.actionPanel"
-        [actionPanel]="cardView.actionPanel"
-        [objId]="row"
-        (edit)="onEditItem($event)"
-        (delete)="onDeleteItem($event)"
-      ></app-action-panel>
+      <app-action-panel *ngIf="cardView.actionPanel" [actionPanel]="cardView.actionPanel" [objId]="row"
+        (edit)="onEditItem()" (delete)="onDeleteItem($event)"></app-action-panel>
     </mat-menu>
   </div>
 
 </div>
-
-
-
-

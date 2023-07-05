@@ -41,6 +41,7 @@ export class RoleComponent implements OnInit {
     metadata: `${environment.baseUrl}/meta/GetRoleListVm`,
     cardtitle: "title",
     carddescription: "description",
+    cardInfo : "title",
     width: 300,
     height: 150,
     actionPanel: this.action,

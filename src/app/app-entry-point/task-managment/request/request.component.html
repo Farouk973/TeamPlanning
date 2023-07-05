@@ -1,10 +1,57 @@
-<div class="header">
-  <span class="titleService">Task Management</span>
-  <form  class="search-bar">
-    <mat-icon class="search-icon">search</mat-icon>
-    <input type="text" placeholder="Search" name="search" formControlName="searchTerm">
-  </form>
-</div>
+<div class="container" >
+
+  <div class="cont-info">
+
+      <h1 class="title">Request management</h1>
+
+      <span class="example-spacer"></span>
+
+
+
+      <div class="search-bar" style="margin-right: 2%;">
+          <mat-icon class="search-icon">search</mat-icon>
+          <input type="text" placeholder="Search" name="search">
+      </div>
+      <button class="addButton" mat-flat-button (click)="affAdd()">
+          <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.4"
+                  d="M21.5 7V17C21.5 20 20 22 16.5 22H9.5C10.71 21.09 11.5 19.63 11.5 18C11.5 15.24 9.26 13 6.5 13C5.37 13 4.33 13.37 3.5 14V7C3.5 4 5 2 8.5 2H16.5C20 2 21.5 4 21.5 7Z"
+                  fill="
+      #F4FDFF" />
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M15 3.75C15.4142 3.75 15.75 4.08579 15.75 4.5V6.5C15.75 7.18579 16.3142 7.75 17 7.75H19C19.4142 7.75 19.75 8.08579 19.75 8.5C19.75 8.91421 19.4142 9.25 19 9.25H17C15.4858 9.25 14.25 8.01421 14.25 6.5V4.5C14.25 4.08579 14.5858 3.75 15 3.75Z"
+                  fill="white" />
+              <path
+                  d="M6.5 13C3.74 13 1.5 15.24 1.5 18C1.5 20.76 3.74 23 6.5 23C9.26 23 11.5 20.76 11.5 18C11.5 15.24 9.26 13 6.5 13ZM5.66 19.27C5.91 19.52 5.91 19.93 5.66 20.19C5.53 20.32 5.37001 20.38 5.20001 20.38C5.03001 20.38 4.86999 20.32 4.73999 20.19L3.01001 18.46C2.76001 18.21 2.76001 17.8 3.01001 17.54L4.73999 15.81C4.98999 15.56 5.4 15.56 5.66 15.81C5.91 16.06 5.91 16.47 5.66 16.73L4.39001 18L5.66 19.27ZM9.98001 18.46L8.25 20.19C8.12 20.32 7.96001 20.38 7.79001 20.38C7.62001 20.38 7.45999 20.32 7.32999 20.19C7.07999 19.94 7.07999 19.53 7.32999 19.27L8.60001 18L7.32999 16.73C7.07999 16.48 7.07999 16.07 7.32999 15.81C7.57999 15.56 7.99 15.56 8.25 15.81L9.98001 17.54C10.23 17.8 10.23 18.2 9.98001 18.46Z"
+                  fill="white" />
+              </svg>
+          <span class="buttonText" style="margin-left: 3%;">Add new request</span>
+      </button>
+
+
+
+      <button class="addButton" mat-flat-button>
+          <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.4"
+                  d="M21.5 7V17C21.5 20 20 22 16.5 22H9.5C10.71 21.09 11.5 19.63 11.5 18C11.5 15.24 9.26 13 6.5 13C5.37 13 4.33 13.37 3.5 14V7C3.5 4 5 2 8.5 2H16.5C20 2 21.5 4 21.5 7Z"
+                  fill="
+      #F4FDFF" />
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M15 3.75C15.4142 3.75 15.75 4.08579 15.75 4.5V6.5C15.75 7.18579 16.3142 7.75 17 7.75H19C19.4142 7.75 19.75 8.08579 19.75 8.5C19.75 8.91421 19.4142 9.25 19 9.25H17C15.4858 9.25 14.25 8.01421 14.25 6.5V4.5C14.25 4.08579 14.5858 3.75 15 3.75Z"
+                  fill="white" />
+              <path
+                  d="M6.5 13C3.74 13 1.5 15.24 1.5 18C1.5 20.76 3.74 23 6.5 23C9.26 23 11.5 20.76 11.5 18C11.5 15.24 9.26 13 6.5 13ZM5.66 19.27C5.91 19.52 5.91 19.93 5.66 20.19C5.53 20.32 5.37001 20.38 5.20001 20.38C5.03001 20.38 4.86999 20.32 4.73999 20.19L3.01001 18.46C2.76001 18.21 2.76001 17.8 3.01001 17.54L4.73999 15.81C4.98999 15.56 5.4 15.56 5.66 15.81C5.91 16.06 5.91 16.47 5.66 16.73L4.39001 18L5.66 19.27ZM9.98001 18.46L8.25 20.19C8.12 20.32 7.96001 20.38 7.79001 20.38C7.62001 20.38 7.45999 20.32 7.32999 20.19C7.07999 19.94 7.07999 19.53 7.32999 19.27L8.60001 18L7.32999 16.73C7.07999 16.48 7.07999 16.07 7.32999 15.81C7.57999 15.56 7.99 15.56 8.25 15.81L9.98001 17.54C10.23 17.8 10.23 18.2 9.98001 18.46Z"
+                  fill="white" />
+          </svg>
+
+          <span class="buttonText" style="margin-left: 3%;">update template</span>
+
+      </button>
+
+
+  </div>
+<app-add-request *ngIf="add"></app-add-request>
+
 <app-generic-table [data]="request"></app-generic-table>
 
 

@@ -1,4 +1,4 @@
-<div *ngIf="stepper$ | async">
-  <app-generic-stepper [stepper$]="stepper$"></app-generic-stepper>
+<div *ngIf="stepper">
+  <app-generic-stepper [stepper$]="stepper"  getComponentDirective [getComponent]="getComponent"></app-generic-stepper>
 </div>
 

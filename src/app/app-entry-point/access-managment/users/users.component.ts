@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
+import { GridViewComponent } from 'src/shared/generic/grid-view/grid-view.component';
 import { Actionpanel } from 'src/shared/generic/models/ActionPanel.model';
 import { GridView } from 'src/shared/generic/models/GridView.model';
 import { DialogComponent } from 'src/shared/generic/nxm-dialog/dialog/dialog.component';
@@ -11,6 +12,7 @@ import { DialogComponent } from 'src/shared/generic/nxm-dialog/dialog/dialog.com
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+  @ViewChild(GridViewComponent) childComponent: GridViewComponent;
 
   constructor(public dialog: MatDialog) { }
 
@@ -25,8 +27,16 @@ export class UsersComponent implements OnInit {
 
     });
     dialogRef.afterClosed().subscribe((result) => {
-    });
-  }
+      // window.location.reload()
+      this.test()
+     });
+   }
+ 
+     test(): void {
+       this.childComponent.onEditItem()
+     }
+ 
+  
   action: Actionpanel = {
     endpoint: `${environment.baseUrl}/api/Users`,
     formEditData: `${environment.baseUrl}/meta/UpdateUserCommand`,

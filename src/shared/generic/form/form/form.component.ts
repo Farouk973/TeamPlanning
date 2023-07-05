@@ -28,6 +28,8 @@ export class FormComponent implements OnInit {
   form = new FormGroup({});
   @Input() formData: Form;
   @Output() myEvent = new EventEmitter<any>();
+  @Output() myEventEnd = new EventEmitter<any>();
+
   @ViewChild('buttonToSubmit') buttonToSubmit: ElementRef;
 
   @Input() set submitType(type: string) {
@@ -50,7 +52,7 @@ export class FormComponent implements OnInit {
 
   valueControl = new FormControl();
   map2 : Map<string,string> = new Map([
-    ["role", "title"],["category", "name"],["skills", "skillName"],["permission", "title"],
+    ["role", "title"],["category", "name"],["skills", "skillName"],["permission", "title"],["project", "name"]
 ]);
   ngOnInit(): void {
  this.formData.Options = this.map2
@@ -111,7 +113,7 @@ export class FormComponent implements OnInit {
 
 
   displayDataTitle(data: any): string {
-    return data.title;
+    return data.title || data.name;
   }
   createForm() {
 
@@ -208,7 +210,7 @@ export class FormComponent implements OnInit {
 
   submitForm() {
     this.submitAsync().then((isValid) => {
-      if (isValid) {
+   //   if (isValid) {
         console.log(this.form.value)
         if (this.formData.Object) {
           this.formService
@@ -223,9 +225,10 @@ export class FormComponent implements OnInit {
                     formValue: this.form.value,
                     response: response,
                   });
-
+                  this.myEventEnd.emit()
                 } if (response === true) {
-                  window.location.reload()
+                //  window.location.reload()
+                this.myEvent.emit(true);
                 }
 
               },
@@ -235,6 +238,7 @@ export class FormComponent implements OnInit {
             );
         }
         if (!this.formData.Object) {
+          console.log("createeeeeeeeeeeeeee")
           this.formService
             .addRow(this.formData.endpoint, this.form.value)
             .subscribe(
@@ -244,7 +248,9 @@ export class FormComponent implements OnInit {
                   response: response,
                 });
                 if (response === true) {
-                  window.location.reload()
+                //  window.location.reload()
+                this.myEvent.emit();
+
                 }
               },
 
@@ -252,7 +258,7 @@ export class FormComponent implements OnInit {
               }
             );
         }
-      }
+ //     }
     });
   }
   ReferenceExistances(desc :string) :any

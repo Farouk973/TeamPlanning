@@ -5,9 +5,7 @@
     <button mat-button class="mat-raised-button" *ngIf="!editModeStyle"   (click)="toggleEditMode(rowIndex)" >  <p  >Edit</p></button>
     <button mat-button class="mat-raised-button" *ngIf="editModeStyle"   (click)="toggleEditMode(rowIndex)" >  <p  >Confirm</p></button>
   </div>
-  <div *ngIf="loading"  class="spinner">
-    <mat-progress-spinner   mode="indeterminate"></mat-progress-spinner>
-  </div>
+
 
   <mat-grid-list cols="{{ data.columnHeader.length + 1 }}" *ngIf="!loading"  rowHeight="50px" >
     <mat-grid-tile  > <span></span></mat-grid-tile>
@@ -30,7 +28,7 @@
 </div>
 
 <div   fxLayoutAlign="end">
-  <button class="myButton" (click)="telechargerExcel()"><p>Download the costing in Excel</p></button>
+  <button class="mat-raised-button" (click)="telechargerExcel()"><p>Download the costing in Excel</p></button>
 </div>
 
 

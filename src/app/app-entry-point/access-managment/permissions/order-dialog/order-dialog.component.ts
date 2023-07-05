@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { SelectOrder } from 'src/shared/generic/models/SelectOrder.model';
 
 @Component({
@@ -13,8 +14,8 @@ export class OrderDialogComponent implements OnInit {
   ngOnInit(): void {
   }
   select : SelectOrder = {
-    endpointData : 'https://localhost:44312/api/Permission',
-    endpointAction : 'https://localhost:44312/api/Permission/ordre',
+    endpointData : `${environment.baseUrl}/api/Permission`,
+    endpointAction : `${environment.baseUrl}/api/Permission/ordre`,
     InterfaceName : 'change menu order',
     TaskSelectCollumn : 'name',
   };

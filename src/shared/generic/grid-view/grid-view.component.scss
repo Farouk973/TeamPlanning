@@ -31,29 +31,28 @@ h1,h2,h3,h4,h5,h6 {
 
 .table {
 	width:100%;
-//	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	background-color: #fff;
 }
 
 .table-header {
 	display:flex;
 	width:100%;
-	background:#F4F6F8	;
-	//padding:($half-spacing-unit * 1.5) 0;
+	background:#F4F6F8;
 }
 
 .table-row {
 	display:flex;
 	width:100%;
-	background: #FFFFFF;
-	box-shadow: inset 0px -0.5px 0px rgba(0, 30, 80, 0.1);
-
 }
 
 .table-data, .header__item {
 	flex: 1 1 20%;
 	text-align:center;
 	padding: $half-spacing-unit;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	position: relative;
 }
 
 .header__item {
@@ -88,20 +87,20 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .action-icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .edit-icon, .delete-icon {
-  cursor: pointer;
-  font-size: 1.5rem;
-  margin: 0 $half-spacing-unit;
-  color: #666;
+	cursor: pointer;
+	font-size: 1.5rem;
+	margin: 0 $half-spacing-unit;
+	color: #666;
 }
 
 .edit-icon:hover, .delete-icon:hover {
-  color: $color-alpha;
+	color: $color-alpha;
 }
 
 .mat-icon-button {
@@ -120,15 +119,65 @@ h1,h2,h3,h4,h5,h6 {
 	border-radius: 12px;
 	order: 2;
 	flex-grow: 0;
-  }.buttonText{
+}
+
+.buttonText{
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 600;
 	font-size: 14px;
 	line-height: 29px;
-  
-	
 	color: #FFFFFF;
+}
+
+/* Styles pour les écrans très petits */
+@media screen and (max-width: 360px) {
+	.table-header,
+	.table-row {
+		flex-wrap: wrap;
+	}
 	
-  
-  }
+	.header__item,
+	.table-data {
+		flex-basis: 100%;
+		text-align: left;
+		padding: $half-spacing-unit $base-spacing-unit;
+	}
+	
+	.header__item {
+		order: 2;
+	}
+	
+	.table-data {
+		order: 1;
+	}
+	
+	.table-row:nth-child(even) {
+		background-color: #F4F6F8;
+	}
+}
+
+/* Tooltip Styles */
+.tooltip {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #000;
+	color: #fff;
+	padding: 8px;
+	border-radius: 4px;
+	font-size: 12px;
+	white-space: nowrap;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.table-data:hover .tooltip {
+	opacity: 1;
+}
+::ng-deep .mat-select-value {
+	width: 20%; 
+	
+}

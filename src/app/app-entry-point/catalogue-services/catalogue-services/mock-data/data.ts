@@ -8,9 +8,9 @@ import { EditDeleteCatalogueComponent} from "../edit-delete-catalogue/edit-delet
 import { ActionCatalogueComponent} from "../action-catalogue/action-catalogue.component";
 
 export const mockCardData: CardData={
-    endpoint: new BehaviorSubject<string>("https://localhost:5001/api/service"),
-    updateEndpoint: "https://localhost:5001/api/service",
-    deleteEndpoint: "https://localhost:5001/api/service",
+    endpoint: new BehaviorSubject<string>("https://localhost:44312/api/service"),
+    updateEndpoint: "https://localhost:44312/api/service",
+    deleteEndpoint: "https://localhost:44312/api/service",
     primaryColor: '#00b2d91a',
     labelColor: '#00B2D9',
     minHeight:"160px",
@@ -65,7 +65,7 @@ export const mockCardData: CardData={
  
   width: "700px",
   params:1 ,
-  endpoint:new BehaviorSubject<string>("https://localhost:5001/api/service/getLimited"),
+  endpoint:new BehaviorSubject<string>("https://localhost:44312/api/service/getLimited"),
   tableFor:"services",
   pageSize:3,
   pageIndex:1,
@@ -75,7 +75,7 @@ export const mockCardData: CardData={
   cancelButtonClass:"cancel-button",
   submitButtonLabel:"submit bundle request",
   cancelButtonLabel:"cancel",
-  updateEndpoint:"https://localhost:5001/service-bundle",
+  updateEndpoint:"https://localhost:44312/service-bundle",
   marginRightValue:"22rem",
   };
   export const CommonCssBehaviours={

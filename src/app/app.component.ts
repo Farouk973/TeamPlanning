@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { AccountService } from 'src/shared/services/account.service';
+import { PermissionService } from 'src/shared/services/permission.service';
 // import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
@@ -12,7 +13,7 @@ export class AppComponent {
   title = 'team-planning';
   isAuthenticated = false;
   constructor(public oidcSecurityService: OidcSecurityService,
-              public accountSerivice: AccountService,
+              public accountSerivice: AccountService,private permissionService: PermissionService
     ) {
      this.oidcSecurityService.checkAuth()
      .subscribe(({ isAuthenticated, userData, accessToken, idToken }) => {
@@ -22,10 +23,11 @@ export class AppComponent {
          console.log('current user:', userData);
          this.isAuthenticated = true;
          this.accountSerivice.connectedUser.next(userData);
-
+        this.permissionService.updateVariable(userData.sub);
        }
      });
     this.isAuthenticated = true;
+    
   }
   ngOnInit() {}
 

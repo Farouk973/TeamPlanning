@@ -21,6 +21,7 @@ import {MatStepper} from "@angular/material/stepper";
 
 
 
+// @ts-ignore
 @Component({
   selector: 'app-generic-stepper',
   templateUrl: './generic-stepper.component.html',
@@ -31,10 +32,12 @@ import {MatStepper} from "@angular/material/stepper";
       useExisting: GenericStepperComponent,
     },
   ],
+
 })
 
-export class GenericStepperComponent implements OnInit {
-  @Input() stepper$!: Observable<Stepper>;
+export class GenericStepperComponent<T> implements OnInit {
+  @Input() stepper$!: Stepper;
+  @Input() getComponent: (contentType: string) => any;
   stepper = new Stepper();
   actionType: string;
   order : number;
@@ -48,35 +51,20 @@ export class GenericStepperComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.stepper$.subscribe((stepperData: any) => {
-      this.stepper = stepperData;
-    });
+      this.stepper = this.stepper$;
 
   }
 
-  getComponent(contentType: string): any {
-    switch (contentType) {
-      case 'Form':
-        return FormComponent;
-      case 'Features':
-        return FeatureComponent;
-      case 'Roles':
-        return RolesComponent;
-      case 'Skills':
-        return SkillStepperComponent;
-        case 'Recap':
-        return RecopProjectComponent;
-      default:
-        throw new Error(`Invalid component name: ${contentType}`);
-    }
+  getComponentByContentType(contentType: string): any {
+    return this.getComponent(contentType);
   }
 
 
   formResponse(event) {
-    this.idResponse= event.response.projectId
-    const url = this.location.path().split('?')[0] + '/' + event.response.projectId;
+    this.idResponse= event.response.id
+    const url = this.location.path().split('?')[0] + '/' + event.response.id;
     this.location.replaceState(url);
-    if(event.response.projectId){
+    if(event.response.id){
       this.st.next();
     }
   }

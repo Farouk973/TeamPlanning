@@ -21,7 +21,9 @@ const routes: Routes = [
   },
   {
     path: 'add',
-    component: AddRequestComponent,
+    component: AddRequestComponent,children:[
+      {path: ':id', component : AddRequestComponent}
+    ]
   },
   {
     path: 'schedulig/:id',

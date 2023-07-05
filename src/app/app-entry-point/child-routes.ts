@@ -10,6 +10,11 @@ export const childRoutes = [
     data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }
   },
   {
+    path: 'engagment',
+    loadChildren: () => import('./engagement-managment/engagement-managment.module').then(m => m.EngagementManagmentModule),
+    data: { icon: '/assets/icons/dashboard.png', text: 'Engagment', show: true }
+  },
+  {
     path: 'stepper',
     loadChildren: () => import('./project-managment/project-managment.module').then(m => m.ProjectManagmentModule),
     data: { icon: '/assets/icons/dashboard.png', text: 'Dashboard', show: true }

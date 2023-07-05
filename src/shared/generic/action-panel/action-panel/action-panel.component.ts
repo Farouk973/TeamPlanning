@@ -26,7 +26,7 @@ export class ActionPanelComponent implements OnInit {
   }
 
   onEdit() {
-    this.edit.emit(this.objId);
+    this.edit.emit();
 
   }
 
@@ -41,8 +41,9 @@ export class ActionPanelComponent implements OnInit {
       data: {metaData, isUpdate,endpoint,object,title},
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${Object.keys(result)}`);
-     })
+      
+        this.edit.emit()
+    })
 
 console.log(this.actionPanel.formEditData)    }
   openDialogaction(data:any , id : any): void {

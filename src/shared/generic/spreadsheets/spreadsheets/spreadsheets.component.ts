@@ -10,7 +10,7 @@ import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-spreadsheets',
   templateUrl: './spreadsheets.component.html',
-  styleUrls: ['./spreadsheets.component.css']
+  styleUrls: ['./spreadsheets.component.scss']
 })
 export class SpreadsheetsComponent implements  OnChanges {
 

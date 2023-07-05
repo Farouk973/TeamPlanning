@@ -10,6 +10,7 @@ import { ActiondialogComponent } from '../nxm-dialog/actiondialog/actiondialog.c
 import { ConfirmationComponent } from '../nxm-dialog/confirmation/confirmation.component';
 import { DialogComponent } from '../nxm-dialog/dialog/dialog.component';
 import { SharedServices } from '../SharedServices.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-grid-view',
@@ -29,6 +30,12 @@ export class GridViewComponent implements OnInit {
   rows: any[] = [];
   // mapping metadata response into columnMetadata
   metadatas: ColumnMetadata[] = [];
+  totalItems = 200;
+  pageSizeOptions = [10, 50, 100];
+  sortColumn: string = '';
+  sortDirection: 'asc' | 'desc' = 'asc';
+  Index:any = 0;
+page:any=this.pageSizeOptions[0]
   ngOnInit() {
     this.getGridData();
 
@@ -40,8 +47,6 @@ export class GridViewComponent implements OnInit {
       });
   }
 
-  sortColumn: string = '';
-  sortDirection: 'asc' | 'desc' = 'asc';
   get sortedRows(): any[] {
     if (!this.sortColumn) {
       return this.rows;
@@ -70,14 +75,36 @@ export class GridViewComponent implements OnInit {
   }
 
   getGridData() {
+    console.log('rrrrrr data');
+    
+    if(this.GridView.pagination == true){
+      this.gridviewService
+      .getData(this.GridView.endpoint+"?take="+this.pageSizeOptions[0]+"&skip="+0)
+      .subscribe((data) => {
+        this.rows = data;
+        console.log("data" ,data)
+  //     this.totalItems = data.length
+      });
+    }
+    else{
     this.gridviewService
       .getData(this.GridView.endpoint)
       .subscribe((data) => {
         this.rows = data;
         console.log("data" ,data)
-
+       this.totalItems = data.length
       });
   }
+}
+getGridDataPagination(take : any , skip : any) {
+  if(this.GridView.pagination == true){
+    this.gridviewService
+    .getData(this.GridView.endpoint+"?take="+take+"&skip="+skip)
+    .subscribe((data) => {
+      this.rows = data;
+    });
+  }
+}
   getObjectKeys(obj: any) {
     const excludeProperties = [
       'created',
@@ -88,10 +115,8 @@ export class GridViewComponent implements OnInit {
     ];
     return Object.keys(obj).filter((key) => !excludeProperties.includes(key));
   }
-  onEditItem(itemId: number) {
-
-    const { actionPanel } = this.GridView;
-    this.gridviewService.updateRow(actionPanel.formEditData, itemId);
+  onEditItem() {
+    this.getGridDataPagination(this.page,this.Index)
   }
 
   onDeleteItem(itemId: number) {
@@ -104,10 +129,11 @@ export class GridViewComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.gridviewService.deleteRow(endpoint, itemId).subscribe((resp) => {
+        this.gridviewService.deleteRow(this.GridView.actionPanel.endpoint, itemId).subscribe((resp) => {
           if (resp) {
             this.rows.splice(index, 1);
           }
+          this.getGridData()
         });
       }
     });
@@ -121,9 +147,19 @@ export class GridViewComponent implements OnInit {
       data: {data , id},
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${Object.keys(result)}`);
+   //   console.log(`Dialog result: ${Object.keys(result)}`);
      }) 
     }
 
-  
+    handlePageChange(event: PageEvent) {
+      // Récupérer les données correspondantes à la nouvelle page
+      const startIndex = event.pageIndex * event.pageSize;
+      const endIndex = startIndex + event.pageSize;
+   //   const newData = yourDataArray.slice(startIndex, endIndex);
+  this.Index = startIndex
+this.page=event.pageSize
+    this.getGridDataPagination(event.pageSize,startIndex)
+    }
+
+
 }

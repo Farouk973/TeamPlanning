@@ -19,10 +19,12 @@ export class CardViewComponent implements OnInit {
   // GridView Input
   @Input() cardView: CardGridView;
   @Input() search: string
+  
   // Expression to detect images
   reg: string = '.(jpg|png|jpeg|gif|bmp)';
   // gridview rows retrieved
   rows: any[] = [];
+  filterSelected :any ="";
   // mapping metadata response into columnMetadata
   metadatas: ColumnMetadata[] = [];
   ngOnInit() {
@@ -34,7 +36,9 @@ export class CardViewComponent implements OnInit {
         this.metadatas = data;
       });
   }
-
+  selectefilter(select :any){
+    this.filterSelected = select
+  }
   ngOnChanges() {
 
   }
@@ -76,10 +80,8 @@ export class CardViewComponent implements OnInit {
     ];
     return Object.keys(obj).filter((key) => !excludeProperties.includes(key));
   }
-  onEditItem(itemId: number) {
-
-    const { actionPanel } = this.cardView;
-    this.gridviewService.updateRow(actionPanel.formEditData, itemId);
+  onEditItem() {
+this.getGridData()
   }
 
   onDeleteItem(itemId: number) {
@@ -94,8 +96,8 @@ export class CardViewComponent implements OnInit {
       if (result) {
         this.gridviewService.deleteRow(endpoint, itemId).subscribe((resp) => {
           if (resp) {
-            this.rows.splice(index, 1);
-          }
+        }          this.getGridData()  
+
         });
       }
     });
