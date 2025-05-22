@@ -128,8 +128,9 @@ export class SchedulingManagementComponent implements OnInit {
     const userTasks: any[] = [];
   
     for (const task of this.Tasks) {
-      if (task.users && task.users.includes(userId)) {
+      if (task.userList && task.userList.some(user => user.id === userId)) {
         userTasks.push(task);
+        console.log(task)
       }
     }
     return userTasks;
@@ -185,7 +186,7 @@ export class SchedulingManagementComponent implements OnInit {
   ////////////////////////conflit/////////////////////////////////////////////////////////////////////
   hasTimeConflict(userId: string, taskId: string): boolean {
     const userTasks = this.getTasksByUserId(userId);
-  
+
     for (const userTask of userTasks) {
       if (userTask.id !== taskId && this.isPeriodConflict(userTask, taskId)) {
         return true; // Conflict detected
